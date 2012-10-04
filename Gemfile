@@ -1,12 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
-gem 'neography'
+ruby '1.9.3'
+
+gem 'bundler', '1.2.0.pre.1'
+gem 'rails', '~> 3.2.8'
+
 gem 'jquery-rails'
 gem "mongoid", ">= 3.0.6"
 gem "devise", ">= 2.1.2"
+gem 'yajl-ruby' # json
+gem "bootstrap-sass", ">= 2.0.4.0"
+gem 'rack-contrib'
+gem 'soulmate', '0.1.3', :require => 'soulmate/server' # Redis based autocomplete storage
+gem 'chronic' # Date/Time management
+gem 'dalli' # memcache
+gem 'mongoid-cached-json'
 
 group :assets do
+  gem 'compass-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
@@ -34,4 +45,9 @@ group :test do
   gem "factory_girl_rails", ">= 4.0.0"
   gem 'guard-rspec'
   gem 'guard-livereload'
+end
+
+group :production, :staging do
+  gem "rack-timeout"
+  gem 'unicorn'
 end
