@@ -10,9 +10,9 @@ task :loop_test => :environment do
     puts u.name
     (1 + rand(3)).times do
       genders = %w(m f)
-      sizes = %(12M 18M 2T 3T 4T 5T 6T 7T)
-      box = u.boxes.create(:box, :gender => genders[rand(2)], :size => sizes[rand(8)], :level => 1 + rand(3))
-      puts "  " + box.attributes
+      sizes = ["12M", "18M", "2T", "3T", "4T", "5T", "6T", "7T"]
+      box = u.boxes.create(:gender => genders[rand(2)], :size => sizes[rand(8)], :level => 1 + rand(3))
+      puts "  gender: #{box.gender}, size: #{box.size}, level: #{box.level}"
     end
   end
 end

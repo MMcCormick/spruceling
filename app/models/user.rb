@@ -30,6 +30,7 @@ class User
   field :last_sign_in_ip,    :type => String
 
   field :name, :type => String
+  field :credits, :type => Integer
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -46,6 +47,7 @@ class User
   # field :authentication_token, :type => String
   # run 'rake db:mongoid:create_indexes' to create indexes
 
+  has_many :items
   has_many :boxes
 
   index({ email: 1 }, { unique: true, background: true })

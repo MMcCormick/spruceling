@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Gender:
+  = @item.gender
+%p
+  %b Size:
+  = @item.size
+%p
+  %b Brand:
+  = @item.brand
+%p
+  %b User:
+  = @item.user
+%p
+  %b Box:
+  = @item.box
+%p
+  %b Type:
+  = @item.type
+
+= link_to 'Edit', edit_item_path(@item)
+\|
+= link_to 'Back', items_path
