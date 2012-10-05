@@ -2,13 +2,11 @@ require 'spec_helper'
 
 describe Box do
   it "should require gender" do
-    FactoryGirl.build(:box, :gender => nil).
-        should be_invalid
+    FactoryGirl.build(:box, :gender => nil).should be_invalid
   end
 
   it "should require size" do
-    FactoryGirl.build(:box, :size => nil).
-        should be_invalid
+    FactoryGirl.build(:box, :size => nil).should be_invalid
   end
 
   describe "add_item" do

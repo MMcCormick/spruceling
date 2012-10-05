@@ -2,23 +2,19 @@ require 'spec_helper'
 
 describe Item do
   it "should require gender" do
-    FactoryGirl.build(:item, :gender => nil).
-        should be_invalid
+    FactoryGirl.build(:item, :gender => nil).should be_invalid
   end
 
   it "should require size" do
-    FactoryGirl.build(:item, :size => nil).
-        should be_invalid
+    FactoryGirl.build(:item, :size => nil).should be_invalid
   end
 
   it "should require type" do
-    FactoryGirl.build(:item, :type => nil).
-        should be_invalid
+    FactoryGirl.build(:item, :type => nil).should be_invalid
   end
 
   it "should require brand" do
-    FactoryGirl.build(:item, :brand => nil).
-        should be_invalid
+    FactoryGirl.build(:item, :brand => nil).should be_invalid
   end
 
   describe "all_sizes method" do
