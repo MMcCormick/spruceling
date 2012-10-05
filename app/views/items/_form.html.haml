@@ -8,21 +8,20 @@
 
   .field
     = f.label :gender
-    = f.text_field :gender
+    = f.radio_button :gender, "m"
+    = f.label :gender, 'Boy', :value => "m"
+    = f.radio_button :gender, "f"
+    = f.label :gender, 'Girl', :value => "f"
+    = f.radio_button :gender, "u"
+    = f.label :gender, 'Unisex', :value => "u"
   .field
     = f.label :size
-    = f.text_field :size
+    = f.select :size, Item.all_sizes, :prompt => "Select a size"
+  .field
+    = f.label :type
+    = f.select :type, Item.all_types, :prompt => "Select a clothing type"
   .field
     = f.label :brand
     = f.text_field :brand
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :box
-    = f.text_field :box
-  .field
-    = f.label :type
-    = f.text_field :type
   .actions
     = f.submit 'Save'

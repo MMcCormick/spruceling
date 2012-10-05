@@ -30,8 +30,10 @@ group :development do
   gem "haml-rails", ">= 0.3.4"
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
+  gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'rb-fsevent', :require => false
 end
 
 group :test do

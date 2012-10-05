@@ -8,6 +8,10 @@ class Box
   belongs_to :user
   has_many :items
 
-  validates_presence_of :gender, :size, :level
-  attr_accessible :gender, :size, :level
+  validates_presence_of :gender, :size
+  attr_accessible :gender, :size
+
+  def add_item(item)
+    self.items << item
+  end
 end

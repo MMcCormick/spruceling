@@ -38,4 +38,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Clean/Reset Mongoid DB prior to running the tests
+  config.before :each do
+    Mongoid.default_session.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  end
 end

@@ -1,29 +1,29 @@
 %h1 Listing items
 
-%table
-  %tr
-    %th Gender
-    %th Size
-    %th Brand
-    %th User
-    %th Box
-    %th Type
-    %th
-    %th
-    %th
+-Item.all_sizes.each do |size|
+  -["m", "f"].each do |gender|
+    -unless @items.where(:size => size, :gender => gender).empty?
+      %h3= "#{size} #{gender}"
+      %table
+        %tr
+          %th
+          %th Brand
+          %th Box
+          %th Type
+          %th
+          %th
+          %th
 
-  - @items.each do |item|
-    %tr
-      %td= item.gender
-      %td= item.size
-      %td= item.brand
-      %td= item.user
-      %td= item.box
-      %td= item.type
-      %td= link_to 'Show', item
-      %td= link_to 'Edit', edit_item_path(item)
-      %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+        - @items.where(:size => size, :gender => gender).each do |item|
+          %tr
+            %td
+            %td= item.brand
+            %td= item.box
+            %td= item.type
+            %td= link_to 'Show', item
+            %td= link_to 'Edit', edit_item_path(item)
+            %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
+      %br
 
 = link_to 'New Item', new_item_path
