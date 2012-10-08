@@ -5,12 +5,13 @@ class Item
   field :gender, type: String
   field :size, type: String
   field :brand, type: String
-  field :type, type: String
 
   belongs_to :user
   belongs_to :box
+  belongs_to :item_type
 
-  validates_presence_of :gender, :type, :size, :brand
+  validates_presence_of :gender, :item_type, :size, :brand, :user
+  #TODO: validate type
 
   def self.all_sizes
     ["12 months",
@@ -25,20 +26,35 @@ class Item
   end
 
   def self.all_types
-    ["Capris",
-     #"Dress Shirts"
-     "Dresses",
-     #"Gloves",
-     "Hats",
-     "Jackets",
-     "Long-sleeved Shirts",
-     "Pants",
-     #"Polos",
-     "Onesies",
-     "Overalls",
-     "Shorts",
-     "Skirts",
-     "Sweaters / Sweatshirts",
-     "T-shirts"]
+    {
+      "Long-sleeve" => [
+        "Sweaters",
+        "Button Downs",
+        "Polos",
+        "T Shirts"
+      ],
+      "Short-sleeve" => [
+        "Sweater Vests",
+        "Button Downs",
+        "Polos",
+        "T Shirts",
+        "Tank Tops"
+      ],
+      "Pants" => [
+        "Jeans",
+        "Chinos / Khakis",
+        "Overalls",
+        "Cords",
+        "Capris",
+        "Leggings",
+        "Sweatpants / Windpants"
+      ],
+      "Shorts" => [
+        "Khaki / Cotton",
+        "Cargo",
+        "Denim",
+        "Overall"
+      ],
+    }
   end
 end

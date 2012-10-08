@@ -69,6 +69,23 @@ class BoxesController < ApplicationController
     end
   end
 
+  def add_item
+    @box = Box.find(params[:id])
+    @item = Item.find(params[:item_id])
+
+    respond_to do |format|
+      if @box.add_item(@item)
+        @box.save
+        @item.save
+        format.html { redirect_to @box, notice: 'Box was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @box.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /boxes/1
   # DELETE /boxes/1.json
   def destroy

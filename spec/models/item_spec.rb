@@ -10,7 +10,11 @@ describe Item do
   end
 
   it "should require type" do
-    FactoryGirl.build(:item, :type => nil).should be_invalid
+    FactoryGirl.build(:item, :item_type => nil).should be_invalid
+  end
+
+  it "should require an existing type" do
+    FactoryGirl.build(:item, :item_type => "foobar").should be_invalid
   end
 
   it "should require brand" do
@@ -25,8 +29,9 @@ describe Item do
   end
 
   describe "all_types method" do
-    it "should return a non-empty array of types" do
-      Item.all_types.should be_a(Array)
+    it "should return a non-empty hash of non-empty arrays of types" do
+      Item.all_types.should be_a(Hash)
+      Item.all_types["Pants"].should be_a(Array)
       Item.all_types.should_not be_empty
     end
   end

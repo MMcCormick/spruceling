@@ -1,6 +1,9 @@
 KidSwap::Application.routes.draw do
   resources :items
+
+  # Boxes
   resources :boxes
+  put 'boxes/add_item'
 
   authenticated :user do
     root :to => 'home#index'

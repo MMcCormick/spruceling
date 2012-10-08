@@ -109,6 +109,46 @@ describe BoxesController do
     end
   end
 
+  describe "PUT add_item" do
+    before(:each) do
+      @item = FactoryGirl.create(:item)
+    end
+
+    describe "with valid params" do
+      it "adds the requested item" do
+        Box.any_instance.should_receive(:add_item).with(@item)
+        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+      end
+
+      it "assigns the requested box as @box" do
+        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+        assigns(:box).should eq(@box)
+      end
+
+      it "redirects to the box" do
+        Box.any_instance.stub(:add_item).and_return(true)
+        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+        response.should redirect_to(@box)
+      end
+    end
+
+    describe "with invalid params" do
+      it "assigns the box as @box" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Box.any_instance.stub(:add_item).and_return(false)
+        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+        assigns(:box).should eq(@box)
+      end
+
+      it "re-renders the 'edit' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Box.any_instance.stub(:add_item).and_return(false)
+        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+        response.should render_template("edit")
+      end
+    end
+  end
+
   describe "DELETE destroy" do
     it "destroys the requested box" do
       expect {
