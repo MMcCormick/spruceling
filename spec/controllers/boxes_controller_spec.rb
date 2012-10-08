@@ -6,9 +6,9 @@ describe BoxesController do
   end
 
   describe "GET index" do
-    it "assigns all boxs as @boxs" do
+    it "assigns all boxes as @boxes" do
       get :index, {}
-      assigns(:boxs).should eq([@box])
+      assigns(:boxes).should eq([@box])
     end
   end
 
@@ -116,9 +116,9 @@ describe BoxesController do
       }.to change(Box, :count).by(-1)
     end
 
-    it "redirects to the boxs list" do
+    it "redirects to the boxes list" do
       delete :destroy, {:id => @box.to_param}
-      response.should redirect_to(boxs_url)
+      response.should redirect_to(boxes_url)
     end
   end
 

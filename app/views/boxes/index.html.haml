@@ -1,0 +1,17 @@
+%h1 Listing boxes
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @boxes.each do |box|
+    %tr
+      %td= link_to 'Show', box
+      %td= link_to 'Edit', edit_box_path(box)
+      %td= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Box', new_box_path

@@ -2,6 +2,8 @@
 
 <%= link_to "My Items", items_path %>
 
+<%= link_to "Create a Box", new_box_path %>
+
 <% @users.each do |user| %>
   <p>User: <%=link_to user.name, user %></p>
 <% end %>
