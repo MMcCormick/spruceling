@@ -1,5 +1,7 @@
 class Item
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :gender, type: String
   field :size, type: String
   field :brand, type: String
