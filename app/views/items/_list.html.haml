@@ -1,0 +1,23 @@
+%table
+  %tr
+    %th
+    %th Brand
+    %th Box
+    %th Type
+    %th
+    %th
+    %th
+    %th
+    %th
+
+  - items.each do |item|
+    %tr
+      %td
+      %td= item.brand
+      %td= item.box
+      %td= item.type
+      %td= item.gender
+      %td= item.size
+      %td= link_to 'Show', item
+      %td= link_to 'Edit', edit_item_path(item)
+      %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,5 +1,6 @@
 KidSwap::Application.routes.draw do
   resources :items
+  resources :boxes
 
   authenticated :user do
     root :to => 'home#index'
