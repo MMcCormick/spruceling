@@ -15,6 +15,7 @@ gem 'soulmate', '0.1.3', :require => 'soulmate/server' # Redis based autocomplet
 gem 'chronic' # Date/Time management
 gem 'dalli' # memcache
 gem 'mongoid-cached-json'
+gem 'stripe' # payments
 
 group :assets do
   gem 'compass-rails'
