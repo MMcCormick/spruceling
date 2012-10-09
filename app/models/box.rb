@@ -4,6 +4,7 @@ class Box
 
   field :gender, :type => String
   field :size, :type => String
+  field :item_type_ids, :type => Array, :default => []
 
   belongs_to :user
   has_many :items
@@ -16,6 +17,12 @@ class Box
       false
     else
       self.items << item
+      self.item_type_ids << item.item_type_id unless item_type_ids.include? item.item_type_id
     end
+  end
+
+  def remove_item(item)
+    self.items.delete(item)
+    self.item_type_ids.delete(item.item_type_id) if items.where(:item_type_id => item.item_type_id).empty?
   end
 end
