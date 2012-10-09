@@ -12,9 +12,6 @@ class User
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
-  validates_presence_of :email
-  validates_presence_of :encrypted_password
-  
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -31,6 +28,7 @@ class User
 
   field :name, :type => String
   field :credits, :type => Integer
+  field :stripe_id, :type => String # payments
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -47,11 +45,19 @@ class User
   # field :authentication_token, :type => String
   # run 'rake db:mongoid:create_indexes' to create indexes
 
+  has_one :cart, :autobuild => true
   has_many :items
   has_many :boxes
 
   index({ email: 1 }, { unique: true, background: true })
 
-  validates_presence_of :name
+  validates_presence_of :name, :email, :encrypted_password
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
+
+  before_create :create_cart
+
+  def create_cart
+    self.cart.save
+  end
+
 end
