@@ -21,4 +21,18 @@ describe UsersController do
     
   end
 
+  describe "PUT update_stripe" do
+    describe "with valid params" do
+      it "updates the user" do
+        User.any_instance.should_receive(:update_stripe).with('foo')
+        post :update_stripe, {:stripeToken => 'foo'}
+      end
+
+      it "redirects to the cart" do
+        post :update_stripe, {:stripeToken => 'foo'}
+        response.should redirect_to(cart_path)
+      end
+    end
+  end
+
 end

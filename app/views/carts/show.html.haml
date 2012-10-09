@@ -16,3 +16,19 @@
       %td= link_to 'Remove from cart', cart_remove_path(:box_id => box.id), :method => :put
 
 %br
+
+= form_tag(user_update_stripe_path, :method => :post, :id => 'payment-form') do
+  .payment-errors
+  .form-row
+    %label Card Number
+    %input.card-number{:type => 'text', :size => '20', :autocomplete => 'off'}
+  .form-row
+    %label CVC
+    %input.card-cvc{:type => 'text', :size => '4', :autocomplete => 'off'}
+  .form-row
+    %label Expiration (MM/YYYY)
+    %input.card-expiry-month{:type => 'text', :size => '2', :autocomplete => 'off'}
+    %span
+    %input.card-expiry-year{:type => 'text', :size => '4', :autocomplete => 'off'}
+  %input.stripe-token{:type => 'hidden', :name => 'stripeToken'}
+  %button.submit-button{:type => 'submit', :autocomplete => 'off'} Submit Payment

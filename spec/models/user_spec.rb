@@ -91,8 +91,13 @@ describe User do
       @user = FactoryGirl.build(:user)
     end
 
-    it "should have an encrypted password attribute" do
-      @user.should respond_to(:stripe_id)
+    it "should have a stripe attribute" do
+      @user.should respond_to(:stripe_token)
+    end
+
+    it "should update stripe id when update_stripe called" do
+      @user.update_stripe('foo')
+      @user.stripe_token.should eq('foo')
     end
 
   end
