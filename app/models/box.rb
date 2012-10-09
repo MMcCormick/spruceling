@@ -12,6 +12,10 @@ class Box
   attr_accessible :gender, :size
 
   def add_item(item)
-    self.items << item
+    if item.box || item.gender != gender || item.size != size
+      false
+    else
+      self.items << item
+    end
   end
 end

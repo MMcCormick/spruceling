@@ -1,7 +1,10 @@
 KidSwap::Application.routes.draw do
 
   resources :items
+
+  # Boxes
   resources :boxes
+  put 'boxes/add_item'
 
   scope 'cart' do
     get '' => 'carts#show', :as => :cart

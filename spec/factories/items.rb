@@ -6,7 +6,6 @@ FactoryGirl.define do
     size "18 months"
     brand "Osh Kosh"
     association :user
-    association :box
-    type "dresses"
+    association :item_type
   end
 end
