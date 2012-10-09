@@ -28,7 +28,7 @@ class User
 
   field :name, :type => String
   field :credits, :type => Integer
-  field :stripe_token, :type => String, :default => nil # payments
+  field :stripe_customer_id, :type => String, :default => nil # payments
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -60,8 +60,8 @@ class User
     self.cart.save
   end
 
-  def update_stripe(stripe_token)
-    self.stripe_token = stripe_token
+  def update_stripe(stripe_customer_id)
+    self.stripe_customer_id = stripe_customer_id
   end
 
 end
