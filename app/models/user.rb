@@ -60,8 +60,26 @@ class User
     self.cart.save
   end
 
-  def update_stripe(stripe_customer_id)
-    self.stripe_customer_id = stripe_customer_id
+  def stripe
+    stripe_customer_id ? Stripe::Customer.retrieve(stripe_customer_id) : nil
+  end
+
+  def update_stripe(stripe_token)
+    customer = stripe
+    unless customer
+      # create a Customer
+      begin
+        customer = Stripe::Customer.create(
+          :card => stripe_token,
+          :description => email
+        )
+      rescue => e
+        return false
+      end
+      self.stripe_customer_id = customer.id
+    end
+    customer.card = stripe_token
+    customer.save
   end
 
 end
