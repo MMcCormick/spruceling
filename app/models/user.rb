@@ -66,7 +66,14 @@ class User
 
   def update_stripe(stripe_token)
     customer = stripe
-    unless customer
+    if customer
+      begin
+        customer.card = stripe_token
+        customer.save
+      rescue => e
+        return false
+      end
+    else
       # create a Customer
       begin
         customer = Stripe::Customer.create(
@@ -78,8 +85,8 @@ class User
       end
       self.stripe_customer_id = customer.id
     end
-    customer.card = stripe_token
-    customer.save
+
+    true
   end
 
 end
