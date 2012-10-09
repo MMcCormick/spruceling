@@ -1,6 +1,18 @@
-%p#notice= notice
+%h1 My Cart
 
+%table
+  %tr
+    %th Gender
+    %th Size
+    %th
+    %th
+    %th
 
-= link_to 'Edit', edit_cart_path(@cart)
-\|
-= link_to 'Back', carts_path
+  - @cart.boxes.each do |box|
+    %tr
+      %td= box.gender
+      %td= box.size
+      %td= link_to 'Show', box
+      %td= link_to 'Remove from cart', cart_remove_path(:box_id => box.id), :method => :put
+
+%br
