@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe ItemsController do
   before (:each) do
+    @user = FactoryGirl.create(:user)
+    sign_in @user
     @item = FactoryGirl.create(:item)
   end
 
