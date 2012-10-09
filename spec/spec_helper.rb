@@ -42,5 +42,6 @@ RSpec.configure do |config|
   # Clean/Reset Mongoid DB prior to running the tests
   config.before :each do
     Mongoid.default_session.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+    Mongoid.raise_not_found_error = false
   end
 end

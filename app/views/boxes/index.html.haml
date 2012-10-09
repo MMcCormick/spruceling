@@ -8,9 +8,11 @@
 
   - @boxes.each do |box|
     %tr
+      %td= "#{box.gender} - #{box.size}"
       %td= link_to 'Show', box
       %td= link_to 'Edit', edit_box_path(box)
       %td= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }
+      -#%td= link_to 'Buy', box, buy_box_path(box)
 
 %br
 
