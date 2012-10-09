@@ -42,7 +42,7 @@ describe CartsController do
 
       it "redirects to the cart" do
         put :add, {:box_id => @box.id}
-        response.should redirect_to(@user.cart)
+        response.should redirect_to(cart_path)
       end
     end
   end
@@ -56,7 +56,7 @@ describe CartsController do
 
       it "redirects to the cart" do
         put :remove, {:box_id => @box.id.to_s}
-        response.should redirect_to(@user.cart)
+        response.should redirect_to(cart_path)
       end
     end
   end
