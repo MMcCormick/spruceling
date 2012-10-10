@@ -1,0 +1,12 @@
+= form_tag boxes_path, :method => 'get' do
+  .field
+    = label_tag :gender
+    = radio_button_tag :gender, "m"
+    = label_tag :gender, 'Boy', :value => "m"
+    = radio_button_tag :gender, "f"
+    = label_tag :gender, 'Girl', :value => "f"
+  .field
+    = label_tag :size
+    = select_tag :size, options_for_select(Item.all_sizes), :prompt => "Select a size"
+  .actions
+    = submit_tag 'Search'

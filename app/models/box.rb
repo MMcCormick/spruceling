@@ -28,8 +28,8 @@ class Box
 
   def self.by_filter(params={})
     query = {}
-    query[:gender] = params[:gender] if params[:gender]
-    query[:size] = params[:size] if params[:size]
+    query[:gender] = params[:gender] if ["m", "f"].include? params[:gender]
+    query[:size] = params[:size] if Item.all_sizes.include? params[:size]
     Box.where(query)
   end
 end
