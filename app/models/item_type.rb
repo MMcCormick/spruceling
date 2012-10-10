@@ -2,6 +2,7 @@ class ItemType
   include Mongoid::Document
 
   field :name
+  field :short_name
   field :category
 
   has_many :items
@@ -12,7 +13,7 @@ class ItemType
     result = {}
     ItemType.all.each do |type|
       result[type.category] ||= []
-      result[type.category] << [type.name, type.id]
+      result[type.category] << [type.short_name, type.id]
     end
     result
   end

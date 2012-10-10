@@ -5,56 +5,38 @@ class Item
   field :gender, type: String
   field :size, type: String
   field :brand, type: String
+  field :new_with_tags, type: Boolean
 
   belongs_to :user
   belongs_to :box
   belongs_to :item_type
 
-  validates_presence_of :gender, :item_type, :size, :brand, :user
+  validates_presence_of :gender, :item_type, :size, :brand, :user, :new_with_tags
   #TODO: validate type
 
   def self.all_sizes
     ["12 months",
      "18 months",
+     "24 months",
      "2T",
      "3T",
      "4T",
      "5T",
-     "6T",
-     "7T",
-     "8T"]
-  end
-
-  def self.all_types
-    {
-      "Long-sleeve" => [
-        "Sweaters",
-        "Button Downs",
-        "Polos",
-        "T Shirts"
-      ],
-      "Short-sleeve" => [
-        "Sweater Vests",
-        "Button Downs",
-        "Polos",
-        "T Shirts",
-        "Tank Tops"
-      ],
-      "Pants" => [
-        "Jeans",
-        "Chinos / Khakis",
-        "Overalls",
-        "Cords",
-        "Capris",
-        "Leggings",
-        "Sweatpants / Windpants"
-      ],
-      "Shorts" => [
-        "Khaki / Cotton",
-        "Cargo",
-        "Denim",
-        "Overall"
-      ],
-    }
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10",
+     "11",
+     "12",
+     "14",
+     "16",
+     "18",
+     "20",
+     "Other"]
   end
 end

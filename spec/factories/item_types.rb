@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :item_type do
     name "Capris"
+    short_name "Capris"
     category "Pants"
   end
 end

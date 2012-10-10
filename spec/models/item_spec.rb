@@ -21,18 +21,14 @@ describe Item do
     FactoryGirl.build(:item, :brand => nil).should be_invalid
   end
 
+  it "should require new_with_tags" do
+    FactoryGirl.build(:item, :new_with_tags => nil).should be_invalid
+  end
+
   describe "all_sizes method" do
     it "should return a non-empty array of sizes" do
       Item.all_sizes.should be_a(Array)
       Item.all_sizes.should_not be_empty
-    end
-  end
-
-  describe "all_types method" do
-    it "should return a non-empty hash of non-empty arrays of types" do
-      Item.all_types.should be_a(Hash)
-      Item.all_types["Pants"].should be_a(Array)
-      Item.all_types.should_not be_empty
     end
   end
 end
