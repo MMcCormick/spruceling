@@ -25,4 +25,11 @@ class Box
     self.items.delete(item)
     self.item_type_ids.delete(item.item_type_id) if items.where(:item_type_id => item.item_type_id).empty?
   end
+
+  def self.by_filter(params={})
+    query = {}
+    query[:gender] = params[:gender] if params[:gender]
+    query[:size] = params[:size] if params[:size]
+    Box.where(query)
+  end
 end

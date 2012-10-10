@@ -66,4 +66,22 @@ describe Box do
       expect { @box.remove_item(@item2) }.to_not change{@box.items.length}
     end
   end
+
+  describe "by_filter" do
+    before(:each) do
+      @box2 = FactoryGirl.create(:box, :gender => "m")
+    end
+
+    it "should return all boxes when no arguments are passed" do
+      Box.by_filter.should eq [@box, @box2]
+    end
+
+    it "should return a box that matches the arguments" do
+      Box.by_filter({:gender => "m"}).should include @box2
+    end
+
+    it "should not return a box that does not match the arguments" do
+      Box.by_filter({:gender => "f"}).should_not include @box2
+    end
+  end
 end

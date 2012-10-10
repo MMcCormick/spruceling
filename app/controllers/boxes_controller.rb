@@ -2,7 +2,7 @@ class BoxesController < ApplicationController
   # GET /boxes
   # GET /boxes.json
   def index
-    @boxes = Box.all
+    @boxes = Box.by_filter(params.slice(:gender, :size))
 
     respond_to do |format|
       format.html # index.html.erb
