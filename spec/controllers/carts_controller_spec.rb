@@ -31,6 +31,11 @@ describe CartsController do
       get :show
       assigns(:cart).should eq(@user.cart)
     end
+    it "redirects to homepage if not signed in" do
+      sign_out @user
+      get :show
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "PUT add" do
@@ -43,6 +48,12 @@ describe CartsController do
       it "redirects to the cart" do
         put :add, {:box_id => @box.id}
         response.should redirect_to(cart_path)
+      end
+
+      it "redirects to homepage if not signed in" do
+        sign_out @user
+        put :add
+        response.should redirect_to(new_user_session_path)
       end
     end
   end
@@ -57,6 +68,12 @@ describe CartsController do
       it "redirects to the cart" do
         put :remove, {:box_id => @box.id.to_s}
         response.should redirect_to(cart_path)
+      end
+
+      it "redirects to homepage if not signed in" do
+        sign_out @user
+        put :remove
+        response.should redirect_to(new_user_session_path)
       end
     end
   end
