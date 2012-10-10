@@ -6,7 +6,10 @@ Spruceling::Application.routes.draw do
 
   # Boxes
   resources :boxes
-  put 'boxes/add_item'
+  scope :boxes do
+    put 'add_item' => 'boxes#add_item'
+    get 'my_boxes' => 'boxes#my_boxes'
+  end
 
   scope 'users' do
     post 'update_stripe' => 'users#update_stripe', :as => :user_update_stripe
