@@ -13,6 +13,8 @@ class Box
   validates_presence_of :gender, :size, :user
   attr_accessible :gender, :size
 
+  scope :active, where(:status => "active")
+
   def add_item(item)
     if item.box || item.gender != gender || item.size != size
       false

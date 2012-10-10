@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = current_user.items.active
 
     respond_to do |format|
       format.html # index.html.erb

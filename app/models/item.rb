@@ -15,6 +15,8 @@ class Item
   validates_presence_of :gender, :item_type, :size, :brand, :user, :new_with_tags
   #TODO: validate type
 
+  scope :active, where(:status => "active")
+
   def self.all_sizes
     ["12 months",
      "18 months",

@@ -4,13 +4,25 @@ describe ItemsController do
   before (:each) do
     @user = FactoryGirl.create(:user)
     sign_in @user
-    @item = FactoryGirl.create(:item)
+    @item = FactoryGirl.create(:item, :user => @user)
   end
 
   describe "GET index" do
-    it "assigns all items as @items" do
-      get :index, {}
+    it "assigns current user's items as @items" do
+      get :index
       assigns(:items).should eq([@item])
+    end
+
+    it "should not assign items which do not belong to the current user" do
+      @item2 = FactoryGirl.create(:item, :user => FactoryGirl.create(:user))
+      get :index
+      assigns(:items).should_not include @item2
+    end
+
+    it "should not include inactive items" do
+      @item2 = FactoryGirl.create(:item, :user => @user, :status => "sold")
+      get :index
+      assigns(:items).should_not include @item2
     end
   end
 
@@ -33,6 +45,8 @@ describe ItemsController do
       get :edit, {:id => @item.to_param}
       assigns(:item).should eq(@item)
     end
+
+    it "should require the correct permissions"
   end
 
   describe "POST create" do
@@ -47,6 +61,11 @@ describe ItemsController do
         post :create, {:item => FactoryGirl.build(:item).attributes}
         assigns(:item).should be_a(Item)
         assigns(:item).should be_persisted
+      end
+
+      it "should assign the item to the current user" do
+        post :create, {:item => FactoryGirl.build(:item).attributes}
+        assigns(:item).user.should eq(@user)
       end
 
       it "redirects to the created item" do
@@ -109,6 +128,8 @@ describe ItemsController do
         response.should render_template("edit")
       end
     end
+
+    it "should require the correct permissions"
   end
 
   describe "DELETE destroy" do
@@ -122,6 +143,8 @@ describe ItemsController do
       delete :destroy, {:id => @item.to_param}
       response.should redirect_to(items_url)
     end
+
+    it "should require the correct permissions"
   end
 
 end
