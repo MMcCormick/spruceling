@@ -87,6 +87,10 @@ describe User do
 
   describe "stripe payments" do
 
+    let (:stripe_customer) do
+      stub_model Stripe::Customer, :id => 'foo', :card => '123'
+    end
+
     before(:each) do
       @user = FactoryGirl.build(:user)
     end
@@ -95,10 +99,37 @@ describe User do
       @user.should respond_to(:stripe_customer_id)
     end
 
-    it "should update stripe id when update_stripe called" #do
-    #  @user.update_stripe('foo')
-    #  @user.stripe_customer_id.should eq('foo')
-    #end
+    describe "stripe" do
+      it "should return stripe customer if stripe_customer_id" do
+        @user.stripe_customer_id = 'foo'
+        Stripe::Customer.should_receive(:retrieve).and_return(stripe_customer)
+        @user.stripe.should eq(stripe_customer)
+      end
+      it "should return nil if not stripe_customer_id" do
+        @user.stripe_customer_id = nil
+        @user.stripe.should eq(nil)
+      end
+    end
+
+    describe "update_stripe" do
+      it "should update stripe_customer_id if nil" do
+        @user.stripe_customer_id = nil
+        Stripe::Customer.should_receive(:create).and_return(stripe_customer)
+        @user.update_stripe('foo')
+        @user.stripe_customer_id.should eq(stripe_customer.id)
+      end
+      it "should call save on the stripe customer object if stripe_customer_id exists" do
+        @user.should_receive(:stripe).and_return(stripe_customer)
+        Stripe::Customer.any_instance.should_receive(:save)
+        @user.update_stripe('foo')
+      end
+      it "should update stripe customer object if stripe_customer_id exists" do
+        @user.stripe_customer_id = 1
+        @user.should_receive(:stripe).and_return(stripe_customer)
+        @user.update_stripe('foo')
+        stripe_customer.card.should eq('foo')
+      end
+    end
 
   end
 
