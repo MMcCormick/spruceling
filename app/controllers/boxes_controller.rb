@@ -53,7 +53,7 @@ class BoxesController < ApplicationController
   # POST /boxes
   # POST /boxes.json
   def create
-    @box = Box.new(params[:box])
+    @box = current_user.boxes.new(params[:box])
 
     respond_to do |format|
       if @box.save

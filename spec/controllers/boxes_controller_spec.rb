@@ -83,6 +83,11 @@ describe BoxesController do
   end
 
   describe "POST create" do
+    before (:each) do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    end
+
     describe "with valid params" do
       it "creates a new box" do
         expect {
