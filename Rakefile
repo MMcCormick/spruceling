@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-KidSwap::Application.load_tasks
+Spruceling::Application.load_tasks

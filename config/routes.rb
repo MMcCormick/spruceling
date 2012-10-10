@@ -1,4 +1,4 @@
-KidSwap::Application.routes.draw do
+Spruceling::Application.routes.draw do
 
   resources :items
 
