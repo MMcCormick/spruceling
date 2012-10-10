@@ -6,6 +6,7 @@ class Item
   field :size, type: String
   field :brand, type: String
   field :new_with_tags, type: Boolean
+  field :status, type: String, default: "active"
 
   belongs_to :user
   belongs_to :box

@@ -5,6 +5,7 @@ class Box
   field :gender, :type => String
   field :size, :type => String
   field :item_type_ids, :type => Array, :default => []
+  field :status, :type => String, :default => "active"
 
   belongs_to :user
   has_many :items
