@@ -9,7 +9,7 @@ class Box
   belongs_to :user
   has_many :items
 
-  validates_presence_of :gender, :size
+  validates_presence_of :gender, :size, :user
   attr_accessible :gender, :size
 
   def add_item(item)

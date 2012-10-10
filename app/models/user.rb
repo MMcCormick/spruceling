@@ -48,6 +48,7 @@ class User
   has_one :cart, :autobuild => true
   has_many :items
   has_many :boxes
+  has_many :orders
 
   index({ email: 1 }, { unique: true, background: true })
 

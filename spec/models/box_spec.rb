@@ -6,6 +6,10 @@ describe Box do
     @box = FactoryGirl.create(:box, :gender => @item.gender, :size => @item.size)
   end
 
+  it "should require user" do
+    FactoryGirl.build(:box, :user_id => nil).should be_invalid
+  end
+
   it "should require gender" do
     FactoryGirl.build(:box, :gender => nil).should be_invalid
   end
