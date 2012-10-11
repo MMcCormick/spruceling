@@ -26,11 +26,12 @@ class OrdersController < ApplicationController
     @order = Order.process(current_user)
 
     respond_to do |format|
-      if @order.save
+      if @order.valid?
+        @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to cart_path, :error => 'Order was not created.' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end

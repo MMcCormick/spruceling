@@ -99,7 +99,7 @@ describe User do
       @user.should respond_to(:stripe_customer_id)
     end
 
-    describe "stripe" do
+    describe "#stripe" do
       it "should return stripe customer if stripe_customer_id" do
         @user.stripe_customer_id = 'foo'
         Stripe::Customer.should_receive(:retrieve).and_return(stripe_customer)
@@ -111,7 +111,7 @@ describe User do
       end
     end
 
-    describe "update_stripe" do
+    describe "#update_stripe" do
       it "should update stripe_customer_id if nil" do
         @user.stripe_customer_id = nil
         Stripe::Customer.should_receive(:create).and_return(stripe_customer)
