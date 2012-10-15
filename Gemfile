@@ -16,6 +16,7 @@ gem 'chronic' # Date/Time management
 gem 'dalli' # memcache
 gem 'mongoid-cached-json'
 gem 'stripe' # payments
+gem 'cancan'
 
 group :assets do
   gem 'compass-rails'

@@ -8,6 +8,7 @@ Spruceling::Application.routes.draw do
   resources :boxes
   scope :boxes do
     put 'add_item' => 'boxes#add_item'
+    put 'remove_item' => 'boxes#remove_item'
     get 'my_boxes' => 'boxes#my_boxes'
   end
 
