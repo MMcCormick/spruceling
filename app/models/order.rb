@@ -36,6 +36,12 @@ class Order
   def process
     order_items.each do |o|
       user.cart.remove_box(o.box.id)
+      o.box.status = 'sold'
+      o.box.save
+      o.box.items.each do |i|
+        i.status = 'sold'
+        i.save
+      end
     end
   end
 

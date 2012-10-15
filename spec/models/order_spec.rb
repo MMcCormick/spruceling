@@ -77,6 +77,22 @@ describe Order do
         @order.process
         @user.cart.boxes.length.should eq(0)
       end
+
+      it "should change the boxes status to sold" do
+        @order = Order.generate(@user)
+        @order.add_box(@box)
+        @order.process
+        @box.status.should eq('sold')
+      end
+
+      it "should change the boxes items status to sold" do
+        @order = Order.generate(@user)
+        @order.add_box(@box)
+        @order.process
+        @box.items.each do |i|
+          i.status.should eq('sold')
+        end
+      end
     end
   end
 

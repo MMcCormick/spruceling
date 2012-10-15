@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :box do
-    gender "MyString"
-    size "MyString"
+    gender "m"
+    size "18 months"
     association :user
   end
 end

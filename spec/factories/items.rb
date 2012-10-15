@@ -5,6 +5,7 @@ FactoryGirl.define do
     gender "m"
     size "18 months"
     brand "Osh Kosh"
+    status "active"
     new_with_tags false
     association :user
     association :item_type
