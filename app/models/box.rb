@@ -5,12 +5,15 @@ class Box
   field :gender, :type => String
   field :size, :type => String
   field :item_type_ids, :type => Array, :default => []
+  field :status, :type => String, :default => "active"
 
   belongs_to :user
   has_many :items
 
   validates_presence_of :gender, :size, :user
   attr_accessible :gender, :size
+
+  scope :active, where(:status => "active")
 
   def add_item(item)
     if item.box || item.gender != gender || item.size != size

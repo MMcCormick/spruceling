@@ -11,6 +11,12 @@ describe BoxesController do
       response.should render_template("index")
     end
 
+    it "should not include inactive boxes" do
+      @box2 = FactoryGirl.create(:box, :status => "sold")
+      get :index
+      assigns(:boxes).should_not include @box2
+    end
+
     describe "without parameters" do
       it "assigns all boxes as @boxes" do
         get :index
@@ -59,6 +65,12 @@ describe BoxesController do
       get :my_boxes
       assigns(:boxes).should_not include @box
     end
+
+    it "should not include inactive boxes" do
+      @box3 = FactoryGirl.create(:box, :status => "sold", :user => @user)
+      get :my_boxes
+      assigns(:boxes).should_not include @box3
+    end
   end
 
   describe "GET show" do
@@ -80,6 +92,8 @@ describe BoxesController do
       get :edit, {:id => @box.to_param}
       assigns(:box).should eq(@box)
     end
+
+    it "should require the correct permissions"
   end
 
   describe "POST create" do
@@ -161,6 +175,8 @@ describe BoxesController do
         response.should render_template("edit")
       end
     end
+
+    it "should require the correct permissions"
   end
 
   describe "PUT add_item" do
@@ -201,6 +217,12 @@ describe BoxesController do
         response.should render_template("edit")
       end
     end
+
+    it "should require the correct permissions"
+  end
+
+  describe "PUT remove_item" do
+    it "should do a bunch of stuff (see add_item)"
   end
 
   describe "DELETE destroy" do
@@ -214,6 +236,8 @@ describe BoxesController do
       delete :destroy, {:id => @box.to_param}
       response.should redirect_to(boxes_url)
     end
+
+    it "should require the correct permissions"
   end
 
 end

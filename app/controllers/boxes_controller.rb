@@ -4,7 +4,7 @@ class BoxesController < ApplicationController
   # GET /boxes
   # GET /boxes.json
   def index
-    @boxes = Box.by_filter(params.slice(:gender, :size))
+    @boxes = Box.by_filter(params.slice(:gender, :size)).active
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class BoxesController < ApplicationController
   # GET /my_boxes
   # GET /my_boxes.json
   def my_boxes
-    @boxes = current_user.boxes
+    @boxes = current_user.boxes.active
 
     respond_to do |format|
       format.html # index.html.erb
