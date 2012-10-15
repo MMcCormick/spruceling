@@ -7,8 +7,10 @@ describe OrdersController do
   end
 
   describe "POST create" do
-    it "should call #process" do
-      Order.should_receive(:process).with(@user).and_return(FactoryGirl.build(:order))
+    it "should call #generate" do
+      order = FactoryGirl.build(:order)
+      Order.should_receive(:generate).with(@user).and_return(order)
+      order.should_receive(:valid?).and_return(false)
       post :create
     end
 
@@ -20,12 +22,22 @@ describe OrdersController do
       before (:each) do
         @box = FactoryGirl.create(:box)
         @user.cart.add_box(@box)
+        @user.stub(:stripe).and_return stripe_customer
+        Order.should_receive(:generate).with(@user).and_return(FactoryGirl.build(:order))
       end
 
-      it "should call #save an order" do
-        Order.should_receive(:process).with(@user).and_return(FactoryGirl.build(:order))
+      it "should call #save order" do
+        Order.any_instance.should_receive(:charge).and_return(true)
         Order.any_instance.should_receive(:save)
         post :create
+      end
+
+      context "with invalid stripe" do
+        it "should not create an order" do
+          Order.any_instance.should_receive(:charge).and_return(false)
+          Order.any_instance.should_receive(:save).never
+          post :create
+        end
       end
     end
 

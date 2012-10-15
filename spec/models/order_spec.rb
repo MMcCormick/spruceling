@@ -2,8 +2,18 @@ require 'spec_helper'
 
 describe Order do
 
+  let (:stripe_customer) do
+    stub_model Stripe::Customer, :id => 'foo', :card => '123'
+  end
+
+  let (:stripe_charge) do
+    stub_model Stripe::Charge, :id => 'foo'
+  end
+
   before (:each) do
     @user = FactoryGirl.create(:user)
+    @box = FactoryGirl.create(:box)
+    @box2 = FactoryGirl.create(:box)
   end
 
   it "should require user" do
@@ -16,18 +26,13 @@ describe Order do
     order.should be_invalid
   end
 
-  describe "#process" do
-    let (:stripe_customer) do
-      stub_model Stripe::Customer, :id => 'foo', :card => '123'
-    end
-
+  describe "#generate" do
     before (:each) do
-      @box = FactoryGirl.create(:box)
       @user.cart.add_box(@box)
     end
 
     it "should return an order" do
-      Order.process(@user).should be_an_instance_of Order
+      Order.generate(@user).should be_an_instance_of Order
     end
 
     context "with an empty cart" do
@@ -36,23 +41,41 @@ describe Order do
       end
 
       it "should add a user error" do
-        order = Order.process(@user)
+        order = Order.generate(@user)
         order.errors.should have_key :user
       end
     end
 
     context "with no payment information" do
       it "should add a user error" do
-        order = Order.process(@user)
+        order = Order.generate(@user)
         order.errors.should have_key :user
       end
     end
 
     context "with valid params" do
-      it "should call #add_box for each box in cart" do
+      before (:each) do
         @user.should_receive(:stripe).and_return(stripe_customer)
+      end
+
+      it "should call #add_box for each box in cart" do
         Order.any_instance.should_receive(:add_box).with(@box)
-        Order.process(@user)
+        Order.generate(@user)
+      end
+    end
+  end
+
+  describe "#process" do
+    context "with valid params" do
+      before (:each) do
+        @user.should_receive(:stripe).and_return(stripe_customer)
+      end
+
+      it "should empty the users cart" do
+        @user.cart.add_box(@box)
+        @order = Order.generate(@user)
+        @order.process
+        @user.cart.boxes.length.should eq(0)
       end
     end
   end
@@ -60,7 +83,6 @@ describe Order do
   describe "#add_box" do
     before (:each) do
       @order = FactoryGirl.build(:order)
-      @box = FactoryGirl.build(:box)
     end
 
     it "should add an order_item" do
@@ -71,6 +93,35 @@ describe Order do
     it "should add an order_item with this box" do
       @order.add_box(@box)
       @order.order_items.where(:box_id => @box.id).should exist
+    end
+  end
+
+  describe "#price_total" do
+    before (:each) do
+      @order = FactoryGirl.build(:order)
+    end
+
+    it "should be equal to 25 * the # of order_items" do
+      @order.add_box(@box)
+      @order.add_box(@box2)
+      @order.price_total.should eq(@order.order_items.length * 25)
+    end
+  end
+
+  describe "#charge" do
+    before (:each) do
+      @order = FactoryGirl.create(:order)
+      @order.user = @user
+      @order.save
+      @box = FactoryGirl.create(:box)
+      @order.add_box(@box)
+      @user.stub(:stripe).and_return stripe_customer
+    end
+
+    it "should assign a stripe_charge_id" do
+      Stripe::Charge.should_receive(:create).and_return(stripe_charge)
+      @order.charge
+      @order.stripe_charge_id.should_not be_nil
     end
   end
 

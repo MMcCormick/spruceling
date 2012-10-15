@@ -19,6 +19,7 @@ class Cart
 
   def remove_box(box_id)
     box = Box.find(box_id)
+
     if box
       self.boxes.delete(box)
       true

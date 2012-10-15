@@ -2,6 +2,8 @@ class Order
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :stripe_charge_id, :type => String, :default => nil
+
   belongs_to :user
   embeds_many :order_items
 
@@ -11,7 +13,33 @@ class Order
     self.order_items.build(:box => box)
   end
 
-  def self.process(user)
+  def price_total
+    order_items.length * 25
+  end
+
+  def charge
+    begin
+      charge = Stripe::Charge.create(
+        :amount => price_total * 100,
+        :currency => "usd",
+        :customer => user.stripe.id,
+        :description => "Charge for user #{user.email}"
+      )
+      self.stripe_charge_id = charge.id
+    rescue => e
+      return false
+    end
+
+    true
+  end
+
+  def process
+    order_items.each do |o|
+      user.cart.remove_box(o.box.id)
+    end
+  end
+
+  def self.generate(user)
     order = user.orders.new
 
     # must have payment info
