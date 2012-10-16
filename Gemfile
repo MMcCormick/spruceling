@@ -19,6 +19,8 @@ gem 'stripe' # payments
 gem 'cloudinary' # images
 gem 'attachinary' # images
 gem 'heroku'
+gem 'sendgrid'
+gem 'newrelic_rpm', '~> 3.5.0'
 
 group :assets do
   gem 'compass-rails'
