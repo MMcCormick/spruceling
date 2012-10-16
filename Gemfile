@@ -21,6 +21,9 @@ gem 'stamps', :git => 'git://github.com/mattsears/stamps.git'
 gem 'cloudinary' # images
 gem 'attachinary' # images
 gem 'heroku'
+gem 'sendgrid'
+gem 'newrelic_rpm', '~> 3.5.0'
+gem "haml-rails", ">= 0.3.4"
 
 group :assets do
   gem 'compass-rails'
@@ -33,7 +36,6 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'foreman'
   gem 'thin'
-  gem "haml-rails", ">= 0.3.4"
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
   gem 'guard'
@@ -53,6 +55,10 @@ group :test do
   gem "factory_girl_rails", ">= 4.0.0"
   gem 'guard-rspec'
   gem 'guard-livereload'
+end
+
+group :staging do
+  gem 'rack-mini-profiler'
 end
 
 group :production, :staging do

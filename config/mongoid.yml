@@ -64,11 +64,7 @@ development:
 staging:
   sessions:
     default:
-      hosts:
-        - <%= ENV['MONGOID_HOST'] %>
-      database: <%= ENV['MONGOID_DATABASE'] %>
-      username: <%= ENV['MONGOID_USERNAME'] %>
-      password: <%= ENV['MONGOID_PASSWORD'] %>
+      uri: <%= ENV['MONGOHQ_URI'] %>
 #      options:
 #        safe: true
   options:
@@ -80,7 +76,7 @@ staging:
 production:
   sessions:
     default:
-      uri: mongodb://test_user:6fbe105305b2e3765fa5631bc6398b0b@alex.mongohq.com:10095/test_db
+      uri: <%= ENV['MONGOHQ_URI'] %>
 #      options:
 #        safe: true
   options:
