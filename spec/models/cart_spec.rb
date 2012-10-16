@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Cart do
 
+  before (:each) do
+    @user = FactoryGirl.create(:user)
+  end
+
   it "should require user" do
     FactoryGirl.build(:cart, :user_id => nil).should be_invalid
   end
@@ -38,6 +42,13 @@ describe Cart do
       @cart.add_box(@box.id)
       @cart.add_box(@box.id)
       @cart.boxes.length.should eq(1)
+    end
+
+    it "should not allow a user to add their own box" do
+      @box.user = @user
+      @box.save
+      @cart.user = @user
+      @cart.add_box(@box.id).should eq(false)
     end
 
   end
