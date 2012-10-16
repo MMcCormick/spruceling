@@ -18,8 +18,8 @@ staging:
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: <%= ENV["CLOUDINARY_CLOUD_NAME"] %>
-  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
-  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
+  cloud_name: hgfemg5p7
+  api_key: '144477765984443'
+  api_secret: Soa3HK-QuYZbmHzRFGOPp30QYtE
   enhance_image_tag: true
   static_image_support: false
