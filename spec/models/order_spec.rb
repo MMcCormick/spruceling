@@ -139,6 +139,12 @@ describe Order do
       @order.charge
       @order.stripe_charge_id.should_not be_nil
     end
+
+    it "should not charge if it has already been charged" do
+      Stripe::Charge.stub(:create).and_return(stripe_charge)
+      @order.stripe_charge_id = 'foo'
+      @order.charge.should eq(false)
+    end
   end
 
 end

@@ -18,6 +18,8 @@ class Order
   end
 
   def charge
+    return false if stripe_charge_id
+
     begin
       charge = Stripe::Charge.create(
         :amount => price_total * 100,

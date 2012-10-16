@@ -5,7 +5,7 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: kid_swap_development
+      database: spruceling_development
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
@@ -61,7 +61,7 @@ development:
 test:
   sessions:
     default:
-      database: kid_swap_test
+      database: spruceling_test
       hosts:
         - localhost:27017
       options:

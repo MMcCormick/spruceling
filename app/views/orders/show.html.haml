@@ -1,6 +1,15 @@
 %p#notice= notice
 
+%h1= "Order ##{@order.id}"
 
-= link_to 'Edit', edit_order_path(@order)
+%div= "Order placed on #{@order.created_at}"
+%div= "Total: $#{@order.price_total}"
+
+%h3 Boxes
+- @order.order_items.each do |oi|
+  %div= "Box ID##{oi.box.id} - #{oi.box.gender} - #{oi.box.size}"
+
+%br
+
 \|
 = link_to 'Back', orders_path

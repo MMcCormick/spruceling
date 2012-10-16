@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,10 +17,6 @@ class OrdersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @order }
     end
-  end
-
-  def edit
-    @order = Order.find(params[:id])
   end
 
   def create
