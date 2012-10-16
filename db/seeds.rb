@@ -17,16 +17,49 @@ end
 
 puts 'Creating clothing types'
 
+weight_index
+
 item_types = {
-  "Long-sleeve" => [["Button Downs", "Long-sleeve Button Downs"], ["Polos", "Long-sleeve Polos"], ["Sweaters", "Sweaters"], ["T Shirts", "Long-sleeve T Shirts"]],
-  "Short-sleeve" => [["Button Downs", "Short-sleeve Button Downs"], ["Polos", "Short-sleeve Polos"], ["Sweater Vests", "Sweater Vests"], ["T Shirts", "Short-sleeve T Shirts"], ["Tank Tops", "Tank Tops"]],
-  "Pants" => [["Capris", "Capris"], ["Chinos / Khakis", "Chino / Khaki Pants"], ["Cords", "Cords"], ["Jeans", "Jeans"], ["Leggings", "Leggings"], ["Overalls", "Overalls"], ["Snow Pants", "Snow Pants"], ["Sweatpants / Windpants", "Sweatpants / Windpants"]],
-  "Shorts" => [["Cargo", "Cargo Shorts"], ["Denim", "Denim Shorts"], ["Khaki / Cotton", "Khaki / Cotton Shorts"], ["Overalls", "Overall Shorts"]],
-  "Skirts" => [["Long Skirts", "Long Skirts"], ["Short Skirts", "Short Skirts"], ["Skorts", "Skorts"]],
-  "Dresses" => [["Long Dresses", "Long Dresses"], ["Short Dresses", "Short Dresses"]],
-  "Onesies" => [["Onesies", "Onesies"], ["Rompers", "Rompers"], ["Snow Suits", "Snow Suits"]],
-  "Sleepwear" => [["Nightgowns", "Nightgowns"], ["Pajama Sets", "Pajama Sets"], ["Pajama Bottoms", "Pajama Bottoms"], ["Pajama Tops", "Pajama Tops"]],
-  "Jackets" => [["Blazers", "Blazers"], ["Coats / Warm Jackets", "Coats / Warm Jackets"], ["Hoodies", "Hoodies"], ["Raincoats", "Raincoats"], ["Sweatshirts", "Sweatshirts"], ["Raincoats", "Raincoats"], ["Vests", "Vests"]]
+  "Long-sleeve" => [["Button Downs", "Long-sleeve Button Downs", "Long-sleeve Shirts"],
+                    ["Polos", "Long-sleeve Polos", "Long-sleeve Shirts"],
+                    ["Sweaters", "Sweaters", "Sweaters"],
+                    ["T Shirts", "Long-sleeve T Shirts", "Long-sleeve Shirts"]],
+  "Short-sleeve" => [["Button Downs", "Short-sleeve Button Downs", "Short-sleeve Shirts"],
+                     ["Polos", "Short-sleeve Polos", "Short-sleeve Shirts"],
+                     ["Sweater Vests", "Sweater Vests", "Sweater Vests"],
+                     ["T Shirts", "Short-sleeve T Shirts", "Short-sleeve Shirts"],
+                     ["Tank Tops", "Tank Tops"]],
+  "Pants" => [["Capris", "Capris", "Pants"],
+              ["Chinos / Khakis", "Chino / Khaki Pants", "Pants"],
+              ["Cords", "Cords", "Pants"],
+              ["Jeans", "Jeans", "Pants"],
+              ["Leggings", "Leggings", "Pants"],   #Pants??
+              ["Overalls", "Overalls", "Pants"],
+              ["Snow Pants", "Snow Pants", "Pants"],
+              ["Sweatpants / Windpants", "Sweatpants / Windpants"]],
+  "Shorts" => [["Cargo", "Cargo Shorts", "Shorts"],
+               ["Denim", "Denim Shorts", "Shorts"],
+               ["Khaki / Cotton", "Khaki / Cotton Shorts", "Shorts"],
+               ["Overalls", "Overall Shorts", "Overalls"]],
+  "Skirts" => [["Long Skirts", "Long Skirts", "Skirts"],
+               ["Short Skirts", "Short Skirts", "Skirts"],
+               ["Skorts", "Skorts", "Skirts"]],
+  "Dresses" => [["Long Dresses", "Long Dresses", "Dresses"],
+                ["Short Dresses", "Short Dresses", "Dresses"]],
+  "Onesies" => [["Onesies", "Onesies", "Onesies"],
+                ["Rompers", "Rompers", "Onesies"],
+                ["Snow Suits", "Snow Suits", "Snow Suits"]],
+  "Sleepwear" => [["Nightgowns", "Nightgowns", "Onesies"],
+                  ["Pajama Sets", "Pajama Sets", "Onesies"],
+                  ["Pajama Bottoms", "Pajama Bottoms", "Pants"],
+                  ["Pajama Tops", "Pajama Tops", "Long-sleeve Shirts"]],
+  "Jackets" => [["Blazers", "Blazers", "Jackets"],
+                ["Coats / Warm Jackets", "Coats / Warm Jackets", "Jackets"],
+                ["Hoodies", "Hoodies", "Jackets"],
+                ["Raincoats", "Raincoats", "Jackets"],
+                ["Sweatshirts", "Sweatshirts", "Jackets"],
+                ["Raincoats", "Raincoats", "Jackets"],
+                ["Vests", "Vests", "Sweater Vests"]]
 }
 
 item_types.each do |category, names|

@@ -17,6 +17,7 @@ gem 'dalli' # memcache
 gem 'mongoid-cached-json'
 gem 'stripe' # payments
 gem 'cancan'
+gem 'stamps', :git => 'git://github.com/mattsears/stamps.git'
 
 group :assets do
   gem 'compass-rails'
