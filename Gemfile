@@ -6,7 +6,7 @@ gem 'bundler', '1.2.0.pre.1'
 gem 'rails', '~> 3.2.8'
 
 gem 'jquery-rails'
-gem "mongoid", ">= 3.0.6"
+gem "mongoid", ">= 3.0.9"
 gem "devise", ">= 2.1.2"
 gem 'yajl-ruby' # json
 gem "bootstrap-sass", ">= 2.0.4.0"
@@ -18,6 +18,9 @@ gem 'mongoid-cached-json'
 gem 'stripe' # payments
 gem 'cancan'
 gem 'stamps', :git => 'git://github.com/mattsears/stamps.git'
+gem 'cloudinary' # images
+gem 'attachinary' # images
+gem 'heroku'
 
 group :assets do
   gem 'compass-rails'

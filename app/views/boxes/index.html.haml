@@ -4,6 +4,7 @@
 
 %table
   %tr
+    %th
     %th Gender
     %th Size
     %th
@@ -12,6 +13,7 @@
 
   - @boxes.each do |box|
     %tr
+      %td= box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '125x125', :crop => :fit }) : ''
       %td= box.gender
       %td= box.size
       %td= link_to 'Show', box

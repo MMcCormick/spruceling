@@ -53,6 +53,24 @@ describe OrdersController do
     end
   end
 
+  describe "GET index" do
+    it "redirects to homepage if not signed in" do
+      sign_out @user
+      get :index
+      response.should redirect_to(new_user_session_path)
+    end
+  end
+
+  describe "GET show" do
+    it "redirects to homepage if not signed in" do
+      sign_out @user
+      get :show, {:id => 'foo'}
+      response.should redirect_to(new_user_session_path)
+    end
+
+    it "should not allow users without permission to view the order"
+  end
+
   #describe "GET index" do
   #  it "assigns all orders as @orders" do
   #    order = Order.create! valid_attributes

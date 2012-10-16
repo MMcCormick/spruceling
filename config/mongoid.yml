@@ -5,15 +5,17 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: kid_swap_development
+
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
         - localhost:27017
+      database: spruceling_development
+#      uri: mongodb://test_user:6fbe105305b2e3765fa5631bc6398b0b@alex.mongohq.com:10095/test_db
       options:
         # Change whether the session persists in safe mode by default.
         # (default: false)
-        # safe: false
+#        safe: true
 
         # Change the default consistency model to :eventual or :strong.
         # :eventual will send reads to secondaries, :strong sends everything
@@ -51,17 +53,46 @@ development:
 
     # Skip the database version check, used when connecting to a db without
     # admin access. (default: false)
-    # skip_version_check: false
+    skip_version_check: true
 
     # User Active Support's time zone in conversions. (default: true)
-    # use_activesupport_time_zone: true
+    use_activesupport_time_zone: false
 
     # Ensure all times are UTC in the app side. (default: false)
-    # use_utc: false
+    use_utc: true
+
+staging:
+  sessions:
+    default:
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+      database: <%= ENV['MONGOID_DATABASE'] %>
+      username: <%= ENV['MONGOID_USERNAME'] %>
+      password: <%= ENV['MONGOID_PASSWORD'] %>
+#      options:
+#        safe: true
+  options:
+    identity_map_enabled: true
+    raise_not_found_error: false
+    use_activesupport_time_zone: false
+    use_utc: true
+
+production:
+  sessions:
+    default:
+      uri: mongodb://test_user:6fbe105305b2e3765fa5631bc6398b0b@alex.mongohq.com:10095/test_db
+#      options:
+#        safe: true
+  options:
+    # identity_map_enabled: true
+    raise_not_found_error: false
+    use_activesupport_time_zone: false
+    use_utc: true
+
 test:
   sessions:
     default:
-      database: kid_swap_test
+      database: spruceling_test
       hosts:
         - localhost:27017
       options:

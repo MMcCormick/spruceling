@@ -7,6 +7,8 @@ class Box
   field :item_type_ids, :type => Array, :default => []
   field :status, :type => String, :default => "active"
 
+  has_attachments :photos, maximum: 10
+
   belongs_to :user
   has_many :items
 

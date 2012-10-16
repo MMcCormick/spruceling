@@ -26,6 +26,8 @@ Spruceling::Application.routes.draw do
     root :to => 'home#index'
   end
 
+  mount Attachinary::Engine => "/attachinary"
+
   root :to => "home#index"
 
   devise_for :users

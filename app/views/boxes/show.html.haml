@@ -7,6 +7,9 @@
   %b Size:
   = @box.size
 
+- @box.photos.each do |photo|
+  %div= cl_image_tag(photo.path, { :size => '300x300', :crop => :fit })
+
 = link_to 'Edit', edit_box_path(@box)
 \|
 = link_to 'Back', boxes_path

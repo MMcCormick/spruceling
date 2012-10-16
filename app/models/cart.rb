@@ -9,7 +9,7 @@ class Cart
 
   def add_box(box_id)
     box = Box.find(box_id)
-    if box
+    if box && box.user != user
       self.boxes << box
       true
     else
