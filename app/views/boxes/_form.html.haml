@@ -16,6 +16,7 @@
     = f.label :size
     = f.select :size, Item.all_sizes, :prompt => "Select a size"
   .field
+    %div Images
     = f.attachinary_file_field :photos
   .actions
     = f.submit 'Save'
