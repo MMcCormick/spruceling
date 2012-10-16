@@ -71,7 +71,7 @@ describe Box do
     end
   end
 
-  describe "by_filter" do
+  describe "#by_filter" do
     before(:each) do
       @box2 = FactoryGirl.create(:box, :gender => "m")
     end
@@ -86,6 +86,30 @@ describe Box do
 
     it "should not return a box that does not match the arguments" do
       Box.by_filter({:gender => "f"}).should_not include @box2
+    end
+  end
+
+  describe "#weight" do
+    context "when there are items in the box" do
+      before(:each) do
+        @item2 = FactoryGirl.create(:item)
+        @box.add_item(@item)
+        @box.add_item(@item2)
+      end
+
+      it "should return a float" do
+        @box.weight.should be_a Float
+      end
+
+      it "should return the sum of the weights contained" do
+        @box.weight.should == @item.weight + @item2.weight
+      end
+    end
+
+    context "when the box is empty" do
+      it "should return 0" do
+        @box.weight.should == 0
+      end
     end
   end
 end

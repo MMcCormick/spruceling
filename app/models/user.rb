@@ -90,4 +90,8 @@ class User
     true
   end
 
+  def update_address(address)
+    Stamps.clean_address(address)
+  end
+
 end
