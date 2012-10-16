@@ -42,7 +42,7 @@ Spruceling::Application.configure do
     :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true,
-    :user_name => 'app5954701@heroku.com',
-    :password => 'yeanu6ms'
+    :user_name => 'app8468239@heroku.com',
+    :password => 'zhxksx0v'
   }
 end
