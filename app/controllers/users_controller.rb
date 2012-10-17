@@ -13,12 +13,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def update_information
-    if params[:address]
-      current_user.update_address(params[:address])
-    end
+  def update_address
     respond_to do |format|
-      if current_user.save
+      if current_user.update_address(params[:address])
+        current_user.save
         format.html { redirect_to user_path current_user, :notice => 'Information successfully updated.' }
         format.json { head :no_content }
       else

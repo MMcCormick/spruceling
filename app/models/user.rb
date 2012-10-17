@@ -92,7 +92,12 @@ class User
   end
 
   def update_address(address)
-    self.address = address
+    response = Stamps.clean_address(:address => address)
+    if response[:valid?] == false
+      false
+    else
+      self.address = response[:address]
+    end
   end
 
 end

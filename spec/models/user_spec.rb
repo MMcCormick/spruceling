@@ -160,12 +160,50 @@ describe User do
       "zip_code" => "19102"
     }}
 
-    it "should set the address" do
-      @user.update_address(address)
-      @user.address.should == address
+    context "with a valid address" do
+      let(:stamps_response) {{
+        :address => {
+          "full_name" => "Matt McCormick",
+          "address1" => "1512 Spruce Street",
+        }
+      }}
+      before(:each) do
+        Stamps.should_receive(:clean_address).and_return(stamps_response)
+      end
+
+      it "should call Stamps.clean_address" do
+        @user.update_address(address)
+      end
+
+      it "should set the address to the standardized address" do
+        @user.update_address(address)
+        @user.address.should == stamps_response[:address]
+      end
+
+      it "should return the standardized address" do
+        @user.update_address(address).should == stamps_response[:address]
+      end
+    end
+
+    context "with an invalid address" do
+      let(:stamps_response) {{
+        :errors => ["Foo error"],
+        :valid? => false
+      }}
+      before(:each) do
+        Stamps.should_receive(:clean_address).and_return(stamps_response)
+      end
+
+      it "should return false" do
+        @user.update_address(address).should == false
+      end
+
+      it "should not change the stored address" do
+        @user.address = "foo"
+        expect {
+          @user.update_address(address)
+        }.to_not change{@user.address}
+      end
     end
   end
-
-  it "should validate a changed address"
-
 end

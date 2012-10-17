@@ -40,16 +40,16 @@ describe Order do
         @user.cart = nil
       end
 
-      it "should add a user error" do
+      it "should add an error" do
         order = Order.generate(@user)
-        order.errors.should have_key :user
+        order.errors.should_not be_empty
       end
     end
 
     context "with no payment information" do
-      it "should add a user error" do
+      it "should add an error" do
         order = Order.generate(@user)
-        order.errors.should have_key :user
+        order.errors.should_not be_empty
       end
     end
 
