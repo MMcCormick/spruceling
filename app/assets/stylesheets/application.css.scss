@@ -9,8 +9,24 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
 */
+
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+@import "bootstrap";
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/css3/box-sizing";
+
+$site-width: 960px;
+$sidebar-width: 200px;
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .brand {
   float: left;
   padding-right: 8px;
@@ -35,3 +51,62 @@ ul.nav li {
   background-color: #FCC;
   border: solid 1px #C66;
 }
+
+#container {
+  width: $site-width;
+  margin: auto;
+}
+
+#header {
+  background: #CCC;
+  height: 50px;
+
+  .nav_link {
+    float: right;
+    padding: 10px;
+    font-size: 16px;
+    border-right: 1px solid #666;
+  }
+  .dropdown {
+    float: right;
+  }
+  .dropdown-toggle {
+    padding: 10px;
+
+    .caret {
+      margin-top: 18px;
+    }
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+#container_wrap {
+  @include clearfix();
+}
+
+#left_sidebar {
+  width: $sidebar-width;
+  float: left;
+}
+
+#main {
+  width: $site-width - $sidebar-width;
+  float: left;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  min-height: 600px;
+}
+
+#footer {
+  background: #CCC;
+  height: 30px;
+}
+
+@import "scaffolds";
+@import "home";
+@import "boxes";
+@import "carts";
+@import "items";
+@import "orders";

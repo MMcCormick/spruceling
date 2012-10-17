@@ -8,19 +8,36 @@
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= cloudinary_js_config %>
+
+    <meta property="og:title" content="Spruceling - Every kid outgrows their stuff. Why not swap it?" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Spruceling" />
+    <meta property="og:url" content="http://www.spruceling.com" />
+    <meta property="og:image" content="null" />
+    <meta property="og:description" content="" />
+
     <%= yield(:head) %>
   </head>
   <body>
     <div id="container" class="container">
-      <header>
+
+      <div id='header'>
         <%= render 'layouts/navigation' %>
-        <%= render 'layouts/messages' %>
-      </header>
-      <div id="main" role="main">
-        <%= yield %>
       </div>
-      <footer>
-      </footer>
+
+      <%= render 'layouts/messages' %>
+
+      <div id='container_wrap'>
+        <%= yield :left_sidebar %>
+
+        <div id="main" role="main">
+          <%= yield %>
+        </div>
+      </div>
+
+      <div id='footer'>
+        Footer
+      </div>
     </div> <!--! end of #container -->
 
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
