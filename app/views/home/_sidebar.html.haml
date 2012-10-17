@@ -1,0 +1,23 @@
+.head.on
+  .icon
+  Browse Boxes
+
+.section.box-sidebar-filters
+  .section-head Gender
+  = form_tag root_path, :method => 'get' do
+    .item.radio
+      = radio_button_tag :gender, "", :checked => 'checked'
+      = label_tag :gender, 'Both', :value => ""
+    .item.radio
+      = radio_button_tag :gender, "m", :checked => ''
+      = label_tag :gender, 'Boy', :value => "m"
+    .item.radio
+      = radio_button_tag :gender, "f", :checked => ''
+      = label_tag :gender, 'Girl', :value => "f"
+
+    .section-head Size
+
+    .item.select
+      = select_tag :size, options_for_select(Item.all_sizes), :prompt => "Select a size"
+
+    = submit_tag 'Update Filters', :class => 'submit btn'

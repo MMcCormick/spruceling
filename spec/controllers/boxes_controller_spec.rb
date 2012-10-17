@@ -5,40 +5,6 @@ describe BoxesController do
     @box = FactoryGirl.create(:box)
   end
 
-  describe "GET index" do
-    it "should render the index template" do
-      get :index
-      response.should render_template("index")
-    end
-
-    it "should not include inactive boxes" do
-      @box2 = FactoryGirl.create(:box, :status => "sold")
-      get :index
-      assigns(:boxes).should_not include @box2
-    end
-
-    describe "without parameters" do
-      it "assigns all boxes as @boxes" do
-        get :index
-        assigns(:boxes).to_a.should eq([@box])
-      end
-    end
-
-    describe "with parameters" do
-      it "should include boxes which match params" do
-        @box2 = FactoryGirl.create(:box, :gender => "m")
-        get :index, {:gender => "m"}
-        assigns(:boxes).should include @box2
-      end
-
-      it "should not include boxes which do not match params" do
-        @box2 = FactoryGirl.create(:box, :gender => "f")
-        get :index, {:gender => "m"}
-        assigns(:boxes).should_not include @box2
-      end
-    end
-  end
-
   describe "GET my_boxes" do
     before(:each) do
       @user = FactoryGirl.create(:user)
