@@ -20,9 +20,9 @@ gem 'cancan'
 gem 'stamps', :git => 'git://github.com/mattsears/stamps.git'
 gem 'cloudinary' # images
 gem 'attachinary' # images
-gem 'heroku'
 gem 'sendgrid'
 gem 'newrelic_rpm', '~> 3.5.0'
+gem 'newrelic_moped'
 gem "haml-rails", ">= 0.3.4"
 
 group :assets do

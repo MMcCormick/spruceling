@@ -1,6 +1,7 @@
-%h1 Browse Boxes
+- content_for :left_sidebar do
+  = render :partial => "sidebar", :layout => 'layouts/left_sidebar'
 
-= render "filters"
+%h1 Browse Boxes
 
 %table
   %tr

@@ -1,17 +1,6 @@
 class BoxesController < ApplicationController
   before_filter :authenticate_user!, :only => [:my_boxes]
 
-  # GET /boxes
-  # GET /boxes.json
-  def index
-    @boxes = Box.by_filter(params.slice(:gender, :size)).active
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @boxes }
-    end
-  end
-
   # GET /my_boxes
   # GET /my_boxes.json
   def my_boxes
