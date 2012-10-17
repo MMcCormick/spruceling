@@ -39,9 +39,6 @@ describe Item do
   describe "#weight" do
     it "should return a float" do
       item = FactoryGirl.create(:item)
-      puts item.item_type
-      puts item.size
-      puts item.item_type.item_weight.weights
 
       item.weight.should be_a Float
     end

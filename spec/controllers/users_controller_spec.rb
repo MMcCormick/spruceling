@@ -64,7 +64,7 @@ describe UsersController do
     pending "should redirect to the user's profile when successful" do
       User.any_instance.should_receive(:save).and_return(true)
       put :update_information
-      response.should redirect_to(user_path @user)
+      response.should redirect_to(user_path @user, :notice => "Information successfully updated.")
     end
   end
 end
