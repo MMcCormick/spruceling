@@ -29,6 +29,7 @@ class User
   field :name, :type => String
   field :credits, :type => Integer
   field :stripe_customer_id, :type => String, :default => nil # payments
+  field :address
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -91,7 +92,7 @@ class User
   end
 
   def update_address(address)
-    Stamps.clean_address(address)
+    self.address = address
   end
 
 end

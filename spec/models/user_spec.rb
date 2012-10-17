@@ -151,35 +151,21 @@ describe User do
     before(:each) do
       @user = FactoryGirl.create(:user)
     end
+    let(:address) {{
+      "full_name" => "Matt McCormick",
+      "address1" => "1512 Spruce Street",
+      "address2" => "Apt 507",
+      "city" => "Philadelphia",
+      "state" => "PA",
+      "zip_code" => "19102"
+    }}
 
-    context "with a valid address" do
-      let(:address) {{
-        "full_name" => "Matt McCormick",
-        "address1" => "1512 Spruce Street",
-        "address2" => "Apt 507",
-        "city" => "Philadelphia",
-        "state" => "PA",
-        "zip_code" => "19102"
-      }}
-
-      it "should set the address" do
-        @user.update_address(address)
-        @user.address.should_not be_nil
-      end
-      it "should set the address to the standardized address" do
-        @user.update_address(address)
-        @user.address.should == Stamps.clean_address(address)
-      end
-
-      it "should return the standardized address" do
-        @user.update_address(address).should == Stamps.clean_address(address)
-      end
-    end
-
-    context "with an invalid address" do
-      it "should not set the address"
-      it "should return nil"
+    it "should set the address" do
+      @user.update_address(address)
+      @user.address.should == address
     end
   end
+
+  it "should validate a changed address"
 
 end

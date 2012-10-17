@@ -34,4 +34,37 @@ describe UsersController do
       end
     end
   end
+
+  describe "update_information" do
+    context "when an address is passed" do
+      it "should call #update_address" do
+        User.any_instance.should_receive(:update_address).with({"address1" => "1512 Spruce Street"})
+        put :update_information, {:address => {:address1 => "1512 Spruce Street"}}
+      end
+    end
+
+    context "when no address is passed" do
+      it "should not call #update_address" do
+        @user.should_receive(:update_address).never
+        put :update_information
+      end
+    end
+
+    it "should call save" do
+      User.any_instance.should_receive(:save)
+      put :update_information
+    end
+
+    it "should redirect to edit_information when unsuccessful" do
+      User.any_instance.should_receive(:save).and_return(false)
+      put :update_information
+      response.should redirect_to(edit_user_information_path)
+    end
+
+    pending "should redirect to the user's profile when successful" do
+      User.any_instance.should_receive(:save).and_return(true)
+      put :update_information
+      response.should redirect_to(user_path @user)
+    end
+  end
 end
