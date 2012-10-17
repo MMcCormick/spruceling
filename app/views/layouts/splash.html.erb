@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Spruceling" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Spruceling" %>">
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <meta property="og:title" content="Spruceling - Every kid outgrows their stuff. Why not swap it?" />
+  <meta property="og:type" content="company" />
+  <meta property="og:site_name" content="Spruceling" />
+  <meta property="og:url" content="http://www.spruceling.com" />
+  <meta property="og:image" content="null" />
+  <meta property="og:description" content="" />
+
+  <%= yield(:head) %>
+</head>
+<body>
+  <div id="container" class="container">
+    <div id="splash" role="main">
+      <%= yield %>
+    </div>
+  </div> <!--! end of #container -->
+</body>
+</html>
