@@ -16,6 +16,8 @@ gem 'chronic' # Date/Time management
 gem 'dalli' # memcache
 gem 'mongoid-cached-json'
 gem 'stripe' # payments
+gem 'cancan'
+gem 'stamps', :git => 'git://github.com/mattsears/stamps.git'
 gem 'cloudinary' # images
 gem 'attachinary' # images
 gem 'sendgrid'

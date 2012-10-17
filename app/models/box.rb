@@ -37,4 +37,12 @@ class Box
     query[:size] = params[:size] if Item.all_sizes.include? params[:size]
     Box.where(query)
   end
+
+  def weight
+    total = 0
+    items.each do |item|
+      total += item.weight
+    end
+    total
+  end
 end

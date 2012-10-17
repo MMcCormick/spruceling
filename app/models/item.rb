@@ -30,6 +30,7 @@ class Item
      "4",
      "5",
      "6",
+     "6X",
      "7",
      "8",
      "9",
@@ -41,5 +42,9 @@ class Item
      "18",
      "20",
      "Other"]
+  end
+
+  def weight
+    item_type.item_weight.get_weight(size)
   end
 end

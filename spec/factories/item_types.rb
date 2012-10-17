@@ -5,5 +5,6 @@ FactoryGirl.define do
     name "Capris"
     short_name "Capris"
     category "Pants"
+    association :item_weight
   end
 end

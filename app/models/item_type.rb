@@ -6,8 +6,9 @@ class ItemType
   field :category
 
   has_many :items
+  belongs_to :item_weight
 
-  validates_presence_of :name, :category
+  validates_presence_of :name, :category, :item_weight
 
   def self.all_types
     result = {}

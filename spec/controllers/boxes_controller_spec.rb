@@ -150,15 +150,16 @@ describe BoxesController do
       @item = FactoryGirl.create(:item)
     end
 
+    it "assigns the requested box as @box and item as @item" do
+      put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+      assigns(:item).should eq(@item)
+      assigns(:box).should eq(@box)
+    end
+
     describe "with valid params" do
       it "adds the requested item" do
         Box.any_instance.should_receive(:add_item).with(@item)
         put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
-      end
-
-      it "assigns the requested box as @box" do
-        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
-        assigns(:box).should eq(@box)
       end
 
       it "redirects to the box" do
@@ -168,19 +169,36 @@ describe BoxesController do
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the box as @box" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Box.any_instance.stub(:add_item).and_return(false)
-        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+    it "re-renders the 'edit' template if adding the item fails" do
+      # Trigger the behavior that occurs when invalid params are submitted
+      Box.any_instance.stub(:add_item).and_return(false)
+      put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+      response.should render_template("edit")
+    end
+
+    it "should require the correct permissions"
+  end
+
+  describe "PUT remove_item" do
+    before(:each) do
+      @item = FactoryGirl.create(:item)
+    end
+
+    context "with valid params" do
+      it "removes the requested item" do
+        Box.any_instance.should_receive(:remove_item).with(@item)
+        put :remove_item, {:id => @box.to_param, :item_id => @item.to_param}
+      end
+
+      it "assigns the requested box as @box" do
+        put :remove_item, {:id => @box.to_param, :item_id => @item.to_param}
         assigns(:box).should eq(@box)
       end
 
-      it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Box.any_instance.stub(:add_item).and_return(false)
-        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
-        response.should render_template("edit")
+      it "redirects to the box" do
+        Box.any_instance.stub(:remove_item).and_return(true)
+        put :remove_item, {:id => @box.to_param, :item_id => @item.to_param}
+        response.should redirect_to(@box)
       end
     end
 

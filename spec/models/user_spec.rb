@@ -147,4 +147,25 @@ describe User do
 
   end
 
+  describe "update_address" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+    end
+    let(:address) {{
+      "full_name" => "Matt McCormick",
+      "address1" => "1512 Spruce Street",
+      "address2" => "Apt 507",
+      "city" => "Philadelphia",
+      "state" => "PA",
+      "zip_code" => "19102"
+    }}
+
+    it "should set the address" do
+      @user.update_address(address)
+      @user.address.should == address
+    end
+  end
+
+  it "should validate a changed address"
+
 end

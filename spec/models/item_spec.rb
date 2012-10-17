@@ -29,10 +29,18 @@ describe Item do
     FactoryGirl.build(:item, :user_id => nil).should be_invalid
   end
 
-  describe "all_sizes method" do
+  describe "#all_sizes" do
     it "should return a non-empty array of sizes" do
       Item.all_sizes.should be_a(Array)
       Item.all_sizes.should_not be_empty
+    end
+  end
+
+  describe "#weight" do
+    it "should return a float" do
+      item = FactoryGirl.create(:item)
+
+      item.weight.should be_a Float
     end
   end
 end

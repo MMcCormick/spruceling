@@ -9,6 +9,10 @@ describe ItemType do
     FactoryGirl.build(:item_type, :category => nil).should be_invalid
   end
 
+  it "should require an item weight" do
+    FactoryGirl.build(:item_type, :item_weight => nil).should be_invalid
+  end
+
   describe "all_types method" do
     before(:each) do
       FactoryGirl.create(:item_type)
