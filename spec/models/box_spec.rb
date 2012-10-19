@@ -10,6 +10,11 @@ describe Box do
     FactoryGirl.build(:box, :user_id => nil).should be_invalid
   end
 
+  it "should give the owner permission to manage it" do
+    ability = Ability.new(@box.user)
+    ability.can?(:manage, @box).should == true
+  end
+
   it "should require gender" do
     FactoryGirl.build(:box, :gender => nil).should be_invalid
   end

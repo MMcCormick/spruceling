@@ -58,6 +58,10 @@ class User
 
   before_create :create_cart
 
+  def admin?
+    false #TODO: implement
+  end
+
   def create_cart
     self.cart.save
   end
