@@ -136,7 +136,7 @@ describe User do
   describe 'cart' do
 
     it 'should not be nil' do
-      user = FactoryGirl.build(:user)
+      user = FactoryGirl.create(:user)
       user.cart.should_not be_nil
     end
 

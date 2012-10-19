@@ -14,7 +14,7 @@ describe Item do
   end
 
   it "should require an existing type" do
-    FactoryGirl.build(:item, :item_type => "foobar").should be_invalid
+    FactoryGirl.build(:item, :item_type => nil).should be_invalid
   end
 
   it "should require brand" do

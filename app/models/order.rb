@@ -1,13 +1,9 @@
-class Order
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :stripe_charge_id, :type => String, :default => nil
+class Order < ActiveRecord::Base
 
   belongs_to :user
-  embeds_many :order_items
+  has_many :order_items
 
-  validates_presence_of :user, :order_items
+  validates_presence_of :user
 
   def add_box(box)
     self.order_items.build(:box => box)
@@ -48,7 +44,7 @@ class Order
   end
 
   def self.generate(user)
-    order = user.orders.new
+    order = user.orders.build
 
     # must have payment info
     unless user.stripe

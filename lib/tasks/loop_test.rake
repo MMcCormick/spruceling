@@ -1,6 +1,6 @@
 desc "Test Loop model"
 task :loop_test => :environment do
-  Mongoid.default_session.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  #Mongoid.default_session.collections.select {|c| c.name !~ /system/ }.each(&:drop)
 
   100.times do |n|
     FactoryGirl.create(:user)

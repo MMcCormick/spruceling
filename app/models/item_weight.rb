@@ -1,8 +1,6 @@
-class ItemWeight
-  include Mongoid::Document
+class ItemWeight < ActiveRecord::Base
 
-  field :name
-  field :weights, type: Hash, default: {}
+  store :weights
 
   has_many :item_types
 

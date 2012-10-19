@@ -1,1 +1,1 @@
-require "attachinary/orm/mongoid"
+require "attachinary/orm/active_record"

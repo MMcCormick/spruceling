@@ -17,13 +17,7 @@ describe Order do
   end
 
   it "should require user" do
-    FactoryGirl.build(:order, :user_id => nil).should be_invalid
-  end
-
-  it "should require at least one order_item" do
-    order = FactoryGirl.build(:order)
-    order.order_items = nil
-    order.should be_invalid
+    FactoryGirl.build(:order, :user => nil).should be_invalid
   end
 
   describe "#generate" do
@@ -75,7 +69,7 @@ describe Order do
         @user.cart.add_box(@box)
         @order = Order.generate(@user)
         @order.process
-        @user.cart.boxes.length.should eq(0)
+        @user.reload.cart.boxes.length.should eq(0)
       end
 
       it "should change the boxes status to sold" do
@@ -98,16 +92,19 @@ describe Order do
 
   describe "#add_box" do
     before (:each) do
-      @order = FactoryGirl.build(:order)
+      @order = FactoryGirl.create(:order)
     end
 
     it "should add an order_item" do
-      @order.add_box(@box)
+      @item = @order.add_box(@box)
+      @order.save
+      @item.save
       @order.should have_at_least(1).order_items
     end
 
     it "should add an order_item with this box" do
-      @order.add_box(@box)
+      @item = @order.add_box(@box)
+      @item.save
       @order.order_items.where(:box_id => @box.id).should exist
     end
   end

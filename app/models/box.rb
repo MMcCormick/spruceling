@@ -1,11 +1,4 @@
-class Box
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :gender, :type => String
-  field :size, :type => String
-  field :item_type_ids, :type => Array, :default => []
-  field :status, :type => String, :default => "active"
+class Box < ActiveRecord::Base
 
   has_attachments :photos, maximum: 10
 
@@ -22,13 +15,11 @@ class Box
       false
     else
       self.items << item
-      self.item_type_ids << item.item_type_id unless item_type_ids.include? item.item_type_id
     end
   end
 
   def remove_item(item)
     self.items.delete(item)
-    self.item_type_ids.delete(item.item_type_id) if items.where(:item_type_id => item.item_type_id).empty?
   end
 
   def self.by_filter(params={})

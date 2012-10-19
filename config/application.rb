@@ -1,12 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-# require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "sprockets/railtie"
-# # require "rails/test_unit/railtie"
+require "rails/all"
 require "stripe"
 
 if defined?(Bundler)
@@ -23,7 +18,6 @@ module Spruceling
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -34,6 +28,8 @@ module Spruceling
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # use until rails 4.0
+    #config.active_record.schema_format = :sql
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

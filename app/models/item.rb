@@ -1,18 +1,11 @@
-class Item
-  include Mongoid::Document
-  include Mongoid::Timestamps
-
-  field :gender, type: String
-  field :size, type: String
-  field :brand, type: String
-  field :new_with_tags, type: Boolean
-  field :status, type: String, default: "active"
+class Item < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :box
   belongs_to :item_type
 
-  validates_presence_of :gender, :item_type, :size, :brand, :user, :new_with_tags
+  validates :new_with_tags, :inclusion => {:in => [true, false]}
+  validates_presence_of :gender, :item_type, :size, :brand, :user
   #TODO: validate type
 
   scope :active, where(:status => "active")

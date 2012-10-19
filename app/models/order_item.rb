@@ -1,9 +1,8 @@
-class OrderItem
-  include Mongoid::Document
+class OrderItem < ActiveRecord::Base
 
   belongs_to :box
+  belongs_to :order
 
-  embedded_in :order
+  validates_presence_of :box, :order
 
-  validates_presence_of :box
 end

@@ -36,11 +36,6 @@ describe Box do
       @box.add_item(@item)
       @box.items.should include(@item)
     end
-
-    it "should record the item_type when an item is added" do
-      @box.add_item(@item)
-      @box.item_type_ids.should include(@item.item_type_id)
-    end
   end
 
   describe "remove_item" do
@@ -52,17 +47,6 @@ describe Box do
       it "should remove the item if it's there" do
         @box.remove_item(@item)
         @box.items.should_not include(@item)
-      end
-
-      it "should remove the item_type if there are no more items of that type" do
-        @box.remove_item(@item)
-        @box.item_type_ids.should_not include(@item.item_type_id)
-      end
-
-      it "should not remove the item_type if there are still items of that type" do
-        @box.add_item(FactoryGirl.create(:item, :item_type_id => @item.item_type_id))
-        @box.remove_item(@item)
-        @box.item_type_ids.should include(@item.item_type_id)
       end
     end
     it "should do nothing if the item has not been added" do

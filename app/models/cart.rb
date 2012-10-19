@@ -1,6 +1,4 @@
-class Cart
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Cart < ActiveRecord::Base
 
   belongs_to :user
   has_and_belongs_to_many :boxes
@@ -8,8 +6,13 @@ class Cart
   validates_presence_of :user
 
   def add_box(box_id)
-    box = Box.find(box_id)
-    if box && box.user != user
+    begin
+      box = Box.find(box_id)
+    rescue
+      return false
+    end
+
+    if box && box.user_id != user_id && !boxes.include?(box)
       self.boxes << box
       true
     else
@@ -18,7 +21,11 @@ class Cart
   end
 
   def remove_box(box_id)
-    box = Box.find(box_id)
+    begin
+      box = Box.find(box_id)
+    rescue
+      return false
+    end
 
     if box
       self.boxes.delete(box)

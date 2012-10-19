@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/engageis/activerecord-postgres-hstore.git
+  revision: 6f3084a0257e380d86466e71f07ebf81f2bab7c4
+  specs:
+    activerecord-postgres-hstore (0.4.1)
+      pg
+      rails
+      rake
+
+GIT
   remote: git://github.com/mattsears/stamps.git
   revision: ead13e5caa94e905e85b097eb608674b2be69117
   specs:
@@ -47,9 +56,6 @@ GEM
     aws_cf_signer (0.1.1)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.1.0.1)
-    bson (1.7.0)
-    bson_ext (1.7.0)
-      bson (~> 1.7.0)
     builder (3.0.4)
     cancan (1.6.8)
     capybara (1.1.2)
@@ -59,7 +65,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.3.5)
+    childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     chronic (0.8.0)
     chunky_png (1.2.6)
@@ -91,6 +97,7 @@ GEM
       nokogiri (>= 1.5.0)
     daemons (1.1.9)
     dalli (2.3.0)
+    database_cleaner (0.9.1)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -105,7 +112,6 @@ GEM
       rspec (~> 2.0)
     erubis (2.7.0)
     eventmachine (1.0.0)
-    excon (0.16.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.1.0)
@@ -138,16 +144,7 @@ GEM
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
     hashie (1.0.0)
-    heroku (2.32.14)
-      heroku-api (~> 0.3.5)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.5)
-      excon (~> 0.16.1)
     hike (1.2.1)
-    hpricot (0.8.6)
     httpi (0.7.9)
       rack
     i18n (0.6.1)
@@ -167,27 +164,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    mongoid (3.0.9)
-      activemodel (~> 3.1)
-      moped (~> 1.1)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.22)
-    mongoid-cached-json (1.2.3)
-      activesupport
-      bson_ext
-      hpricot
-      mongoid
-    mongoid-rspec (1.5.4)
-      mongoid (>= 3.0.1)
-      rake
-      rspec (>= 2.9)
-    moped (1.2.7)
     multi_json (1.3.6)
-    netrc (0.7.7)
     newrelic_rpm (3.5.0)
     nokogiri (1.5.5)
-    origin (1.0.9)
     orm_adapter (0.4.0)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -303,9 +284,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgres-hstore!
   attachinary
   bootstrap-sass (>= 2.0.4.0)
-  bundler (= 1.2.0.pre.1)
+  bundler (~> 1.2)
   cancan
   capybara (>= 1.1.2)
   chronic
@@ -314,6 +296,7 @@ DEPENDENCIES
   compass-rails
   cucumber-rails (>= 1.3.0)
   dalli
+  database_cleaner
   devise (>= 2.1.2)
   email_spec (>= 1.2.1)
   factory_girl_rails (>= 4.0.0)
@@ -322,13 +305,10 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   haml-rails (>= 0.3.4)
-  heroku
   jquery-rails
   launchy (>= 2.1.2)
-  mongoid (>= 3.0.9)
-  mongoid-cached-json
-  mongoid-rspec (>= 1.4.6)
   newrelic_rpm (~> 3.5.0)
+  pg
   rack-contrib
   rack-mini-profiler
   rack-timeout

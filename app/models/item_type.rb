@@ -1,9 +1,4 @@
-class ItemType
-  include Mongoid::Document
-
-  field :name
-  field :short_name
-  field :category
+class ItemType < ActiveRecord::Base
 
   has_many :items
   belongs_to :item_weight
