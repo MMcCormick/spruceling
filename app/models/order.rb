@@ -48,13 +48,13 @@ class Order < ActiveRecord::Base
 
     # must have payment info
     unless user.stripe
-      order.errors.add :user, 'You must add payment information before you can process an order.'
+      order.errors.add :base, 'You must add payment information before you can process an order.'
       return order
     end
 
     # can't have an empty cart
     if user.cart.boxes.length == 0
-      order.errors.add :user, 'You cannot process an order with an empty cart.'
+      order.errors.add :base, 'You cannot process an order with an empty cart.'
       return order
     end
 

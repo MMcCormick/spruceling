@@ -35,36 +35,42 @@ describe UsersController do
     end
   end
 
-  describe "update_information" do
-    context "when an address is passed" do
-      it "should call #update_address" do
-        User.any_instance.should_receive(:update_address).with({"address1" => "1512 Spruce Street"})
-        put :update_information, {:address => {:address1 => "1512 Spruce Street"}}
+  describe "update_address" do
+    it "should call #update_address" do
+      User.any_instance.should_receive(:update_address).with({"address1" => "1512 Spruce Street"})
+      put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+    end
+
+    context "when update_address is successful" do
+      before(:each) do
+        User.any_instance.should_receive(:update_address).with({"address1" => "1512 Spruce Street"}).and_return(true)
+      end
+
+      it "should call save" do
+        User.any_instance.should_receive(:save)
+        put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+      end
+
+      it "should redirect to the user's profile" do
+        put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+        response.should redirect_to(user_path @user, :notice => "Information successfully updated.")
       end
     end
 
-    context "when no address is passed" do
-      it "should not call #update_address" do
-        @user.should_receive(:update_address).never
-        put :update_information
+    context "when update_address is unsuccessful" do
+      before(:each) do
+        User.any_instance.should_receive(:update_address).and_return(false)
       end
-    end
 
-    it "should call save" do
-      User.any_instance.should_receive(:save)
-      put :update_information
-    end
+      it "should not call save" do
+        User.any_instance.should_receive(:save).never
+        put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+      end
 
-    it "should redirect to edit_information when unsuccessful" do
-      User.any_instance.should_receive(:save).and_return(false)
-      put :update_information
-      response.should redirect_to(edit_user_information_path)
-    end
-
-    pending "should redirect to the user's profile when successful" do
-      User.any_instance.should_receive(:save).and_return(true)
-      put :update_information
-      response.should redirect_to(user_path @user, :notice => "Information successfully updated.")
+      it "should redirect to edit_information" do
+        put :update_address
+        response.should redirect_to(edit_user_information_path)
+      end
     end
   end
 end
