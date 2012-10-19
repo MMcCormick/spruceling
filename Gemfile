@@ -23,9 +23,9 @@ gem 'sendgrid'
 gem 'newrelic_rpm', '~> 3.5.0'
 gem "haml-rails", ">= 0.3.4"
 gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord-postgres-hstore.git'
+gem 'compass-rails'
 
 group :assets do
-  gem 'compass-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
