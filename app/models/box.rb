@@ -2,8 +2,8 @@ class Box < ActiveRecord::Base
 
   has_attachments :photos, maximum: 10
 
-  belongs_to :user
-  has_many :items
+  belongs_to :user, :inverse_of => :boxes
+  has_many :items, :inverse_of => :box
 
   validates_presence_of :gender, :size, :user
   attr_accessible :gender, :size

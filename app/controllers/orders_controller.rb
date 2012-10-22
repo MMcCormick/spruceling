@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    authorize! :read, @order
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,30 +35,6 @@ class OrdersController < ApplicationController
         format.html { redirect_to cart_path, :notice => 'Order was not created.' }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def update
-    @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to orders_url }
-      format.json { head :no_content }
     end
   end
 end

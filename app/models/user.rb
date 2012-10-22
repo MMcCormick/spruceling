@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :cart, :dependent => :destroy
-  has_many :items
-  has_many :boxes
-  has_many :orders
+  has_one :cart, :dependent => :destroy, :inverse_of => :user
+  has_many :items, :inverse_of => :user
+  has_many :boxes, :inverse_of => :user
+  has_many :orders, :inverse_of => :user
 
   validates_presence_of :name, :email, :encrypted_password
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at

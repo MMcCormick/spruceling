@@ -1,6 +1,6 @@
 class Cart < ActiveRecord::Base
 
-  belongs_to :user
+  belongs_to :user, :inverse_of => :cart
   has_and_belongs_to_many :boxes
 
   validates_presence_of :user

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe BoxesController do
   before (:each) do
     @box = FactoryGirl.create(:box)
+    sign_in @box.user
   end
 
   describe "GET my_boxes" do
@@ -37,6 +38,12 @@ describe BoxesController do
       get :my_boxes
       assigns(:boxes).should_not include @box3
     end
+
+    it "should require you to be signed in" do
+      sign_out @user
+      get :my_boxes
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "GET show" do
@@ -51,6 +58,12 @@ describe BoxesController do
       get :new, {}
       assigns(:box).should be_a_new(Box)
     end
+
+    it "should require you to be signed in" do
+      sign_out @box.user
+      get :new
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "GET edit" do
@@ -59,15 +72,14 @@ describe BoxesController do
       assigns(:box).should eq(@box)
     end
 
-    it "should require the correct permissions"
-  end
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :edit, {:id => @box.to_param, :item_id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end  end
 
   describe "POST create" do
-    before (:each) do
-      @user = FactoryGirl.create(:user)
-      sign_in @user
-    end
-
     describe "with valid params" do
       it "creates a new box" do
         expect {
@@ -101,6 +113,12 @@ describe BoxesController do
         post :create, {:box => {}}
         response.should render_template("new")
       end
+    end
+
+    it "should require you to be signed in" do
+      sign_out @box.user
+      get :create
+      response.should redirect_to(new_user_session_path)
     end
   end
 
@@ -142,12 +160,18 @@ describe BoxesController do
       end
     end
 
-    it "should require the correct permissions"
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :update, {:id => @box.to_param, :item_id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
   describe "PUT add_item" do
     before(:each) do
       @item = FactoryGirl.create(:item)
+      sign_in @box.user
     end
 
     it "assigns the requested box as @box and item as @item" do
@@ -176,7 +200,12 @@ describe BoxesController do
       response.should render_template("edit")
     end
 
-    it "should require the correct permissions"
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :add_item, {:id => @box.to_param, :item_id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
   describe "PUT remove_item" do
@@ -202,11 +231,12 @@ describe BoxesController do
       end
     end
 
-    it "should require the correct permissions"
-  end
-
-  describe "PUT remove_item" do
-    it "should do a bunch of stuff (see add_item)"
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :remove_item, {:id => @box.to_param, :item_id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
   describe "DELETE destroy" do
@@ -221,7 +251,12 @@ describe BoxesController do
       response.should redirect_to(boxes_url)
     end
 
-    it "should require the correct permissions"
+    it "should deny other non-admin users" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :destroy, {:id => @box.to_param, :item_id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
 end

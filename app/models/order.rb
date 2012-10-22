@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 
-  belongs_to :user
-  has_many :order_items
+  belongs_to :user, :inverse_of => :orders
+  has_many :order_items, :inverse_of => :order
 
   validates_presence_of :user
 

@@ -1,8 +1,8 @@
 class Item < ActiveRecord::Base
 
-  belongs_to :user
-  belongs_to :box
-  belongs_to :item_type
+  belongs_to :user, :inverse_of => :items
+  belongs_to :box, :inverse_of => :items
+  belongs_to :item_type, :inverse_of => :items
 
   validates :new_with_tags, :inclusion => {:in => [true, false]}
   validates_presence_of :gender, :item_type, :size, :brand, :user
