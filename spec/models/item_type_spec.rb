@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: item_types
+#
+#  category       :string(255)
+#  id             :integer          not null, primary key
+#  item_weight_id :integer
+#  name           :string(255)
+#  short_name     :string(255)
+#
+
 require 'spec_helper'
 
 describe ItemType do

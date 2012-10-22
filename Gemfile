@@ -25,6 +25,7 @@ gem "haml-rails", ">= 0.3.4"
 gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord-postgres-hstore.git'
 gem 'compass-rails'
 gem 'kaminari'
+gem 'annotate'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

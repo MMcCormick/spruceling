@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: carts
+#
+#  id      :integer          not null, primary key
+#  user_id :integer
+#
+
 class Cart < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :cart

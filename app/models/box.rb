@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: boxes
+#
+#  gender  :string(255)
+#  id      :integer          not null, primary key
+#  size    :string(255)
+#  status  :string(255)      default("active")
+#  user_id :integer
+#
+
 class Box < ActiveRecord::Base
 
   has_attachments :photos, maximum: 10
@@ -20,6 +31,13 @@ class Box < ActiveRecord::Base
 
   def remove_item(item)
     self.items.delete(item)
+  end
+
+  def gender_noun
+    {
+      'm' => 'Boys',
+      'f' => 'Girls'
+    }[gender]
   end
 
   def self.by_filter(params={})

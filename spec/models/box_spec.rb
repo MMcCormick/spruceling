@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: boxes
+#
+#  gender  :string(255)
+#  id      :integer          not null, primary key
+#  size    :string(255)
+#  status  :string(255)      default("active")
+#  user_id :integer
+#
+
 require 'spec_helper'
 
 describe Box do
@@ -21,6 +32,17 @@ describe Box do
 
   it "should require size" do
     FactoryGirl.build(:box, :size => nil).should be_invalid
+  end
+
+  describe "#gender_noun" do
+    it "m should return Boys" do
+      @box.gender = 'm'
+      @box.gender_noun.should eq('Boys')
+    end
+    it "f should return Girls" do
+      @box.gender = 'f'
+      @box.gender_noun.should eq('Girls')
+    end
   end
 
   describe "#add_item" do

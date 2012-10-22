@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: order_items
+#
+#  box_id   :integer
+#  id       :integer          not null, primary key
+#  order_id :integer
+#
+
 require 'spec_helper'
 
 describe OrderItem do

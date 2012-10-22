@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  box_id        :integer
+#  brand         :string(255)
+#  gender        :string(255)
+#  id            :integer          not null, primary key
+#  item_type_id  :integer
+#  new_with_tags :boolean
+#  size          :string(255)
+#  status        :string(255)      default("active")
+#  user_id       :integer
+#
+
 class Item < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :items
