@@ -8,7 +8,11 @@ describe UsersController do
   end
 
   describe "GET 'show'" do
-    
+    before(:each) do
+      @box = FactoryGirl.create(:box)
+      @box2 = FactoryGirl.create(:box, :user => @user)
+    end
+
     it "should be successful" do
       get :show, :id => @user.id
       response.should be_success
@@ -18,7 +22,37 @@ describe UsersController do
       get :show, :id => @user.id
       assigns(:user).should == @user
     end
-    
+
+    it "should render the show template" do
+      get :show, {:id => @user.id}
+      response.should render_template("show")
+    end
+
+    it "assigns the user" do
+      get :show, {:id => @user.id}
+      assigns(:user).should eq(@user)
+    end
+
+    it "assigns all the user's boxes as @boxes" do
+      get :show, {:id => @user.id}
+      assigns(:boxes).to_a.should eq([@box2])
+    end
+
+    it "should include boxes which belong to the current user" do
+      get :show, {:id => @user.id}
+      assigns(:boxes).should include @box2
+    end
+
+    it "should not include boxes which do not belong to the current user" do
+      get :show, {:id => @user.id}
+      assigns(:boxes).should_not include @box
+    end
+
+    it "should not include inactive boxes" do
+      @box3 = FactoryGirl.create(:box, :status => "sold", :user => @user)
+      get :show, {:id => @user.id}
+      assigns(:boxes).should_not include @box3
+    end
   end
 
   describe "PUT update_stripe" do
@@ -53,7 +87,7 @@ describe UsersController do
 
       it "should redirect to the user's profile" do
         put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
-        response.should redirect_to(user_path @user, :notice => "Information successfully updated.")
+        response.should redirect_to user_path @user
       end
     end
 

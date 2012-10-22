@@ -47,6 +47,20 @@ describe HomeController do
           get :index, {:gender => "m"}
           assigns(:boxes).should_not include @box2
         end
+
+        describe "pagination" do
+          it "should return the first element on the first page" do
+            @box2 = FactoryGirl.create(:box, :gender => "m")
+            get :index, {:gender => "m", :page => "1"}
+            assigns(:boxes).should include @box2
+          end
+
+          it "should not return the first element on the first page" do
+            @box2 = FactoryGirl.create(:box, :gender => "m")
+            get :index, {:gender => "m", :page => "2"}
+            assigns(:boxes).should_not include @box2
+          end
+        end
       end
     end
 

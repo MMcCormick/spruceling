@@ -6,46 +6,6 @@ describe BoxesController do
     sign_in @box.user
   end
 
-  describe "GET my_boxes" do
-    before(:each) do
-      @user = FactoryGirl.create(:user)
-      @box2 = FactoryGirl.create(:box, :user => @user)
-      sign_in @user
-    end
-
-    it "should render the my_boxes template" do
-      get :my_boxes
-      response.should render_template("my_boxes")
-    end
-
-    it "assigns all the user's boxes as @boxes" do
-      get :my_boxes
-      assigns(:boxes).to_a.should eq([@box2])
-    end
-
-    it "should include boxes which belong to the current user" do
-      get :my_boxes
-      assigns(:boxes).should include @box2
-    end
-
-    it "should not include boxes which do not belong to the current user" do
-      get :my_boxes
-      assigns(:boxes).should_not include @box
-    end
-
-    it "should not include inactive boxes" do
-      @box3 = FactoryGirl.create(:box, :status => "sold", :user => @user)
-      get :my_boxes
-      assigns(:boxes).should_not include @box3
-    end
-
-    it "should require you to be signed in" do
-      sign_out @user
-      get :my_boxes
-      response.should redirect_to(new_user_session_path)
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested box as @box" do
       get :show, {:id => @box.to_param}

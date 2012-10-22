@@ -1,24 +1,13 @@
 class BoxesController < ApplicationController
   before_filter :authenticate_user!, :only => [:my_boxes, :new, :create]
 
-  # GET /my_boxes
-  # GET /my_boxes.json
-  def my_boxes
-    @boxes = current_user.boxes.active
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @boxes }
-    end
-  end
-
   # GET /boxes/1
   # GET /boxes/1.json
   def show
     @box = Box.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @box }
     end
   end

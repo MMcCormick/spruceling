@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if signed_in?
-      @boxes = Box.by_filter(params.slice(:gender, :size)).active
+      @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(15)
       render "home"
     else
       render "splash"

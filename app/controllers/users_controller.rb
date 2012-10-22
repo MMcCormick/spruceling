@@ -7,6 +7,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @boxes = @user.boxes.active
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @boxes }
+    end
   end
 
   def edit_information
@@ -17,7 +23,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if current_user.update_address(params[:address])
         current_user.save
-        format.html { redirect_to user_path current_user, :notice => 'Information successfully updated.' }
+        format.html { redirect_to user_path(current_user), :notice => 'Information successfully updated.' }
         format.json { head :no_content }
       else
         format.html { redirect_to edit_user_information_path, :notice => 'There was an error updating your information.' }
@@ -39,3 +45,4 @@ class UsersController < ApplicationController
     end
   end
 end
+

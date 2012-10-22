@@ -5,7 +5,7 @@ class CartsController < ApplicationController
     @cart = current_user.cart
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @cart }
     end
   end
