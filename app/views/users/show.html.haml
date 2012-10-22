@@ -1,30 +1,5 @@
-%h3 User
-%p
-  User:
-  = @user.name
-%p
-  Email:
-  = @user.email if @user.email
+- content_for :left_sidebar do
+  = render :partial => "sidebar", :layout => 'layouts/left_sidebar'
 
-%h1 My Boxes
-
-%table
-  %tr
-    %th Gender
-    %th Size
-    %th
-    %th
-    %th
-
-  - @boxes.each do |box|
-    %tr
-      %td= box.gender
-      %td= box.size
-      %td= link_to 'Show', box
-      %td= link_to 'Edit', edit_box_path(box)
-      %td= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }
-      %td= link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put
-
-%br
-
-= link_to 'New Box', new_box_path
+- @boxes.each do |box|
+  = render 'boxes/teaser', :box => box

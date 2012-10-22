@@ -12,7 +12,7 @@
       <li><%= link_to 'Logout', destroy_user_session_path, :method => 'delete' %></li>
     </ul>
   </div>
-  <%= link_to "#{current_user.name}", root_path, :class => 'nav_link profile' %>
+  <%= link_to "#{current_user.name}", user_path(current_user), :class => 'nav_link profile' %>
   <%= link_to "#{current_user.cart.boxes.length} Cart", cart_path, :class => 'nav_link cart' %>
 <% else %>
   <%= link_to 'Login', new_user_session_path, :class => 'nav_link login' %>
