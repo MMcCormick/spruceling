@@ -1,0 +1,25 @@
+.logo
+  = image_tag('spruceling_logo.gif')
+  .bg
+
+.top_strip
+  %h1 Swap Dem Clothes
+  = image_tag('dog_bg.png', :class => 'bg')
+  .login Sign In &middot; Free
+
+.bottom_strip
+  .step.one
+    .icon
+    .head Cool Thing 1
+    .body Yo yo
+  .step.one
+    .icon
+    .head Cool Thing 2
+    .body Yo yo
+  .step.one
+    .icon
+    .head Cool Thing 3
+    .body Yo yo
+
+#footer
+  != "#{link_to 'Login', new_user_session_path} | #{link_to 'Sign up', new_user_registration_path}"

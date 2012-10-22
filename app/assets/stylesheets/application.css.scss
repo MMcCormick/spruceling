@@ -53,33 +53,45 @@ ul.nav li {
   border: solid 1px #C66;
 }
 
-#container {
-  width: $site-width;
-  margin: auto;
-}
+#full {
+  #header {
+    background: #CCC;
+    height: 50px;
 
-#header {
-  background: #CCC;
-  height: 50px;
-
-  .nav_link {
-    float: right;
-    padding: 10px;
-    font-size: 16px;
-    border-right: 1px solid #666;
-  }
-  .dropdown {
-    float: right;
-  }
-  .dropdown-toggle {
-    padding: 10px;
-
-    .caret {
-      margin-top: 18px;
+    .nav_link {
+      float: right;
+      padding: 10px;
+      font-size: 16px;
+      border-right: 1px solid #666;
     }
-    &:hover {
-      background: transparent;
+    .dropdown {
+      float: right;
     }
+    .dropdown-toggle {
+      padding: 10px;
+
+      .caret {
+        margin-top: 18px;
+      }
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+  #container {
+    width: $site-width;
+    margin: auto;
+  }
+  #main {
+    width: $site-width - $sidebar-width;
+    float: left;
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    min-height: 600px;
+  }
+  #footer {
+    background: #CCC;
+    height: 30px;
   }
 }
 
@@ -122,19 +134,6 @@ ul.nav li {
       margin: 0 0 5px 0;
     }
   }
-}
-
-#main {
-  width: $site-width - $sidebar-width;
-  float: left;
-  border-left: 1px solid #CCC;
-  border-right: 1px solid #CCC;
-  min-height: 600px;
-}
-
-#footer {
-  background: #CCC;
-  height: 30px;
 }
 
 @import "scaffolds";

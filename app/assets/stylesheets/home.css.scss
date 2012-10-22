@@ -1,7 +1,94 @@
 #splash {
   text-align: center;
+  position: relative;
 
-  .lrcontent {
-    margin: auto !important;
+  .logo {
+    position: absolute;
+    top: 40px;
+    z-index: 100;
+    padding: 15px 30px 15px 20px;
+    left: 50%;
+    margin-left: -380px;
+
+    img {
+      display: block;
+    }
+    .bg {
+      @include opacity(.95);
+      @include border-radius(8px);
+      @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
+      border-bottom: 1px solid #333;
+      width: 100%;
+      height: 100%;
+      background: #FFF;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+    }
+  }
+  .top_strip {
+    position: relative;
+    @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
+    border-bottom: 3px solid #333;
+
+    h1 {
+      @include single-text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 1px);
+      position: absolute;
+      top: 230px;
+      color: #FFF;
+      left: 50%;
+      margin-left: -380px;
+      font-size: 40px;
+      cursor: default;
+    }
+    .bg {
+      width: 100%;
+      display: block;
+    }
+    .login {
+      @include border-radius(4px);
+      @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
+      border-bottom: 1px solid #333;
+      background: #FFF;
+      padding: 20px 25px;
+      font-size: 26px;
+      position: absolute;
+      top: 310px;
+      left: 50%;
+      margin-left: -380px;
+      cursor: pointer;
+      &:hover {
+        background: #8CC63F;
+        color: #FFF;
+      }
+    }
+  }
+  .bottom_strip {
+    @include clearfix();
+    width: 600px;
+    margin: 50px auto 0 auto;
+
+    .step {
+      width: 200px;
+      float: left;
+      text-align: center;
+
+      .icon {
+        width: 75px;
+        height: 75px;
+        background: #999;
+        margin: auto;
+      }
+      .head {
+        font-weight: bold;
+      }
+      .body {
+
+      }
+    }
+  }
+  #footer {
+    margin: 50px 0;
   }
 }
