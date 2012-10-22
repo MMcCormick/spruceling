@@ -2,7 +2,7 @@ class ItemWeight < ActiveRecord::Base
 
   store :weights
 
-  has_many :item_types
+  has_many :item_types, :inverse_of => :item_weight
 
   validates_presence_of :name
 

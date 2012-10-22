@@ -24,6 +24,12 @@ describe ItemsController do
       get :index
       assigns(:items).should_not include @item2
     end
+
+    it "should require you to be signed in" do
+      sign_out @user
+      get :create
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "GET show" do
@@ -38,6 +44,12 @@ describe ItemsController do
       get :new, {}
       assigns(:item).should be_a_new(Item)
     end
+
+    it "should require you to be signed in" do
+      sign_out @user
+      get :create
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "GET edit" do
@@ -46,7 +58,12 @@ describe ItemsController do
       assigns(:item).should eq(@item)
     end
 
-    it "should require the correct permissions"
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :edit, {:id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
   describe "POST create" do
@@ -89,6 +106,12 @@ describe ItemsController do
         response.should render_template("new")
       end
     end
+
+    it "should require you to be signed in" do
+      sign_out @user
+      get :create
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "PUT update" do
@@ -129,8 +152,12 @@ describe ItemsController do
       end
     end
 
-    it "should require the correct permissions"
-  end
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :update, {:id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end    end
 
   describe "DELETE destroy" do
     it "destroys the requested item" do
@@ -144,7 +171,12 @@ describe ItemsController do
       response.should redirect_to(items_url)
     end
 
-    it "should require the correct permissions"
+    it "should deny users without permissions" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :destroy, {:id => @item.to_param}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
 end

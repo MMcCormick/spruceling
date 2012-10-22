@@ -1,7 +1,7 @@
 class ItemType < ActiveRecord::Base
 
-  has_many :items
-  belongs_to :item_weight
+  has_many :items, :inverse_of => :item_type
+  belongs_to :item_weight, :inverse_of => :item_types
 
   validates_presence_of :name, :category, :item_weight
 

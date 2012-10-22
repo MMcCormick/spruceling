@@ -51,6 +51,12 @@ describe OrdersController do
         response.should redirect_to(cart_path)
       end
     end
+
+    it "redirects to homepage if not signed in" do
+      sign_out @user
+      get :index
+      response.should redirect_to(new_user_session_path)
+    end
   end
 
   describe "GET index" do
@@ -68,7 +74,13 @@ describe OrdersController do
       response.should redirect_to(new_user_session_path)
     end
 
-    it "should not allow users without permission to view the order"
+    it "should deny other non-admin users" do
+      order = FactoryGirl.create(:order)
+      sign_in FactoryGirl.create(:user)
+      expect do
+        put :show, {:id => order.id}
+      end.to raise_error(CanCan::AccessDenied)
+    end
   end
 
   #describe "GET index" do

@@ -37,6 +37,7 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @item = Item.find(params[:id])
+    authorize! :edit, @item
   end
 
   # POST /items
@@ -60,6 +61,8 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
 
+    authorize! :edit, @item
+
     respond_to do |format|
       if @item.update_attributes(params[:item])
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -75,6 +78,8 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     @item = Item.find(params[:id])
+    authorize! :delete, @item
+
     @item.destroy
 
     respond_to do |format|

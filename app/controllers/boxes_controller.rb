@@ -1,5 +1,5 @@
 class BoxesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:my_boxes]
+  before_filter :authenticate_user!, :only => [:my_boxes, :new, :create]
 
   # GET /my_boxes
   # GET /my_boxes.json
@@ -37,6 +37,7 @@ class BoxesController < ApplicationController
   # GET /boxes/1/edit
   def edit
     @box = Box.find(params[:id])
+    authorize! :edit, @box
   end
 
   # POST /boxes
@@ -59,6 +60,7 @@ class BoxesController < ApplicationController
   # PUT /boxes/1.json
   def update
     @box = Box.find(params[:id])
+    authorize! :edit, @box
 
     respond_to do |format|
       if @box.update_attributes(params[:box])
@@ -74,6 +76,7 @@ class BoxesController < ApplicationController
   def add_item
     @box = Box.find(params[:id])
     @item = Item.find(params[:item_id])
+    authorize! :edit, @box
 
     respond_to do |format|
       if @box.add_item(@item)
@@ -91,6 +94,8 @@ class BoxesController < ApplicationController
   def remove_item
     @box = Box.find(params[:id])
     @item = Item.find(params[:item_id])
+    authorize! :edit, @box
+
     @box.remove_item(@item)
 
     respond_to do |format|
@@ -108,6 +113,8 @@ class BoxesController < ApplicationController
   # DELETE /boxes/1.json
   def destroy
     @box = Box.find(params[:id])
+    authorize! :edit, @box
+
     @box.destroy
 
     respond_to do |format|
