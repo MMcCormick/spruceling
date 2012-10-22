@@ -26,7 +26,8 @@ class Box < ActiveRecord::Base
     query = {}
     query[:gender] = params[:gender] if ["m", "f"].include? params[:gender]
     query[:size] = params[:size] if Item.all_sizes.include? params[:size]
-    Box.where(query)
+    query[:user_id] = params[:user_id] if query[:user_id]
+    Box.includes({:items => :item_type}, :user).where(query)
   end
 
   def weight
@@ -35,5 +36,14 @@ class Box < ActiveRecord::Base
       total += item.weight
     end
     total
+  end
+
+  def item_type_counts
+    counts = {}
+    self.items.each do |i|
+      counts[i.item_type.name] ||= 0
+      counts[i.item_type.name] += 1
+    end
+    counts
   end
 end

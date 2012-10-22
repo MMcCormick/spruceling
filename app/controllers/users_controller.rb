@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @boxes = Box.by_filter(:user_id => @user.id).active
   end
 
   def edit_information

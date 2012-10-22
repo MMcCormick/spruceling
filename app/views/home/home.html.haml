@@ -1,26 +1,8 @@
 - content_for :left_sidebar do
   = render :partial => "sidebar", :layout => 'layouts/left_sidebar'
 
-%h1 Browse Boxes
-
-%table
-  %tr
-    %th
-    %th Gender
-    %th Size
-    %th
-    %th
-    %th
-
-  - @boxes.each do |box|
-    %tr
-      %td= box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '125x125', :crop => :fit }) : ''
-      %td= box.gender
-      %td= box.size
-      %td= link_to 'Show', box
-      %td= link_to 'Edit', edit_box_path(box)
-      %td= link_to 'Destroy', box, method: :delete, data: { confirm: 'Are you sure?' }
-      %td= link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put
+- @boxes.each do |box|
+  = render 'boxes/teaser', :box => box
 
 %br
 

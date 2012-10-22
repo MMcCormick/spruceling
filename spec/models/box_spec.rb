@@ -23,7 +23,7 @@ describe Box do
     FactoryGirl.build(:box, :size => nil).should be_invalid
   end
 
-  describe "add_item" do
+  describe "#add_item" do
     it "should reject an item which does not match gender / size and return false" do
       @item2 = FactoryGirl.create(:item, :size => "foobar")
       @box.add_item(@item2).should == false
@@ -43,7 +43,7 @@ describe Box do
     end
   end
 
-  describe "remove_item" do
+  describe "#remove_item" do
     before(:each) do
       @box.add_item(@item)
     end
@@ -75,6 +75,17 @@ describe Box do
 
     it "should not return a box that does not match the arguments" do
       Box.by_filter({:gender => "f"}).should_not include @box2
+    end
+  end
+
+  describe "#item_type_counts" do
+    it "should return a hash" do
+      @box.item_type_counts.should be_a Hash
+    end
+    it "should add up to the number of items on the box" do
+      sum = @box.item_type_counts.inject{|sum,n| sum + n}
+      sum ||= 0
+      sum.should eq(@box.items.length)
     end
   end
 
