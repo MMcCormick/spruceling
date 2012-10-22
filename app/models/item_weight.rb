@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: item_weights
+#
+#  id      :integer          not null, primary key
+#  name    :string(255)
+#  weights :text
+#
+
 class ItemWeight < ActiveRecord::Base
 
   store :weights

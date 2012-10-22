@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: item_types
+#
+#  category       :string(255)
+#  id             :integer          not null, primary key
+#  item_weight_id :integer
+#  name           :string(255)
+#  short_name     :string(255)
+#
+
 class ItemType < ActiveRecord::Base
 
   has_many :items, :inverse_of => :item_type

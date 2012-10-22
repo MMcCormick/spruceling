@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id               :integer          not null, primary key
+#  stripe_charge_id :string(255)
+#  user_id          :integer
+#
+
 class Order < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :orders

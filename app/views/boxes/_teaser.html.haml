@@ -1,11 +1,8 @@
 .box_teaser
-  .photo= box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '125x125', :crop => :fill }) : ''
-  .gender= box.gender
-  .size= box.size
+  %a.photo{:href => box}
+    = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '220x220', :crop => :fill }) : ''
+    .gender= box.gender_noun
+    .size= box.size
 
-  - box.item_type_counts.each do |name,count|
-    .item= pluralize(count, name)
-
-  %div= link_to 'Show Box', box
   .user= link_to box.user.name, user_path(box.user)
   .btn.add_to_cart= link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put
