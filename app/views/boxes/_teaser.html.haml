@@ -1,8 +1,9 @@
 .box_teaser
   %a.photo{:href => box}
     = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '220x220', :crop => :fill }) : ''
-    .gender= box.gender_noun
-    .size= box.size
+    %div{:class => "bottom #{box.gender}"}
+      = box.gender_noun
+      = box.size
 
   .user= link_to box.user.name, user_path(box.user)
   .btn.add_to_cart= link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put

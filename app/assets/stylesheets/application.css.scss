@@ -22,6 +22,9 @@
 $site-width: 960px;
 $sidebar-width: 200px;
 
+$boys-color: #2693FF;
+$girls-color: #FF73FF;
+
 body {
   margin: 0;
   padding: 0;
@@ -92,6 +95,7 @@ ul.nav li {
   #footer {
     background: #CCC;
     height: 30px;
+    margin-left: $sidebar-width;
   }
 }
 

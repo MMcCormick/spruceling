@@ -41,15 +41,31 @@
     width: 100%;
     height: 220px;
     display: block;
+    position: relative;
 
     img {
       display: block;
     }
-  }
-  .gender {
+    .bottom {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      background: #FFF;
+      background: rgba(255, 255, 255, 0.8);
+      width: 100%;
+      padding: 7px 10px;
+      font-size: 16px;
 
+      &.m {
+        color: $boys-color;
+      }
+      &.f {
+        color: $girls-color;
+      }
+    }
   }
-  .size {
-
+  .user {
+    font-size: 16px;
+    margin: 7px 10px;
   }
 }
