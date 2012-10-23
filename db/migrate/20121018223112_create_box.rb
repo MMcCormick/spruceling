@@ -6,5 +6,8 @@ class CreateBox < ActiveRecord::Migration
       t.string :status, :default => 'active'
       t.references :user
     end
+
+    add_index :boxes, :size
+    add_index :boxes, :user_id
   end
 end

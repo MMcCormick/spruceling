@@ -4,5 +4,8 @@ class CreateOrderItem < ActiveRecord::Migration
       t.references :box
       t.references :order
     end
+
+    add_index :order_items, :box_id, unique: true
+    add_index :order_items, :order_id
   end
 end

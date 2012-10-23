@@ -8,18 +8,18 @@ GIT
       rake
 
 GIT
-  remote: git://github.com/mattsears/stamps.git
-  revision: ead13e5caa94e905e85b097eb608674b2be69117
+  remote: https://github.com/marbemac/stamps.git
+  revision: b588c0f01fc8ae6d2ca6fed41c2e53f1808d873f
   specs:
     stamps (0.3.0)
-      hashie (~> 1.0.0)
+      hashie (>= 1.0.0)
       httpi (= 0.7.9)
       json (~> 1.0)
       multi_json (~> 1.0)
       savon (= 0.8.6)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://bundler-api.herokuapp.com/
   specs:
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
@@ -122,9 +122,12 @@ GEM
     factory_girl_rails (4.1.0)
       factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
     ffi (1.1.5)
     foreman (0.60.2)
       thor (>= 0.13.6)
+    friendly_id (4.0.8)
     fssm (0.2.9)
     gherkin (2.11.5)
       json (>= 1.4.6)
@@ -148,8 +151,9 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
-    hashie (1.0.0)
+    hashie (1.2.0)
     hike (1.2.1)
+    httpauth (0.2.0)
     httpi (0.7.9)
       rack
     i18n (0.6.1)
@@ -158,9 +162,8 @@ GEM
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     json (1.7.5)
-    kaminari (0.14.1)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     kgio (2.7.4)
     launchy (2.1.2)
       addressable (~> 2.3)
@@ -175,8 +178,23 @@ GEM
     method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.3.6)
-    newrelic_rpm (3.5.0)
+    multipart-post (1.1.5)
+    newrelic_rpm (3.5.0.1)
     nokogiri (1.5.5)
+    oauth2 (0.8.0)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.1)
+      hashie (~> 1.2)
+      rack
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -317,14 +335,17 @@ DEPENDENCIES
   email_spec (>= 1.2.1)
   factory_girl_rails (>= 4.0.0)
   foreman
+  friendly_id (~> 4.0.1)
   guard
   guard-livereload
   guard-rspec
   haml-rails (>= 0.3.4)
   jquery-rails
-  kaminari
   launchy (>= 2.1.2)
   newrelic_rpm (~> 3.5.0)
+  oauth2
+  omniauth
+  omniauth-facebook
   pg
   rack-contrib
   rack-mini-profiler

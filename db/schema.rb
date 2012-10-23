@@ -36,14 +36,23 @@ ActiveRecord::Schema.define(:version => 20121019013715) do
     t.integer "user_id"
   end
 
+  add_index "boxes", ["size"], :name => "index_boxes_on_size"
+  add_index "boxes", ["user_id"], :name => "index_boxes_on_user_id"
+
   create_table "boxes_carts", :id => false, :force => true do |t|
     t.integer "cart_id", :null => false
     t.integer "box_id",  :null => false
   end
 
+  add_index "boxes_carts", ["box_id"], :name => "index_boxes_carts_on_box_id"
+  add_index "boxes_carts", ["cart_id", "box_id"], :name => "index_boxes_carts_on_cart_id_and_box_id", :unique => true
+  add_index "boxes_carts", ["cart_id"], :name => "index_boxes_carts_on_cart_id"
+
   create_table "carts", :force => true do |t|
     t.integer "user_id"
   end
+
+  add_index "carts", ["user_id"], :name => "index_carts_on_user_id"
 
   create_table "item_types", :force => true do |t|
     t.string  "name"
@@ -51,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20121019013715) do
     t.string  "category"
     t.integer "item_weight_id"
   end
+
+  add_index "item_types", ["item_weight_id"], :name => "index_item_types_on_item_weight_id"
 
   create_table "item_weights", :force => true do |t|
     t.string "name"
@@ -68,15 +79,24 @@ ActiveRecord::Schema.define(:version => 20121019013715) do
     t.integer "item_type_id"
   end
 
+  add_index "items", ["box_id"], :name => "index_items_on_box_id"
+  add_index "items", ["item_type_id"], :name => "index_items_on_item_type_id"
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
+
   create_table "order_items", :force => true do |t|
     t.integer "box_id"
     t.integer "order_id"
   end
 
+  add_index "order_items", ["box_id"], :name => "index_order_items_on_box_id", :unique => true
+  add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
+
   create_table "orders", :force => true do |t|
     t.string  "stripe_charge_id"
     t.integer "user_id"
   end
+
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -89,15 +109,32 @@ ActiveRecord::Schema.define(:version => 20121019013715) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "username"
     t.string   "name"
+    t.string   "slug"
+    t.string   "gender"
+    t.date     "birthday"
+    t.string   "origin"
     t.integer  "credits"
     t.string   "stripe_customer_id"
     t.hstore   "address"
+    t.string   "fb_uid"
+    t.string   "fb_secret"
+    t.string   "fb_token"
+    t.boolean  "fb_use_image"
   end
 
+  add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
 end
