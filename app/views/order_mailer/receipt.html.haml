@@ -1,0 +1,18 @@
+%p Thank you for your order! The sender has been notified and will ship your box within 3-4 days. In the meantime, here's your receipt.
+
+%div= "Email address:   #{@user.email}"
+%div= "Name:            #{@user.email}"
+%div= "Date:            #{t @order.created_at, :format => :long}"
+%div= "Order ID:        #{@order.id}"
+%div= "Payment Type:    #{@user.stripe.active_card['type']} **** **** **** #{@user.stripe.active_card['last4']}"
+
+%br
+%div Retailer: Spruceling, Inc
+
+%br
+%div= "Number of boxes: #{@order.order_items.length}"
+%div= "Total:           $#{@order.price_total}"
+
+%p Thanks, and we hope you enjoy your boxes!
+
+%p The Spruceling Team

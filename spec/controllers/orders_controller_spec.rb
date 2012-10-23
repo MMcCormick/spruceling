@@ -26,16 +26,18 @@ describe OrdersController do
         Order.should_receive(:generate).with(@user).and_return(FactoryGirl.build(:order))
       end
 
-      it "should call #save order" do
+      it "should call #save order and mail the user" do
         Order.any_instance.should_receive(:charge).and_return(true)
         Order.any_instance.should_receive(:save)
+        Order.any_instance.should_receive(:send_confirmations)
         post :create
       end
 
       context "with invalid stripe" do
-        it "should not create an order" do
+        it "should not create an order or mail the user" do
           Order.any_instance.should_receive(:charge).and_return(false)
           Order.any_instance.should_receive(:save).never
+          OrderMailer.should_receive(:receipt).never
           post :create
         end
       end

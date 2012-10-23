@@ -2,8 +2,10 @@
 #
 # Table name: orders
 #
+#  created_at       :datetime
 #  id               :integer          not null, primary key
 #  stripe_charge_id :string(255)
+#  updated_at       :datetime
 #  user_id          :integer
 #
 
@@ -150,6 +152,24 @@ describe Order do
       Stripe::Charge.stub(:create).and_return(stripe_charge)
       @order.stripe_charge_id = 'foo'
       @order.charge.should eq(false)
+    end
+  end
+
+  describe "#send_confirmations" do
+    let (:stripe_customer) do
+      stub_model Stripe::Customer, :active_card => {"type" => "Visa", "last4" => "1234"}
+    end
+
+    it "should email a receipt to the user who ordered" do
+      @order = FactoryGirl.create(:order)
+      User.any_instance.should_receive(:stripe).at_least(:once).and_return(stripe_customer)
+      @order.send_confirmations
+      ActionMailer::Base.deliveries.should_not be_empty
+      ActionMailer::Base.deliveries.first.to.should include @order.user.email
+    end
+
+    it "should email each sender" do
+
     end
   end
 
