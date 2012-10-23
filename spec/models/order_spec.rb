@@ -156,7 +156,21 @@ describe Order do
   end
 
   describe "#send_confirmations" do
+    let (:stripe_customer) do
+      stub_model Stripe::Customer, :active_card => {"type" => "Visa", "last4" => "1234"}
+    end
 
+    it "should email a receipt to the user who ordered" do
+      @order = FactoryGirl.create(:order)
+      User.any_instance.should_receive(:stripe).at_least(:once).and_return(stripe_customer)
+      @order.send_confirmations
+      ActionMailer::Base.deliveries.should_not be_empty
+      ActionMailer::Base.deliveries.first.to.should include @order.user.email
+    end
+
+    it "should email each sender" do
+
+    end
   end
 
 end
