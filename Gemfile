@@ -29,6 +29,7 @@ gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord
 gem 'compass-rails'
 gem 'annotate'
 gem "pg"
+gem 'kaminari'
 gem "friendly_id", "~> 4.0.1"
 
 group :assets do
