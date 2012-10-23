@@ -22,8 +22,28 @@
 $site-width: 960px;
 $sidebar-width: 200px;
 
+$link-color: #2693FF;
+
 $boys-color: #2693FF;
+$boys-color-lighter: lighten($boys-color, 37%);
+
 $girls-color: #FF73FF;
+
+$action-color: #F9A01B;
+
+.btn {
+  @include text-shadow(none);
+  @include border-radius(2px);
+}
+.btn-action {
+  background: $action-color;
+  color: #FFF;
+
+  &:hover {
+    background: darken($action-color, 5%);
+    color: #FFF;
+  }
+}
 
 body {
   margin: 0;
@@ -31,10 +51,6 @@ body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif !important;
 }
 
-.brand {
-  float: left;
-  padding-right: 8px;
-}
 ul.nav {
   list-style: none;
   margin: 0 0 2em;
@@ -42,6 +58,12 @@ ul.nav {
 }
 ul.nav li {
   display: inline;
+}
+a {
+  &:hover {
+    color: $link-color !important;
+    background: transparent !important;
+  }
 }
 #flash_notice, #flash_alert {
   padding: 5px 8px;
@@ -58,23 +80,65 @@ ul.nav li {
 
 #full {
   #header {
-    background: #CCC;
-    height: 50px;
+    @include single-box-shadow(rgba(0, 0, 0, 0.2), 1px, 1px, 2px);
+    background: #F9A01B;
+    height: 70px;
+    z-index: 100;
+    position: relative;
 
+    .header_wrapper {
+      width: $site-width;
+      margin: auto;
+      position: relative;
+    }
+    .brand {
+      position: absolute;
+      top: 0px;
+      left: -26px;
+    }
+    .photo {
+      position: absolute;
+      left: 25px;
+      top: 0px;
+      img {
+        @include border-radius(3px);
+      }
+    }
     .nav_link {
       float: right;
-      padding: 10px;
-      font-size: 16px;
-      border-right: 1px solid #666;
+      padding: 11px 25px 9px 25px;
+      margin: 15px 0;
+      font-size: 20px;
+      border-right: 1px solid #c98b17;
+      border-left: 1px solid #ffc754;
+      color: #FFF;
+      &:hover {
+        color: #FFF !important;
+      }
+    }
+    .home {
+      border-left: none;
+    }
+
+    .name {
+      border-right: none;
+      padding-right: 35px;
+      padding-left: 75px;
+      position: relative;
     }
     .dropdown {
-      float: right;
+      .dropdown-menu {
+        top: 50px;
+        right: 10px;
+        left: auto;
+      }
     }
     .dropdown-toggle {
-      padding: 10px;
 
-      .caret {
-        margin-top: 18px;
+      .icon-chevron-down {
+        position: absolute;
+        top: 12px;
+        right: 8px;
       }
       &:hover {
         background: transparent;
@@ -112,7 +176,7 @@ ul.nav li {
     padding: 5px 0 5px 27px;
     position: relative;
     font-weight: bold;
-    margin: 20px 0 0 0;
+    margin: 40px 0 0 0;
 
     .icon {
       position: absolute;
@@ -124,7 +188,7 @@ ul.nav li {
       background: #999;
     }
     &.on {
-      background: #EEE;
+      background: $boys-color-lighter;
     }
   }
 
@@ -137,6 +201,10 @@ ul.nav li {
       border-bottom: 1px solid #EEE;
       margin: 0 0 5px 0;
     }
+  }
+
+  .btn-action {
+    font-size: 16px;
   }
 }
 

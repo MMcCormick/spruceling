@@ -31,13 +31,15 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, :use => :slugged
 
+  has_attachment :avatar, :accept => [:jpg, :jpeg, :png, :gif]
+
   has_one :cart, :dependent => :destroy, :inverse_of => :user
   has_many :items, :inverse_of => :user
   has_many :boxes, :inverse_of => :user
   has_many :orders, :inverse_of => :user
 
   validates_presence_of :name, :email, :encrypted_password
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
+  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
 
   after_create :initiate_cart
 
