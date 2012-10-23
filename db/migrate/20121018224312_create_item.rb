@@ -10,5 +10,9 @@ class CreateItem < ActiveRecord::Migration
       t.references :box
       t.references :item_type
     end
+
+    add_index :items, :user_id
+    add_index :items, :box_id
+    add_index :items, :item_type_id
   end
 end

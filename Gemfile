@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'http://rubygems.org' # dependency api is down http://status.rubygems.org/
+source 'http://bundler-api.herokuapp.com'
 
 ruby '1.9.3'
 
@@ -6,7 +7,6 @@ gem 'bundler', '~> 1.2'
 gem 'rails', '~> 3.2.8'
 
 gem 'jquery-rails'
-gem "pg"
 gem "devise", ">= 2.1.2"
 gem 'yajl-ruby' # json
 gem "bootstrap-sass", ">= 2.0.4.0"
@@ -16,16 +16,21 @@ gem 'chronic' # Date/Time management
 gem 'dalli' # memcache
 gem 'stripe' # payments
 gem 'cancan'
-gem 'stamps', :git => 'git://github.com/mattsears/stamps.git'
+gem 'stamps', :git => 'https://github.com/marbemac/stamps.git'
 gem 'cloudinary' # images
 gem 'attachinary' # images
 gem 'sendgrid'
 gem 'newrelic_rpm', '~> 3.5.0'
 gem "haml-rails", ">= 0.3.4"
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
 gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord-postgres-hstore.git'
 gem 'compass-rails'
-gem 'kaminari'
 gem 'annotate'
+gem "pg"
+gem 'kaminari'
+gem "friendly_id", "~> 4.0.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -36,17 +41,16 @@ end
 group :development do
   gem 'rack-mini-profiler'
   gem 'foreman'
-  gem 'thin'
   gem "rspec-rails", ">= 2.11.0"
   gem "factory_girl_rails", ">= 4.0.0"
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'rb-fsevent', :require => false
+  gem 'thin'
 end
 
 group :test do
-  gem "thin"
   gem "rspec-rails", ">= 2.11.0"
   gem "capybara", ">= 1.1.2"
   gem "email_spec", ">= 1.2.1"
@@ -56,6 +60,7 @@ group :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'database_cleaner'
+  gem 'thin'
 end
 
 group :staging do

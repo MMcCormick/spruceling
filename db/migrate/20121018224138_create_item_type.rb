@@ -6,5 +6,7 @@ class CreateItemType < ActiveRecord::Migration
       t.string :category
       t.references :item_weight
     end
+
+    add_index :item_types, :item_weight_id
   end
 end

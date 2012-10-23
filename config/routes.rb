@@ -34,7 +34,8 @@ Spruceling::Application.routes.draw do
   root :to => "home#index"
   get 'page/:page' => 'home#index'
 
-  devise_for :users
+  get '/users/auth/:provider' => 'omniauth_callbacks#passthru'
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, :only => [:show, :index]
 
 end

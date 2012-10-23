@@ -3,5 +3,7 @@ class CreateCart < ActiveRecord::Migration
     create_table :carts do |t|
       t.references :user
     end
+
+    add_index :carts, :user_id
   end
 end

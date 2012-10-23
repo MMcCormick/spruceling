@@ -4,5 +4,9 @@ class CreateBoxesCarts < ActiveRecord::Migration
       t.references :cart, :null => false
       t.references :box, :null => false
     end
+
+    add_index :boxes_carts, :cart_id
+    add_index :boxes_carts, :box_id
+    add_index :boxes_carts, [:cart_id, :box_id], unique: true
   end
 end

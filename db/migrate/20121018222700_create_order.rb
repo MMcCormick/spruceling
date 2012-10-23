@@ -4,5 +4,7 @@ class CreateOrder < ActiveRecord::Migration
       t.string :stripe_charge_id
       t.references :user
     end
+
+    add_index :orders, :user_id
   end
 end
