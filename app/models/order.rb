@@ -2,8 +2,10 @@
 #
 # Table name: orders
 #
+#  created_at       :datetime
 #  id               :integer          not null, primary key
 #  stripe_charge_id :string(255)
+#  updated_at       :datetime
 #  user_id          :integer
 #
 
@@ -23,7 +25,7 @@ class Order < ActiveRecord::Base
   end
 
   def charge
-    return false if stripe_charge_id
+    return false if stripe_charge_id #Already been charged
 
     begin
       charge = Stripe::Charge.create(
@@ -49,6 +51,13 @@ class Order < ActiveRecord::Base
         i.status = 'sold'
         i.save
       end
+    end
+  end
+
+  def send_confirmations
+    OrderMailer.receipt(id).deliver
+    order_items.each do |oi|
+      OrderMailer.sold(id).deliver
     end
   end
 

@@ -2,8 +2,10 @@
 #
 # Table name: orders
 #
+#  created_at       :datetime
 #  id               :integer          not null, primary key
 #  stripe_charge_id :string(255)
+#  updated_at       :datetime
 #  user_id          :integer
 #
 
@@ -151,6 +153,10 @@ describe Order do
       @order.stripe_charge_id = 'foo'
       @order.charge.should eq(false)
     end
+  end
+
+  describe "#send_confirmations" do
+
   end
 
 end

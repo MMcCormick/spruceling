@@ -29,6 +29,8 @@ class OrdersController < ApplicationController
         @order.save
         current_user.save
 
+        @order.send_confirmations
+
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
