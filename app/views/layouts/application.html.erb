@@ -19,11 +19,13 @@
     <%= yield(:head) %>
   </head>
   <body id="full">
-    <div id="container">
+  <div id='header'>
+    <div class='header_wrapper'>
+      <%= render 'layouts/navigation' %>
+    </div>
+  </div>
 
-      <div id='header'>
-        <%= render 'layouts/navigation' %>
-      </div>
+  <div id="container">
 
       <%= render 'layouts/messages' %>
 
