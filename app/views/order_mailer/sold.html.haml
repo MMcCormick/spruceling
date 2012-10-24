@@ -1,18 +1,12 @@
 %p Good news! Someone wants your clothes, and you'll get a swap point in return!
 
-%div= "Email address:   #{@user.email}"
-%div= "Name:            #{@user.email}"
-%div= "Date:            #{t @order.created_at, :format => :long}"
-%div= "Order ID:        #{@order.id}"
-%div= "Payment Type:    #{@user.stripe.active_card['type']} **** **** **** #{@user.stripe.active_card['last4']}"
+%p= "You'll be sending #{pluralize @boxes.length, 'box'} to #{@order.user.name}:"
 
-%br
-%div Retailer: Spruceling, Inc
+- @boxes.each do |box|
+  %div= "Box of #{box.gender_noun} #{box.size} clothing"
+  - box.items.each do |item|
+    %div= "- #{item.brand} #{item.type}"
 
-%br
-%div= "Number of boxes: #{@order.order_items.length}"
-%div= "Total:           $#{@order.price_total}"
-
-%p Thanks, and we hope you enjoy your boxes!
+%p= "If there are any issues with the items listed above, please notify us immediately by emailing #{link_to 'support@spruceling.com', 'mailto:support@spruceling.com'}. Otherwise, please find instructions inside the box."
 
 %p The Spruceling Team

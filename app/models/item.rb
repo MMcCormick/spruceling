@@ -55,4 +55,8 @@ class Item < ActiveRecord::Base
   def weight
     item_type.item_weight.get_weight(size)
   end
+
+  def type
+    item_type.name
+  end
 end

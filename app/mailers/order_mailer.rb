@@ -12,6 +12,12 @@ class OrderMailer < ActionMailer::Base
     @order = Order.find(order_id)
     @user = User.find(user_id)
     @order_items = @order.order_items.select{|oi| oi.box.user.id == @user.id}
-    mail(:to => @user.email, :subject => "Your box has found a home!")
+    @boxes = @order_items.map{|oi| oi.box}
+    mail(:to => @user.email, :subject => "Your Spruceling box has found a home!")
+  end
+
+  def empty_box_delivered(order_item_id)
+    @order_item = OrderItem.find(order_item_id)
+    mail(:to => @order_item.box.user.email, :subject => "Your empty Spruceling box has arrived!")
   end
 end

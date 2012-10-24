@@ -14,4 +14,7 @@ class OrderItem < ActiveRecord::Base
 
   validates_presence_of :box, :order
 
+  def empty_box_delivered
+    OrderMailer.empty_box_delivered(id).deliver
+  end
 end
