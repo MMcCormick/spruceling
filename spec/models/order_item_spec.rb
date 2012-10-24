@@ -21,4 +21,12 @@ describe OrderItem do
     order_item.should be_invalid
   end
 
+  describe "empty_box_delivered" do
+    it "should email the sender" do
+      @order_item = FactoryGirl.create(:order_item)
+      @order_item.empty_box_delivered
+      ActionMailer::Base.deliveries.should_not be_empty
+      ActionMailer::Base.deliveries.map{ |d| d.to }.should include [@order_item.box.user.email]
+    end
+  end
 end

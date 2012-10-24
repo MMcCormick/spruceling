@@ -31,6 +31,13 @@ describe Order do
     FactoryGirl.build(:order, :user => nil).should be_invalid
   end
 
+  it "should have a #boxes method if there have been boxes added" do
+    @order = FactoryGirl.create(:order)
+    @order.add_box(@box)
+    @order.save
+    @order.boxes.should include @box
+  end
+
   describe "#generate" do
     before (:each) do
       @user.cart.add_box(@box)
@@ -159,17 +166,25 @@ describe Order do
     let (:stripe_customer) do
       stub_model Stripe::Customer, :active_card => {"type" => "Visa", "last4" => "1234"}
     end
+    before(:each) do
+      @order = FactoryGirl.create(:order)
+      User.any_instance.stub(:stripe).and_return(stripe_customer)
+    end
 
     it "should email a receipt to the user who ordered" do
-      @order = FactoryGirl.create(:order)
-      User.any_instance.should_receive(:stripe).at_least(:once).and_return(stripe_customer)
       @order.send_confirmations
       ActionMailer::Base.deliveries.should_not be_empty
-      ActionMailer::Base.deliveries.first.to.should include @order.user.email
+      ActionMailer::Base.deliveries.map{ |d| d.to }.should include [@order.user.email]
     end
 
     it "should email each sender" do
-
+      @order.add_box(FactoryGirl.create(:box))
+      @order.add_box(FactoryGirl.create(:box))
+      @order.save
+      @order.send_confirmations
+      @order.boxes.map{|box| box.user}.uniq.each do |user|
+        ActionMailer::Base.deliveries.map{ |d| d.to }.should include [user.email]
+      end
     end
   end
 

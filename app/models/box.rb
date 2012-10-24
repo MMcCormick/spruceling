@@ -15,6 +15,8 @@ class Box < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :boxes
   has_many :items, :inverse_of => :box
+  has_many :order_items, :inverse_of => :box
+  has_many :orders, :through => :order_items
 
   validates_presence_of :gender, :size, :user
   attr_accessible :gender, :size

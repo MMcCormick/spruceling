@@ -9,9 +9,12 @@
 
 class OrderItem < ActiveRecord::Base
 
-  belongs_to :box
+  belongs_to :box, :inverse_of => :order_items
   belongs_to :order, :inverse_of => :order_items
 
   validates_presence_of :box, :order
 
+  def empty_box_delivered
+    OrderMailer.empty_box_delivered(id).deliver
+  end
 end

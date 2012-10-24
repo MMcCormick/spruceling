@@ -34,6 +34,13 @@ describe Box do
     FactoryGirl.build(:box, :size => nil).should be_invalid
   end
 
+  it "should have a #orders method if it's been added to an order" do
+    @order = FactoryGirl.create(:order)
+    @order.add_box(@box)
+    @order.save
+    @box.orders.should include @order
+  end
+
   describe "#gender_noun" do
     it "m should return Boys" do
       @box.gender = 'm'

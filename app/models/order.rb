@@ -13,6 +13,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :orders
   has_many :order_items, :inverse_of => :order
+  has_many :boxes, :through => :order_items
 
   validates_presence_of :user
 
@@ -56,8 +57,9 @@ class Order < ActiveRecord::Base
 
   def send_confirmations
     OrderMailer.receipt(id).deliver
-    order_items.each do |oi|
-      OrderMailer.sold(id).deliver
+    senders = boxes.map{|box| box.user}
+    senders.each do |sender|
+      OrderMailer.sold(self.id, sender.id).deliver
     end
   end
 
