@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 # Pick the frameworks you want:
 require "rails/all"
 require "stripe"
+require "sidekiq/web"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

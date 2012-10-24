@@ -31,6 +31,9 @@ gem 'annotate'
 gem "pg"
 gem 'kaminari'
 gem "friendly_id", "~> 4.0.1"
+gem 'sidekiq' # background jobs
+gem 'sinatra' # for sidekiq
+gem 'slim' # for sidekiq
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

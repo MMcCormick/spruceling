@@ -29,7 +29,14 @@ Spruceling::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  mount Attachinary::Engine => "/attachinary"
+  mount Attachinary::Engine => "/uploads"
+
+  admin_constraint = lambda do |request|
+    request.env['warden'].authenticate? and request.env['warden'].user.role?('admin')
+  end
+  constraints admin_constraint do
+    mount Sidekiq::Web => '/a/workers'
+  end
 
   root :to => "home#index"
   get 'page/:page' => 'home#index'
