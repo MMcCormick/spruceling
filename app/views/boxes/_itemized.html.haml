@@ -1,0 +1,3 @@
+%h4!= "Box of #{box.gender_noun} #{box.size} clothing - #{link_to "Click here to view", box_url(box)}"
+- box.items.each do |item|
+  %div= "- #{item.brand} #{item.type}"

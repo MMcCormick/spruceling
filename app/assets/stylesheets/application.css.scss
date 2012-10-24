@@ -150,16 +150,20 @@ a {
     margin: auto;
   }
   #main {
-    width: $site-width - $sidebar-width;
+    width: 100%;
     float: left;
     border-left: 1px solid #CCC;
     border-right: 1px solid #CCC;
     min-height: 600px;
+    &.with_sidebar {
+      width: $site-width - $sidebar-width;
+    }
   }
   #footer {
+    clear: both;
+    margin: 30px 0 0 0;
     background: #CCC;
     height: 30px;
-    margin-left: $sidebar-width;
   }
 }
 

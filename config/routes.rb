@@ -43,6 +43,6 @@ Spruceling::Application.routes.draw do
 
   get '/users/auth/:provider' => 'omniauth_callbacks#passthru'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  resources :users, :only => [:show, :index]
+  resources :users, :only => [:show, :index, :edit]
 
 end

@@ -2,16 +2,18 @@
 
 %div= "Email address:   #{@user.email}"
 %div= "Name:            #{@user.email}"
-%div= "Date:            #{t @order.created_at, :format => :long}"
+%div= "Date:            #{I18n.localize @order.created_at, :format => :long}"
 %div= "Order ID:        #{@order.id}"
 %div= "Payment Type:    #{@user.stripe.active_card['type']} **** **** **** #{@user.stripe.active_card['last4']}"
 
 %br
-%div Retailer: Spruceling, Inc
-
-%br
 %div= "Number of boxes: #{@order.order_items.length}"
 %div= "Total:           $#{@order.price_total}"
+%div Retailer: Spruceling, Inc
+
+
+- @order.boxes.each do |box|
+  %div= render "boxes/itemized", :box => box
 
 %p Thanks, and we hope you enjoy your boxes!
 
