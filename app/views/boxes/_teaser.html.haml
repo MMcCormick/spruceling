@@ -1,5 +1,5 @@
 .box_teaser
-  %a.photo{:href => box}
+  %a.photo{:href => box_path(box)}
     = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '220x220', :crop => :fill }) : ''
     %div{:class => "bottom #{box.gender}"}
       = box.gender_noun
