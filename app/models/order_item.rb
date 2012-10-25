@@ -17,4 +17,12 @@ class OrderItem < ActiveRecord::Base
   def empty_box_delivered
     OrderMailer.empty_box_delivered(id).deliver
   end
+
+  def full_box_shipped
+    OrderMailer.full_box_shipped(id).deliver
+  end
+
+  def full_box_delivered
+    OrderMailer.full_box_delivered(id).deliver
+  end
 end

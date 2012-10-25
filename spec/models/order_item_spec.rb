@@ -29,4 +29,22 @@ describe OrderItem do
       ActionMailer::Base.deliveries.map{ |d| d.to }.should include [@order_item.box.user.email]
     end
   end
+
+  describe "full_box_shipped" do
+    it "should email the buyer" do
+      @order_item = FactoryGirl.create(:order_item)
+      @order_item.full_box_shipped
+      ActionMailer::Base.deliveries.should_not be_empty
+      ActionMailer::Base.deliveries.map{ |d| d.to }.should include [@order_item.order.user.email]
+    end
+  end
+
+  describe "full_box_delivered" do
+    it "should email the buyer" do
+      @order_item = FactoryGirl.create(:order_item)
+      @order_item.full_box_delivered
+      ActionMailer::Base.deliveries.should_not be_empty
+      ActionMailer::Base.deliveries.map{ |d| d.to }.should include [@order_item.order.user.email]
+    end
+  end
 end

@@ -1,15 +1,14 @@
-%p#notice= notice
+#order_show
+  %p#notice= notice
 
-%h1= "Order ##{@order.id}"
+  %h1= "Order ##{@order.id}"
 
-%div= "Order placed on #{@order.created_at}"
-%div= "Total: $#{@order.price_total}"
+  %div= "Order placed on #{@order.created_at.strftime('%B %d, %Y at %I:%M %p')}"
+  %div= "Total: $#{@order.price_total}"
 
-%h3 Boxes
-- @order.order_items.each do |oi|
-  %div= "Box ID##{oi.box.id} - #{oi.box.gender} - #{oi.box.size}"
+  - @order.boxes.each do |box|
+    %div= render "boxes/itemized", :box => box
 
-%br
+  %br
 
-\|
-= link_to 'Back', orders_path
+  = link_to 'Back', orders_path

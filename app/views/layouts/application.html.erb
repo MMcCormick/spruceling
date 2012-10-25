@@ -32,13 +32,12 @@
       <div id='container_wrap'>
         <%= yield :left_sidebar %>
 
-        <div id="main" role="main">
+        <div id="main" role="main" class="<%= content_for?(:left_sidebar) ? "with_sidebar" : "" %>">
           <%= yield %>
+          <div id='footer'>
+            Footer
+          </div>
         </div>
-      </div>
-
-      <div id='footer'>
-        Footer
       </div>
     </div> <!--! end of #container -->
 
