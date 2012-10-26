@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121026170324) do
     t.string  "size"
     t.string  "status",                                    :default => "active"
     t.integer "user_id"
-    t.decimal "price_total", :precision => 8, :scale => 2
+    t.decimal "price_total", :precision => 8, :scale => 2,                       :null => false
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20121026170324) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "price_total",      :precision => 8, :scale => 2
+    t.decimal  "price_total",      :precision => 8, :scale => 2, :null => false
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"

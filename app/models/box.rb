@@ -16,11 +16,12 @@ class Box < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :boxes
   has_many :items, :inverse_of => :box
-  has_many :order_items, :inverse_of => :box
-  has_many :orders, :through => :order_items
+  has_one :order_item, :inverse_of => :box
+  has_one :order, :through => :order_item
 
   validates_presence_of :gender, :size, :user
-  attr_accessible :gender, :size
+  attr_accessible :gender, :size, :price_total
+  validates :price_total, :numericality => {:greater_than => 1, :less_than => 1000}
 
   scope :active, where(:status => "active")
 

@@ -72,7 +72,6 @@ item_types = {
 
 item_types.each do |category, names|
   names.each do |name|
-    puts name[2]
     w = ItemWeight.where(:name => name[2]).first
     ItemType.create :category => category, :short_name => name[0], :name => name[1], :item_weight_id => w.id
   end

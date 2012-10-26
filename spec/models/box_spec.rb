@@ -35,11 +35,19 @@ describe Box do
     FactoryGirl.build(:box, :size => nil).should be_invalid
   end
 
-  it "should have a #orders method if it's been added to an order" do
+  it "should require price_total" do
+    FactoryGirl.build(:box, :price_total => nil).should be_invalid
+  end
+
+  it "should require price_total to be at least $1" do
+    FactoryGirl.build(:box, :price_total => 0.5).should be_invalid
+  end
+
+  it "should have an #order method if it's been added to an order" do
     @order = FactoryGirl.create(:order)
     @order.add_box(@box)
     @order.save
-    @box.orders.should include @order
+    @box.order.should eq @order
   end
 
   describe "#gender_noun" do
