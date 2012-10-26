@@ -3,22 +3,36 @@
 # Table name: users
 #
 #  address                :hstore
+#  authentication_token   :string(255)
+#  birthday               :date
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
 #  created_at             :datetime         not null
 #  credits                :integer
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string(255)
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
+#  fb_secret              :string(255)
+#  fb_token               :string(255)
+#  fb_uid                 :string(255)
+#  fb_use_image           :boolean
+#  gender                 :string(255)
 #  id                     :integer          not null, primary key
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string(255)
 #  name                   :string(255)
+#  origin                 :string(255)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
 #  sign_in_count          :integer          default(0)
+#  slug                   :string(255)
 #  stripe_customer_id     :string(255)
+#  unconfirmed_email      :string(255)
 #  updated_at             :datetime         not null
+#  username               :string(255)
 #
 
 class User < ActiveRecord::Base

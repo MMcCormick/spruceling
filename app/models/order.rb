@@ -4,6 +4,7 @@
 #
 #  created_at       :datetime
 #  id               :integer          not null, primary key
+#  price_total      :decimal(8, 2)
 #  stripe_charge_id :string(255)
 #  updated_at       :datetime
 #  user_id          :integer
@@ -41,6 +42,10 @@ class Order < ActiveRecord::Base
     end
 
     true
+  end
+
+  def stripe_charge
+    stripe_charge_id ? Stripe::Charge.retrieve(stripe_charge_id) : nil
   end
 
   def process

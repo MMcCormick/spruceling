@@ -4,6 +4,7 @@
 #
 #  created_at       :datetime
 #  id               :integer          not null, primary key
+#  price_total      :decimal(8, 2)
 #  stripe_charge_id :string(255)
 #  updated_at       :datetime
 #  user_id          :integer
@@ -163,12 +164,12 @@ describe Order do
   end
 
   describe "#send_confirmations" do
-    let (:stripe_customer) do
-      stub_model Stripe::Customer, :active_card => {"type" => "Visa", "last4" => "1234"}
+    let (:stripe_charge) do
+      stub_model Stripe::Charge, :card => {"type" => "Visa", "last4" => "1234"}
     end
     before(:each) do
       @order = FactoryGirl.create(:order)
-      User.any_instance.stub(:stripe).and_return(stripe_customer)
+      Order.any_instance.stub(:stripe_charge).and_return(stripe_charge)
     end
 
     it "should email a receipt to the user who ordered" do
