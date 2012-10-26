@@ -1,3 +1,24 @@
 // Place all the styles related to the Carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#cart_show {
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+  table {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    th {
+      padding: 10px 20px;
+      text-align: left;
+    }
+    td {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+}

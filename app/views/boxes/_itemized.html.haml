@@ -1,3 +1,4 @@
-%h4!= "Box of #{box.gender_noun} #{box.size} clothing - #{link_to "Click here to view", box_url(box)}"
-- box.items.each do |item|
-  %div= "- #{item.brand} #{item.type}"
+%h4!= link_to "Box of #{box.gender_noun} #{box.size} clothing", box_url(box)
+%ul.box_items
+  - box.items.each do |item|
+    %li= "#{item.brand} #{item.type}"

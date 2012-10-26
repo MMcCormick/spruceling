@@ -5,14 +5,20 @@
 #my_orders {
   padding: 20px;
 
+  h1 {
+    margin-bottom: 30px;
+  }
   table {
+    width: 100%;
+    margin-top: 10px;
     font-size: 14px;
     th {
-      padding: 0 20px 0 0;
+      background: $green;
+      padding: 10px 20px;
       text-align: left;
     }
     td {
-      padding: 5px 20px 0 0;
+      padding: 10px 20px;
       font-size: 14px;
     }
   }
@@ -21,4 +27,25 @@
 #order_show {
   padding: 20px;
   font-size: 14px;
+  .order {
+    width: 100%;
+    .order_header {
+      margin: 0;
+      position: relative;
+      font-size: 18px;
+      font-weight: bold;
+      background: $green;
+      line-height: 35px;
+      padding: 0 20px;
+      span {
+        position: relative;
+        bottom: 2px;
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+    .order_details {
+      padding: 10px 20px;
+    }
+  }
 }

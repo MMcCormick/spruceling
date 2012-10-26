@@ -1,13 +1,17 @@
 #order_show
-  %p#notice= notice
+  %h1= "Thank you for your order!"
+  .order
+    .order_header
+      = "Order ##{@order.id}"
+      %span= "placed on #{@order.created_at.strftime('%B %d, %Y at %I:%M %p')}"
 
-  %h1= "Order ##{@order.id}"
+    .order_details
+      %div= "Payment Type:    #{@order.stripe_charge.card.type} **** **** **** #{@order.stripe_charge.card.last4}"
+      %div= "Number of boxes: #{@order.order_items.length}"
+      %div= "Total:           $#{@order.price_total}"
 
-  %div= "Order placed on #{@order.created_at.strftime('%B %d, %Y at %I:%M %p')}"
-  %div= "Total: $#{@order.price_total}"
-
-  - @order.boxes.each do |box|
-    %div= render "boxes/itemized", :box => box
+      - @order.boxes.each do |box|
+        %div= render "boxes/itemized", :box => box
 
   %br
 

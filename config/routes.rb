@@ -11,13 +11,16 @@ Spruceling::Application.routes.draw do
     put 'remove_item' => 'boxes#remove_item'
   end
 
+  # Users
+  get '/users/auth/:provider' => 'omniauth_callbacks#passthru'
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   scope 'users' do
     post 'update_stripe' => 'users#update_stripe', :as => :user_update_stripe
     put 'update_address' => 'users#update_address', :as => :update_user_address
     get 'edit_information' => 'users#edit_information', :as => :edit_user_information
-    get ':id' => 'users#show', :as => :user
     get ':id/page/:page' => 'users#show'
   end
+  resources :users, :only => [:show, :index, :edit]
 
   scope 'cart' do
     get '' => 'carts#show', :as => :cart
@@ -40,9 +43,5 @@ Spruceling::Application.routes.draw do
 
   root :to => "home#index"
   get 'page/:page' => 'home#index'
-
-  get '/users/auth/:provider' => 'omniauth_callbacks#passthru'
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  resources :users, :only => [:show, :index, :edit]
 
 end
