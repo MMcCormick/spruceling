@@ -1,5 +1,4 @@
 .head.on
-  .icon
   Browse Boxes
 
 .section.box-sidebar-filters
@@ -19,5 +18,3 @@
 
     .item.select
       = select_tag :size, options_for_select(Item.all_sizes), :prompt => "Select a size"
-
-    = submit_tag 'Update Filters', :class => 'submit btn btn-action'

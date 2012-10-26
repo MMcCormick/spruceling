@@ -152,8 +152,6 @@ a {
   #main {
     width: 100%;
     float: left;
-    border-left: 1px solid #CCC;
-    border-right: 1px solid #CCC;
     min-height: 600px;
     &.with_sidebar {
       width: $site-width - $sidebar-width;
@@ -162,8 +160,9 @@ a {
   #footer {
     clear: both;
     margin: 30px 0 0 0;
-    background: #CCC;
     height: 30px;
+    border-top: 1px solid #CCC;
+    padding: 15px;
   }
 }
 
@@ -182,27 +181,18 @@ a {
     font-weight: bold;
     margin: 40px 0 0 0;
 
-    .icon {
-      position: absolute;
-      top: 50%;
-      margin-top: -7.5px;
-      left: 5px;
-      width: 15px;
-      height: 15px;
-      background: #999;
-    }
     &.on {
       background: $boys-color-lighter;
     }
   }
 
   .section {
-    margin: 10px 0 0 27px;
+    padding: 10px 0 0 27px;
+    background: #F5F5F1;
 
     .section-head {
       font-weight: bold;
       font-size: 12px;
-      border-bottom: 1px solid #EEE;
       margin: 0 0 5px 0;
     }
   }
