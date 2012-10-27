@@ -16,5 +16,6 @@
 
 //= require cloudinary
 //= require attachinary
+//= require jquery.masonry
 
 //= require_tree .

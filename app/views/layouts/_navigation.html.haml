@@ -1,0 +1,28 @@
+.navbar
+
+  .section.brand
+    %a{:href => root_path}
+      = image_tag('spruceling_logo_white.png', :alt => 'Spruceling')
+
+  .section.middle
+    - if user_signed_in?
+      .dropdown.part
+        .dropdown-toggle{'data-toggle' => "dropdown"}
+          = avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
+          %span.name= current_user.name
+          %i.icon-chevron-down
+
+        %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
+          %li= link_to "My Profile", user_path(current_user)
+          %li= link_to 'My Cart', cart_path
+          %li= link_to 'My Orders', orders_path
+          %li= link_to 'Edit Account', edit_user_registration_path
+          %li= link_to 'Logout', destroy_user_session_path, :method => 'delete'
+
+      = link_to 'List New Box', new_box_path, :class => 'part new_box'
+    - else
+      = link_to 'Login', new_user_session_path, :class => 'part login'
+      = link_to 'Sign up', new_user_registration_path, :class => 'part signup'
+
+  .section.right
+    = link_to "#{current_user.cart.boxes.length} Cart", cart_path, :class => 'part cart'

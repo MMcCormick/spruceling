@@ -1,7 +1,6 @@
 .box-sidebar-filters {
 
   .item {
-
     &.radio {
       padding: 2px 0 2px 25px;
       position: relative;
@@ -14,28 +13,17 @@
         left: 19px;
       }
     }
-    &.select {
-      select {
-        width: 160px;
-      }
-    }
-  }
-
-  .submit {
-
   }
 }
 
 #box_list {
-  margin: 30px 19px;
+  margin: 0 0 0 22px;
 }
 
 .box_teaser {
-  @include single-box-shadow(rgba(0, 0, 0, 0.2), 1px, 1px, 2px);
-  width: 220px;
+  width: 230px;
   float: left;
-  border: 1px solid #CCC;
-  margin: 10px;
+  margin: 0 0 15px 15px;
 
   .photo {
     width: 100%;
@@ -45,24 +33,60 @@
     img {
       display: block;
     }
-    .bottom {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      background: #FFF;
-      background: rgba(255, 255, 255, 0.9);
-      width: 100%;
-      padding: 7px 10px;
-      font-size: 16px;
-      font-weight: bold;
+    .overlay {
+      @include transition(all .4s);
+      @include opacity(0);
 
-      &.m {
-        color: $boys-color;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      .price {
+        font-weight: bold;
+        color: #FFF;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 16px;
+        z-index: 100;
+        cursor: default;
       }
-      &.f {
-        color: $girls-color;
+      .add_to_cart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -10px 0 0 -50px;
+        background: $action-color;
+        color: #FFF;
+        font-weight: bold;
+        z-index: 100;
+
+        &:hover {
+          background: darken($action-color, 10%);
+        }
+      }
+      .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #000;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 50;
       }
     }
+    &:hover {
+      .overlay {
+        @include opacity(100);
+      }
+    }
+  }
+  .bottom {
+    border: 1px solid #CCC;
+    border-top: none;
   }
   .user {
     font-size: 16px;

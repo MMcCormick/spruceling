@@ -1,9 +1,15 @@
 .box_teaser
-  %a.photo{:href => box_path(box)}
-    = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '220x220', :crop => :fill }) : ''
-    %div{:class => "bottom #{box.gender}"}
+  .photo
+    = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '230x230', :crop => :fill }) : ''
+    .overlay
+      .price $50
+      = link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put, :class => 'btn add_to_cart'
+      %a.bg{:href => box_path(box)}
+
+  .bottom
+
+    %div{:class => "#{box.gender}"}
       = box.gender_noun
       = box.size
 
-  .user= link_to box.user.name, user_path(box.user)
-  .btn.add_to_cart= link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put
+    .user= link_to box.user.name, user_path(box.user)
