@@ -44,6 +44,6 @@ class Cart < ActiveRecord::Base
   end
 
   def price_total
-    boxes.inject{ |sum, box| sum + box.price_total }
+    boxes.map{|b|b.price_total}.inject(:+)
   end
 end
