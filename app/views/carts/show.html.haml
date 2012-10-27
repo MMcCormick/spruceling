@@ -8,12 +8,12 @@
           %td= "#{box.gender_noun} #{box.size} from #{box.user.name}"
           %td= link_to 'Show', box
           %td= link_to 'Remove from cart', cart_remove_path(:box_id => box.id), :method => :put
-          %td
-      %tr
+          %td= number_to_currency box.price_total
+      %tr.total
         %td Total
         %td
         %td
-        %td= @cart.price_total
+        %td= number_to_currency @cart.price_total
 
 
     %br
