@@ -20,6 +20,9 @@
 @import "font-awesome";
 
 body {
+  &.wf-loading {
+    visibility: hidden;
+  }
 }
 
 ul {
