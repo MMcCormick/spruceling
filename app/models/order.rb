@@ -17,6 +17,7 @@ class Order < ActiveRecord::Base
   has_many :boxes, :through => :order_items
 
   validates_presence_of :user
+  validates :price_total, :numericality => {:greater_than => 1, :less_than => 1000}
 
   def add_box(box)
     self.order_items.build(:box => box)
@@ -83,8 +84,10 @@ class Order < ActiveRecord::Base
       return order
     end
 
+    order.price_total = 0.00
     user.cart.boxes.each do |b|
       order.add_box(b)
+      order.price_total += b.price_total
     end
 
     order

@@ -8,7 +8,7 @@
 
 %br
 %div= "Number of boxes: #{@order.order_items.length}"
-%div= "Total:           #{number_to_currency(@order.price_total, "$")}"
+%div= "Total:           #{number_to_currency @order.price_total}"
 %div Retailer: Spruceling, Inc
 
 - @order.boxes.each do |box|

@@ -42,4 +42,8 @@ class Cart < ActiveRecord::Base
       false
     end
   end
+
+  def price_total
+    boxes.map{|b|b.price_total}.inject(:+)
+  end
 end

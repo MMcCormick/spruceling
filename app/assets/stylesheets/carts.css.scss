@@ -16,9 +16,17 @@
       padding: 10px 20px;
       text-align: left;
     }
+    .total {
+      border-top: 1px solid #AAA
+    }
     td {
       padding: 10px 20px;
       font-size: 14px;
+    }
+  }
+  .buy {
+    .btn-action {
+      float: right;
     }
   }
 }

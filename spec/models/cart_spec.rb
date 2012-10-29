@@ -91,4 +91,15 @@ describe Cart do
 
   end
 
+  describe "#price_total" do
+    it "should return the total of the box prices" do
+      @box1 = FactoryGirl.create(:box, :price_total => 30.00)
+      @box2 = FactoryGirl.create(:box, :price_total => 20.50)
+      @cart = FactoryGirl.create(:cart)
+      @cart.add_box(@box1)
+      @cart.add_box(@box2)
+      @cart.price_total.should == (@box1.price_total + @box2.price_total)
+    end
+  end
+
 end

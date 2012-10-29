@@ -32,6 +32,14 @@ describe Order do
     FactoryGirl.build(:order, :user => nil).should be_invalid
   end
 
+  it "should require price_total" do
+    FactoryGirl.build(:order, :price_total => nil).should be_invalid
+  end
+
+  it "should require price_total to be at least $1" do
+    FactoryGirl.build(:order, :price_total => 0.5).should be_invalid
+  end
+
   it "should have a #boxes method if there have been boxes added" do
     @order = FactoryGirl.create(:order)
     @order.add_box(@box)
@@ -75,6 +83,10 @@ describe Order do
         Order.any_instance.should_receive(:add_box).with(@box)
         Order.generate(@user)
       end
+
+      it "should return a valid order" do
+        Order.generate(@user).should be_valid
+      end
     end
   end
 
@@ -86,21 +98,22 @@ describe Order do
 
       it "should empty the users cart" do
         @user.cart.add_box(@box)
+        @user.cart.boxes.length.should eq(1)
         @order = Order.generate(@user)
         @order.process
         @user.reload.cart.boxes.length.should eq(0)
       end
 
       it "should change the boxes status to sold" do
+        @user.cart.add_box(@box)
         @order = Order.generate(@user)
-        @order.add_box(@box)
         @order.process
-        @box.status.should eq('sold')
+        @box.reload.status.should eq('sold')
       end
 
       it "should change the boxes items status to sold" do
+        @user.cart.add_box(@box)
         @order = Order.generate(@user)
-        @order.add_box(@box)
         @order.process
         @box.items.each do |i|
           i.status.should eq('sold')
