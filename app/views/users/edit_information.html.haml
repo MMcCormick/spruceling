@@ -1,10 +1,11 @@
 - content_for :left_sidebar do
   = render :partial => 'sidebar', :layout => 'layouts/left_sidebar'
 
+#edit_information
+  %h3 Shipping Address
+  = render 'users/address', :address => current_user.address if current_user.address
+  = render 'users/address_form'
 
-
-%h3 Edit Shipping Address
-= render 'users/address_form'
-
-%h3 Edit Payment Information
-= render 'users/stripe_card_form'
+  %h3 Payment Information
+  = "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+  = render 'users/stripe_card_form'
