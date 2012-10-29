@@ -18,4 +18,6 @@
 //= require attachinary
 //= require jquery.masonry
 
+//= require carts
+
 //= require_tree .

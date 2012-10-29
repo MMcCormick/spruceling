@@ -18,25 +18,32 @@
 
     %br
 
-    - if current_user.stripe
-      %div= "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
-      .buy= link_to 'Complete Purchase!', orders_path, :method => :post, :class => "btn btn-action"
+    %h3 Shipping Address
+    - if current_user.address
+      #address_info_wrapper
+        = current_user.address
+        = link_to 'Edit Shipping Address', edit_user_information_path, :class => "toggle_edit_address"
+      #address_form_wrapper.hide
+        = link_to 'Cancel', '#', :class => 'toggle_edit_address'
+        = render "users/address_form"
     - else
-      = form_tag(user_update_stripe_path, :method => :post, :id => 'payment-form') do
-        .payment-errors
-        .form-row
-          %label Card Number
-          %input.card-number{:type => 'text', :size => '20', :autocomplete => 'off'}
-        .form-row
-          %label CVC
-          %input.card-cvc{:type => 'text', :size => '4', :autocomplete => 'off'}
-        .form-row
-          %label Expiration (MM/YYYY)
-          %input.card-expiry-month{:type => 'text', :size => '2', :autocomplete => 'off'}
-          %span
-          %input.card-expiry-year{:type => 'text', :size => '4', :autocomplete => 'off'}
-        %input.stripe-token{:type => 'hidden', :name => 'stripeToken'}
-        %button.submit-button{:type => 'submit', :autocomplete => 'off'} Submit Payment Information
+      #address_form_wrapper
+        = render "users/address_form"
+
+    %h3 Payment Information
+    - if current_user.stripe
+      #card_info_wrapper
+        = "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+        = link_to 'Edit Payment Information', edit_user_information_path, :class => "toggle_edit_payment"
+      #card_form_wrapper.hide
+        = link_to 'Cancel', '#', :class => 'toggle_edit_payment'
+        = render "users/stripe_card_form"
+    - else
+      #card_form_wrapper
+        = render "users/stripe_card_form"
+
+    - if current_user.address && current_user.stripe
+      .buy= link_to 'Complete Purchase!', orders_path, :method => :post, :class => "btn btn-action"
 
   - else
     .empty-cart You haven't added any boxes to your cart!

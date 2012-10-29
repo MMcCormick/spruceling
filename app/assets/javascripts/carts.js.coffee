@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+
+  $('.toggle_edit_payment').click (e) ->
+    console.log('foo')
+    e.preventDefault()
+    $('#card_form_wrapper').toggleClass('hide')
+    $('#card_info_wrapper').toggleClass('hide')

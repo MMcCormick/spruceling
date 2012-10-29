@@ -1,4 +1,10 @@
 - content_for :left_sidebar do
-  = render :partial => "sidebar", :layout => 'layouts/left_sidebar'
+  = render :partial => 'sidebar', :layout => 'layouts/left_sidebar'
 
-This page is under construction.
+
+
+%h3 Edit Shipping Address
+= render 'users/address_form'
+
+%h3 Edit Payment Information
+= render 'users/stripe_card_form'
