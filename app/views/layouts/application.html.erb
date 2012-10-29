@@ -9,38 +9,37 @@
     <%= csrf_meta_tags %>
     <%= cloudinary_js_config %>
 
-    <meta property="og:title" content="Spruceling - Every kid outgrows their stuff. Why not swap it?" />
-    <meta property="og:type" content="company" />
-    <meta property="og:site_name" content="Spruceling" />
-    <meta property="og:url" content="http://www.spruceling.com" />
-    <meta property="og:image" content="null" />
-    <meta property="og:description" content="" />
+    <meta property="og:title" content="Spruceling - Every kid outgrows their stuff. Why not swap it?"/>
+    <meta property="og:type" content="company"/>
+    <meta property="og:site_name" content="Spruceling"/>
+    <meta property="og:url" content="http://www.spruceling.com"/>
+    <meta property="og:image" content="null"/>
+    <meta property="og:description" content=""/>
+
+    <script type="text/javascript" src="//use.typekit.net/tfd2aze.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
     <%= yield(:head) %>
   </head>
   <body id="full">
-  <div id='header'>
-    <div class='header_wrapper'>
-      <%= render 'layouts/navigation' %>
-    </div>
-  </div>
+    <div id="container">
 
-  <div id="container">
+      <%= render 'layouts/navigation' %>
 
       <%= render 'layouts/messages' %>
 
-      <div id='container_wrap'>
+      <div class="row">
         <%= yield :left_sidebar %>
 
-        <div id="main" role="main" class="<%= content_for?(:left_sidebar) ? "with_sidebar" : "" %>">
+        <div id="main" role="main" class="<%= content_for?(:left_sidebar) ? "nine" : "twelve" %> columns">
           <%= yield %>
         </div>
-
-        <div id='footer'>
-          Footer
-        </div>
       </div>
-    </div> <!--! end of #container -->
+
+      <div id='footer'>
+        Footer
+      </div>
+    </div>
 
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
     <script type="text/javascript">

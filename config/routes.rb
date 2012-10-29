@@ -1,5 +1,7 @@
 Spruceling::Application.routes.draw do
 
+  get '/testing' => 'testing#test'
+
   resources :orders
 
   resources :items

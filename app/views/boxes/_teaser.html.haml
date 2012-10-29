@@ -3,7 +3,9 @@
     = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '230x230', :crop => :fill }) : ''
     .overlay
       .price $50
-      = link_to 'Add to cart', cart_add_path(:box_id => box.id), :method => :put, :class => 'btn add_to_cart'
+      %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
+        %i.icon-shopping-cart
+        Add to Cart
       %a.bg{:href => box_path(box)}
 
   .bottom
