@@ -1,28 +1,34 @@
-.navbar
+#header.row
+  .three.columns
+    .section.brand
+      %a{:href => root_path}
+        = image_tag('spruceling_logo_white.png', :alt => 'Spruceling')
 
-  .section.brand
-    %a{:href => root_path}
-      = image_tag('spruceling_logo_white.png', :alt => 'Spruceling')
-
-  .section.middle
-    - if user_signed_in?
-      .dropdown.part
-        .dropdown-toggle{'data-toggle' => "dropdown"}
+  .seven.columns
+    .section.middle_section
+      - if user_signed_in?
+        .dropdown.part
           = avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
-          %span.name= current_user.name
+          .name= current_user.name
           %i.icon-chevron-down
 
-        %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
-          %li= link_to "My Profile", user_path(current_user)
-          %li= link_to 'My Cart', cart_path
-          %li= link_to 'My Orders', orders_path
-          %li= link_to 'Edit Account', edit_user_registration_path
-          %li= link_to 'Logout', destroy_user_session_path, :method => 'delete'
+          %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
+            %li= link_to "My Profile", user_path(current_user)
+            %li= link_to 'My Cart', cart_path
+            %li= link_to 'My Orders', orders_path
+            %li= link_to 'Edit Account', edit_user_registration_path
+            %li= link_to 'Logout', destroy_user_session_path, :method => 'delete'
 
-      = link_to 'List New Box', new_box_path, :class => 'part new_box'
-    - else
-      = link_to 'Login', new_user_session_path, :class => 'part login'
-      = link_to 'Sign up', new_user_registration_path, :class => 'part signup'
+        %a.part.new_box{:href => new_box_path}
+          %i.icon-gift
+          List New Box
 
-  .section.right
-    = link_to "#{current_user.cart.boxes.length} Cart", cart_path, :class => 'part cart'
+      - else
+        = link_to 'Login', new_user_session_path, :class => 'part login'
+        = link_to 'Sign up', new_user_registration_path, :class => 'part signup'
+
+  .two.columns
+    .section.right_section
+      %a.part.cart{:href => cart_path}
+        %i.icon-shopping-cart
+        = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"

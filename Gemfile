@@ -9,7 +9,6 @@ gem 'rails', '~> 3.2.8'
 gem 'jquery-rails'
 gem "devise", ">= 2.1.2"
 gem 'yajl-ruby' # json
-gem "bootstrap-sass", ">= 2.0.4.0"
 gem 'rack-contrib'
 gem 'soulmate', '0.1.3', :require => 'soulmate/server' # Redis based autocomplete storage
 gem 'chronic' # Date/Time management
@@ -35,11 +34,14 @@ gem 'sidekiq' # background jobs
 gem 'sinatra' # for sidekiq
 gem 'slim' # for sidekiq
 gem 'cache_digests'
+gem 'mechanize'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'zurb-foundation'
+  gem 'font-awesome-rails'
 end
 
 group :development do
@@ -52,6 +54,7 @@ group :development do
   gem 'guard-livereload'
   gem 'rb-fsevent', :require => false
   gem 'thin'
+  gem 'pry-rails', :group => :development
 end
 
 group :test do

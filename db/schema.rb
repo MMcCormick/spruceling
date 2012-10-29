@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121026170324) do
+ActiveRecord::Schema.define(:version => 20121026225725) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -101,6 +101,19 @@ ActiveRecord::Schema.define(:version => 20121026170324) do
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "thredup_data", :force => true do |t|
+    t.string  "brand"
+    t.string  "item_type"
+    t.string  "gender"
+    t.string  "size"
+    t.decimal "thredup_price", :precision => 8, :scale => 2
+    t.decimal "retail_price",  :precision => 8, :scale => 2
+    t.boolean "new_with_tags",                               :default => false
+    t.string  "url"
+  end
+
+  add_index "thredup_data", ["url"], :name => "index_thredup_data_on_url"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
