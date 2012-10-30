@@ -58,9 +58,11 @@ a {
 
 .button {
   &.action {
+    color: white;
     background: $action-color;
     border-color: darken($action-color, 10%);
     &:hover {
+      color: white;
       background: darken($action-color, 10%);
     }
   }
@@ -217,4 +219,5 @@ a {
 @import "carts";
 @import "items";
 @import "orders";
+@import "users";
 @import "media_queries";

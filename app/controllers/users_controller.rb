@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    authorize! :manage, :all
   end
 
   def show
@@ -21,12 +22,12 @@ class UsersController < ApplicationController
 
   def update_address
     respond_to do |format|
-      if current_user.update_address(params[:address])
+      if current_user.update_address(params.slice(:address1, :address2, :city, :state, :zip_code, :full_name))
         current_user.save
         format.html { redirect_to user_path(current_user), :notice => 'Information successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to edit_user_information_path, :notice => 'There was an error updating your information.' }
+        format.html { redirect_to edit_user_information_path, :alert => 'There is an error in your shipping address.' }
         format.json { render :json => current_user.errors, :status => :unprocessable_entity }
       end
     end

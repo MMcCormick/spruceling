@@ -11,7 +11,6 @@
   table {
     width: 100%;
     margin-top: 10px;
-    font-size: 14px;
     th {
       padding: 10px 20px;
       text-align: left;
@@ -21,12 +20,15 @@
     }
     td {
       padding: 10px 20px;
-      font-size: 14px;
     }
   }
   .buy {
-    .btn-action {
-      float: right;
-    }
+    margin-top: 0px
+  }
+
+  .toggle_edit_payment,
+  .toggle_edit_address {
+    display: block;
+    margin: 10px 0;
   }
 }

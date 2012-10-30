@@ -95,11 +95,16 @@ class User < ActiveRecord::Base
   end
 
   def update_address(address)
-    response = Stamps.clean_address(:address => address)
-    if response[:valid?] == false
+    begin
+      response = Stamps.clean_address(:address => address)
+      #response = {:valid? => false}
+      if response[:valid?] == false
+        false
+      else
+        self.address = response[:address]
+      end
+    rescue
       false
-    else
-      self.address = response[:address]
     end
   end
 

@@ -11,22 +11,19 @@
   table {
     width: 100%;
     margin-top: 10px;
-    font-size: 14px;
     th {
-      background: $green;
       padding: 10px 20px;
       text-align: left;
+      border-bottom: 1px solid #AAA;
     }
     td {
       padding: 10px 20px;
-      font-size: 14px;
     }
   }
 }
 
 #order_show {
   padding: 20px;
-  font-size: 14px;
   .order {
     width: 100%;
     .order_header {
@@ -34,13 +31,12 @@
       position: relative;
       font-size: 18px;
       font-weight: bold;
-      background: $green;
+      border-bottom: 1px solid #AAA;
       line-height: 35px;
       padding: 0 20px;
       span {
         position: relative;
         bottom: 2px;
-        font-size: 14px;
         font-weight: normal;
       }
     }

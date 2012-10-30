@@ -72,7 +72,7 @@ describe UsersController do
   describe "update_address" do
     it "should call #update_address" do
       User.any_instance.should_receive(:update_address).with({"address1" => "1512 Spruce Street"})
-      put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+      put :update_address, {:address1 => "1512 Spruce Street"}
     end
 
     context "when update_address is successful" do
@@ -82,11 +82,11 @@ describe UsersController do
 
       it "should call save" do
         User.any_instance.should_receive(:save)
-        put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+        put :update_address, {:address1 => "1512 Spruce Street"}
       end
 
       it "should redirect to the user's profile" do
-        put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
+        put :update_address, {:address1 => "1512 Spruce Street"}
         response.should redirect_to user_path @user
       end
     end
