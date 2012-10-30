@@ -25,7 +25,6 @@ gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
 gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord-postgres-hstore.git'
-gem 'compass-rails'
 gem 'annotate'
 gem "pg"
 gem 'kaminari'
@@ -35,13 +34,14 @@ gem 'sinatra' # for sidekiq
 gem 'slim' # for sidekiq
 gem 'cache_digests'
 gem 'mechanize'
+gem 'compass-rails'
+gem 'zurb-foundation'
+gem 'font-awesome-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation'
-  gem 'font-awesome-rails'
 end
 
 group :development do
