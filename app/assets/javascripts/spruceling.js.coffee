@@ -4,7 +4,7 @@ jQuery ->
 
   # splash page
   resizeSplash = ->
-    $('#splash .main').css('height', $(window).height() - $('.top_strip').height())
+    $('#splash .main').css('height', $(window).height() - $('.top_strip').outerHeight() - $('#footer').outerHeight())
   resizeSplash()
   $(window).resize ->
     resizeSplash()

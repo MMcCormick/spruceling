@@ -2,29 +2,34 @@
   @import "print";
 }
 
-// 480px
-@media only screen and (min-width: 100px) {
-  @import "480";
-}
-
-// 600px
-@media only screen and (min-width: 600px) {
-  @import "600";
-}
-
-// 768px
-@media only screen and (min-width: 768px) {
-  @import "768";
+// 1382px
+@media only screen and (max-width: 1382px) {
+  @import "1382";
 }
 
 // 992px
-@media only screen and (min-width: 992px) {
+@media only screen and (max-width: 992px) {
   @import "992";
 }
 
-// 1382px
-@media only screen and (min-width: 1382px) {
-  @import "1382";
+// 768px
+@media only screen and (max-width: 768px) {
+  @import "768";
+}
+
+// 600px
+@media only screen and (max-width: 600px) {
+  @import "600";
+}
+
+// 480px
+@media only screen and (max-width: 480px) {
+  @import "480";
+}
+
+// 320px
+@media only screen and (max-width: 320px) {
+  @import "320";
 }
 
 // 2x
