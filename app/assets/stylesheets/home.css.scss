@@ -1,5 +1,4 @@
 #splash {
-  text-align: center;
   position: relative;
 
   .logo {
@@ -28,23 +27,36 @@
     }
   }
   .top_strip {
-    position: relative;
     @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
-    border-bottom: 3px solid #333;
+    border-bottom: 1px solid #333;
+    position: relative;
+    text-align: center;
 
-    h1 {
-      @include single-text-shadow(rgba(0, 0, 0, 0.8), 0px, 1px, 1px);
+    img {
+      margin: 10px 0 10px -80px;
+      width: 50%;
+      max-width: 350px;
+    }
+  }
+  .main {
+    overflow: hidden;
+    padding-bottom: 40px;
+
+    .floater {
       position: absolute;
-      top: 230px;
+      top: 30%;
+      left: 15%;
+      width: 65%;
+      max-width: 700px;
+    }
+    h1,
+    h2 {
+      @include single-text-shadow(rgba(0, 0, 0, 0.8), 1px, 2px, 5px);
       color: #FFF;
-      left: 50%;
-      margin-left: -380px;
-      font-size: 40px;
       cursor: default;
     }
-    .bg {
-      width: 100%;
-      display: block;
+    h2 {
+      margin: 20px 0 0 0;
     }
     .login {
       @include border-radius(4px);
@@ -52,11 +64,9 @@
       border-bottom: 1px solid #333;
       background: #FFF;
       padding: 20px 25px;
-      font-size: 26px;
-      position: absolute;
-      top: 310px;
-      left: 50%;
-      margin-left: -380px;
+      margin: 20px 0 0 0;
+      display: inline-block;
+
       cursor: pointer;
       &:hover {
         background: #8CC63F;
@@ -64,31 +74,19 @@
       }
     }
   }
-  .bottom_strip {
-    @include clearfix();
-    width: 600px;
-    margin: 50px auto 0 auto;
-
-    .step {
-      width: 200px;
-      float: left;
-      text-align: center;
-
-      .icon {
-        width: 75px;
-        height: 75px;
-        background: #999;
-        margin: auto;
-      }
-      .head {
-        font-weight: bold;
-      }
-      .body {
-
-      }
-    }
-  }
   #footer {
-    margin: 50px 0;
+    @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, -1px, 2px);
+    border-top: 1px solid #333;
+    position: fixed;
+    bottom: 0;
+    background: #FFF;
+    text-align: center;
+    width: 100%;
+    padding: 7px 0;
+
+    .item {
+      margin: 0 5px;
+      font-size: 22px;
+    }
   }
 }
