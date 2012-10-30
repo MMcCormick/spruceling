@@ -23,8 +23,12 @@
     }
   }
   .buy {
-    .btn-action {
-      float: right;
-    }
+    margin-top: 0px
+  }
+
+  .toggle_edit_payment,
+  .toggle_edit_address {
+    display: block;
+    margin: 10px 0;
   }
 }

@@ -3,13 +3,13 @@
   .form-row
     %label Card Number
     %input.card-number{:type => 'text', :size => '20', :autocomplete => 'off'}
-  .form-row
+  .form-row.cvc-row
     %label CVC
     %input.card-cvc{:type => 'text', :size => '4', :autocomplete => 'off'}
   .form-row
     %label Expiration (MM/YYYY)
-    %input.card-expiry-month{:type => 'text', :size => '2', :autocomplete => 'off'}
+    %input.card-expiry-month{:type => 'text', :size => '2', :autocomplete => 'off', :maxlength => '2'}
     %span
-    %input.card-expiry-year{:type => 'text', :size => '4', :autocomplete => 'off'}
+    %input.card-expiry-year{:type => 'text', :size => '4', :autocomplete => 'off', :maxlength => '4'}
   %input.stripe-token{:type => 'hidden', :name => 'stripeToken'}
   %button.submit-button{:type => 'submit', :autocomplete => 'off'} Submit Payment Information

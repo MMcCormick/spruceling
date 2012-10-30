@@ -37,15 +37,14 @@
           #card_info_wrapper
             %div= "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
             = link_to 'Edit Payment Information', edit_user_information_path, :class => "toggle_edit_payment"
+            - if current_user.address && current_user.stripe
+              = link_to 'Complete Purchase!', orders_path, :method => :post, :class => "buy medium action button"
           #card_form_wrapper.hide
             = link_to 'Cancel', '#', :class => 'toggle_edit_payment'
             = render "users/stripe_card_form"
         - else
           #card_form_wrapper
             = render "users/stripe_card_form"
-
-        - if current_user.address && current_user.stripe
-          = link_to 'Complete Purchase!', orders_path, :method => :post, :class => "buy medium action button"
 
   - else
     .empty-cart You haven't added any boxes to your cart!
