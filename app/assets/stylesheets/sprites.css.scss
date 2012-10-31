@@ -1,0 +1,38 @@
+/*
+    Document   : _sprite
+    Created on : May 6, 2011
+    Author     : Marc MacLeod (marbemac@gmail.com)
+    Description:
+        Sprite definitions.
+*/
+
+@import "icons/*.png";
+
+i.girl {
+  height: 100px;
+  width: 49px;
+  display: inline-block;
+
+  &.grey {
+    @include icons-sprite(girl_grey);
+  }
+  &:hover,
+  &.on,
+  &.color {
+    @include icons-sprite(girl_color);
+  }
+}
+i.boy {
+  height: 100px;
+  width: 34px;
+  display: inline-block;
+
+  &.grey {
+    @include icons-sprite(boy_grey);
+  }
+  &:hover,
+  &.on,
+  &.color {
+    @include icons-sprite(boy_color);
+  }
+}

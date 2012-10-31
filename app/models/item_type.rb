@@ -17,10 +17,12 @@ class ItemType < ActiveRecord::Base
   validates_presence_of :name, :category, :item_weight
 
   def self.all_types
-    result = {}
-    ItemType.all.each do |type|
-      result[type.category] ||= []
-      result[type.category] << [type.short_name, type.id]
+    #result = {}
+    result = []
+    ItemType.order('name ASC').all.each do |type|
+      #result[type.category] ||= []
+      #result[type.category] << [type.short_name, type.id]
+      result << [type.short_name, type.id]
     end
     result
   end

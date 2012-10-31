@@ -9,7 +9,7 @@
       - if user_signed_in?
         .dropdown.part
           = avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
-          .name= current_user.name
+          %a.name{:href => user_path(current_user)}= current_user.name
           %i.icon-chevron-down
 
           %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}

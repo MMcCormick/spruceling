@@ -32,7 +32,7 @@ gem 'annotate'
 gem "pg"
 gem 'kaminari'
 gem "friendly_id", "~> 4.0.1"
-gem 'sidekiq' # background jobs
+gem 'sidekiq', '2.4.0' # background jobs
 gem 'sinatra' # for sidekiq
 gem 'slim' # for sidekiq
 gem 'cache_digests'
@@ -40,6 +40,8 @@ gem 'mechanize'
 gem 'compass-rails'
 gem 'zurb-foundation'
 gem 'font-awesome-rails'
+gem 'simple_form'
+gem 'nested_form'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

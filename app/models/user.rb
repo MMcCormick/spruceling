@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
     user.save if user
 
     if new_user && request_env
-      referer_hash = { "Referer" => referer, "Referer Host" => referer == "none" ? "none" : URI(referer).host }
+      #referer_hash = { "Referer" => referer, "Referer Host" => referer == "none" ? "none" : URI(referer).host }
       #Resque.enqueue(MixpanelTrackEvent, "Signup", user.mixpanel_data.merge!(referer_hash), request_env.select{|k,v| v.is_a?(String) || v.is_a?(Numeric) })
     end
 

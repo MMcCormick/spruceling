@@ -87,3 +87,19 @@
     margin: 7px 10px;
   }
 }
+
+#new_box {
+  max-width: 800px;
+  margin: auto;
+  border: 1px solid #CCC;
+  padding: 20px;
+
+  h1 {
+    margin-top: 0px;
+  }
+  .boy,
+  .girl {
+    cursor: pointer;
+  }
+
+}
