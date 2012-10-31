@@ -1,25 +1,35 @@
-= form_for @box do |f|
-  - if @box.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@box.errors.count, "error")} prohibited this box from being saved:"
-      %ul
-        - @box.errors.full_messages.each do |msg|
-          %li= msg
+= simple_nested_form_for @box, :html => {:class => "custom"} do |f|
+  %h1 New box
+
+  = f.error_notification
 
   .field
     = f.label :gender
-    = f.radio_button :gender, "m"
-    = f.label :gender, 'Boy', :value => "m"
-    = f.radio_button :gender, "f"
-    = f.label :gender, 'Girl', :value => "f"
-  .field
-    = f.label :size
-    = f.select :size, Item.all_sizes, :prompt => "Select a size"
-  .field
-    = f.label :seller_price
-    = f.text_field :seller_price, :size => 3
+    = f.error :gender
+    %i.boy.grey{'data-value' => 'm'}
+    %i.girl.grey{'data-value' => 'f'}
+    = f.hidden_field :gender
+
+  = f.input :size, :collection => Item.all_sizes, :prompt => "Select a size"
+  = f.input :seller_price, :size => 3
+
   .field
     %div Images
-    = f.attachinary_file_field :photos
+    = f.input :photos, :as => :attachinary
+
+  = f.fields_for :items, :html => {:class => 'item_form'} do |item|
+    .item_form
+      = item.association :brand
+      = item.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
+      = item.input :new_with_tags
+      = item.input :photos, :as => :attachinary
+      = item.input :gender, :as => :hidden, :input_html => {:class => 'item_gender'}
+      = item.input :size, :as => :hidden, :input_html => {:class => 'item_size'}
+      = item.link_to_remove "Remove Item"
+
+  = f.link_to_add "Add Item", :items
+
+  = f.error :base
+
   .actions
-    = f.submit 'Save'
+    = f.button :submit, 'Submit Box', :class => 'large action button'

@@ -141,7 +141,7 @@ GEM
     fssm (0.2.9)
     gherkin (2.11.5)
       json (>= 1.4.6)
-    guard (1.5.2)
+    guard (1.5.3)
       listen (>= 0.4.2)
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
@@ -150,7 +150,7 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.5.0)
       multi_json (~> 1.0)
-    guard-rspec (2.1.0)
+    guard-rspec (2.1.1)
       guard (>= 1.1)
       rspec (~> 2.11)
     gyoku (0.4.6)
@@ -204,6 +204,7 @@ GEM
       sassy-math (>= 1.2)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    nested_form (0.3.0)
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.8)
     newrelic_rpm (3.5.0.1)
@@ -311,6 +312,9 @@ GEM
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
+    simple_form (2.0.4)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sinatra (1.3.3)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
@@ -328,7 +332,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    stripe (1.7.4)
+    stripe (1.7.6)
       multi_json (~> 1.1)
       rest-client (~> 1.4)
     temple (0.5.5)
@@ -400,6 +404,7 @@ DEPENDENCIES
   launchy (>= 2.1.2)
   mechanize
   memcachier
+  nested_form
   newrelic_rpm (~> 3.5.0)
   oauth2
   omniauth
@@ -414,7 +419,8 @@ DEPENDENCIES
   rspec-rails (>= 2.11.0)
   sass-rails (~> 3.2.3)
   sendgrid
-  sidekiq
+  sidekiq (= 2.4.0)
+  simple_form
   sinatra
   slim
   soulmate (= 0.1.3)

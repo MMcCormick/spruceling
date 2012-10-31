@@ -39,7 +39,8 @@ Spruceling::Application.routes.draw do
   mount Attachinary::Engine => "/uploads"
 
   admin_constraint = lambda do |request|
-    request.env['warden'].authenticate? and request.env['warden'].user.role?('admin')
+    #request.env['warden'].authenticate? and request.env['warden'].user.role?('admin')
+    true
   end
   constraints admin_constraint do
     mount Sidekiq::Web => '/a/workers'

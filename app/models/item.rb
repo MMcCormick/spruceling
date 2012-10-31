@@ -15,12 +15,15 @@
 
 class Item < ActiveRecord::Base
 
+  has_attachments :photos, maximum: 3
+
   belongs_to :user, :inverse_of => :items
   belongs_to :box, :inverse_of => :items
   belongs_to :item_type, :inverse_of => :items
   belongs_to :brand, :inverse_of => :items
 
   validates :new_with_tags, :inclusion => {:in => [true, false]}
+  attr_accessible :brand_id, :item_type_id, :new_with_tags, :gender, :size
   validates_presence_of :gender, :item_type, :size, :brand, :user
   #TODO: validate type
 

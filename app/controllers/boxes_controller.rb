@@ -27,6 +27,7 @@ class BoxesController < ApplicationController
   # GET /boxes/new.json
   def new
     @box = Box.new
+    @box.items.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,13 +44,17 @@ class BoxesController < ApplicationController
   # POST /boxes
   # POST /boxes.json
   def create
-    @box = current_user.boxes.new(params[:box])
+    @box = current_user.boxes.build(params[:box])
+    @box.items.each do |item|
+      item.user = current_user
+    end
 
     respond_to do |format|
       if @box.save
         format.html { redirect_to @box, notice: 'Box was successfully created.' }
         format.json { render json: @box, status: :created, location: @box }
       else
+        foo = 'bar'
         format.html { render action: "new" }
         format.json { render json: @box.errors, status: :unprocessable_entity }
       end

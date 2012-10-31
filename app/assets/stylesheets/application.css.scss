@@ -18,6 +18,7 @@
 
 @import "compass";
 @import "variables";
+@import "sprites";
 
 body {
   &.wf-loading {
@@ -39,6 +40,7 @@ ul.nav li {
   display: inline;
 }
 a {
+  color: $link-color;
   &:hover {
     background: transparent;
   }
@@ -150,7 +152,7 @@ a {
           .name {
             font-weight: bold;
             padding: 23px 0;
-            cursor: default;
+            display: block;
           }
           .icon-chevron-down {
             position: absolute;
@@ -209,11 +211,12 @@ a {
   }
 
   select {
-    width: 175px;
+    width: 100%;
     margin: 5px 0;
   }
 }
 
+@import "forms";
 @import "home";
 @import "boxes";
 @import "carts";

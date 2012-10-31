@@ -14,9 +14,11 @@
 //= require jquery_ujs
 //= require foundation
 
+//= require jquery.livequery
 //= require cloudinary
 //= require attachinary
 //= require jquery.masonry
+//= require jquery_nested_form
 
 //= require carts
 

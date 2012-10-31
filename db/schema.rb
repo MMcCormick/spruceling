@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20121030170213) do
   create_table "boxes", :force => true do |t|
     t.string  "gender"
     t.string  "size"
-    t.string  "status",                                    :default => "active"
+    t.string  "status",                                     :default => "active"
     t.integer "user_id"
-    t.decimal "price_total", :precision => 8, :scale => 2,                       :null => false
+    t.decimal "seller_price", :precision => 8, :scale => 2,                       :null => false
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20121030170213) do
   create_table "items", :force => true do |t|
     t.string  "gender"
     t.string  "size"
-    t.string  "brand"
     t.boolean "new_with_tags"
     t.string  "status",        :default => "active"
     t.integer "user_id"

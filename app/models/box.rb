@@ -19,9 +19,11 @@ class Box < ActiveRecord::Base
   has_one :order_item, :inverse_of => :box
   has_one :order, :through => :order_item
 
+  accepts_nested_attributes_for :items, :limit => 20
+
   validates_presence_of :gender, :size, :user
-  attr_accessible :gender, :size, :seller_price
-  validates :seller_price, :numericality => {:greater_than => 1, :less_than => 1000}
+  attr_accessible :gender, :size, :seller_price, :items_attributes, :photos
+  validates :seller_price, :numericality => {:min => 1, :max => 1000}
 
   scope :active, where(:status => "active")
 
