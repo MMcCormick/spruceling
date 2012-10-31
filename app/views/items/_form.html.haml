@@ -21,8 +21,8 @@
     = f.label :item_type_id
     = f.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
   .field
-    = f.label :brand
-    = f.text_field :brand
+    = f.label :brand_id
+    = f.collection_select :brand_id, Brand.all, :id, :name, :prompt => "Select a brand"
   .field
     = f.label :new_with_tags
     = f.check_box :new_with_tags

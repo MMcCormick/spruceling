@@ -1,5 +1,7 @@
 Spruceling::Application.routes.draw do
 
+  resources :brands
+
   get '/testing' => 'testing#test'
 
   resources :orders

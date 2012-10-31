@@ -3,7 +3,7 @@
 # Table name: items
 #
 #  box_id        :integer
-#  brand         :string(255)
+#  brand_id      :integer
 #  gender        :string(255)
 #  id            :integer          not null, primary key
 #  item_type_id  :integer
@@ -18,6 +18,7 @@ class Item < ActiveRecord::Base
   belongs_to :user, :inverse_of => :items
   belongs_to :box, :inverse_of => :items
   belongs_to :item_type, :inverse_of => :items
+  belongs_to :brand, :inverse_of => :items
 
   validates :new_with_tags, :inclusion => {:in => [true, false]}
   validates_presence_of :gender, :item_type, :size, :brand, :user
@@ -58,5 +59,24 @@ class Item < ActiveRecord::Base
 
   def type
     item_type.name
+  end
+
+  def type_singular
+    if ["Pants", "Shorts"].include? item_type.category
+      "Pair of #{item_type.name}"
+    elsif item_type.name.include? "/"
+      array = item_type.name.split(" / ")
+      "#{array[0].singularize} / #{array[1].singularize}"
+    else
+      item_type.name.singularize
+    end
+  end
+
+  def gender_noun
+    {
+      'm' => 'Boys',
+      'f' => 'Girls',
+      'u' => 'Unisex'
+    }[gender]
   end
 end

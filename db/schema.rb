@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121026225725) do
+ActiveRecord::Schema.define(:version => 20121030170213) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(:version => 20121026225725) do
   add_index "boxes_carts", ["cart_id", "box_id"], :name => "index_boxes_carts_on_cart_id_and_box_id", :unique => true
   add_index "boxes_carts", ["cart_id"], :name => "index_boxes_carts_on_cart_id"
 
+  create_table "brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "carts", :force => true do |t|
     t.integer "user_id"
   end
@@ -78,9 +84,11 @@ ActiveRecord::Schema.define(:version => 20121026225725) do
     t.integer "user_id"
     t.integer "box_id"
     t.integer "item_type_id"
+    t.integer "brand_id"
   end
 
   add_index "items", ["box_id"], :name => "index_items_on_box_id"
+  add_index "items", ["brand_id"], :name => "index_items_on_brand_id"
   add_index "items", ["item_type_id"], :name => "index_items_on_item_type_id"
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
 

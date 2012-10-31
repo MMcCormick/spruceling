@@ -93,8 +93,8 @@ describe Cart do
 
   describe "#price_total" do
     it "should return the total of the box prices" do
-      @box1 = FactoryGirl.create(:box, :price_total => 30.00)
-      @box2 = FactoryGirl.create(:box, :price_total => 20.50)
+      @box1 = FactoryGirl.create(:box, :seller_price => 30.00)
+      @box2 = FactoryGirl.create(:box, :seller_price => 20.50)
       @cart = FactoryGirl.create(:cart)
       @cart.add_box(@box1)
       @cart.add_box(@box2)

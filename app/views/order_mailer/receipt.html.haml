@@ -4,7 +4,7 @@
 %div= "Name:            #{@user.email}"
 %div= "Date:            #{I18n.localize @order.created_at, :format => :long}"
 %div= "Order ID:        #{@order.id}"
-%div= "Payment Type:    #{@order.stripe_charge['type']} **** **** **** #{@order.stripe_charge['last4']}"
+%div= "Payment Type:    #{@order.stripe_charge.card['type']} **** **** **** #{@order.stripe_charge.card['last4']}"
 
 %br
 %div= "Number of boxes: #{@order.order_items.length}"

@@ -29,7 +29,6 @@
     .order_header {
       margin: 0;
       position: relative;
-      font-size: 18px;
       font-weight: bold;
       border-bottom: 1px solid #AAA;
       line-height: 35px;
@@ -42,6 +41,17 @@
     }
     .order_details {
       padding: 10px 20px;
+      .box {
+        h4 {
+          font-size: 15px;
+        }
+        ul {
+          list-style-type: disc;
+          li {
+            margin-left: 14px;
+          }
+        }
+      }
     }
   }
 }

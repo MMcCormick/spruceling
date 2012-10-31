@@ -1,6 +1,17 @@
 class BoxesController < ApplicationController
   before_filter :authenticate_user!, :only => [:my_boxes, :new, :create]
 
+  # GET /index
+  # GET /index.json
+  def index
+    @boxes = current_user.boxes.active
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @boxes }
+    end
+  end
+
   # GET /boxes/1
   # GET /boxes/1.json
   def show

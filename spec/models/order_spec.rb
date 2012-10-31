@@ -4,7 +4,7 @@
 #
 #  created_at       :datetime
 #  id               :integer          not null, primary key
-#  price_total      :decimal(8, 2)
+#  price_total      :decimal(8, 2)    not null
 #  stripe_charge_id :string(255)
 #  updated_at       :datetime
 #  user_id          :integer
@@ -178,7 +178,7 @@ describe Order do
 
   describe "#send_confirmations" do
     let (:stripe_charge) do
-      stub_model Stripe::Charge, :card => {"type" => "Visa", "last4" => "1234"}
+      stub_model Stripe::Charge, :card => {:type => "Visa", :last4 => "1234"}
     end
     before(:each) do
       @order = FactoryGirl.create(:order)

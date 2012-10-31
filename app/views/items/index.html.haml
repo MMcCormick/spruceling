@@ -1,11 +1,11 @@
-%h1 Listing items
+%h1 My Closet
 
 = link_to 'New Item', new_item_path
 
 -Item.all_sizes.each do |size|
   -["m", "f"].each do |gender|
-    -unless @items.where(:size => size, :gender => {"$in" => [gender, "u"]}).empty?
+    -unless @items.where(:size => size, :gender => [gender, "u"]).empty?
       %h3= "#{gender == 'm' ? "Boys" : "Girls"} #{size}"
-      = render "list", :items => @items.where(:size => size, :gender => {"$in" => [gender, "u"]})
+      = render "list", :items => @items.where(:size => size, :gender => [gender, "u"])
 
       %br

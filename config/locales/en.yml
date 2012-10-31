@@ -2,7 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  mongoid:
+  activerecord:
     attributes:
       item:
         type: "Type"
+      box:
+        seller_price: "Price"
