@@ -11,7 +11,7 @@
       %div= "Total:           $#{@order.price_total}"
 
       - @order.boxes.each do |box|
-        %div= render "boxes/itemized", :box => box
+        .box= render "boxes/itemized", :box => box
 
   %br
 

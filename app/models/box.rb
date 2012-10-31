@@ -2,12 +2,12 @@
 #
 # Table name: boxes
 #
-#  gender      :string(255)
-#  id          :integer          not null, primary key
-#  price_total :decimal(8, 2)
-#  size        :string(255)
-#  status      :string(255)      default("active")
-#  user_id     :integer
+#  gender       :string(255)
+#  id           :integer          not null, primary key
+#  seller_price :decimal(8, 2)    not null
+#  size         :string(255)
+#  status       :string(255)      default("active")
+#  user_id      :integer
 #
 
 class Box < ActiveRecord::Base
@@ -20,8 +20,8 @@ class Box < ActiveRecord::Base
   has_one :order, :through => :order_item
 
   validates_presence_of :gender, :size, :user
-  attr_accessible :gender, :size, :price_total
-  validates :price_total, :numericality => {:greater_than => 1, :less_than => 1000}
+  attr_accessible :gender, :size, :seller_price
+  validates :seller_price, :numericality => {:greater_than => 1, :less_than => 1000}
 
   scope :active, where(:status => "active")
 
@@ -67,5 +67,9 @@ class Box < ActiveRecord::Base
       counts[i.item_type.name] += 1
     end
     counts
+  end
+
+  def price_total
+    seller_price + 12.00
   end
 end

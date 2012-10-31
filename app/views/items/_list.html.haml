@@ -1,6 +1,5 @@
 %table
   %tr
-    %th
     %th Brand
     %th Box
     %th Type
@@ -13,11 +12,10 @@
 
   - items.each do |item|
     %tr
-      %td
-      %td= item.brand
-      %td= item.box
+      %td= item.brand.name
+      %td= link_to "Box ##{item.box.id}", box_path(item.box) if item.box
       %td= item.item_type.name
-      %td= item.gender
+      %td= item.gender_noun
       %td= item.size
       %td= item.new_with_tags
       %td= link_to 'Show', item

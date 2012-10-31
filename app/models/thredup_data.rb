@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: thredup_data
+#
+#  brand         :string(255)
+#  gender        :string(255)
+#  id            :integer          not null, primary key
+#  item_type     :string(255)
+#  new_with_tags :boolean          default(FALSE)
+#  retail_price  :decimal(8, 2)
+#  size          :string(255)
+#  thredup_price :decimal(8, 2)
+#  url           :string(255)
+#
+
 class ThredupData < ActiveRecord::Base
 
   def self.fetch_all(url='http://www.thredup.com')

@@ -1,0 +1,5 @@
+%h1 My Boxes
+
+#box_list
+  - @boxes.each do |box|
+    = render 'boxes/teaser', :box => box, :my_box => true

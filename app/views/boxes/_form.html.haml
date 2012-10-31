@@ -16,6 +16,9 @@
     = f.label :size
     = f.select :size, Item.all_sizes, :prompt => "Select a size"
   .field
+    = f.label :seller_price
+    = f.text_field :seller_price, :size => 3
+  .field
     %div Images
     = f.attachinary_file_field :photos
   .actions

@@ -2,12 +2,12 @@
 #
 # Table name: boxes
 #
-#  gender      :string(255)
-#  id          :integer          not null, primary key
-#  price_total :decimal(8, 2)
-#  size        :string(255)
-#  status      :string(255)      default("active")
-#  user_id     :integer
+#  gender       :string(255)
+#  id           :integer          not null, primary key
+#  seller_price :decimal(8, 2)    not null
+#  size         :string(255)
+#  status       :string(255)      default("active")
+#  user_id      :integer
 #
 
 require 'spec_helper'
@@ -21,26 +21,36 @@ describe Box do
   it "should require user" do
     FactoryGirl.build(:box, :user_id => nil).should be_invalid
   end
-
   it "should give the owner permission to manage it" do
     ability = Ability.new(@box.user)
     ability.can?(:manage, @box).should == true
   end
-
   it "should require gender" do
     FactoryGirl.build(:box, :gender => nil).should be_invalid
   end
-
   it "should require size" do
     FactoryGirl.build(:box, :size => nil).should be_invalid
   end
-
-  it "should require price_total" do
-    FactoryGirl.build(:box, :price_total => nil).should be_invalid
+  it "should require seller_price" do
+    FactoryGirl.build(:box, :seller_price => nil).should be_invalid
+  end
+  it "should require seller_price to be at least $1" do
+    FactoryGirl.build(:box, :seller_price => 0.5).should be_invalid
+  end
+  it "should require seller_price to be less than $1000" do
+    FactoryGirl.build(:box, :seller_price => 1500).should be_invalid
+  end
+  it "should return a BigDecimal" do
+    @box.seller_price.should be_a BigDecimal
   end
 
-  it "should require price_total to be at least $1" do
-    FactoryGirl.build(:box, :price_total => 0.5).should be_invalid
+  describe "#price_total" do
+    it "should be greater than the seller price" do
+      @box.price_total.should > @box.seller_price
+    end
+    it "should return a BigDecimal" do
+      @box.price_total.should be_a Float
+    end
   end
 
   it "should have an #order method if it's been added to an order" do

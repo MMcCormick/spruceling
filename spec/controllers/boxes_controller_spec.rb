@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe BoxesController do
+  let (:valid_attributes) {FactoryGirl.attributes_for(:box)}
   before (:each) do
     @box = FactoryGirl.create(:box)
     sign_in @box.user
@@ -43,18 +44,18 @@ describe BoxesController do
     describe "with valid params" do
       it "creates a new box" do
         expect {
-          post :create, {:box => FactoryGirl.build(:box).attributes}
+          post :create, {:box => valid_attributes}
         }.to change(Box, :count).by(1)
       end
 
       it "assigns a newly created box as @box" do
-        post :create, {:box => FactoryGirl.build(:box).attributes}
+        post :create, {:box => valid_attributes}
         assigns(:box).should be_a(Box)
         assigns(:box).should be_persisted
       end
 
       it "redirects to the created box" do
-        post :create, {:box => FactoryGirl.build(:box).attributes}
+        post :create, {:box => valid_attributes}
         response.should redirect_to(Box.last)
       end
     end
@@ -94,12 +95,12 @@ describe BoxesController do
       end
 
       it "assigns the requested box as @box" do
-        put :update, {:id => @box.to_param, :box => FactoryGirl.build(:box).attributes}
+        put :update, {:id => @box.to_param, :box => valid_attributes}
         assigns(:box).should eq(@box)
       end
 
       it "redirects to the box" do
-        put :update, {:id => @box.to_param, :box => FactoryGirl.build(:box).attributes}
+        put :update, {:id => @box.to_param, :box => valid_attributes}
         response.should redirect_to(@box)
       end
     end

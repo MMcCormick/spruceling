@@ -2,19 +2,20 @@
 
 %p
   %b Gender:
-  = @item.gender
+  = @item.gender_noun
 %p
   %b Size:
   = @item.size
 %p
   %b Brand:
-  = @item.brand
-%p
-  %b Box:
-  = @item.box
+  = @item.brand.name
+- if @item.box
+  %p
+    %b Box:
+    = link_to "Box ##{@item.box.id}", box_path(@item.box)
 %p
   %b Type:
-  = @item.item_type
+  = @item.item_type.name
 
 = link_to 'Edit', edit_item_path(@item)
 \|
