@@ -88,6 +88,13 @@ describe BoxesController do
       get :create
       response.should redirect_to(new_user_session_path)
     end
+
+    it "should redirect to edit_address if the user doesn't have an address" do
+      @box.user.address = nil
+      @box.user.save
+      get :new
+      response.should redirect_to(edit_user_address_path)
+    end
   end
 
   describe "PUT update" do
