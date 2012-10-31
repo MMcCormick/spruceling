@@ -1,0 +1,8 @@
+%h1.username= @user.name
+
+.head{:class => controller.action_name == "edit" ? "on" : ""}
+  = link_to "Account", edit_user_registration_path
+.head{:class => controller.action_name == "shipping" ? "on" : ""}
+  = link_to "Shipping Address", edit_user_address_path
+.head{:class => controller.action_name == "payment" ? "on" : ""}
+  = link_to "Payment Information", edit_user_payment_path

@@ -1,0 +1,10 @@
+- content_for :left_sidebar do
+  = render :partial => 'edit_sidebar', :layout => 'layouts/left_sidebar'
+
+#edit_information
+  .row
+    .six.columns
+      %h3 Shipping Address
+      .current_address= render 'users/address', :address => current_user.address if current_user.address
+      = render 'users/address_form'
+

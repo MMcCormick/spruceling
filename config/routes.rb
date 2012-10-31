@@ -21,7 +21,8 @@ Spruceling::Application.routes.draw do
   scope 'users' do
     post 'update_stripe' => 'users#update_stripe', :as => :user_update_stripe
     put 'update_address' => 'users#update_address', :as => :update_user_address
-    get 'edit_information' => 'users#edit_information', :as => :edit_user_information
+    get 'address' => 'users#edit_address', :as => :edit_user_address
+    get 'payment' => 'users#edit_payment', :as => :edit_user_payment
     get ':id/page/:page' => 'users#show'
   end
   resources :users, :only => [:show, :index, :edit]

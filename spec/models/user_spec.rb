@@ -197,7 +197,7 @@ describe User do
       "zip_code" => "19102"
     }}
 
-    context "with a valid address" do
+    context "with a valid Stamps response" do
       let(:stamps_response) {{
         :address => {
           "full_name" => "Matt McCormick",
@@ -222,7 +222,7 @@ describe User do
       end
     end
 
-    context "with an invalid address" do
+    context "with an invalid Stamps response" do
       let(:stamps_response) {{
         :errors => ["Foo error"],
         :valid? => false
