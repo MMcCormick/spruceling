@@ -19,14 +19,32 @@ class ThredupData < ActiveRecord::Base
 
     agent ||= Mechanize.new
 
-    agent.get(url)
+    begin
+      agent.get(url)
+    rescue
+      puts 'NOT FOUND'
+      return
+    end
+
     data = {}
     data[:brand] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta h5').text).strip
-    data[:gender] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta .girls,.meta .boys').text).strip
-    data[:size] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta .size').text).split(' ').last.strip
+    data[:brand].strip if data[:brand]
+
+    data[:gender] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta .girls,.meta .boys').text)
+    data[:gender].strip if data[:gender]
+
+    data[:size] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta .size').text).split(' ').last
+    data[:size].strip if data[:size]
+
     data[:item_type] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.top h3').text).gsub(data[:brand], '').strip
+    data[:item_type].strip if data[:item_type]
+
     data[:thredup_price] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.price-area .price').text).gsub('$', '').strip
+    data[:thredup_price].strip if data[:thredup_price]
+
     data[:retail_price] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.price-area .regular-price').text).gsub('$', '').strip
+    data[:retail_price].strip if data[:retail_price]
+
     data[:new_with_tags] = agent.page.parser.css('.main .top .nwt').length == 0 ? false : true
 
     ThredupData.create(data.merge(:url => url))

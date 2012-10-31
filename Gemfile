@@ -12,7 +12,10 @@ gem 'yajl-ruby' # json
 gem 'rack-contrib'
 gem 'soulmate', '0.1.3', :require => 'soulmate/server' # Redis based autocomplete storage
 gem 'chronic' # Date/Time management
+
+gem 'memcachier' # modify ENV variables to make dalli work with memcachier
 gem 'dalli' # memcache
+
 gem 'stripe' # payments
 gem 'cancan'
 gem 'stamps', :git => 'https://github.com/marbemac/stamps.git'
