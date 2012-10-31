@@ -29,7 +29,7 @@ class BoxesController < ApplicationController
     @box = Box.new
 
     respond_to do |format|
-      if current_user.address.empty?
+      if current_user.address.blank?
         format.any { redirect_to edit_user_address_path, :notice => "Please provide your address before posting a box" }
       else
         format.html # new.html.erb
