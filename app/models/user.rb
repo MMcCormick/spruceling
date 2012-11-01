@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   has_many :boxes, :inverse_of => :user
   has_many :orders, :inverse_of => :user
 
-  validates_presence_of :name, :email, :encrypted_password
+  validates_presence_of :name, :email, :encrypted_password, :balance
   attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
 
   after_create :initiate_cart

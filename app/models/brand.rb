@@ -14,4 +14,17 @@ class Brand < ActiveRecord::Base
   has_many :items, :inverse_of => :brand
 
   validates_uniqueness_of :name
+
+  after_create :add_to_soulmate
+
+  def add_to_soulmate
+    nugget = {
+      'id' => id.to_s,
+      'term' => name,
+      'data' => {
+
+      }
+    }
+    Soulmate::Loader.new("brand").add(nugget)
+  end
 end

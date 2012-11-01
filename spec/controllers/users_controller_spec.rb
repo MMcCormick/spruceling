@@ -101,10 +101,24 @@ describe UsersController do
         put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
       end
 
-      it "should redirect to edit_information" do
+      it "should redirect to edit_address" do
         put :update_address
-        response.should redirect_to(edit_user_information_path)
+        response.should redirect_to(edit_user_address_path)
       end
+    end
+  end
+
+  describe "GET 'edit_address'" do
+    it "should be successful" do
+      get :edit_address
+      response.should be_success
+    end
+  end
+
+  describe "GET 'edit_payment'" do
+    it "should be successful" do
+      get :edit_payment
+      response.should be_success
     end
   end
 end

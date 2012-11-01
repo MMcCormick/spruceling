@@ -16,7 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit_information
+  def edit_address
+    @user = current_user
+  end
+
+  def edit_payment
     @user = current_user
   end
 
@@ -27,7 +31,7 @@ class UsersController < ApplicationController
         format.html { redirect_to user_path(current_user), :notice => 'Information successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to edit_user_information_path, :alert => 'There is an error in your shipping address.' }
+        format.html { redirect_to edit_user_address_path, :alert => 'There is an error in your shipping address.' }
         format.json { render :json => current_user.errors, :status => :unprocessable_entity }
       end
     end

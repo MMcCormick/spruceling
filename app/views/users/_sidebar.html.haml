@@ -1,10 +1,9 @@
 .photo= avatar(@user, :width => 200, :crop => :fit)
 
 %h1.username= @user.name
-.city Philadelphia, PA
+.city= @user.address["city"] if @user.address
 
-.head.on
-  .icon
+.head{:class => controller.action_name == "show" ? "on" : ""}
   My Boxes
 
 .section.box-sidebar-filters

@@ -1,5 +1,5 @@
 class BoxesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:my_boxes, :new, :create]
+  before_filter :authenticate_user!, :only => [:index, :new, :create]
 
   # GET /index
   # GET /index.json
@@ -30,8 +30,12 @@ class BoxesController < ApplicationController
     @box.items.build
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @box }
+      if current_user.address.blank?
+        format.any { redirect_to edit_user_address_path, :notice => "Please provide your address before posting a box" }
+      else
+        format.html # new.html.erb
+        format.json { render json: @box }
+      end
     end
   end
 
