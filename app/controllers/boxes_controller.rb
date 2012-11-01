@@ -45,18 +45,15 @@ class BoxesController < ApplicationController
   # POST /boxes.json
   def create
     @box = current_user.boxes.build(params[:box])
-    @box.items.each do |item|
-      item.user = current_user
-    end
+    @box.status = 'draft'
 
     respond_to do |format|
       if @box.save
         format.html { redirect_to @box, notice: 'Box was successfully created.' }
-        format.json { render json: @box, status: :created, location: @box }
+        format.json { render :json => {:box => @box, :url => box_path(@box), :edit_url => edit_box_path(@box)}, status: :created, location: @box }
       else
-        foo = 'bar'
         format.html { render action: "new" }
-        format.json { render json: @box.errors, status: :unprocessable_entity }
+        format.json { render :json => {:errors => @box.errors}, status: :unprocessable_entity }
       end
     end
   end
@@ -68,7 +65,9 @@ class BoxesController < ApplicationController
     authorize! :edit, @box
 
     respond_to do |format|
-      if @box.update_attributes(params[:box])
+      @box.update_attributes(params[:box])
+      @box.status = 'active'
+      if @box.save
         format.html { redirect_to @box, notice: 'Box was successfully updated.' }
         format.json { head :no_content }
       else

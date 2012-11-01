@@ -4,7 +4,7 @@
 #
 #  gender       :string(255)
 #  id           :integer          not null, primary key
-#  seller_price :decimal(8, 2)    not null
+#  seller_price :decimal(8, 2)
 #  size         :string(255)
 #  status       :string(255)      default("active")
 #  user_id      :integer
@@ -22,10 +22,14 @@ class Box < ActiveRecord::Base
   accepts_nested_attributes_for :items, :limit => 20
 
   validates_presence_of :gender, :size, :user
-  attr_accessible :gender, :size, :seller_price, :items_attributes, :photos
-  validates :seller_price, :numericality => {:min => 1, :max => 1000}
+  attr_accessible :gender, :size, :seller_price, :items_attributes
+  validates :seller_price, :numericality => {:greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000}, :if => lambda { |box| box.is_active? }
 
   scope :active, where(:status => "active")
+
+  def is_active?
+    status == 'active' ? true : false
+  end
 
   def add_item(item)
     if item.box || item.gender != gender || item.size != size

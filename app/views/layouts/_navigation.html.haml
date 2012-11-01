@@ -23,6 +23,8 @@
           %i.icon-gift
           List New Box
 
+        = render "boxes/nav_form"
+
       - else
         = link_to 'Login', new_user_session_path, :class => 'part login'
         = link_to 'Sign up', new_user_registration_path, :class => 'part signup'

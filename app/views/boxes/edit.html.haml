@@ -1,7 +1,8 @@
-%h1 Editing box
+#edit_box_page
+  %h1
+    Editing a
+    %span.color{:class => @box.gender}= @box.gender_noun
+    %span.size= "Size #{@box.size}"
+    Box
 
-= render 'form'
-
-= link_to 'Show', @box
-\|
-= link_to 'Back', boxes_path
+  = render 'form'

@@ -1,0 +1,14 @@
+= simple_nested_form_for Box.new, :html => {:class => "custom"} do |f|
+  %h5 First the basics - what gender and size clothes will go in this box?
+
+  .errors
+
+  = f.error_notification
+
+  = f.input :gender, :collection => [['Girl', 'f'], ['Boy', 'm']], :prompt => "Select a gender", :label => false, :input_html => {:autocomplete => 'off'}
+  = f.input :size, :collection => Item.all_sizes, :prompt => "Select a size", :label => false, :input_html => {:autocomplete => 'off'}
+
+  = f.error :base
+
+  .actions
+    = f.button :submit, 'Start Building It!', :class => 'medium action button'

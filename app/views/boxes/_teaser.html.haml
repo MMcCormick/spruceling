@@ -2,7 +2,7 @@
   .photo
     = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '230x230', :crop => :fill }) : ''
     .overlay
-      .price $50
+      .price= "$#{box.seller_price.to_i}"
       %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
         %i.icon-shopping-cart
         Add to Cart
@@ -10,8 +10,8 @@
 
   .bottom
 
-    %div{:class => "#{box.gender}"}
-      = box.gender_noun
+    %div{:class => "gender_size"}
+      %span{:class => "color #{box.gender}"}= box.gender_noun
       = box.size
 
     .user= link_to box.user.name, user_path(box.user)

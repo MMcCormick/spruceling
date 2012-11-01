@@ -44,6 +44,11 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = current_user.items.new(params[:item])
+    if params[:item][:box_id]
+      @box = Box.find(params[:item][:box_id])
+      authorize! :edit, @box
+      @item.box = @box
+    end
 
     respond_to do |format|
       if @item.save

@@ -1,6 +1,8 @@
 jQuery ->
 
-  $('.attachinary-input').attachinary()
+  # Attachinary
+  $('.attachinary-input').livequery ->
+    $(@).attachinary()
 
   # splash page
   resizeSplash = ->

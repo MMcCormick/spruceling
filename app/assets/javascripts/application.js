@@ -19,6 +19,7 @@
 //= require attachinary
 //= require jquery.masonry
 //= require jquery_nested_form
+//= require global_functions
 
 //= require carts
 

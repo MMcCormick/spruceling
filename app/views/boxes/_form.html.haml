@@ -1,35 +1,46 @@
-= simple_nested_form_for @box, :html => {:class => "custom"} do |f|
-  %h1 New box
-
+= simple_form_for @box, :html => {:class => "box_form"} do |f|
   = f.error_notification
 
-  .field
-    = f.label :gender
-    = f.error :gender
-    %i.boy.grey{'data-value' => 'm'}
-    %i.girl.grey{'data-value' => 'f'}
-    = f.hidden_field :gender
+  .section.photos
+    %h3 1. Box Photos
+    %h5.subheader
+      Please make sure every piece of clothing in your box is pictured.
+      You can include multiple pieces in a single picture.
+    = f.input :photos, :as => :attachinary, :label => false
 
-  = f.input :size, :collection => Item.all_sizes, :prompt => "Select a size"
-  = f.input :seller_price, :size => 3
+  .section.items
+    %h3 2. Clothing Items
+    %h5.subheader 5-20 items. Gently used or new clothing only please! More language about requirements here...?
 
-  .field
-    %div Images
-    = f.input :photos, :as => :attachinary
+    .items
 
-  = f.fields_for :items, :html => {:class => 'item_form'} do |item|
-    .item_form
-      = item.association :brand
-      = item.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
-      = item.input :new_with_tags
-      = item.input :photos, :as => :attachinary
-      = item.input :gender, :as => :hidden, :input_html => {:class => 'item_gender'}
-      = item.input :size, :as => :hidden, :input_html => {:class => 'item_size'}
-      = item.link_to_remove "Remove Item"
+      - @box.items.each do |item|
+        .item= "#{item.brand.name} #{item.item_type.name}"
 
-  = f.link_to_add "Add Item", :items
+      %fieldset.item_form
+        %legend New Item
+        = simple_form_for Item.new do |fi|
+          .errors
+          = fi.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
+          = fi.collection_select :brand_id, Brand.all, :id, :name, :prompt => "Select a brand"
 
-  = f.error :base
+          .nwt
+            = fi.check_box :new_with_tags
+            %span.head New With Tags?
 
-  .actions
-    = f.button :submit, 'Submit Box', :class => 'large action button'
+          .head Optional Photos
+          = fi.input :photos, :as => :attachinary, :label => false
+
+          = fi.input :box_id, :as => :hidden, :input_html => {:value => @box.id}
+          = fi.input :gender, :as => :hidden, :input_html => {:value => @box.gender}
+          = fi.input :size, :as => :hidden, :input_html => {:value => @box.size}
+          .small.action.button.add_item Add Item
+
+    .section.price
+      %h3 3. Box Price
+      = f.input :seller_price, :size => 3
+
+    = f.error :base
+
+    .section.actions
+      = f.button :submit, 'Submit Box', :class => 'large action button'

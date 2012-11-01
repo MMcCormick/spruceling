@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121030170213) do
     t.string  "size"
     t.string  "status",                                     :default => "active"
     t.integer "user_id"
-    t.decimal "seller_price", :precision => 8, :scale => 2,                       :null => false
+    t.decimal "seller_price", :precision => 8, :scale => 2
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"

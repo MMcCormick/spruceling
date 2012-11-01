@@ -31,14 +31,17 @@ describe Box do
   it "should require size" do
     FactoryGirl.build(:box, :size => nil).should be_invalid
   end
-  it "should require seller_price" do
-    FactoryGirl.build(:box, :seller_price => nil).should be_invalid
+  it "should require seller_price if active" do
+    FactoryGirl.build(:box, :seller_price => nil, :status => 'active').should be_invalid
   end
   it "should require seller_price to be at least $1" do
-    FactoryGirl.build(:box, :seller_price => 0.5).should be_invalid
+    FactoryGirl.build(:box, :seller_price => 0.5, :status => 'active').should be_invalid
   end
   it "should require seller_price to be less than $1000" do
-    FactoryGirl.build(:box, :seller_price => 1500).should be_invalid
+    FactoryGirl.build(:box, :seller_price => 1500, :status => 'active').should be_invalid
+  end
+  it "should not require the seller_price if not active" do
+    FactoryGirl.build(:box, :seller_price => 5, :status => 'inactive').should be_valid
   end
   it "should return a BigDecimal" do
     @box.seller_price.should be_a BigDecimal

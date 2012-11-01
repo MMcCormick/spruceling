@@ -4,22 +4,36 @@ jQuery ->
     itemSelector: '.box_teaser'
 
 
-  # NEW BOX FORM
-  $('#new_box').livequery ->
-    gender = $('#box_gender').val()
-    if gender == 'm'
-      $('#new_box .boy').toggleClass('grey on')
-    else if gender == 'f'
-      $('#new_box .girl').toggleClass('grey on')
+  $('#new_box').live 'submit', (e) ->
+    e.preventDefault()
+    self = @
+    $.ajax
+      url: $(self).attr('action')
+      data: $(self).serializeArray()
+      cache: false
+      dataType: 'json'
+      type: 'POST'
+      success: (data, textStatus, jqXHR) ->
+        window.location = data.edit_url
+      error: (jqXHR, textStatus, errorThrown) ->
+        globalError(jqXHR, $(self))
 
-  $('#new_box .boy, #new_box .girl').click (e) ->
-    $('#new_box .boy, #new_box .girl').removeClass('on').addClass('grey')
-    $(@).toggleClass('grey on')
-    $('#box_gender, #new_box .item_form .item_gender').val($(@).data('value'))
+  $('#header .new_box').live 'click', (e) ->
+    e.preventDefault()
+    $('#header #new_box').toggle(200)
 
-  $('#box_size').on 'change', ->
-    $('#new_box .item_form .item_size').val($(@).val())
-
-  $('#new_box .item_form').livequery ->
-    $(@).find('.item_gender').val($('#box_gender').val())
-    $(@).find('.item_size').val($('#box_size').val())
+  $('.box_form .item_form .add_item').live 'click', (e) ->
+    e.preventDefault()
+    self = $(@).parent('.item_form:first')
+    $.ajax
+      url: '/items'
+      data: $(self).serializeArray()
+      cache: false
+      dataType: 'json'
+      type: 'POST'
+      success: (data, textStatus, jqXHR) ->
+        $(self).find('select option[value=""]').attr('selected', true)
+        $(self).find(':checked').removeAttr('checked')
+        console.log data
+      error: (jqXHR, textStatus, errorThrown) ->
+        globalError(jqXHR, $(self))
