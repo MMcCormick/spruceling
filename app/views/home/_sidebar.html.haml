@@ -1,17 +1,21 @@
 .section
-  .head Gender
+  %h5.with-border GENDER
   .content
-    .item.radio
-      = radio_button_tag :gender, "", :checked => 'checked'
-      = label_tag :gender, 'Both', :value => ""
-    .item.radio
-      = radio_button_tag :gender, "m", :checked => ''
-      = label_tag :gender, 'Boy', :value => "m"
-    .item.radio
-      = radio_button_tag :gender, "f", :checked => ''
-      = label_tag :gender, 'Girl', :value => "f"
+    %ul.button-group.even.three-up
+      %li.small.secondary.button Both
+      %li.small.secondary.button Boys
+      %li.small.secondary.button Girls
 
 .section
-  .head Size
+  %h5 SIZE
   .content
-    = select_tag :size, options_for_select(Item.all_sizes), :prompt => "Select a size"
+    %ul.single-select
+      - Item.all_sizes.each do |size|
+        %li= size
+
+.section
+  %h5 BRAND
+  .content
+    %ul.multi-select
+      - Brand.all.each do |brand|
+        %li= brand.name
