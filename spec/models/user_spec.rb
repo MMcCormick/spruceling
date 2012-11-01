@@ -42,6 +42,9 @@ describe User do
   it "should create a new instance given a valid attribute" do
     FactoryGirl.create(:user)
   end
+  it "should require balance" do
+    FactoryGirl.build(:user, :balance => nil).should be_invalid
+  end
 
   describe "emails" do
 

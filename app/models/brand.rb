@@ -15,7 +15,7 @@ class Brand < ActiveRecord::Base
 
   validates_uniqueness_of :name
 
-  #after_create :add_to_soulmate
+  after_create :add_to_soulmate
 
   def add_to_soulmate
     nugget = {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030170213) do
+ActiveRecord::Schema.define(:version => 20121101002339) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -123,12 +123,12 @@ ActiveRecord::Schema.define(:version => 20121030170213) do
   add_index "thredup_data", ["url"], :name => "index_thredup_data_on_url"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                                                :default => "",  :null => false
+    t.string   "encrypted_password",                                   :default => "",  :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                                        :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(:version => 20121030170213) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
     t.string   "username"
     t.string   "name"
     t.string   "slug"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20121030170213) do
     t.string   "fb_secret"
     t.string   "fb_token"
     t.boolean  "fb_use_image"
+    t.decimal  "balance",                :precision => 8, :scale => 2, :default => 0.0, :null => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
