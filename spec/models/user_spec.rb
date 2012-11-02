@@ -4,6 +4,7 @@
 #
 #  address                :hstore
 #  authentication_token   :string(255)
+#  balance                :decimal(8, 2)    default(0.0), not null
 #  birthday               :date
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string(255)
@@ -244,6 +245,21 @@ describe User do
           @user.update_address(address)
         }.to_not change{@user.address}
       end
+    end
+  end
+
+  describe "#credit_account" do
+    before(:each) do
+      @user = FactoryGirl.create(:user, :balance => 50.00)
+    end
+
+    it "should add the amount to the user's balance" do
+      @user.credit_account(24.50)
+      @user.balance.should == 74.50
+    end
+
+    it "should return true" do
+      @user.credit_account(15.75).should == true
     end
   end
 end

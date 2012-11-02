@@ -4,7 +4,7 @@
 #
 #  gender       :string(255)
 #  id           :integer          not null, primary key
-#  seller_price :decimal(8, 2)
+#  seller_price :decimal(8, 2)    not null
 #  size         :string(255)
 #  status       :string(255)      default("active")
 #  user_id      :integer

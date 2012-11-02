@@ -5,6 +5,7 @@
 #  box_id   :integer
 #  id       :integer          not null, primary key
 #  order_id :integer
+#  paid     :boolean
 #
 
 class OrderItem < ActiveRecord::Base
@@ -19,7 +20,14 @@ class OrderItem < ActiveRecord::Base
   end
 
   def full_box_shipped
-    OrderMailer.full_box_shipped(id).deliver
+    unless paid
+      if box.user.credit_account(box.seller_price * 0.8)
+        self.paid = true
+        self.save
+        box.user.save
+      end
+      OrderMailer.full_box_shipped(id).deliver
+    end
   end
 
   def full_box_delivered

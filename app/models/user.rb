@@ -4,6 +4,7 @@
 #
 #  address                :hstore
 #  authentication_token   :string(255)
+#  balance                :decimal(8, 2)    default(0.0), not null
 #  birthday               :date
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string(255)
@@ -176,6 +177,11 @@ class User < ActiveRecord::Base
     end
 
     return user, new_user
+  end
+
+  def credit_account(amount)
+    self.balance = balance + amount
+    true
   end
 
 end
