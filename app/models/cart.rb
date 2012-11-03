@@ -44,6 +44,11 @@ class Cart < ActiveRecord::Base
   end
 
   def price_total
-    boxes.map{|b|b.price_total}.inject(:+)
+    total = boxes.map{|b|b.price_total}.inject(:+) - user.balance
+    total < 0.5 ? 0.0 : total
+  end
+
+  def boxes_total
+    total = boxes.map{|b|b.price_total}.inject(:+)
   end
 end

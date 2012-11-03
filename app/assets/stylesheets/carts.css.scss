@@ -15,11 +15,18 @@
       padding: 10px 20px;
       text-align: left;
     }
-    .total {
-      border-top: 1px solid #AAA
+    tr {
+      background: #FFF;
+      td {
+        padding: 10px 20px;
+      }
     }
-    td {
-      padding: 10px 20px;
+    .shipping td,
+    .total td {
+      border-top: 1px solid #DDD;
+    }
+    .total {
+      background: #F9F9F9;
     }
   }
   .buy {
@@ -27,7 +34,8 @@
   }
 
   .toggle_edit_payment,
-  .toggle_edit_address {
+  .toggle_edit_address,
+  .covered {
     display: block;
     margin: 10px 0;
   }

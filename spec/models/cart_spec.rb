@@ -92,13 +92,37 @@ describe Cart do
   end
 
   describe "#price_total" do
-    it "should return the total of the box prices" do
+    it "should return the total of the box prices minus the user's balance" do
       @box1 = FactoryGirl.create(:box, :seller_price => 30.00)
       @box2 = FactoryGirl.create(:box, :seller_price => 20.50)
       @cart = FactoryGirl.create(:cart)
       @cart.add_box(@box1)
       @cart.add_box(@box2)
-      @cart.price_total.should == (@box1.price_total + @box2.price_total)
+      @cart.user.balance = 10.25
+      @cart.user.save
+      @cart.price_total.should == (@box1.price_total + @box2.price_total - @cart.user.balance)
+    end
+
+    it "should return 0 when box costs - user balance < $.50" do
+      @box1 = FactoryGirl.create(:box, :seller_price => 30.00)
+      @cart = FactoryGirl.create(:cart)
+      @cart.add_box(@box1)
+      @cart.user.balance = @box1.price_total - 0.49
+      @cart.user.save
+      @cart.price_total.should == 0.00
+    end
+  end
+
+  describe "#boxes_total" do
+    it "should return the total of the box prices regardless of user balance" do
+      @box1 = FactoryGirl.create(:box, :seller_price => 30.00)
+      @box2 = FactoryGirl.create(:box, :seller_price => 20.50)
+      @cart = FactoryGirl.create(:cart)
+      @cart.add_box(@box1)
+      @cart.add_box(@box2)
+      @cart.user.balance = 10.25
+      @cart.user.save
+      @cart.boxes_total.should == (@box1.price_total + @box2.price_total)
     end
   end
 

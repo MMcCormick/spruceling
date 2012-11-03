@@ -23,10 +23,6 @@ class Order < ActiveRecord::Base
     self.order_items.build(:box => box)
   end
 
-  def price_total
-    order_items.length * 25
-  end
-
   def charge
     return false if stripe_charge_id #Already been charged
 
@@ -84,10 +80,9 @@ class Order < ActiveRecord::Base
       return order
     end
 
-    order.price_total = 0.00
+    order.price_total = user.cart.price_total
     user.cart.boxes.each do |b|
       order.add_box(b)
-      order.price_total += b.price_total
     end
 
     order

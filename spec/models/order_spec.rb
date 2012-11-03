@@ -87,6 +87,11 @@ describe Order do
       it "should return a valid order" do
         Order.generate(@user).should be_valid
       end
+
+      it "should set the order's price total equal to the cart's price total" do
+        order = Order.generate(@user)
+        order.price_total.should == @user.cart.price_total
+      end
     end
   end
 

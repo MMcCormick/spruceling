@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_balance
+    @user = current_user
+  end
+
   def update_address
     respond_to do |format|
       if current_user.update_address(params.slice(:address1, :address2, :city, :state, :zip_code, :full_name))

@@ -40,6 +40,9 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  # Render views
+  config.render_views
+
   config.before (:suite) do
     DatabaseCleaner.strategy = :transaction
   end
