@@ -36,8 +36,20 @@ describe Order do
     FactoryGirl.build(:order, :price_total => nil).should be_invalid
   end
 
-  it "should require price_total to be at least $1" do
-    FactoryGirl.build(:order, :price_total => 0.5).should be_invalid
+  it "should require price_total to be at least $0.0" do
+    FactoryGirl.build(:order, :price_total => -0.5).should be_invalid
+  end
+
+  it "should allow price_total to be $0.0" do
+    FactoryGirl.build(:order, :price_total => 0.0).should be_valid
+  end
+
+  it "should require boxes_total" do
+    FactoryGirl.build(:order, :boxes_total => nil).should be_invalid
+  end
+
+  it "should require boxes_total to be at least $1" do
+    FactoryGirl.build(:order, :boxes_total => 0.5).should be_invalid
   end
 
   it "should have a #boxes method if there have been boxes added" do
@@ -92,6 +104,11 @@ describe Order do
         order = Order.generate(@user)
         order.price_total.should == @user.cart.price_total
       end
+
+      it "should set the order's boxes total equal to the cart's boxes total" do
+        order = Order.generate(@user)
+        order.boxes_total.should == @user.cart.boxes_total
+      end
     end
   end
 
@@ -143,18 +160,6 @@ describe Order do
       @item = @order.add_box(@box)
       @item.save
       @order.order_items.where(:box_id => @box.id).should exist
-    end
-  end
-
-  describe "#price_total" do
-    before (:each) do
-      @order = FactoryGirl.build(:order)
-    end
-
-    it "should be equal to 25 * the # of order_items" do
-      @order.add_box(@box)
-      @order.add_box(@box2)
-      @order.price_total.should eq(@order.order_items.length * 25)
     end
   end
 

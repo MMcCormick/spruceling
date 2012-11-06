@@ -16,8 +16,9 @@ class Order < ActiveRecord::Base
   has_many :order_items, :inverse_of => :order
   has_many :boxes, :through => :order_items
 
-  validates_presence_of :user
-  validates :price_total, :numericality => {:greater_than => 1, :less_than => 1000}
+  validates_presence_of :user, :price_total, :boxes_total
+  validates :price_total, :numericality => {:greater_than_or_equal_to => 0.0, :less_than => 1000}
+  validates :boxes_total, :numericality => {:greater_than => 1.0, :less_than => 1000}
 
   def add_box(box)
     self.order_items.build(:box => box)
@@ -81,6 +82,7 @@ class Order < ActiveRecord::Base
     end
 
     order.price_total = user.cart.price_total
+    order.boxes_total = user.cart.boxes_total
     user.cart.boxes.each do |b|
       order.add_box(b)
     end

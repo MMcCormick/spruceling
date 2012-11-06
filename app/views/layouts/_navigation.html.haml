@@ -13,10 +13,10 @@
           %i.icon-chevron-down
 
           %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
-            %li= link_to "My Profile", user_path(current_user)
+            %li= link_to "My Boxes", user_path(current_user)
             %li= link_to 'My Cart', cart_path
             %li= link_to 'My Orders', orders_path
-            %li= link_to 'Edit Account', edit_user_registration_path
+            %li= link_to 'My Account', edit_user_registration_path
             %li= link_to 'Logout', destroy_user_session_path, :method => 'delete'
 
         %a.part.new_box{:href => new_box_path}

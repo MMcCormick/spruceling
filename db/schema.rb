@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101235440) do
+ActiveRecord::Schema.define(:version => 20121105225655) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121101235440) do
     t.string  "size"
     t.string  "status",                                     :default => "active"
     t.integer "user_id"
-    t.decimal "seller_price", :precision => 8, :scale => 2,                       :null => false
+    t.decimal "seller_price", :precision => 8, :scale => 2
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20121101235440) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "price_total",      :precision => 8, :scale => 2, :null => false
+    t.decimal  "boxes_total",      :precision => 8, :scale => 2, :null => false
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"

@@ -5,7 +5,7 @@
 #  box_id   :integer
 #  id       :integer          not null, primary key
 #  order_id :integer
-#  paid     :boolean
+#  paid     :boolean          default(FALSE)
 #
 
 require 'spec_helper'
