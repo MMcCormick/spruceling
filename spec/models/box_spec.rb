@@ -163,4 +163,8 @@ describe Box do
       end
     end
   end
+
+  describe "#recommended_price" do
+    it "should return a float"
+  end
 end

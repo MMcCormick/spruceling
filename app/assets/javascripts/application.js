@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require underscore
 
 //= require jquery.livequery
+//= require soulmate
 //= require cloudinary
 //= require attachinary
 //= require jquery.masonry

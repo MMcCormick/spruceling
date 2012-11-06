@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101235440) do
+ActiveRecord::Schema.define(:version => 20121106214850) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121101235440) do
     t.string  "size"
     t.string  "status",                                     :default => "active"
     t.integer "user_id"
-    t.decimal "seller_price", :precision => 8, :scale => 2,                       :null => false
+    t.decimal "seller_price", :precision => 8, :scale => 2
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"
@@ -53,7 +53,10 @@ ActiveRecord::Schema.define(:version => 20121101235440) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
+
+  add_index "brands", ["slug"], :name => "index_brands_on_slug"
 
   create_table "carts", :force => true do |t|
     t.integer "user_id"
@@ -119,8 +122,10 @@ ActiveRecord::Schema.define(:version => 20121101235440) do
     t.decimal "retail_price",  :precision => 8, :scale => 2
     t.boolean "new_with_tags",                               :default => false
     t.string  "url"
+    t.integer  "brand_id"
   end
 
+  add_index "thredup_data", ["brand_id"], :name => "index_thredup_data_on_slug"
   add_index "thredup_data", ["url"], :name => "index_thredup_data_on_url"
 
   create_table "users", :force => true do |t|

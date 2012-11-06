@@ -11,6 +11,9 @@
 class Brand < ActiveRecord::Base
   attr_accessible :name
 
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+
   has_many :items, :inverse_of => :brand
 
   validates_uniqueness_of :name

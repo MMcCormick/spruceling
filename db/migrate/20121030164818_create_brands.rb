@@ -5,5 +5,6 @@ class CreateBrands < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :brands, :name
   end
 end
