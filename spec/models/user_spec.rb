@@ -258,8 +258,41 @@ describe User do
       @user.balance.should == 74.50
     end
 
-    it "should return true" do
+    it "should return true for any positive number" do
       @user.credit_account(15.75).should == true
+    end
+
+    it "should return false for anything <= 0" do
+      @user.credit_account(0).should == false
+      @user.credit_account(-1).should == false
+      @user.balance.should == 50.00
+    end
+  end
+
+  describe "#withdraw_from_account" do
+    before(:each) do
+      @user = FactoryGirl.create(:user, :balance => 50.00)
+    end
+
+    it "should subtract the amount from the user's balance" do
+      @user.withdraw_from_account(24.50)
+      @user.balance.should == 25.50
+    end
+
+    it "should return false for anything <= 0" do
+      @user.credit_account(0).should == false
+      @user.balance.should == 50.00
+      @user.credit_account(-1).should == false
+      @user.balance.should == 50.00
+    end
+
+    it "should return true when amount is less than balance" do
+      @user.withdraw_from_account(15.75).should == true
+    end
+
+    it "should return false when amount is greater than balance" do
+      @user.withdraw_from_account(100).should == false
+      @user.balance.should == 50.00
     end
   end
 end

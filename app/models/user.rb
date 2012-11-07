@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   has_many :items, :inverse_of => :user
   has_many :boxes, :inverse_of => :user
   has_many :orders, :inverse_of => :user
+  has_many :withdrawals, :inverse_of => :user
 
   validates_presence_of :name, :email, :encrypted_password, :balance
   attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
@@ -180,8 +181,21 @@ class User < ActiveRecord::Base
   end
 
   def credit_account(amount)
-    self.balance = balance + amount
-    true
+    if amount > 0
+      self.balance = balance + amount
+      true
+    else
+      false
+    end
+  end
+
+  def withdraw_from_account(amount)
+    if amount > 0 && amount < balance
+      self.balance = balance - amount
+      true
+    else
+      false
+    end
   end
 
 end

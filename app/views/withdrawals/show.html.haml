@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Amount:
+  = @withdrawal.amount
+%p
+  %b Address:
+  = @withdrawal.address
+%p
+  %b User:
+  = @withdrawal.user
+
+= link_to 'Edit', edit_withdrawal_path(@withdrawal)
+\|
+= link_to 'Back', withdrawals_path

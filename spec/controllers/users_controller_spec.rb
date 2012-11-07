@@ -56,23 +56,36 @@ describe UsersController do
   end
 
   describe "PUT update_stripe" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = "foobar"
+    end
+
+    it "redirects back" do
+      post :update_stripe, {:stripeToken => 'foo'}
+      response.should redirect_to "foobar"
+    end
+
     describe "with valid params" do
       it "updates the user" do
         User.any_instance.should_receive(:update_stripe).with('foo')
         post :update_stripe, {:stripeToken => 'foo'}
       end
-
-      it "redirects to the cart" do
-        post :update_stripe, {:stripeToken => 'foo'}
-        response.should redirect_to(cart_path)
-      end
     end
   end
 
   describe "update_address" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = "foobar"
+    end
+
     it "should call #update_address" do
       User.any_instance.should_receive(:update_address).with({"address1" => "1512 Spruce Street"})
       put :update_address, {:address1 => "1512 Spruce Street"}
+    end
+
+    it "should redirect back" do
+      put :update_address, {:address1 => "1512 Spruce Street"}
+      response.should redirect_to "foobar"
     end
 
     context "when update_address is successful" do
@@ -84,11 +97,6 @@ describe UsersController do
         User.any_instance.should_receive(:save)
         put :update_address, {:address1 => "1512 Spruce Street"}
       end
-
-      it "should redirect to the user's profile" do
-        put :update_address, {:address1 => "1512 Spruce Street"}
-        response.should redirect_to user_path @user
-      end
     end
 
     context "when update_address is unsuccessful" do
@@ -99,11 +107,6 @@ describe UsersController do
       it "should not call save" do
         User.any_instance.should_receive(:save).never
         put :update_address, {:address => {:address1 => "1512 Spruce Street"}}
-      end
-
-      it "should redirect to edit_address" do
-        put :update_address
-        response.should redirect_to(edit_user_address_path)
       end
     end
   end

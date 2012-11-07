@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105225655) do
+ActiveRecord::Schema.define(:version => 20121106192022) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -163,5 +163,16 @@ ActiveRecord::Schema.define(:version => 20121105225655) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
+
+  create_table "withdrawals", :force => true do |t|
+    t.decimal  "amount",     :precision => 8, :scale => 2,                    :null => false
+    t.hstore   "address",                                                     :null => false
+    t.boolean  "sent",                                     :default => false, :null => false
+    t.integer  "user_id"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "withdrawals", ["user_id"], :name => "index_withdrawals_on_user_id"
 
 end

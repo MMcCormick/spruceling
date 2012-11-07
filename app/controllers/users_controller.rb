@@ -24,18 +24,14 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit_balance
-    @user = current_user
-  end
-
   def update_address
     respond_to do |format|
       if current_user.update_address(params.slice(:address1, :address2, :city, :state, :zip_code, :full_name))
         current_user.save
-        format.html { redirect_to user_path(current_user), :notice => 'Information successfully updated.' }
+        format.html { redirect_to :back, :notice => 'Information successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to edit_user_address_path, :alert => 'There is an error in your shipping address.' }
+        format.html { redirect_to :back, :alert => 'There is an error in your shipping address.' }
         format.json { render :json => current_user.errors, :status => :unprocessable_entity }
       end
     end
@@ -45,10 +41,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if current_user.update_stripe(params[:stripeToken])
         current_user.save
-        format.html { redirect_to cart_path, :notice => 'Credit card information was successfully updated.' }
+        format.html { redirect_to :back, :notice => 'Credit card information was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to cart_path, :notice => 'There was an error updating your credit card information.' }
+        format.html { redirect_to :back, :notice => 'There was an error updating your credit card information.' }
         format.json { render :json => current_user.errors, :status => :unprocessable_entity }
       end
     end

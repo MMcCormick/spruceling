@@ -1,11 +1,8 @@
 Spruceling::Application.routes.draw do
 
+  resources :withdrawals, :only => [:new, :create]
   resources :brands
-
-  get '/testing' => 'testing#test'
-
   resources :orders
-
   resources :items
 
   # Boxes
@@ -23,12 +20,11 @@ Spruceling::Application.routes.draw do
     put 'update_address' => 'users#update_address', :as => :update_user_address
     get 'address' => 'users#edit_address', :as => :edit_user_address
     get 'payment' => 'users#edit_payment', :as => :edit_user_payment
-    get 'balance' => 'users#edit_balance', :as => :edit_user_balance
-    post 'withdraw' => 'users#withdraw', :as => :withdraw
     get ':id/page/:page' => 'users#show'
   end
   resources :users, :only => [:show, :index, :edit]
 
+  # Cart
   scope 'cart' do
     get '' => 'carts#show', :as => :cart
     put 'add' => 'carts#add', :as => :cart_add

@@ -1,10 +1,10 @@
-%h1.username= @user.name
+%h3 My Account
 
 .head{:class => controller.action_name == "edit" ? "on" : ""}
-  = link_to "Account", edit_user_registration_path
+  = link_to "Account Information", edit_user_registration_path
 .head{:class => controller.action_name == "edit_address" ? "on" : ""}
   = link_to "Shipping Address", edit_user_address_path
 .head{:class => controller.action_name == "edit_payment" ? "on" : ""}
   = link_to "Payment Information", edit_user_payment_path
-.head{:class => controller.action_name == "edit_balance" ? "on" : ""}
-  = link_to "Account Balance", edit_user_balance_path
+.head{:class => controller.controller_name == "withdrawal" && controller.action_name == "new" ? "on" : ""}
+  = link_to "Account Balance", new_withdrawal_path
