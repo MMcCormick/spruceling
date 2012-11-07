@@ -82,13 +82,3 @@ unless ItemType.where(:name => "Long-sleeve Polos").first
     end
   end
 end
-
-### Brands ### (from thredup data)
-
-unless Brand.where(:name => "OshKosh B'gosh").first
-  puts 'Creating brands from thredup data'
-  ThredupData.select(:brand).uniq.each do |thredup|
-    Brand.create(:name => thredup.brand)
-  end
-end
-

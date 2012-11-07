@@ -16,6 +16,22 @@ h2 {
   font-size: 2.4rem;
 }
 
+#full {
+  #container {
+    width: auto;
+  }
+}
+
+.with-left-fixed {
+  padding-left: inherit;
+}
+.left-fixed {
+  margin-left: inherit;
+  padding-right: inherit;
+  float: none;
+  width: auto;
+}
+
 // 1. ROOT 					==============================
 // 2. TYPOGRAPHY 			==============================
 // 3. COLOUR 				==============================

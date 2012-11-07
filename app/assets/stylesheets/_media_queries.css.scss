@@ -3,13 +3,13 @@
 }
 
 // 1382px
-//@media only screen and (max-width: 1382px) {
-  @import "1382";
-//}
+@media only screen and (max-width: 1270px) {
+  @import "1270";
+}
 
 // 992px
-@media only screen and (max-width: 992px) {
-  @import "992";
+@media only screen and (max-width: 1030px) {
+  @import "1000";
 }
 
 // 768px

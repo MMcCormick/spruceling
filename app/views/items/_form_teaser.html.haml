@@ -1,0 +1,6 @@
+.item_form_teaser
+  %span.brand= item.brand.name
+  %span.type= item.item_type.name
+  - if item.new_with_tags
+    %span.nwt [new with tags]
+  %a.delete{:href => item_path(item), 'data-method' => 'destroy'} X

@@ -35,7 +35,8 @@ Spruceling::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  mount Attachinary::Engine => "/uploads"
+  mount Attachinary::Engine => "uploads"
+  mount Soulmate::Server, :at => "sm"
 
   admin_constraint = lambda do |request|
     #request.env['warden'].authenticate? and request.env['warden'].user.role?('admin')

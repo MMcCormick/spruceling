@@ -19,8 +19,10 @@
 @import "compass";
 @import "variables";
 @import "sprites";
+@import "soulmate";
 
 body {
+  background: #F5F6F3;
   &.wf-loading {
     visibility: hidden;
   }
@@ -83,9 +85,6 @@ a {
     height: $header-navbar-height;
     background: transparent;
 
-    .columns {
-      padding: 0px;
-    }
     .section {
       @include border-radius(3px);
       background: #CCC;
@@ -105,10 +104,11 @@ a {
         }
       }
       &.middle_section {
-        margin: 0 5px;
+        margin: 0 5px 0 10px;
       }
       &.right_section {
         text-align: center;
+        margin-right: 10px;
       }
       .part {
         @include text-shadow(0 1px 0 #EEEEEC);
@@ -195,6 +195,9 @@ a {
   }
 
   #container {
+    width: 1260px;
+    padding: 0 10px;
+    margin: auto;
   }
   #main {
     min-height: 600px;
@@ -213,8 +216,18 @@ a {
   @include clearfix();
 }
 
+.with-left-fixed {
+  padding-left: $left-fixed-width;
+}
+.left-fixed {
+  width: $left-fixed-width;
+  margin-left: -1 * $left-fixed-width;
+  float: left;
+  padding-right: 30px;
+}
+
 #left_sidebar {
-  padding: 0px;
+  margin-top: 20px;
 
   .section {
     margin: 0 0 30px 0;

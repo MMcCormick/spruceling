@@ -44,6 +44,10 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = current_user.items.new(params[:item])
+    if params[:item][:brand]
+      brand = Brand.find_or_create_by_name(params[:item][:brand])
+      @item.brand = brand
+    end
     if params[:item][:box_id]
       @box = Box.find(params[:item][:box_id])
       authorize! :edit, @box
@@ -52,11 +56,12 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        html = render_to_string :partial => 'items/form_teaser', :locals => {:item => @item}
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render json: @item, status: :created, location: @item }
+        format.json { render :json => {:item => @item, :recommended_price => @box.recommended_price, :form_teaser => html}, status: :created, location: @item }
       else
         format.html { render action: "new" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.json { render :json => {:errors => @item.errors}, status: :unprocessable_entity }
       end
     end
   end
@@ -83,13 +88,13 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     @item = Item.find(params[:id])
+    @box = @item.box
     authorize! :delete, @item
-
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to items_url }
-      format.json { head :no_content }
+      format.html { redirect_to :back }
+      format.json { render :json => {:status => :ok, :recommended_price => @box.recommended_price} }
     end
   end
 end

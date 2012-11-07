@@ -15,6 +15,8 @@
 
 class ThredupData < ActiveRecord::Base
 
+  belongs_to :brand
+
   def self.fetch_all(url='http://www.thredup.com')
     puts "*********** #{url} *************"
 
@@ -42,8 +44,8 @@ class ThredupData < ActiveRecord::Base
     end
 
     data = {}
-    data[:brand] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta h5').text).strip
-    data[:brand].strip if data[:brand]
+    data[:brand_name] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta h5').text).strip
+    data[:brand_name].strip if data[:brand_name]
 
     data[:gender] = ActionView::Base.full_sanitizer.sanitize(agent.page.parser.css('.meta .girls,.meta .boys').text)
     data[:gender].strip if data[:gender]

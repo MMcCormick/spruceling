@@ -13,11 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require underscore
 
 //= require jquery.livequery
+//= require soulmate
 //= require cloudinary
 //= require attachinary
-//= require jquery.masonry
 //= require jquery_nested_form
 //= require global_functions
 

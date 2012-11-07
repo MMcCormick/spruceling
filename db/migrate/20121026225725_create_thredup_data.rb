@@ -1,7 +1,7 @@
 class CreateThredupData < ActiveRecord::Migration
   def change
     create_table :thredup_data do |t|
-      t.string :brand
+      t.string :brand_name
       t.string :item_type
       t.string :gender
       t.string :size

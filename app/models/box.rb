@@ -24,6 +24,7 @@ class Box < ActiveRecord::Base
   validates_presence_of :gender, :size, :user
   attr_accessible :gender, :size, :seller_price, :items_attributes
   validates :seller_price, :numericality => {:greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000}, :if => lambda { |box| box.is_active? }
+  validates :photos, :presence => true, :if => lambda { |box| box.is_active? }
 
   scope :active, where(:status => "active")
 
@@ -76,6 +77,40 @@ class Box < ActiveRecord::Base
   end
 
   def price_total
-    seller_price + 12.00
+    (seller_price ? seller_price + 12 : 0)
+  end
+
+  def recommended_price
+    @recommended ||= calculate_recommended_price
+  end
+
+  private
+
+  def calculate_recommended_price
+    prices = {:retail => 0, :consignment => 0}
+    brands = {}
+    items.each do |item|
+      brands[item.brand_id] ||= 0
+      brands[item.brand_id] += 1
+    end
+
+    price_data = ThredupData.select('brand_id, AVG(retail_price) as retail_average, AVG(thredup_price) as consignment_average')
+    .where(:brand_id => brands.keys)
+    .group('brand_id').to_a
+
+    brands.each do |brand_id,brand_count|
+      data = price_data.detect{|pd| pd.brand_id == brand_id}
+      if data
+        prices[:retail] += (data.retail_average.to_f * brand_count).ceil
+        prices[:consignment] += (data.consignment_average.to_f * brand_count).ceil
+      else
+        prices[:retail] += (20 * brand_count).ceil
+        prices[:consignment] += (7 * brand_count).ceil
+      end
+    end
+
+    prices[:recommended_high] = (prices[:consignment] * 0.6).ceil
+    prices[:recommended_low] = (prices[:consignment] * 0.2).ceil
+    prices
   end
 end

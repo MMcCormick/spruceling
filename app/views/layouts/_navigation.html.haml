@@ -1,10 +1,10 @@
-#header.row
-  .three.columns
-    .section.brand
-      %a{:href => root_path}
-        = image_tag('spruceling_logo_white.png', :alt => 'Spruceling')
+#header.row.with-left-fixed
+  .left-fixed.brand
+    %a{:href => root_path}
+      = image_tag('spruceling_logo.png', :alt => 'Spruceling')
 
-  .seven.columns
+
+  .nine.columns
     .section.middle_section
       - if user_signed_in?
         .dropdown.part
@@ -29,7 +29,7 @@
         = link_to 'Login', new_user_session_path, :class => 'part login'
         = link_to 'Sign up', new_user_registration_path, :class => 'part signup'
 
-  .two.columns
+  .three.columns
     .section.right_section
       %a.part.cart{:href => cart_path}
         %i.icon-shopping-cart

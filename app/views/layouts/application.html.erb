@@ -28,10 +28,9 @@
 
       <%= render 'layouts/messages' %>
 
-      <div class="row">
+      <div id="main" role="main" class="row <%= content_for?(:left_sidebar) ? "with-left-fixed" : '' %>">
         <%= yield :left_sidebar %>
-
-        <div id="main" role="main" class="<%= content_for?(:left_sidebar) ? "nine" : "twelve" %> columns">
+        <div class='twelve columns'>
           <%= yield %>
         </div>
       </div>
