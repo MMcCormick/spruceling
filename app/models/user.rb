@@ -37,6 +37,8 @@
 #
 
 class User < ActiveRecord::Base
+  serialize :address, ActiveRecord::Coders::Hstore
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

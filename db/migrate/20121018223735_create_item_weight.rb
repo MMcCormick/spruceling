@@ -4,7 +4,5 @@ class CreateItemWeight < ActiveRecord::Migration
       t.string :name
       t.hstore :weights
     end
-
-    change_column :item_weights, :weights, :text, :limit => nil
   end
 end

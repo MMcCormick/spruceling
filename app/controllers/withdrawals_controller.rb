@@ -46,10 +46,10 @@ class WithdrawalsController < ApplicationController
       if @withdrawal.valid? && @user.withdraw_from_account(@withdrawal.amount)
         @withdrawal.save
         @user.save
-        format.html { redirect_to action: "new", notice: 'Withdrawal was successfully created.' }
+        format.html { render action: "new", notice: 'Withdrawal was successfully created.' }
         format.json { render json: @withdrawal, status: :created, location: @withdrawal }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", notice: "Withdrawal could not be completed" }
         format.json { render json: @withdrawal.errors, status: :unprocessable_entity }
       end
     end

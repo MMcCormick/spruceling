@@ -4,12 +4,11 @@
 #
 #  id      :integer          not null, primary key
 #  name    :string(255)
-#  weights :text
+#  weights :hstore
 #
 
 class ItemWeight < ActiveRecord::Base
-
-  store :weights
+  serialize :weights, ActiveRecord::Coders::Hstore
 
   has_many :item_types, :inverse_of => :item_weight
 
@@ -17,7 +16,7 @@ class ItemWeight < ActiveRecord::Base
 
   def get_weight(size)
     if Item.all_sizes.include? size
-      weights[size]
+      weights[size].to_f
     end
   end
 

@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20121106192022) do
 
   create_table "item_weights", :force => true do |t|
     t.string "name"
-    t.text   "weights"
+    t.hstore "weights"
   end
 
   create_table "items", :force => true do |t|

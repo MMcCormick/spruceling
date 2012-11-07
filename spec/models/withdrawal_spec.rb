@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: withdrawals
+#
+#  address    :hstore           not null
+#  amount     :decimal(8, 2)    not null
+#  created_at :datetime         not null
+#  id         :integer          not null, primary key
+#  sent       :boolean          default(FALSE), not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
 require 'spec_helper'
 
 describe Withdrawal do

@@ -2,6 +2,7 @@
 #
 # Table name: orders
 #
+#  boxes_total      :decimal(8, 2)    not null
 #  created_at       :datetime
 #  id               :integer          not null, primary key
 #  price_total      :decimal(8, 2)    not null

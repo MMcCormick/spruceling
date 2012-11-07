@@ -4,7 +4,7 @@
 FactoryGirl.define do
   factory :withdrawal do
     amount "9.99"
-    address ""
+    address "address1" => "Foobar"
     association :user
   end
 end
