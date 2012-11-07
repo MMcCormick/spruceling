@@ -1,9 +1,5 @@
 jQuery ->
 
-  $('#box_list').masonry
-    itemSelector: '.box_teaser'
-
-
   $('#new_box').on 'submit', (e) ->
     e.preventDefault()
     self = @

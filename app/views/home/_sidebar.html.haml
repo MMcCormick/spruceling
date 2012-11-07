@@ -1,10 +1,13 @@
 .section
-  %h5.with-border GENDER
+  %h5 GENDER
   .content
     %ul.button-group.even.three-up
-      %li.small.secondary.button Both
-      %li.small.secondary.button Boys
-      %li.small.secondary.button Girls
+      %li
+        %a.small.secondary.button{:href => ''} Both
+      %li
+        %a.small.secondary.button{:href => ''} Boys
+      %li
+        %a.small.secondary.button{:href => ''} Girls
 
 .section
   %h5 SIZE
@@ -13,9 +16,9 @@
       - Item.all_sizes.each do |size|
         %li= size
 
-.section
-  %h5 BRAND
-  .content
-    %ul.multi-select
-      - Brand.all.each do |brand|
-        %li= brand.name
+-#.section
+-#  %h5 BRAND
+-#  .content
+-#    %ul.multi-select
+-#      - Brand.all.each do |brand|
+-#        %li= brand.name
