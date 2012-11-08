@@ -24,11 +24,17 @@ describe WithdrawalsController do
       assigns(:withdrawal).user.should eq @user
     end
 
+    it "testing if withdrawal is valid" do
+      Withdrawal.should_receive(:generate).with(@user).and_return(withdrawal)
+      withdrawal.should_receive(:valid?).and_return(true)
+      post :create
+    end
+
     describe "when the returned withdrawal is valid" do
       before(:each) do
         Withdrawal.should_receive(:generate).with(@user).and_return(withdrawal)
-        withdrawal.should_receive(:valid?).and_return(true)
-        @user.should_receive(:withdraw_from_account).and_return(true)
+        withdrawal.should_receive(:valid?).any_number_of_times.and_return(true)
+        User.any_instance.should_receive(:withdraw_from_account).and_return(true)
       end
 
       it "creates a new withdrawal" do
