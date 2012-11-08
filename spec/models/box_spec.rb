@@ -52,7 +52,7 @@ describe Box do
       @box.price_total.should > @box.seller_price
     end
     it "should return a BigDecimal" do
-      @box.price_total.should be_a Float
+      @box.price_total.should be_a BigDecimal
     end
   end
 

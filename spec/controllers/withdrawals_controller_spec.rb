@@ -3,23 +3,25 @@ require 'spec_helper'
 describe WithdrawalsController do
 
   before (:each) do
-    @user = FactoryGirl.create(:user)
+    @user = FactoryGirl.create(:user, :balance => 40.00)
     sign_in @user
   end
 
   describe "GET new" do
-    it "assigns the current user as @user" do
+    it "assigns a new withdrawal belonging to the current user as @withdrawal" do
       get :new
-      assigns(:user).should eq @user
+      assigns(:withdrawal).should be_a_new Withdrawal
+      assigns(:withdrawal).user.should eq @user
     end
   end
 
   describe "POST create" do
-    let(:withdrawal) { FactoryGirl.build(:withdrawal) }
+    let(:withdrawal) { FactoryGirl.build(:withdrawal, :amount => @user.balance) }
 
-    it "assigns the current user as @user" do
+    it "assigns a new withdrawal belonging to the current user as @withdrawal" do
       post :create
-      assigns(:user).should eq @user
+      assigns(:withdrawal).should be_a Withdrawal
+      assigns(:withdrawal).user.should eq @user
     end
 
     describe "when the returned withdrawal is valid" do

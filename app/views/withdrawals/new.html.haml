@@ -1,22 +1,15 @@
 - content_for :left_sidebar do
   = render :partial => 'users/edit_sidebar', :layout => 'layouts/left_sidebar'
 
-#edit_balance
+#new_withdrawal
   .row
     .six.columns
-      %h3= "Current Balance: $#{@user.balance}"
+      %h3= "Current Balance: $#{@withdrawal.user.balance}"
       %a#toggle_withdraw{:href => "#"} Withdraw Balance
       #withdraw.hide
-        - if @user.balance < 5
+        - if @withdrawal.user.balance < 5
           %div You must have at least $5 in your account to withdraw.
-        - elsif @user.address.blank?
+        - elsif @withdrawal.user.address.blank?
           %div Please update your shipping address before proceeding
         - else
-          %form.widthraw_form{:method => "POST", :action => withdrawals_path}
-            %p
-              = "By clicking 'Withdraw', you submit that you would like Spruceling to send your"
-              = "full account balance ($#{@user.balance}) to the following address:"
-            .address= render "users/address", :address => @user.address
-            %p If this address is incorrect, you can update your shipping address by clicking 'Shipping Address' on the left.
-            %button.submit-button{:type => 'submit', :autocomplete => 'off'} Withdraw
-
+          %div= render "form"

@@ -27,8 +27,7 @@ class WithdrawalsController < ApplicationController
   # GET /withdrawals/new
   # GET /withdrawals/new.json
   def new
-    @user = current_user
-    @withdrawal = Withdrawal.new
+    @withdrawal = current_user.withdrawals.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,13 +38,12 @@ class WithdrawalsController < ApplicationController
   # POST /withdrawals
   # POST /withdrawals.json
   def create
-    @user = current_user
-    @withdrawal = Withdrawal.generate(@user)
+    @withdrawal = Withdrawal.generate(current_user)
 
     respond_to do |format|
-      if @withdrawal.valid? && @user.withdraw_from_account(@withdrawal.amount)
+      if @withdrawal.valid? && @withdrawal.user.withdraw_from_account(@withdrawal.amount)
         @withdrawal.save
-        @user.save
+        @withdrawal.user.save
         format.html { render action: "new", notice: 'Withdrawal was successfully created.' }
         format.json { render json: @withdrawal, status: :created, location: @withdrawal }
       else

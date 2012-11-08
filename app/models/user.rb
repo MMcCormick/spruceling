@@ -192,7 +192,7 @@ class User < ActiveRecord::Base
   end
 
   def withdraw_from_account(amount)
-    if amount > 0 && amount < balance
+    if amount > 0 && amount <= balance
       self.balance = balance - amount
       true
     else

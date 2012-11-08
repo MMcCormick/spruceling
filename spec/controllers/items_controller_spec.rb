@@ -160,6 +160,10 @@ describe ItemsController do
     end    end
 
   describe "DELETE destroy" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = "foobar"
+    end
+
     it "destroys the requested item" do
       expect {
         delete :destroy, {:id => @item.to_param}
@@ -168,7 +172,7 @@ describe ItemsController do
 
     it "redirects to the items list" do
       delete :destroy, {:id => @item.to_param}
-      response.should redirect_to(items_url)
+      response.should redirect_to("foobar")
     end
 
     it "should deny users without permissions" do

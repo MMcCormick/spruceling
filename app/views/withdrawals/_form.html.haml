@@ -1,8 +1,8 @@
-= semantic_form_for @withdrawal do |f|
-  = f.inputs do
-    = f.input :amount
-    = f.input :address
-    = f.input :user
+= simple_form_for @withdrawal do |f|
+  %p
+    = "By clicking 'Withdraw', you submit that you would like Spruceling to send your"
+    = "full account balance ($#{@withdrawal.user.balance}) to the following address:"
+  .address= render "users/address", :address => @withdrawal.user.address
+  %p If this address is incorrect, you can update your shipping address by clicking 'Shipping Address' on the left.
 
-  = f.actions do
-    = f.action :submit, :as => :input
+  = f.button :submit, :value => "Withdraw", :class => "medium action button"
