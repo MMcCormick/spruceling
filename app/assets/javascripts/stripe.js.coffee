@@ -22,7 +22,13 @@ jQuery ->
       number: $('.card-number').val(),
       cvc: $('.card-cvc').val(),
       exp_month: $('.card-expiry-month').val(),
-      exp_year: $('.card-expiry-year').val()
+      exp_year: $('.card-expiry-year').val(),
+      name: $('.card_name').val(),
+      address_line1: $('.address_line1').val(),
+      address_line2: $('.address_line2').val(),
+      address_city: $('.address_city').val(),
+      address_state: $('.address_state').val(),
+      address_zip: $('.address_zip').val()
     }, stripeResponseHandler)
 
     # prevent the form from submitting with the default action

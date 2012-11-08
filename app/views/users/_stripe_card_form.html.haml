@@ -11,5 +11,23 @@
     %input.card-expiry-month{:type => 'text', :size => '2', :autocomplete => 'off', :maxlength => '2'}
     %span
     %input.card-expiry-year{:type => 'text', :size => '4', :autocomplete => 'off', :maxlength => '4'}
+  .form-row
+    %label Name (as it appears on card)
+    %input.card_name{:type => 'text', :autocomplete => 'off'}
+  .form-row
+    %label Address Line 1
+    %input.address_line1{:type => 'text', :autocomplete => 'off'}
+  .form-row
+    %label Address Line 2
+    %input.address_line2{:type => 'text', :autocomplete => 'off'}
+  .form-row
+    %label City
+    %input.address_city{:type => 'text', :autocomplete => 'off'}
+  .form-row
+    %label State
+    %input.address_state{:type => 'text', :autocomplete => 'off'}
+  .form-row
+    %label Zip Code
+    %input.address_zip{:type => 'text', :autocomplete => 'off'}
   %input.stripe-token{:type => 'hidden', :name => 'stripeToken'}
-  %button.submit-button{:type => 'submit', :autocomplete => 'off'} Submit Payment Information
+  %button.small.action.button{:type => 'submit', :autocomplete => 'off'} Update Payment Information
