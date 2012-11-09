@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106214850) do
+ActiveRecord::Schema.define(:version => 20121109162749) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20121106214850) do
     t.integer "box_id"
     t.integer "order_id"
     t.boolean "paid",     :default => false
+    t.string  "status",   :default => "pending"
   end
 
   add_index "order_items", ["box_id"], :name => "index_order_items_on_box_id", :unique => true

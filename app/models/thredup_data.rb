@@ -2,7 +2,8 @@
 #
 # Table name: thredup_data
 #
-#  brand         :string(255)
+#  brand_id      :integer
+#  brand_name    :string(255)
 #  gender        :string(255)
 #  id            :integer          not null, primary key
 #  item_type     :string(255)

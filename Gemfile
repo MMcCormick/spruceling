@@ -42,6 +42,7 @@ gem 'zurb-foundation'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'nested_form'
+gem 'usps'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
