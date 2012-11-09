@@ -53,7 +53,7 @@ jQuery ->
       $('#item_brand').val(term).blur()
 
   # handle deleting an item from a box
-  $('.item_form_teaser .delete').on 'click', (e) ->
+  $('.item_form_teaser').on 'click', '.delete', (e) ->
     e.preventDefault()
     self = $(@)
     $.ajax
@@ -72,3 +72,28 @@ jQuery ->
   $('#box_seller_price').on 'keyup', (e) ->
     $(@).val(Math.round($(@).val()))
     $('.shipping_note span').text($('.shipping_note span').data('shipping') + parseInt($(@).val()))
+
+  # box images
+  $('#boxes_photo_upload').fileupload
+    dataType: "json"
+    type: 'POST'
+    formData: {'imageable_id': $('#box_id').val(), 'imageable_type': 'Box'}
+    add: (e,data) ->
+      types = /(\.|\/)(gif|jpe?g|png)$/i
+      file = data.files[0]
+      if types.test(file.type) || types.test(file.name)
+        data.context = $(tmpl("template-upload", file))
+        $('.photo-list').prepend(data.context)
+        data.submit()
+      else
+        alert("#{file.name} is not a gif, jpeg, or png image file")
+    progress: (e, data) ->
+      if data.context
+        progress = parseInt(data.loaded / data.total * 100, 10) + 1
+        data.context.find('.bar').css('width', progress + '%')
+        if progress >= 99
+          data.context.find('.bar').parents('.upload:first').addClass('done')
+    done: (e,data) ->
+      $('.photo-list .upload.done').remove()
+      for image in data.result
+        $('.photo-list').append(image.html)

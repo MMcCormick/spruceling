@@ -1,6 +1,6 @@
 .box_teaser
   .photo
-    = box.photos.length > 0 ? cl_image_tag(box.photos.first.path, { :size => '230x230', :crop => :fill }) : ''
+    = render "photos/cover_photo", :photo => box.photos.first
     .overlay
       .price= "$#{box.seller_price.to_i}"
       %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}

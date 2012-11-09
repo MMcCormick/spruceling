@@ -3,4 +3,4 @@
   %span.type= item.item_type.name
   - if item.new_with_tags
     %span.nwt [new with tags]
-  %a.delete{:href => item_path(item), 'data-method' => 'destroy'} X
+  %a.delete{:href => item_path(item)} X

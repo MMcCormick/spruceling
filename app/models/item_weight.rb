@@ -30,8 +30,7 @@ class ItemWeight < ActiveRecord::Base
 
         # If there are blank sizes, fill them in
         blank_sizes.each_with_index do |blank_size, i|
-          self.weights[blank_size] = lower + ((weights[size] - lower) / (blank_sizes.length + 1) * (i+1)).round(1)
-          #puts "#{blank_size} = #{lower} + (#{weights[size]} - #{lower} / #{blank_sizes.length + 1}) = #{weights[blank_size]}"
+          self.weights[blank_size] = lower + ((weights[size].to_f - lower) / (blank_sizes.length + 1) * (i+1)).round(1)
         end
 
         # Set this size as the last known size

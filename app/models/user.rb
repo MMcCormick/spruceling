@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, :use => :slugged
 
-  has_attachment :avatar, :accept => [:jpg, :jpeg, :png, :gif]
+  mount_uploader :avatar, ImageUploader
 
   has_one :cart, :dependent => :destroy, :inverse_of => :user
   has_many :items, :inverse_of => :user

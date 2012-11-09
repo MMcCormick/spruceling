@@ -11,23 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121106214850) do
-
-  create_table "attachinary_files", :force => true do |t|
-    t.integer  "attachinariable_id"
-    t.string   "attachinariable_type"
-    t.string   "scope"
-    t.string   "public_id"
-    t.string   "version"
-    t.integer  "width"
-    t.integer  "height"
-    t.string   "format"
-    t.string   "resource_type"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
-  end
-
-  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], :name => "by_scoped_parent"
+ActiveRecord::Schema.define(:version => 20121109173547) do
 
   create_table "boxes", :force => true do |t|
     t.string  "gender"
@@ -51,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20121106214850) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
+    t.string   "photo"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "slug"
@@ -115,6 +100,14 @@ ActiveRecord::Schema.define(:version => 20121106214850) do
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
+  create_table "photos", :force => true do |t|
+    t.integer  "imageable_id"
+    t.integer  "imageable_type"
+    t.string   "image"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "thredup_data", :force => true do |t|
     t.string  "brand_name"
     t.string  "item_type"
@@ -127,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20121106214850) do
     t.integer "brand_id"
   end
 
-  add_index "thredup_data", ["brand_id"], :name => "index_thredup_data_on_brand_id"
+  add_index "thredup_data", ["brand_id"], :name => "braind_id_index"
   add_index "thredup_data", ["url"], :name => "index_thredup_data_on_url"
 
   create_table "users", :force => true do |t|
@@ -157,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20121106214850) do
     t.integer  "credits"
     t.string   "stripe_customer_id"
     t.hstore   "address"
+    t.string   "avatar"
     t.string   "fb_uid"
     t.string   "fb_secret"
     t.string   "fb_token"

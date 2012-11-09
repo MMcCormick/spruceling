@@ -9,8 +9,10 @@ class CreateThredupData < ActiveRecord::Migration
       t.decimal :retail_price, :precision => 8, :scale => 2
       t.boolean :new_with_tags, :default => false
       t.string :url
+      t.references :brand
     end
 
     add_index :thredup_data, :url
+    add_index :thredup_data, :brand_id
   end
 end

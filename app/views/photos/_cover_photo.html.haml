@@ -1,0 +1,4 @@
+.photo
+  %span.cover-image{:id => "photo-#{photo.id}", :style => "background-image: url('#{photo.image_url}')"}
+  - if defined? remove_link
+    %a.remove{:href => photo_path(photo), 'data-skip-pjax' => true} Remove

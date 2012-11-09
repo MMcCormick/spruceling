@@ -20,7 +20,7 @@ gem 'stripe' # payments
 gem 'cancan'
 gem 'stamps', :git => 'https://github.com/marbemac/stamps.git'
 gem 'cloudinary' # images
-gem 'attachinary' # images
+gem 'carrierwave' # images
 gem 'sendgrid'
 gem 'newrelic_rpm', '~> 3.5.0'
 gem "haml-rails", ">= 0.3.4"
@@ -47,6 +47,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-fileupload-rails'
 end
 
 group :development do

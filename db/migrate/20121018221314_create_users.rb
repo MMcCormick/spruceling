@@ -45,6 +45,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :credits
       t.string :stripe_customer_id
       t.hstore :address
+      t.string :avatar, :default => nil
       t.string :fb_uid
       t.string :fb_secret
       t.string :fb_token
