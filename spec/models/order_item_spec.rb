@@ -119,4 +119,26 @@ describe OrderItem do
       @order_item.status.should == 'full_box_delivered'
     end
   end
+
+  describe "track_boxes" do
+    it "should raise an error if there is no tracking number" do
+      puts OrderItem.all
+      expect {
+        @order_item.status = "empty_box_shipped"
+        @order_item.save
+        OrderItem.any_instance.should_receive(:tracking_number).and_return(nil)
+        OrderItem.track_boxes
+      }.to raise_error
+    end
+
+    context "when status == 'empty_box_shipped'" do
+      it "should test things"
+    end
+    context "when status == 'full_box_delivered'" do
+
+    end
+    context "when status == 'full_box_shipped'" do
+
+    end
+  end
 end
