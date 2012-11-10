@@ -4,6 +4,7 @@ Spruceling::Application.routes.draw do
   resources :brands
   resources :orders
   resources :items
+  resources :photos, :only => [:create, :destroy]
 
   # Boxes
   resources :boxes
@@ -35,7 +36,6 @@ Spruceling::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  mount Attachinary::Engine => "uploads"
   mount Soulmate::Server, :at => "sm"
 
   admin_constraint = lambda do |request|

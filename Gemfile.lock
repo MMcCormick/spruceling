@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/engageis/activerecord-postgres-hstore.git
-  revision: 6f3084a0257e380d86466e71f07ebf81f2bab7c4
+  revision: 03588cd5ff96a72103e83c11ae4d1e4e4f24c06a
   specs:
     activerecord-postgres-hstore (0.4.1)
       pg
@@ -60,9 +60,6 @@ GEM
     annotate (2.5.0)
       rake
     arel (3.0.2)
-    attachinary (1.2.0)
-      cloudinary (~> 1.0.40)
-      rails (~> 3.2)
     aws_cf_signer (0.1.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
@@ -76,6 +73,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.7.1)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     celluloid (0.12.3)
       facter (>= 1.6.12)
       timers (>= 1.0.0)
@@ -132,7 +132,7 @@ GEM
     eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    facter (1.6.13)
+    facter (1.6.14)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.1.0)
@@ -145,11 +145,11 @@ GEM
       railties (~> 3.1)
     foreman (0.60.2)
       thor (>= 0.13.6)
-    friendly_id (4.0.8)
+    friendly_id (4.0.9)
     fssm (0.2.9)
     gherkin (2.11.5)
       json (>= 1.4.6)
-    guard (1.5.3)
+    guard (1.5.4)
       listen (>= 0.4.2)
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
@@ -177,6 +177,9 @@ GEM
       rack
     i18n (0.6.1)
     journey (1.0.4)
+    jquery-fileupload-rails (0.3.5)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (2.1.3)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
@@ -211,9 +214,9 @@ GEM
     modular-scale (1.0.2)
       compass (>= 0.11.5)
       sassy-math (>= 1.2)
-    multi_json (1.3.6)
+    multi_json (1.3.7)
     multipart-post (1.1.5)
-    nested_form (0.3.0)
+    nested_form (0.3.1)
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.8)
     newrelic_rpm (3.5.0.1)
@@ -295,7 +298,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.11.0)
     rubyzip (0.9.9)
-    sass (3.2.1)
+    sass (3.2.2)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -307,7 +310,7 @@ GEM
       crack (~> 0.1.8)
       gyoku (>= 0.3.0)
       httpi (>= 0.7.8)
-    selenium-webdriver (2.25.0)
+    selenium-webdriver (2.26.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
@@ -355,7 +358,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.34)
+    tzinfo (0.3.35)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -386,12 +389,12 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgres-hstore!
   annotate
-  attachinary
   awesome-usps!
   bundler (~> 1.2)
   cache_digests
   cancan
   capybara (>= 1.1.2)
+  carrierwave
   chronic
   cloudinary
   coffee-rails (~> 3.2.1)
@@ -409,6 +412,7 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   haml-rails (>= 0.3.4)
+  jquery-fileupload-rails
   jquery-rails
   kaminari
   launchy (>= 2.1.2)

@@ -1,17 +1,18 @@
-%p#notice= notice
+#box-show
 
-%p
-  %b Gender:
-  = @box.gender
-%p
-  %b Size:
-  = @box.size
+  %p
+    %b Gender:
+    = @box.gender
+  %p
+    %b Size:
+    = @box.size
 
-- @box.photos.each do |photo|
-  %div= cl_image_tag(photo.path, { :size => '300x300', :crop => :fit })
+  .photo-list
+    - @box.photos.each do |photo|
+      = render "photos/cover_photo", :photo => photo
 
-= render 'boxes/itemized', :box => @box
+  = render 'boxes/itemized', :box => @box
 
-= link_to 'Edit', edit_box_path(@box)
-\|
-= link_to 'Back', boxes_path
+  = link_to 'Edit', edit_box_path(@box)
+  \|
+  = link_to 'Back', boxes_path

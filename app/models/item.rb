@@ -15,8 +15,6 @@
 
 class Item < ActiveRecord::Base
 
-  has_attachments :photos, maximum: 3
-
   belongs_to :user, :inverse_of => :items
   belongs_to :box, :inverse_of => :items
   belongs_to :item_type, :inverse_of => :items

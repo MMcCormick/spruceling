@@ -17,8 +17,8 @@
 
 //= require jquery.livequery
 //= require soulmate
-//= require cloudinary
-//= require attachinary
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require jquery_nested_form
 //= require global_functions
 

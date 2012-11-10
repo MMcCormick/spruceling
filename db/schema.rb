@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109162749) do
+ActiveRecord::Schema.define(:version => 20121109173547) do
 
   create_table "attachinary_files", :force => true do |t|
     t.integer  "attachinariable_id"
@@ -115,6 +115,14 @@ ActiveRecord::Schema.define(:version => 20121109162749) do
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+
+  create_table "photos", :force => true do |t|
+    t.integer  "imageable_id"
+    t.integer  "imageable_type"
+    t.string   "image"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "thredup_data", :force => true do |t|
     t.string  "brand_name"

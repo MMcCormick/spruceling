@@ -1,12 +1,23 @@
+.section.photos
+  %h3 1. Box Photos
+  %h5.subheader
+    Please make sure every piece of clothing in your box is pictured.
+    You can include multiple pieces in a single picture.
+
+  %input{:type => 'file', :name => 'photos[]', :multiple => true, 'data-url' => photos_path, :id => 'boxes_photo_upload'}
+
+  %script{:id => 'template-upload', :type => 'text/x-tmpl'}
+    .upload
+      {%=o.name%}
+      .progress
+        .bar{:style => 'width: 0%'}
+
+  .photo-list
+    - @box.photos.each do |photo|
+      = render "photos/cover_photo", :photo => photo, :remove_link => true
+
 = simple_form_for @box, :html => {:class => "box_form"} do |f|
   = f.error_notification
-
-  .section.photos
-    %h3 1. Box Photos
-    %h5.subheader
-      Please make sure every piece of clothing in your box is pictured.
-      You can include multiple pieces in a single picture.
-    = f.input :photos, :as => :attachinary, :label => false
 
   .section.items
     %h3 2. Clothing Items
@@ -48,6 +59,8 @@
         $
         %span{'data-shipping' => 12}= @box.price_total
         which includes shipping.
+
+    = f.input :id, :as => :hidden
 
     = f.error :base
 
