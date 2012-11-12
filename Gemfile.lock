@@ -18,6 +18,14 @@ GIT
       multi_json (~> 1.0)
       savon (= 0.8.6)
 
+GIT
+  remote: https://github.com/turbovote/awesome-usps.git
+  revision: 91bcf95351845432ce051d7b91b66301bfa65e8e
+  specs:
+    awesome-usps (1.0.0)
+      activesupport
+      hpricot
+
 GEM
   remote: http://bundler-api.herokuapp.com/
   specs:
@@ -163,6 +171,7 @@ GEM
       railties (>= 3.1, < 4.1)
     hashie (1.2.0)
     hike (1.2.1)
+    hpricot (0.8.6)
     httpauth (0.2.0)
     httpi (0.7.9)
       rack
@@ -381,6 +390,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgres-hstore!
   annotate
+  awesome-usps!
   bundler (~> 1.2)
   cache_digests
   cancan

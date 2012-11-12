@@ -42,6 +42,7 @@ gem 'zurb-foundation'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'nested_form'
+gem 'awesome-usps', git: 'https://github.com/turbovote/awesome-usps.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
