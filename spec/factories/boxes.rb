@@ -6,5 +6,9 @@ FactoryGirl.define do
     box.size {"18 months"}
     box.seller_price {30.00}
     box.association :user
+
+    after :create do |b|
+      b.photos.create(:image => 'foo')
+    end
   end
 end
