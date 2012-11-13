@@ -128,7 +128,6 @@ describe OrderItem do
     end
 
     it "should raise an error if there is no tracking number" do
-      puts OrderItem.all
       expect {
         @order_item.status = "empty_box_shipped"
         @order_item.save
