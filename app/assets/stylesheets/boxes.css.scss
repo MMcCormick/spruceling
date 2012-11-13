@@ -172,5 +172,10 @@
 }
 
 #box_paginator {
+  padding: 20px 0 10px;
   clear: left;
+  text-align: center;
+  span {
+    margin: 0 5px;
+  }
 }
