@@ -175,7 +175,10 @@
   padding: 20px 0 10px;
   clear: left;
   text-align: center;
-  span {
-    margin: 0 5px;
+  a {
+    padding: 3px 5px;
+  }
+  .current {
+    padding: 3px 5px;
   }
 }
