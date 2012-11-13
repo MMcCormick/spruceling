@@ -244,6 +244,25 @@ a {
     }
   }
 
+  .button-group {
+    .a_wrapper {
+      padding: 0px;
+
+      a {
+        display: block;
+        width: 100%;
+        padding: 3px 7px;
+        &:hover {
+          background: lighten($action-color, 30%);
+          cursor: pointer;
+        }
+        &.on {
+          background: lighten($action-color, 30%);
+        }
+      }
+    }
+  }
+
   .multi-select,
   .single-select {
     max-height: 150px;
@@ -262,6 +281,22 @@ a {
       &.on {
         background: $action-color;
         color: #FFF;
+      }
+      &.a_wrapper {
+        padding: 0px;
+
+        a {
+          display: block;
+          width: 100%;
+          padding: 3px 7px;
+          &:hover {
+            background: lighten($action-color, 30%);
+            cursor: pointer;
+          }
+          &.on {
+            background: lighten($action-color, 30%);
+          }
+        }
       }
     }
   }
