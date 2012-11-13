@@ -97,3 +97,7 @@ jQuery ->
       $('.photo-list .upload.done').remove()
       for image in data.result
         $('.photo-list').append(image.html)
+
+  # box show page image slider
+  $('#photo-list').orbit
+    advanceSpeed: 20000

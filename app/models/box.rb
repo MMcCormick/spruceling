@@ -109,6 +109,7 @@ class Box < ActiveRecord::Base
       end
     end
 
+    prices[:savings] = seller_price ? ((1 - (price_total / prices[:retail])) * 100).floor : nil
     prices[:recommended_high] = (prices[:consignment] * 0.6).ceil
     prices[:recommended_low] = (prices[:consignment] * 0.2).ceil
     prices

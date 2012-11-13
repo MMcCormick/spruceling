@@ -163,10 +163,50 @@
 }
 
 #box-show {
-  .photo-list {
-    .photo {
-      width: 200px;
-      height: 200px;
+  .price {
+    font-size: 26px;
+
+    .seller {
+      font-weight: bold;
     }
+    .retail {
+      font-weight: bold;
+      text-decoration: line-through;
+      color: #CCC;
+      margin: 0 20px 0 10px;
+    }
+    .savings {
+      font-size: 18px;
+      color: #CCC;
+      .off {
+        font-weight: bold;
+        color: $green;
+      }
+    }
+    .add_to_cart {
+      margin: 0 0 0 20px;
+      position: relative;
+      top: -3px;
+    }
+  }
+  .orbit {
+    margin-bottom: 0px;
+  }
+  .orbit-wrapper {
+    max-width: 600px !important;
+    background: #FFF;
+    border: 1px solid #999;
+    margin: 30px 0 40px 0;
+  }
+  #photo-list {
+    width: 100% !important;
+    height: 400px !important;
+    .photo {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .box_items {
+    margin: 0 0 20px 0;
   }
 }

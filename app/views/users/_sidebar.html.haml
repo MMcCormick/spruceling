@@ -1,6 +1,6 @@
-.photo= avatar(@user, :width => 200, :crop => :fit)
+.photo= avatar(@user, :width => 200, :height => 200, :crop => :thumb, :gravity => :face)
 
-%h1.username= @user.name
+%h4.username= @user.name
 .city= @user.address["city"] if @user.address
 
 .head{:class => controller.action_name == "show" ? "on" : ""}

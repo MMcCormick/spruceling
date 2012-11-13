@@ -1,4 +1,9 @@
-.sidebar {
+#left_sidebar {
+  .photo {
+    @include box-shadow(rgba(0, 0, 0, 0.15) 0 1px 2px);
+    display: block;
+    border: 5px solid #FFF;
+  }
   .username {
 
   }

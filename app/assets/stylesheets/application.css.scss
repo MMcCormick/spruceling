@@ -22,7 +22,7 @@
 @import "soulmate";
 
 body {
-  background: #F5F6F3;
+  background: $body-bg-color;
   &.wf-loading {
     visibility: hidden;
   }
@@ -81,7 +81,7 @@ a {
   #header {
     z-index: 100;
     position: relative;
-    margin: 20px auto 20px auto;
+    margin: 20px auto 30px auto;
     height: $header-navbar-height;
     background: transparent;
 
@@ -104,7 +104,7 @@ a {
         }
       }
       &.middle_section {
-        margin: 0 5px 0 10px;
+        margin: 0 5px 0 0;
       }
       &.right_section {
         text-align: center;
@@ -204,11 +204,11 @@ a {
   }
   #footer {
     clear: both;
-    margin: 30px auto 50px auto;
-    height: 30px;
-    border-top: 1px solid #CCC;
-    padding: 15px;
+    margin: 100px auto 0 auto;
+    min-height: 125px;
+    padding: 25px;
     text-align: center;
+    background: darken($body-bg-color, 30%);
   }
 }
 
@@ -295,6 +295,7 @@ a {
   background-size: contain;
   display: block;
   width: 100%;
+  height: 100%;
 }
 
 .upload {
