@@ -16,6 +16,7 @@ class BoxesController < ApplicationController
   # GET /boxes/1.json
   def show
     @box = Box.find(params[:id])
+    @user = @box.user
 
     respond_to do |format|
       format.html # show.html.haml
