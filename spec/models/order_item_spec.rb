@@ -120,7 +120,13 @@ describe OrderItem do
     end
   end
 
-  describe "track_boxes" do
+  describe "#track_boxes" do
+    before :each do
+      @order_item.empty_tracking = "foo"
+      @order_item.full_tracking = "bar"
+      @order_item.save
+    end
+
     it "should raise an error if there is no tracking number" do
       puts OrderItem.all
       expect {
@@ -132,13 +138,65 @@ describe OrderItem do
     end
 
     context "when status == 'empty_box_shipped'" do
-      it "should test things"
+      before :each do
+        @order_item.status = "empty_box_shipped"
+        @order_item.save
+      end
+      it "should call #empty_box_delivered if there is a USPS 'DELIVERED' event" do
+        USPS.should_receive(:new).and_return(stub :track => [{:event => "DELIVERED"}])
+        OrderItem.any_instance.should_receive :empty_box_delivered
+        OrderItem.track_boxes
+      end
+      it "should not call #empty_box_delivered if there is not a USPS 'DELIVERED' event" do
+        USPS.should_receive(:new).and_return(stub :track => [{:event => "FOOBAR"}])
+        OrderItem.any_instance.should_receive(:empty_box_delivered).never
+        OrderItem.track_boxes
+      end
     end
-    context "when status == 'full_box_delivered'" do
-
+    context "when status == 'empty_box_delivered'" do
+      before :each do
+        @order_item.status = "empty_box_delivered"
+        @order_item.save
+      end
+      it "should call #full_box_shipped if there are any events" do
+        USPS.should_receive(:new).and_return(stub :track => [{:event => "FOOBAR"}])
+        OrderItem.any_instance.should_receive :full_box_shipped
+        OrderItem.track_boxes
+      end
+      it "should not call #full_box_shipped if there are not any events" do
+        USPS.should_receive(:new).and_return(stub :track => [])
+        OrderItem.any_instance.should_receive(:full_box_shipped).never
+        OrderItem.track_boxes
+      end
     end
     context "when status == 'full_box_shipped'" do
+      before :each do
+        @order_item.status = "full_box_shipped"
+        @order_item.save
+      end
+      it "should call #full_box_delivered if there is a USPS 'DELIVERED' event" do
+        USPS.should_receive(:new).and_return(stub :track => [{:event => "DELIVERED"}])
+        OrderItem.any_instance.should_receive :full_box_delivered
+        OrderItem.track_boxes
+      end
+      it "should not call #full_box_delivered if there is not a USPS 'DELIVERED' event" do
+        USPS.should_receive(:new).and_return(stub :track => [{:event => "FOOBAR"}])
+        OrderItem.any_instance.should_receive(:full_box_delivered).never
+        OrderItem.track_boxes
+      end
+    end
+  end
 
+  describe "#tracking_number" do
+    it "should return empty_tracking if the status is 'empty_box_shipped'" do
+      @order_item.status = "empty_box_shipped"
+      @order_item.empty_tracking = "foobar"
+      @order_item.tracking_number.should == "foobar"
+    end
+    it "should return full_tracking otherwise" do
+      @order_item.status = "blahblah"
+      @order_item.full_tracking = "foobar"
+      @order_item.tracking_number.should == "foobar"
     end
   end
 end
