@@ -9,19 +9,21 @@
       - if user_signed_in?
         .dropdown.part
           = avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
-          %a.name{:href => user_path(current_user)}= current_user.name
-          %i.icon-chevron-down
+          %a.name{:href => user_path(current_user)}
+            = current_user.name
+            %i.icon-chevron-down
+            .my_boxes My Boxes
 
           %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
-            %li= link_to "My Boxes", user_path(current_user)
             %li= link_to 'My Cart', cart_path
             %li= link_to 'My Orders', orders_path
             %li= link_to 'My Account', edit_user_registration_path
             %li= link_to 'Logout', destroy_user_session_path, :method => 'delete'
 
         %a.part.new_box{:href => new_box_path}
-          %i.icon-gift
-          List New Box
+          .name
+            %i.icon-gift
+            List New Box
 
         = render "boxes/nav_form"
 
@@ -32,5 +34,6 @@
   .three.columns
     .section.right_section
       %a.part.cart{:href => cart_path}
-        %i.icon-shopping-cart
-        = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"
+        .name
+          %i.icon-shopping-cart
+          = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"
