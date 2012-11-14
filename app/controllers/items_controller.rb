@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
     @item = Item.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @item }
     end
   end

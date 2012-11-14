@@ -30,7 +30,7 @@ class WithdrawalsController < ApplicationController
     @withdrawal = current_user.withdrawals.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @withdrawal }
     end
   end

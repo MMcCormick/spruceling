@@ -14,7 +14,7 @@ Spruceling::Application.routes.draw do
   end
 
   # Users
-  get '/users/auth/:provider' => 'omniauth_callbacks#passthru'
+  get '/users/auth/:provider' => 'omniauth_callbacks#passthru', :as => :omniauth
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   scope 'users' do
     post 'update_stripe' => 'users#update_stripe', :as => :user_update_stripe
@@ -23,6 +23,9 @@ Spruceling::Application.routes.draw do
     get 'payment' => 'users#edit_payment', :as => :edit_user_payment
   end
   resources :users, :only => [:show, :index, :edit]
+  authenticated :user do
+    root :to => 'home#index'
+  end
 
   # Cart
   scope 'cart' do
@@ -31,9 +34,10 @@ Spruceling::Application.routes.draw do
     put 'remove' => 'carts#remove', :as => :cart_remove
   end
 
-  authenticated :user do
-    root :to => 'home#index'
-  end
+  # Static Pages
+  get 'about' => 'static#about', :as => :about
+  get 'terms' => 'static#terms', :as => :terms
+  get 'privacy' => 'static#privacy', :as => :privacy
 
   mount Soulmate::Server, :at => "sm"
 

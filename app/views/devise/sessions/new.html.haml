@@ -1,0 +1,20 @@
+.new_session
+  %h1 Sign In
+
+  .row
+    .six.columns.left
+      %a.facebook_login{:href => omniauth_path(:provider => "facebook")}
+        %i.icon-facebook
+        Sign in with Facebook
+
+    .six.columns.right
+      = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+        .form-inputs
+          = f.input :email, :required => false, :autofocus => true
+          = f.input :password, :required => false
+          = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+
+        .form-actions
+          = f.button :submit, "Sign in", :class => "small action button"
+
+  = render 'devise/shared/links'

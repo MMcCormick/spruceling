@@ -10,9 +10,13 @@
 }
 
 #edit_user {
+  margin: 0 0 20px;
   label {
     float: left;
     margin-right: 10px;
+  }
+  input {
+    clear: left;
   }
 }
 
@@ -41,3 +45,58 @@
   }
 }
 
+.new_session,
+.new_registration {
+  max-width: 600px;
+  margin: auto;
+  h1 {
+    text-align: center;
+  }
+  .left, .right {
+    padding: 15px;
+  }
+  .left {
+    text-align: right;
+    .facebook_login {
+      display: block;
+      position: relative;
+      vertical-align: middle;
+      width: 100%;
+      text-align: left;
+      padding: 8px 10px 8px 40px;
+      margin: 21px 0 0 0;
+      color: #FFF;
+      background-color: $fb-color;
+      .icon-facebook {
+        position: absolute;
+        left: 15px;
+        top: 2px;
+        font-size: 36px;
+      }
+    }
+  }
+  .right {
+    border-left: 1px solid #AAA;
+  }
+}
+
+.new_confirmation,
+.new_password {
+  max-width: 320px;
+  margin: auto;
+  h5 {
+    text-align: center;
+  }
+  .form-actions {
+    text-align: center;
+  }
+}
+
+.devise-links {
+  padding-top: 30px;
+  text-align: center;
+  a {
+    display: block;
+    margin-bottom: 10px
+  }
+}

@@ -1,0 +1,13 @@
+.new_confirmation
+  %h5 Resend confirmation instructions
+
+  = simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :email, :required => true
+
+    .form-actions
+      = f.button :submit, "Resend confirmation instructions", :class => "small action button"
+
+  = render "devise/shared/links"

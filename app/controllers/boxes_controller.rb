@@ -34,7 +34,7 @@ class BoxesController < ApplicationController
       if current_user.address.blank?
         format.any { redirect_to edit_user_address_path, :notice => "Please provide your address before posting a box" }
       else
-        format.html # new.html.erb
+        format.html # new.html.haml
         format.json { render json: @box }
       end
     end

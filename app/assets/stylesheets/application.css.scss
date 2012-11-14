@@ -52,6 +52,9 @@ a {
     background: transparent;
   }
 }
+input {
+  max-width: 320px;
+}
 #flash_notice, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
@@ -111,19 +114,21 @@ a {
         margin-right: 10px;
       }
       .part {
-        @include text-shadow(0 1px 0 #EEEEEC);
+        @include text-shadow(0 1px 0 #AAA);
 
         &.login,
         &.signup,
         &.new_box {
           color: $link-color;
           font-weight: bold;
+          padding: 23px;
           display: inline-block;
           border-right: 1px solid #FFF;
         }
         &.cart {
           color: $link-color;
           font-weight: bold;
+          padding: 23px;
           display: block;
         }
         &.dropdown {
@@ -156,9 +161,14 @@ a {
             font-weight: normal;
           }
           .dropdown-menu {
+            background-color: #D3D3D3;
+            padding-bottom: 10px;
             top: $header-navbar-height;
-            background: #FFF;
-            padding: 0 0 10px 0;
+            visibility: visible;
+            a:hover {
+              background-color: $action-color;
+              color: #FFF;
+            }
             a {
               padding: 2px 20px;
               display: block;
@@ -167,8 +177,13 @@ a {
           }
           .name {
             font-weight: bold;
-            padding-right: 41px;
-            padding-left: 20px;
+            padding: 13px 41px 23px 20px;
+            margin: 10px 0 0 0;
+            display: block;
+            &:hover {
+              background-color: $action-color;
+              color: #FFF;
+            }
           }
           .icon-chevron-down {
             position: absolute;
@@ -176,27 +191,14 @@ a {
             top: 22px;
           }
         }
-        .name {
-          margin: 10px 0 0 0;
-          display: block;
-          padding: 13px 23px 23px;
-          &:hover {
-            background-color: lighten($green, 30%);
-          }
-        }
         &:hover {
-          background-color: lighten($green, 10%);
-          .my_boxes {
-            @include opacity(1);
-            visibility: visible;
-          }
+          background-color: $action-color;
+          color: #FFF;
+          &.dropdown { background-color: transparent; }
+          .my_boxes,
           .dropdown-menu {
             @include opacity(1);
             visibility: visible;
-            background-color: lighten($green, 10%);
-            a:hover {
-              background-color: lighten($green, 30%);
-            }
           }
         }
       }
@@ -255,8 +257,6 @@ a {
 }
 
 #left_sidebar {
-  margin-top: 20px;
-
   .section {
     margin: 0 0 30px 0;
 
