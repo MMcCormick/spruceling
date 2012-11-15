@@ -2,9 +2,10 @@
   = render :partial => 'users/edit_sidebar', :layout => 'layouts/left_sidebar'
 
 #new_withdrawal
-  .row
-    .six.columns
+  .row.section
+    .head
       %h3= "Current Balance: $#{@withdrawal.user.balance}"
+    .content
       %a#toggle_withdraw{:href => "#"} Withdraw Balance
       #withdraw.hide
         - if @withdrawal.user.balance < 5

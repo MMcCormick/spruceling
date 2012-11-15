@@ -1,0 +1,25 @@
+- content_for :left_sidebar do
+  = render :partial => 'users/edit_sidebar', :layout => 'layouts/left_sidebar'
+
+%h1 My Account
+
+.row.section
+  .content
+    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      = f.input :name
+      = f.input :email
+
+      = f.input :password, :label => 'Password (leave blank if you don\'t want to change it)'
+      = f.input :password_confirmation
+      = f.input :current_password, :label => 'Current Password (needed to confirm your changes)'
+
+      = f.submit 'Update', :class => 'medium action button'
+
+.row.section
+  .head
+    %h3 Cancel My Account
+  .content
+    %p
+      Unhappy?
+      = link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete

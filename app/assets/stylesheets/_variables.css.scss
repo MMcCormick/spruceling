@@ -11,7 +11,39 @@ $boys-color-lighter: lighten($boys-color, 37%);
 $girls-color: #FF73FF;
 
 $action-color: #F9A01B;
-$green: #91C540;
 
 $fb-color: #3B5998;
 $tw-color: #00C0F7;
+
+// Grays
+// -------------------------
+$black:                 #000 !default;
+$grayDarker:            #222 !default;
+$grayDark:              #333 !default;
+$gray:                  #555 !default;
+$grayLight:             #999 !default;
+$grayLighter:           #eee !default;
+$white:                 #fff !default;
+
+
+// Accent colors
+// -------------------------
+$blue:                  #2f5990 !default;
+$blueDark:              #1650A1 !default;
+$green:                 #91C540 !default;
+$red:                   #9d261d !default;
+$yellow:                #ffc40d !default;
+$orange:                #f89406 !default;
+$pink:                  #c3325f !default;
+$purple:                #7a43b6 !default;
+
+
+// Scaffolding
+// -------------------------
+$bodyBackground:        $white !default;
+$textColor:             $grayDark !default;
+
+
+// Links
+// -------------------------
+$linkColor:             $blue !default;

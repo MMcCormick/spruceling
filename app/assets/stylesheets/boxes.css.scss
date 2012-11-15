@@ -96,45 +96,51 @@
   }
 }
 
-#edit_box_page {
-  max-width: 800px;
-  margin: auto;
-
-  h1 {
-    border-bottom: 1px solid #CCC;
-    text-align: center;
-    padding: 0 0 5px 0;
-    margin: 0;
-  }
-  h3 {
-    margin: 35px 0 0 0;
-  }
-  .subheader {
-    margin-top: 2px;
-  }
-  .head {
-    font-weight: bold;
-    margin: 0 0 6px 0;
-    cursor: default;
-  }
+#boxes-edit {
   .photo-list {
-    .cover-image {
-      width: 100px;
-      height: 100px;
+    @include clearfix();
+    .photo {
+      width: 150px;
+      height: 150px;
+      float: left;
+      margin: 10px 10px 0 0;
+      position: relative;
+
+      .remove {
+        position: absolute;
+        bottom: 2px;
+        left: 2px;
+        color: $red;
+        background: #FFF;
+        padding: 5px 8px;
+      }
     }
-  }
-  .nwt {
-    margin: 0 0 13px 0;
   }
   .checkbox {
     margin: 0 0 10px 0;
   }
+  .item-list {
+    padding: 10px 0 25px 10px;
+  }
+  .item_form_teaser {
+    margin: 4px 0;
+  }
   .item_form {
-    max-width: 300px;
-    padding: 15px;
-
-    select {
-      margin: 0 0 15px 0;
+    .input,.nwt,select {
+      float: left;
+    }
+    select,
+    input {
+      width: 250px;
+    }
+    .nwt {
+      margin: 10px 0 0 0;
+      input {
+        width: 50px;
+      }
+    }
+    #item_brand {
+      margin: 0 0 0 15px;
     }
   }
   .input {
@@ -144,25 +150,62 @@
     .recommended {
       span {
         font-weight: bold;
+        color: $green;
       }
     }
+  }
+  .asking-price {
+    @include clearfix();
+    margin: 15px 0;
+
     .input {
-      margin: 10px 0 0 0;
+      width: 70px;
+      float: left;
     }
-    label {
-      margin: 10px 30px 0 0;
-      width: 80px;
-    }
-    input {
-      width: 100px;
+    .name {
+      background: #f3f3f3;
+      border: 1px solid #999;
+      float: left;
+      color: #666;
+      cursor: default;
+      font-size: 18px;
+      margin: 0 0 0 -1px;
+      padding: 8px 15px;
     }
   }
-  .shipping_note {
-    margin: 0 0 50px 0;
+  .shipping {
+    border: 1px solid #CCC;
+    background: #F3F3F3;
+    padding: 15px 15px 15px 50px;
+    display: inline-block;
+    position: relative;
+
+    .icon-road {
+      font-size: 20px;
+      position: absolute;
+      top: 26px;
+      left: 15px;
+    }
+    h5 {
+      margin: 0 0 5px 0;
+    }
+    span {
+      color: $green;
+      font-weight: bold;
+    }
+  }
+  .submit {
+    margin: 50px 0 0 0;
   }
 }
 
-#box-show {
+#boxes-show {
+  h1 {
+    .add_to_cart {
+      position: absolute;
+      margin: -3px 0 0 30px;
+    }
+  }
   .price {
     font-size: 26px;
 
@@ -182,11 +225,6 @@
         font-weight: bold;
         color: $green;
       }
-    }
-    .add_to_cart {
-      margin: 0 0 0 20px;
-      position: relative;
-      top: -3px;
     }
   }
   .orbit {

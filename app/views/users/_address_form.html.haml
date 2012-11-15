@@ -1,8 +1,8 @@
-= form_tag(update_user_address_path, :method => :put, :id => 'address_form') do
-  %div= text_field_tag 'full_name', nil,  {:placeholder => 'Full Name', :type => 'text', :size => '20', :autocomplete => 'off'}
-  %div= text_field_tag 'address1', nil,  {:placeholder => 'Address Line 1', :type => 'text', :size => '20', :autocomplete => 'off'}
-  %div= text_field_tag 'address2', nil,  {:placeholder => 'Address Line 2', :type => 'text', :size => '20', :autocomplete => 'off'}
-  %div= text_field_tag 'city', nil,  {:placeholder => 'City', :type => 'text', :size => '20', :autocomplete => 'off'}
-  %div= text_field_tag 'state', nil,  {:placeholder => 'State', :type => 'text', :size => '20', :autocomplete => 'off'}
-  %div= text_field_tag 'zip_code', nil,  {:placeholder => 'Zip Code', :type => 'text', :size => '20', :autocomplete => 'off'}
-  %button.submit-button{:type => 'submit', :autocomplete => 'off', :class => "small action button"} Update Address
+= simple_form_for(current_user, :method => :put, :id => 'address_form', :url => update_user_address_path) do |f|
+  = f.input 'full_name', :label => 'Full Name', :input_html => {:autocomplete => 'off'}
+  = f.input 'address1', :label => 'Address Line 1', :input_html => {:autocomplete => 'off'}
+  = f.input 'address2', :label => 'Address Line 2', :input_html => {:autocomplete => 'off'}
+  = f.input 'city', :input_html => {:autocomplete => 'off'}
+  = f.input 'state', :input_html => {:autocomplete => 'off'}
+  = f.input 'zip_code', :label => 'Zip Code', :input_html => {:autocomplete => 'off'}
+  = f.button :submit, :class => 'medium action button', :value => 'Update Address'

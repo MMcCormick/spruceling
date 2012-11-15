@@ -16,8 +16,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    photo = Photo.find(params[:id])
-    photo.destroy
-    render :text => :none
+    @photo = Photo.find(params[:id])
+    @photo.destroy
   end
 end

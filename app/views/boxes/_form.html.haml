@@ -1,68 +1,80 @@
 .section.photos
-  %h3 1. Box Photos
-  %h5.subheader
-    Please make sure every piece of clothing in your box is pictured.
-    You can include multiple pieces in a single picture.
+  .head
+    %h3 Box Photos
+    %h5.subheader
+      Please make sure every piece of clothing in your box is pictured.
+      You can include multiple pieces in a single picture.
+  .content
+    %input{:type => 'file', :name => 'photos[]', :multiple => true, 'data-url' => photos_path, :id => 'boxes_photo_upload'}
 
-  %input{:type => 'file', :name => 'photos[]', :multiple => true, 'data-url' => photos_path, :id => 'boxes_photo_upload'}
+    %script{:id => 'template-upload', :type => 'text/x-tmpl'}
+      .upload
+        {%=o.name%}
+        .progress
+          .bar{:style => 'width: 0%'}
 
-  %script{:id => 'template-upload', :type => 'text/x-tmpl'}
-    .upload
-      {%=o.name%}
-      .progress
-        .bar{:style => 'width: 0%'}
-
-  .photo-list
-    - @box.photos.each do |photo|
-      = render "photos/cover_photo", :photo => photo, :remove_link => true
+    .photo-list
+      - @box.photos.each do |photo|
+        = render "photos/cover_photo", :photo => photo, :remove_link => true
 
 = simple_form_for @box, :html => {:class => "box_form"} do |f|
   = f.error_notification
 
   .section.items
-    %h3 2. Clothing Items
-    %h5.subheader 5-20 items. Gently used or new clothing only please! More language about requirements here...?
+    .head
+      %h3 Clothing Items
+      %h5.subheader 5-20 items. Gently used or new clothing only please! More language about requirements here...?
+    .content
+      .item-list
 
-    .items
+        - @box.items.each do |item|
+          = render 'items/form_teaser', :item => item
 
-      - @box.items.each do |item|
-        = render 'items/form_teaser', :item => item
+      .item_form
+        = simple_form_for Item.new do |fi|
+          .errors
+          .inputs
+            = fi.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
+            = fi.input :brand, :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Type a brand name...'}
+            = fi.input :brand_id, :as => :hidden
 
-    %fieldset.item_form
-      %legend New Item
-      = simple_form_for Item.new do |fi|
-        .errors
-        = fi.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
-        = fi.input :brand, :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Type a brand name...'}
-        = fi.input :brand_id, :as => :hidden
+            .nwt
+              = fi.check_box :new_with_tags
+              %span.head New With Tags?
 
-        .nwt
-          = fi.check_box :new_with_tags
-          %span.head New With Tags?
+            = fi.input :box_id, :as => :hidden, :input_html => {:value => @box.id}
+            = fi.input :gender, :as => :hidden, :input_html => {:value => @box.gender}
+            = fi.input :size, :as => :hidden, :input_html => {:value => @box.size}
+          .clear
+          .small.action.button.add_item Add Item
 
-        = fi.input :box_id, :as => :hidden, :input_html => {:value => @box.id}
-        = fi.input :gender, :as => :hidden, :input_html => {:value => @box.gender}
-        = fi.input :size, :as => :hidden, :input_html => {:value => @box.size}
-        .small.action.button.add_item Add Item
-
-    .section.price
-      %h3 3. Box Price
+  .section.price
+    .head
+      %h3 Box Price
+    .content
       .recommended
         Recommended price between
         %span.low= "$#{@box.recommended_price[:recommended_low]}"
         and
         %span.high= "$#{@box.recommended_price[:recommended_high]}"
-      = f.input :seller_price, :size => 3, :label => 'Asking Price', :input_html => {:autocomplete => 'off', :placeholder => '0'}
-      %h5 We'll take care of shipping
-      .shipping_note
-        The display price will be
-        $
-        %span{'data-shipping' => 12}= @box.price_total
-        which includes shipping.
+
+      .asking-price
+        = f.input :seller_price, :size => 3, :label => false, :input_html => {:autocomplete => 'off', :placeholder => '0'}
+        .name Asking Price
+
+
+
+      .shipping
+        %i.icon-road
+        %h5 We'll take care of shipping
+        .shipping_note
+          The display price will be
+          $
+          %span{'data-shipping' => 12}= @box.price_total
+          which includes shipping.
 
     = f.input :id, :as => :hidden
 
     = f.error :base
 
-    .section.actions
-      = f.button :submit, 'Submit Box', :class => 'large action button'
+    = f.button :submit, 'Submit Box', :class => 'large action submit button'
