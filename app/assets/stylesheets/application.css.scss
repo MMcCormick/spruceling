@@ -130,17 +130,6 @@ label {
     position: relative;
     height: $header-navbar-height;
 
-    &.brand {
-      background: $green;
-      @include background-image(radial-gradient(left top, #C5E29F, $green 35%));
-
-      img {
-        position: absolute;
-        top: -1px;
-        left: 17px;
-        width: 210px;
-      }
-    }
     &.middle_section {
       margin: 0 5px 0 0;
     }
