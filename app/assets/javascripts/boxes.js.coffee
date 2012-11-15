@@ -24,17 +24,16 @@ jQuery ->
     self = $(@).parent('.item_form:first')
     $.ajax
       url: '/items'
-      data: $(self).serializeArray()
+      data: $(self).find(':input').serializeArray()
       cache: false
       dataType: 'json'
       type: 'POST'
       success: (data, textStatus, jqXHR) ->
-        console.log data
         $(self).find('select option[value=""]').attr('selected', true)
         $(self).find('#item_brand').val('')
         $(self).find(':checked').removeAttr('checked')
         $(self).find('.alert-error').remove()
-        $('.items').append(data.form_teaser)
+        $('.item-list').append(data.form_teaser)
         $('.price .low').text("$#{data.recommended_price.recommended_low}")
         $('.price .high').text("$#{data.recommended_price.recommended_high}")
       error: (jqXHR, textStatus, errorThrown) ->

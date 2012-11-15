@@ -1,63 +1,65 @@
 #cart_show
   %h1 My Cart
 
-  - if @cart.boxes.length > 0
-    %table
-      - @cart.boxes.each do |box|
-        %tr
-          %td= "#{box.gender_noun} #{box.size} from #{box.user.name}"
-          %td= link_to 'View Box', box
-          %td= link_to 'Remove from cart', cart_remove_path(:box_id => box.id), :method => :put
-          %td= number_to_currency box.price_total
-      %tr.shipping
-        %td Shipping
-        %td
-        %td
-        %td Free!
-      - if current_user.balance > 0
-        %tr.balance
-          %td Deducted from your Spruceling balance
-          %td
-          %td
-          %td= "-#{number_to_currency(current_user.balance > @cart.boxes_total ? @cart.boxes_total : current_user.balance)}"
-      %tr.total
-        %td Total
-        %td
-        %td
-        %td= number_to_currency @cart.price_total
+  .section
+    .content
+      - if @cart.boxes.length > 0
+        %table
+          - @cart.boxes.each do |box|
+            %tr
+              %td= "#{box.gender_noun} #{box.size} from #{box.user.name}"
+              %td= link_to 'View Box', box
+              %td= link_to 'Remove from cart', cart_remove_path(:box_id => box.id), :method => :put
+              %td= number_to_currency box.price_total
+          %tr.shipping
+            %td Shipping
+            %td
+            %td
+            %td Free!
+          - if current_user.balance > 0
+            %tr.balance
+              %td Deducted from your Spruceling balance
+              %td
+              %td
+              %td= "-#{number_to_currency(current_user.balance > @cart.boxes_total ? @cart.boxes_total : current_user.balance)}"
+          %tr.total
+            %td Total
+            %td
+            %td
+            %td= number_to_currency @cart.price_total
 
-    %br
+        %br
 
-    .row
-      .six.columns
-        %h3 Shipping Address
-        - if current_user.address
-          #address_info_wrapper
-            = render 'users/address', :address => current_user.address
-            = link_to 'Edit Shipping Address', edit_user_address_path, :class => "toggle_edit_address"
-          #address_form_wrapper.hide
-            = link_to 'Cancel', '#', :class => 'toggle_edit_address'
-            = render "users/address_form"
-        - else
-          #address_form_wrapper
-            = render "users/address_form"
+        .row
+          .six.columns
+            %h3 Shipping Address
+            - if current_user.address
+              #address_info_wrapper
+                = render 'users/address', :address => current_user.address
+                = link_to 'Edit Shipping Address', edit_user_address_path, :class => "toggle_edit_address"
+              #address_form_wrapper.hide
+                = link_to 'Cancel', '#', :class => 'toggle_edit_address'
+                = render "users/address_form"
+            - else
+              #address_form_wrapper
+                = render "users/address_form"
 
-      .six.columns
-        %h3 Payment Information
-        - if @cart.price_total == 0.00
-          %div.covered The cost is covered by your Spruceling balance! Woohoo!
-        - elsif current_user.stripe
-          #card_info_wrapper
-            %div= "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
-            = link_to 'Edit Payment Information', edit_user_payment_path, :class => "toggle_edit_payment"
-          #card_form_wrapper.hide
-            = link_to 'Cancel', '#', :class => 'toggle_edit_payment'
-            = render "users/stripe_card_form"
-        - else
-          #card_form_wrapper
-            = render "users/stripe_card_form"
+          .six.columns
+            %h3 Payment Information
+            - if @cart.price_total == 0.00
+              %div.covered The cost is covered by your Spruceling balance! Woohoo!
+            - elsif current_user.stripe
+              #card_info_wrapper
+                %div= "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+                = link_to 'Edit Payment Information', edit_user_payment_path, :class => "toggle_edit_payment"
+              #card_form_wrapper.hide
+                = link_to 'Cancel', '#', :class => 'toggle_edit_payment'
+                = render "users/stripe_card_form"
+            - else
+              #card_form_wrapper
+                = render "users/stripe_card_form"
+
         - if current_user.address && (@cart.price_total == 0.00 || current_user.stripe)
           = link_to 'Complete Purchase!', orders_path, :method => :post, :class => "buy medium action button"
-
-  - else
-    .empty-cart You haven't added any boxes to your cart!
+      - else
+        .empty-cart You haven't added any boxes to your cart!

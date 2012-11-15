@@ -52,8 +52,37 @@ a {
     background: transparent;
   }
 }
-input {
-  max-width: 320px;
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  @include border-radius(0);
+  @include single-box-shadow(none);
+  border: 1px solid #999;
+  height: auto;
+  margin: 0;
+  max-width: 350px;
+  font-size: 14px;
+  padding: 8px;
+
+  &:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+.form-row {
+  margin: 0 0 15px 0;
+}
+label {
+  cursor: default;
 }
 #flash_notice, #flash_alert {
   padding: 5px 8px;
@@ -80,166 +109,203 @@ input {
   }
 }
 
-#full {
-  #header {
-    z-index: 100;
+#header {
+  z-index: 100;
+  position: relative;
+  margin: 20px auto 30px auto;
+  height: $header-navbar-height;
+  background: transparent;
+  padding-left: $left-fixed-width;
+
+  .section {
+    @include border-radius(3px);
+    background: #CCC;
+    @include background-image(linear-gradient(#EEE, #D3D3D3));
     position: relative;
-    margin: 20px auto 30px auto;
     height: $header-navbar-height;
-    background: transparent;
 
-    .section {
-      @include border-radius(3px);
-      background: #CCC;
-      @include background-image(linear-gradient(#EEE, #D3D3D3));
-      position: relative;
-      height: $header-navbar-height;
+    &.brand {
+      background: $green;
+      @include background-image(radial-gradient(left top, #C5E29F, $green 35%));
 
-      &.brand {
-        background: $green;
-        @include background-image(radial-gradient(left top, #C5E29F, $green 35%));
+      img {
+        position: absolute;
+        top: -1px;
+        left: 17px;
+        width: 210px;
+      }
+    }
+    &.middle_section {
+      margin: 0 5px 0 0;
+    }
+    &.right_section {
+      text-align: center;
+    }
+    .part {
+      @include text-shadow(0 1px 0 #AAA);
 
-        img {
+      &.login,
+      &.signup,
+      &.new_box {
+        color: $link-color;
+        font-weight: bold;
+        padding: 23px;
+        display: inline-block;
+        border-right: 1px solid #FFF;
+      }
+      &.cart {
+        color: $link-color;
+        font-weight: bold;
+        padding: 23px;
+        display: block;
+      }
+      &.dropdown {
+        float: left;
+        border-right: 1px solid #FFF;
+        padding: 0 0 0 60px;
+        position: relative;
+
+        .photo {
+          @include border-radius(3px 0 0 3px);
           position: absolute;
-          top: -1px;
-          left: 17px;
-          width: 210px;
+          top: 0px;
+          left: 0px;
         }
-      }
-      &.middle_section {
-        margin: 0 5px 0 0;
-      }
-      &.right_section {
-        text-align: center;
-        margin-right: 10px;
-      }
-      .part {
-        @include text-shadow(0 1px 0 #AAA);
 
-        &.login,
-        &.signup,
-        &.new_box {
-          color: $link-color;
-          font-weight: bold;
-          padding: 23px;
-          display: inline-block;
-          border-right: 1px solid #FFF;
+        .my_boxes,
+        .dropdown-menu {
+          position: absolute;
+          right: 0px;
+          width: 158px;
+          @include transition-property(opacity);
+          @include transition-duration(.4s);
+          @include transition-delay(0s);
+          @include opacity(0);
+          visibility: hidden;
         }
-        &.cart {
-          color: $link-color;
-          font-weight: bold;
-          padding: 23px;
-          display: block;
+        .my_boxes {
+          top: $header-navbar-height - 24;
+          padding: 2px 20px;
+          font-weight: normal;
         }
-        &.dropdown {
-          float: left;
-          border-right: 1px solid #FFF;
-          padding: 0 0 0 60px;
-          position: relative;
-
-          .photo {
-            @include border-radius(3px 0 0 3px);
-            position: absolute;
-            top: 0px;
-            left: 0px;
+        .dropdown-menu {
+          background-color: #D3D3D3;
+          padding-bottom: 10px;
+          top: $header-navbar-height;
+          visibility: visible;
+          a:hover {
+            background-color: $action-color;
+            color: #FFF;
           }
-
-          .my_boxes,
-          .dropdown-menu {
-            position: absolute;
-            right: 0px;
-            width: 158px;
-            @include transition-property(opacity);
-            @include transition-duration(.4s);
-            @include transition-delay(0s);
-            @include opacity(0);
-            visibility: hidden;
-          }
-          .my_boxes {
-            top: $header-navbar-height - 24;
+          a {
             padding: 2px 20px;
-            font-weight: normal;
-          }
-          .dropdown-menu {
-            background-color: #D3D3D3;
-            padding-bottom: 10px;
-            top: $header-navbar-height;
-            visibility: visible;
-            a:hover {
-              background-color: $action-color;
-              color: #FFF;
-            }
-            a {
-              padding: 2px 20px;
-              display: block;
-              width: 100%;
-            }
-          }
-          .name {
-            font-weight: bold;
-            padding: 13px 41px 23px 20px;
-            margin: 10px 0 0 0;
             display: block;
-            &:hover {
-              background-color: $action-color;
-              color: #FFF;
-            }
-          }
-          .icon-chevron-down {
-            position: absolute;
-            right: 17px;
-            top: 22px;
+            width: 100%;
           }
         }
-        &:hover {
-          background-color: $action-color;
-          color: #FFF;
-          &.dropdown { background-color: transparent; }
-          .my_boxes,
-          .dropdown-menu {
-            @include opacity(1);
-            visibility: visible;
+        .name {
+          font-weight: bold;
+          padding: 13px 41px 23px 20px;
+          margin: 10px 0 0 0;
+          display: block;
+          &:hover {
+            background-color: $action-color;
+            color: #FFF;
           }
+        }
+        .icon-chevron-down {
+          position: absolute;
+          right: 17px;
+          top: 22px;
+        }
+      }
+      &:hover {
+        background-color: $action-color;
+        color: #FFF;
+        &.dropdown { background-color: transparent; }
+        .my_boxes,
+        .dropdown-menu {
+          @include opacity(1);
+          visibility: visible;
         }
       }
     }
-    #new_box {
-      position: absolute;
-      top: $header-navbar-height - 1;
-      background: #FFF;
-      max-width: 374px;
-      display: none;
-      border: 1px solid #CCC;
-      padding: 15px;
+  }
+  #new_box {
+    position: absolute;
+    top: $header-navbar-height - 1;
+    background: #FFF;
+    max-width: 374px;
+    display: none;
+    border: 1px solid #CCC;
+    padding: 15px;
 
-      input,
-      select {
-        display: block;
-      }
-      .button {
-        clear: both;
-        display: block;
-        margin: 20px 0 0 0;
-      }
+    input,
+    select {
+      display: block;
+    }
+    .button {
+      clear: both;
+      display: block;
+      margin: 20px 0 0 0;
     }
   }
+}
 
-  #container {
-    width: 1260px;
-    padding: 0 10px;
-    margin: auto;
+#container {
+  width: 1260px;
+  padding: 0 10px;
+  margin: auto;
+}
+#main {
+  min-height: 600px;
+}
+.main-window {
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 2px);
+  background: #FFF;
+
+  h1 {
+    border-bottom: 1px solid #BBB;
+    padding: 15px 25px;
+    font-size: 30px;
+    margin: 0;
+    background: #F9F9F9;
   }
-  #main {
-    min-height: 600px;
+  .section {
+    margin: 25px 25px 50px 25px;
+
+    >.head {
+      border-bottom: 1px solid #DDD;
+      padding: 0 0 10px 1px;
+      margin: 0 0 15px 0;
+      h3 {
+        padding: 0;
+        margin: 0;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        font-weight: normal;
+      }
+      .subheader {
+        margin: 2px 0 0 0;
+        padding: 0;
+        font-size: 16px;
+      }
+    }
+    >.content {
+
+    }
   }
-  #footer {
-    clear: both;
-    margin: 100px auto 0 auto;
-    min-height: 125px;
-    padding: 25px;
-    text-align: center;
-    background: darken($body-bg-color, 30%);
-  }
+}
+.clear {
+  clear: both;
+}
+#footer {
+  clear: both;
+  margin: 100px auto 0 auto;
+  min-height: 125px;
+  padding: 25px;
+  text-align: center;
+  background: darken($body-bg-color, 30%);
 }
 
 #container_wrap {
@@ -247,7 +313,9 @@ input {
 }
 
 .with-left-fixed {
-  padding-left: $left-fixed-width;
+  #main {
+    padding-left: $left-fixed-width;
+  }
 }
 .left-fixed {
   width: $left-fixed-width;
@@ -364,6 +432,18 @@ input {
   height: 100%;
 }
 
+.single-page {
+  max-width: 800px;
+  margin: 0 auto;
+
+  h1 {
+    border-bottom: 1px solid #DDD;
+  }
+  #main {
+
+  }
+}
+
 .upload {
   margin: 10px 0;
   font-weight: bold;
@@ -374,6 +454,18 @@ input {
       height: 100%;
     }
   }
+}
+
+#carts-show,
+#orders-index,
+#boxes-edit {
+  #container {
+    max-width: 960px;
+  }
+}
+
+#loader {
+  display: none;
 }
 
 @import "forms";

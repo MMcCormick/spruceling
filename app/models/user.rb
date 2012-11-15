@@ -59,6 +59,8 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email, :encrypted_password, :balance
   attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
 
+  attr_accessor :full_name, :address1, :address2, :city, :state, :zip_code
+
   after_create :initiate_cart
 
   def initiate_cart

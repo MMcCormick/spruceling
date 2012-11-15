@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update_address
     respond_to do |format|
-      if current_user.update_address(params.slice(:address1, :address2, :city, :state, :zip_code, :full_name))
+      if current_user.update_address(params[:user])
         current_user.save
         format.html { redirect_to :back, :notice => 'Information successfully updated.' }
         format.json { head :no_content }

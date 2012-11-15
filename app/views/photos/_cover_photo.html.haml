@@ -1,4 +1,4 @@
-.photo
+%div{:class => "photo photo-#{photo.id}"}
   %span.cover-image{:id => "photo-#{photo.id}", :style => "background-image: url('#{photo.image_url}')"}
   - if defined? remove_link
-    %a.remove{:href => photo_path(photo), 'data-skip-pjax' => true} Remove
+    = link_to "Remove", photo_path(photo), :method => :delete, :confirm => 'Are you sure you want to delete this photo?', :remote => true, 'data-skip-pjax' => true, :class => 'remove'

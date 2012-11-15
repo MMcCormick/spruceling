@@ -1,35 +1,38 @@
 - content_for :left_sidebar do
   = render :partial => "users/sidebar", :layout => 'layouts/left_sidebar'
 
-#box-show
-
-  %h1
-    %span.color{:class => @box.gender}= @box.gender_noun
-    %span.size= "Size #{@box.size}"
-    Box
-
-  .price
-    %span.seller
-      = "$#{@box.price_total.to_i}"
-    %span.retail
-      = "$#{@box.recommended_price[:retail].to_i}"
-    %span.savings
-      %span.off
-        = "#{@box.recommended_price[:savings].to_i}% Off"
-      Retail
-
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
-      %i.icon-shopping-cart
-      Add to Cart
-
-  #photo-list
-    - @box.photos.each do |photo|
-      = render "photos/cover_photo", :photo => photo
-
-  %h3 What's in the box?
-
-  = render 'boxes/itemized', :box => @box
+%h1
+  %span.color{:class => @box.gender}= @box.gender_noun
+  %span.size= "Size #{@box.size}"
+  Box
 
   %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
     %i.icon-shopping-cart
     Add to Cart
+
+.section
+  .content
+    .price
+      %span.seller
+        = "$#{@box.price_total.to_i}"
+      %span.retail
+        = "$#{@box.recommended_price[:retail].to_i}"
+      %span.savings
+        %span.off
+          = "#{@box.recommended_price[:savings].to_i}% Off"
+        Retail
+
+    #photo-list
+      - @box.photos.each do |photo|
+        = render "photos/cover_photo", :photo => photo
+
+.section
+  .head
+    %h3 What's in the box?
+
+  .content
+    = render 'boxes/itemized', :box => @box
+
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
+      %i.icon-shopping-cart
+      Add to Cart
