@@ -8,3 +8,11 @@ en:
         type: "Type"
       box:
         seller_price: "Price"
+    errors:
+      models:
+        item:
+          attributes:
+            item_type:
+              blank: "Item type can't be blank"
+            brand:
+              blank: "Item brand can't be blank"
