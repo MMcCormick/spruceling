@@ -31,22 +31,6 @@
           = render 'items/form_teaser', :item => item
 
       .item_form
-        = simple_form_for Item.new do |fi|
-          .errors
-          .inputs
-            = fi.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
-            = fi.input :brand, :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Type a brand name...'}
-            = fi.input :brand_id, :as => :hidden
-
-            .nwt
-              = fi.check_box :new_with_tags
-              %span.head New With Tags?
-
-            = fi.input :box_id, :as => :hidden, :input_html => {:value => @box.id}
-            = fi.input :gender, :as => :hidden, :input_html => {:value => @box.gender}
-            = fi.input :size, :as => :hidden, :input_html => {:value => @box.size}
-          .clear
-          .small.action.button.add_item Add Item
 
   .section.price
     .head
@@ -59,10 +43,10 @@
         %span.high= "$#{@box.recommended_price[:recommended_high]}"
 
       .asking-price
-        = f.input :seller_price, :size => 3, :label => false, :input_html => {:autocomplete => 'off', :placeholder => '0'}
+        = f.input :seller_price, :size => 3, :label => false, :error => false, :input_html => {:autocomplete => 'off', :plnameer => '0'}
         .name Asking Price
 
-
+      = f.error :seller_price
 
       .shipping
         %i.icon-road
@@ -71,10 +55,29 @@
           The display price will be
           $
           %span{'data-shipping' => 12}= @box.price_total
-          which includes shipping.
+          which inc  lud  es shipping.
 
-    = f.input :id, :as => :hidden
+    =   f.input :id, :as => :hidden
 
-    = f.error :base
+  = f.error :base
 
-    = f.button :submit, 'Submit Box', :class => 'large action submit button'
+  = f.button :submit, 'Submit Box', :class => 'large action submit button'
+
+
+.hide
+  = simple_form_for Item.new do |fi|
+    .errors
+    .inputs
+      = fi.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
+      = fi.input :brand, :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Type a brand name...'}
+      = fi.input :brand_id, :as => :hidden
+
+      .nwt
+        = fi.check_box :new_with_tags
+        %span.head New With Tags?
+
+      = fi.input :box_id, :as => :hidden, :input_html => {:value => @box.id}
+      = fi.input :gender, :as => :hidden, :input_html => {:value => @box.gender}
+      = fi.input :size, :as => :hidden, :input_html => {:value => @box.size}
+    .clear
+    .small.action.button.add_item Add Item

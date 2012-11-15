@@ -96,7 +96,8 @@
   }
 }
 
-#boxes-edit {
+#boxes-edit,
+#boxes-update {
   .photo-list {
     @include clearfix();
     .photo {
@@ -195,7 +196,7 @@
     }
   }
   .submit {
-    margin: 50px 0 0 0;
+    margin: 0 0 0 25px;
   }
 }
 

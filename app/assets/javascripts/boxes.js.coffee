@@ -19,25 +19,25 @@ jQuery ->
     $('#header #new_box').toggle(200)
 
   # handle adding a new item to a box
-  $('.box_form .item_form .add_item').on 'click', (e) ->
+  $('body').on 'click', '#new_item .add_item', (e) ->
     e.preventDefault()
-    self = $(@).parent('.item_form:first')
+    self = $('#new_item')
     $.ajax
       url: '/items'
-      data: $(self).find(':input').serializeArray()
+      data: self.serializeArray()
       cache: false
       dataType: 'json'
       type: 'POST'
       success: (data, textStatus, jqXHR) ->
-        $(self).find('select option[value=""]').attr('selected', true)
-        $(self).find('#item_brand').val('')
-        $(self).find(':checked').removeAttr('checked')
-        $(self).find('.alert-error').remove()
+        self.find('select option[value=""]').attr('selected', true)
+        self.find('#item_brand').val('')
+        self.find(':checked').removeAttr('checked')
+        self.find('.alert-error').remove()
         $('.item-list').append(data.form_teaser)
         $('.price .low').text("$#{data.recommended_price.recommended_low}")
         $('.price .high').text("$#{data.recommended_price.recommended_high}")
       error: (jqXHR, textStatus, errorThrown) ->
-        globalError(jqXHR, $(self))
+        globalError(jqXHR, self)
 
   # brand search when adding new box items
   $('#item_brand').soulmate
@@ -100,3 +100,6 @@ jQuery ->
   # box show page image slider
   $('#photo-list').orbit
     advanceSpeed: 20000
+
+  $('.box_form').livequery ->
+    $('#new_item').appendTo($('.item_form'))
