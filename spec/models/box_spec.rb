@@ -43,8 +43,16 @@ describe Box do
   it "should not require the seller_price if not active" do
     FactoryGirl.build(:box, :seller_price => 5, :status => 'inactive').should be_valid
   end
-  it "should return a BigDecimal" do
+  it "should require seller_price to be a BigDecimal" do
     @box.seller_price.should be_a BigDecimal
+  end
+  it "should allow rating to be nil" do
+    FactoryGirl.build(:box, :rating => nil).should be_valid
+  end
+  it "should require rating to be between 0 and 5" do
+    FactoryGirl.build(:box, :rating => -1.0).should be_invalid
+    FactoryGirl.build(:box, :rating => 6.0).should be_invalid
+    FactoryGirl.build(:box, :rating => 5.0).should be_valid
   end
 
   describe "#price_total" do
@@ -167,4 +175,6 @@ describe Box do
   describe "#recommended_price" do
     it "should return a float"
   end
+
+  describe "#rating"
 end
