@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113014307) do
+ActiveRecord::Schema.define(:version => 20121115010152) do
 
   create_table "boxes", :force => true do |t|
     t.string  "gender"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121113014307) do
     t.string  "status",                                     :default => "active"
     t.integer "user_id"
     t.decimal "seller_price", :precision => 8, :scale => 2
+    t.decimal "rating"
+    t.string  "review"
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"

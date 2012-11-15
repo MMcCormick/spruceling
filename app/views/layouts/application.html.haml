@@ -29,7 +29,7 @@
 
     #data-pjax-container{'data-pjax-container' => 'true'}
 
-      %div{:id => "#{params[:controller]}-#{params[:action]}", :class => "#{@body_class} #{@fullscreen ? 'fullscreen' : ''}"}
+      %div{:id => "#{params[:controller].split('/').last}-#{params[:action]}", :class => "#{@body_class} #{@fullscreen ? 'fullscreen' : ''}"}
 
         #container{:class => "row #{content_for?(:left_sidebar) ? "with-left-fixed" : ''}"}
 
