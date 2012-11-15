@@ -17,23 +17,19 @@
 
   <%= yield(:head) %>
 </head>
-<body id="splash">
-  <div id="container">
-    <div id="main" role="main">
-      <%= yield %>
+<body id="splash" class='cover-image'>
+  <%= yield %>
 
-      <div id='footer'>
-        <a href="http://www.twitter.com/spruceling">
-          <i class="icon-twitter-sign item"></i>
-        </a>
-        <a href="http://www.facebook.com/spruceling">
-          <i class="icon-facebook-sign item"></i>
-        </a>
-        <a href="mailto:founders@spruceling.com">
-          <i class="icon-envelope item"></i>
-        </a>
-      </div>
-    </div>
-  </div> <!--! end of #container -->
+  <div id='footer'>
+    <a href="http://www.twitter.com/spruceling">
+      <i class="icon-twitter-sign item"></i>
+    </a>
+    <a href="http://www.facebook.com/spruceling">
+      <i class="icon-facebook-sign item"></i>
+    </a>
+    <a href="mailto:founders@spruceling.com">
+      <i class="icon-envelope item"></i>
+    </a>
+  </div>
 </body>
 </html>

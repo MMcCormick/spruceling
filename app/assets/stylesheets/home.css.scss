@@ -1,5 +1,10 @@
 #splash {
   position: relative;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-image: url(image_path('kid_bg.jpeg'));
+
 
   .logo {
     position: absolute;
@@ -31,6 +36,7 @@
     border-bottom: 1px solid #333;
     position: relative;
     text-align: center;
+    background: #FFF;
 
     img {
       margin: 10px 0 10px -80px;
@@ -101,6 +107,10 @@
     text-align: center;
     width: 100%;
     padding: 7px 0;
+    position: absolute;
+    bottom: 0px;
+    height: auto;
+    min-height: auto;
 
     .item {
       margin: 0 5px;
