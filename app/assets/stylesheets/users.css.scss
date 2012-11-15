@@ -49,8 +49,11 @@
 .new_registration {
   max-width: 600px;
   margin: auto;
+  padding: 20px 0 40px;
   h1 {
     text-align: center;
+    background-color: transparent;
+    border: none;
   }
   .left, .right {
     padding: 15px;
@@ -63,25 +66,29 @@
       vertical-align: middle;
       width: 100%;
       text-align: left;
-      padding: 8px 10px 8px 40px;
-      margin: 21px 0 0 0;
+      padding: 10px 10px 10px 40px;
+      margin: 17px 0 0 0;
       color: #FFF;
       background-color: $fb-color;
       .icon-facebook {
         position: absolute;
         left: 15px;
         top: 2px;
-        font-size: 36px;
+        font-size: 40px;
       }
     }
   }
   .right {
     border-left: 1px solid #AAA;
+    >form div {
+      margin-bottom: 10px;
+    }
   }
 }
 
 .new_confirmation,
 .new_password {
+  padding: 20px 0 40px;
   max-width: 320px;
   margin: auto;
   h5 {
