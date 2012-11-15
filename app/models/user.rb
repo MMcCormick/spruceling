@@ -202,4 +202,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  ###
+  # ROLES
+  ###
+
+  # Checks to see if this user has a given role
+  def role?(role)
+    roles && roles.include?(role)
+  end
+
+  # Adds a role to this user
+  def grant_role(role)
+    self.roles ||= []
+    self.roles << role unless self.roles.include?(role)
+  end
+
+  # Removes a role from this user
+  def revoke_role(role)
+    self.roles.delete(role) if roles
+  end
+
 end

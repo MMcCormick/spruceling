@@ -1,5 +1,7 @@
 Spruceling::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
   resources :withdrawals, :only => [:new, :create]
   resources :brands
   resources :orders
