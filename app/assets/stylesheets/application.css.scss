@@ -142,14 +142,14 @@ label {
       &.new_box {
         color: $link-color;
         font-weight: bold;
-        padding: 23px;
+        padding: 22px;
         display: inline-block;
         border-right: 1px solid #FFF;
       }
       &.cart {
         color: $link-color;
         font-weight: bold;
-        padding: 23px;
+        padding: 22px;
         display: block;
       }
       &.dropdown {
@@ -229,6 +229,7 @@ label {
   #new_box {
     position: absolute;
     top: $header-navbar-height - 1;
+    left: 216px;
     background: #FFF;
     max-width: 374px;
     display: none;
