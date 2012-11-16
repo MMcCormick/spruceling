@@ -1,5 +1,4 @@
-#source 'http://rubygems.org' # dependency api is down http://status.rubygems.org/
-source 'http://bundler-api.herokuapp.com'
+source :rubygems
 
 ruby '1.9.3'
 
