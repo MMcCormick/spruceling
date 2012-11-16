@@ -1,0 +1,7 @@
+= simple_form_for @box, :html => {:class => "rating_form"} do |f|
+  = f.error_notification
+
+  = f.input :rating, :as => :text, :input_html => {:value => @box.gender}
+  = f.text_area :review, :as => :select, :collection => 1..5
+  .clear
+    .small.action.button.submit_review Submit Review

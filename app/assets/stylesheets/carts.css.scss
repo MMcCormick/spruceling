@@ -27,14 +27,35 @@
       background: #F9F9F9;
     }
   }
-  .buy {
+  .complete-purchase {
     margin: 30px 0 0 0;
+    text-align: right;
+    div {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .buy {
+    }
+  }
+
+  .missing,
+  .current {
+    margin-bottom: 10px;
+    .icon-check {
+      color: $green;
+    }
+    .icon-check-empty {
+      color: red;
+    }
+  }
+  .missing {
+    font-style: italic;
   }
 
   .toggle_edit_payment,
   .toggle_edit_address,
   .covered {
-    display: block;
-    margin: 10px 0;
+    display: inline-block;
+    margin: 0 0 10px 0;
   }
 }
