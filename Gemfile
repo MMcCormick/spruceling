@@ -1,5 +1,4 @@
-#source 'http://rubygems.org' # dependency api is down http://status.rubygems.org/
-source 'http://bundler-api.herokuapp.com'
+source :rubygems
 
 ruby '1.9.3'
 
@@ -28,6 +27,7 @@ gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
 gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord-postgres-hstore.git'
+gem 'activerecord-postgres-array'
 gem 'annotate'
 gem "pg"
 gem 'kaminari'
@@ -43,6 +43,7 @@ gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'nested_form'
 gem 'awesome-usps', git: 'https://github.com/turbovote/awesome-usps.git'
+gem 'activeadmin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
