@@ -137,8 +137,6 @@ label {
       text-align: center;
     }
     .part {
-      @include text-shadow(0 1px 0 #AAA);
-
       &.login,
       &.signup,
       &.new_box {
@@ -177,6 +175,7 @@ label {
           @include transition-delay(0s);
           @include opacity(0);
           visibility: hidden;
+          display: none;
         }
         .my_boxes {
           top: $header-navbar-height - 24;
@@ -222,6 +221,7 @@ label {
         .dropdown-menu {
           @include opacity(1);
           visibility: visible;
+          display: block;
         }
       }
     }

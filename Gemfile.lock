@@ -27,7 +27,7 @@ GIT
       hpricot
 
 GEM
-  remote: http://bundler-api.herokuapp.com/
+  remote: http://rubygems.org/
   specs:
     actionmailer (3.2.9)
       actionpack (= 3.2.9)

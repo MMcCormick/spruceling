@@ -37,7 +37,7 @@
               - if current_user.address
                 .current
                   %i.icon-check
-                  = render 'users/address', :address => current_user.address
+                  .address= render 'users/address', :address => current_user.address
               - else
                 .missing
                   %i.icon-check-empty

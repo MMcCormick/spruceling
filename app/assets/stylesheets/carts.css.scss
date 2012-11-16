@@ -41,6 +41,14 @@
   .missing,
   .current {
     margin-bottom: 10px;
+    padding: 0 0 0 18px;
+    position: relative;
+    .icon-check,
+    .icon-check-empty {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
     .icon-check {
       color: $green;
     }
