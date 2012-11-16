@@ -10,7 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
 //= require jquery_ujs
 //= require foundation
 //= require underscore
@@ -22,6 +21,8 @@
 //= require jquery_nested_form
 //= require global_functions
 
+//= require spruceling
+//= require boxes
 //= require carts
-
-//= require_tree .
+//= require stripe
+//= require users
