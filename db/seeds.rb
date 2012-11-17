@@ -29,6 +29,11 @@ unless ItemWeight.where(:name => "Long-sleeve Shirts").first
   end
 end
 
+## Item Brand ##
+unless Brand.where(:name => "Kidztees").first
+  Brand.create(:name => "Kidztees")
+end
+
 ### Item Types ###
 
 unless ItemType.where(:name => "Long-sleeve Polos").first
