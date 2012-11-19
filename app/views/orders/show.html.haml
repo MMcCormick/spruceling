@@ -1,18 +1,15 @@
 #order_show
   %h1= "Thank you for your order!"
-  .order
-    .order_header
-      = "Order ##{@order.id}"
-      %span= "placed on #{@order.created_at.strftime('%B %d, %Y at %I:%M %p')}"
+  .order.section
+    .head
+      %h3
+        ="Order ##{@order.id}"
+        %span= "placed on #{@order.created_at.strftime('%B %d, %Y at %I:%M %p')}"
 
-    .order_details
+    .order_details.content
       %div= "Payment Type:    #{@order.stripe_charge.card.type} **** **** **** #{@order.stripe_charge.card.last4}"
       %div= "Number of boxes: #{@order.order_items.length}"
       %div= "Total:           $#{@order.price_total}"
 
       - @order.boxes.each do |box|
         .box= render "boxes/itemized", :box => box
-
-  %br
-
-  = link_to 'Back', orders_path

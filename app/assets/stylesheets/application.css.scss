@@ -137,21 +137,19 @@ label {
       text-align: center;
     }
     .part {
-      @include text-shadow(0 1px 0 #AAA);
-
       &.login,
       &.signup,
       &.new_box {
         color: $link-color;
         font-weight: bold;
-        padding: 23px;
+        padding: 22px;
         display: inline-block;
         border-right: 1px solid #FFF;
       }
       &.cart {
         color: $link-color;
         font-weight: bold;
-        padding: 23px;
+        padding: 22px;
         display: block;
       }
       &.dropdown {
@@ -177,6 +175,7 @@ label {
           @include transition-delay(0s);
           @include opacity(0);
           visibility: hidden;
+          display: none;
         }
         .my_boxes {
           top: $header-navbar-height - 24;
@@ -222,6 +221,7 @@ label {
         .dropdown-menu {
           @include opacity(1);
           visibility: visible;
+          display: block;
         }
       }
     }
@@ -229,6 +229,7 @@ label {
   #new_box {
     position: absolute;
     top: $header-navbar-height - 1;
+    left: 216px;
     background: #FFF;
     max-width: 374px;
     display: none;
@@ -456,7 +457,10 @@ label {
 #boxes-edit,
 #boxes-update,
 #registrations-new,
-#registrations-create {
+#registrations-create,
+#static-terms,
+#static-about,
+#static-privacy {
   #container {
     max-width: 960px;
   }

@@ -6,9 +6,15 @@
   %span.size= "Size #{@box.size}"
   Box
 
-  %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
-    %i.icon-shopping-cart
-    Add to Cart
+  - if @box.status == 'active'
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
+      %i.icon-shopping-cart
+      Add to Cart
+
+- if @box.status == 'sold' && @box.rating = nil && current_user
+  .section
+    .content
+      = render 'rating_form'
 
 .section
   .content

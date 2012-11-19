@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
 
     begin
       charge = Stripe::Charge.create(
-        :amount => price_total * 100,
+        :amount => (price_total * 100).to_i,
         :currency => "usd",
         :customer => user.stripe.id,
         :description => "Charge for user #{user.email}"

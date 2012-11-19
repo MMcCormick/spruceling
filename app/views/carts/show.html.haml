@@ -32,34 +32,45 @@
 
         .row
           .six.columns
-            %h3 Shipping Address
-            - if current_user.address
-              #address_info_wrapper
-                = render 'users/address', :address => current_user.address
-                = link_to 'Edit Shipping Address', edit_user_address_path, :class => "toggle_edit_address"
-              #address_form_wrapper.hide
-                = link_to 'Cancel', '#', :class => 'toggle_edit_address'
-                = render "users/address_form"
-            - else
-              #address_form_wrapper
-                = render "users/address_form"
+            %h4 Shipping Address
+            #address_info_wrapper
+              - if current_user.address
+                .current
+                  %i.icon-check
+                  .address= render 'users/address', :address => current_user.address
+              - else
+                .missing
+                  %i.icon-check-empty
+                  No payment information provided
+              = link_to 'Edit Shipping Address', edit_user_address_path, :class => "toggle_edit_address"
+            #address_form_wrapper.hide
+              = link_to 'Cancel', '#', :class => 'toggle_edit_address'
+              = render "users/address_form"
 
           .six.columns
-            %h3 Payment Information
+            %h4 Payment Information
             - if @cart.price_total == 0.00
               %div.covered The cost is covered by your Spruceling balance! Woohoo!
-            - elsif current_user.stripe
+            - else
               #card_info_wrapper
-                %div= "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+                - if current_user.stripe
+                  .current
+                    %i.icon-check
+                    = "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+                - else
+                  .missing
+                    %i.icon-check-empty
+                    No payment information provided
                 = link_to 'Edit Payment Information', edit_user_payment_path, :class => "toggle_edit_payment"
               #card_form_wrapper.hide
                 = link_to 'Cancel', '#', :class => 'toggle_edit_payment'
                 = render "users/stripe_card_form"
-            - else
-              #card_form_wrapper
-                = render "users/stripe_card_form"
 
-        - if current_user.address && (@cart.price_total == 0.00 || current_user.stripe)
-          = link_to 'Complete Purchase!', orders_path, :method => :post, :class => "buy medium action button"
+        .complete-purchase
+          - if current_user.address && (@cart.price_total == 0.00 || current_user.stripe)
+            = link_to 'Complete Purchase!', orders_path, :method => :post, :class => "buy medium action button"
+          - else
+            %div Please complete your shipping and payment information
+            = link_to 'Complete Purchase!', '#', :class => "buy medium secondary button disabled"
       - else
         .empty-cart You haven't added any boxes to your cart!

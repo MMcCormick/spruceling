@@ -1,20 +1,19 @@
 #my_orders
   %h1 Completed Orders
 
-  %table
-    %tr
-      %th Order Number
-      %th Date
-      %th Number of Boxes
-      %th Total Amount
-      %th
-
-    - @orders.each do |order|
+  .section
+    %table
       %tr
-        %td= "Order ##{order.id}"
-        %td= "#{order.created_at.strftime('%m/%d/%Y')}"
-        %td= "#{order.boxes.length}"
-        %td= "$#{order.price_total}"
-        %td= link_to 'View Confirmation', order
+        %th Order Number
+        %th Date
+        %th Number of Boxes
+        %th Total Price
+        %th
 
-  %br
+      - @orders.each do |order|
+        %tr
+          %td= "Order ##{order.id}"
+          %td= "#{order.created_at.strftime('%m/%d/%Y')}"
+          %td= "#{order.boxes.length}"
+          %td= "$#{order.price_total}"
+          %td= link_to 'View Confirmation', order

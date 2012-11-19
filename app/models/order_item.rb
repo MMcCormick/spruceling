@@ -17,6 +17,8 @@ class OrderItem < ActiveRecord::Base
 
   validates_presence_of :box, :order, :status
 
+  scope :pending, where(:status => "pending")
+
   def tracking_number
     status == "empty_box_shipped" ? empty_tracking : full_tracking
   end
@@ -67,5 +69,9 @@ class OrderItem < ActiveRecord::Base
           return
       end
     end
+  end
+
+  def self.all_statuses
+    %w(pending empty_box_shipped empty_box_delivered full_box_shipped full_box_delivered)
   end
 end
