@@ -16,3 +16,9 @@ en:
               blank: "Item type can't be blank"
             brand:
               blank: "Item brand can't be blank"
+        box:
+          attributes:
+            size:
+              blank: "Size can't be blank"
+            gender:
+              blank: "Gender can't be blank"

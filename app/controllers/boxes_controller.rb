@@ -53,6 +53,10 @@ class BoxesController < ApplicationController
     @box.status = 'draft'
 
     respond_to do |format|
+      #if current_user.address.blank?
+      #  format.html { redirect_to edit_user_address_path, :notice => "Please provide your address before posting a box" }
+      #  format.json { render :json => {:errors => {:base => "Please update your address"}}, status: :unprocessable_entity }
+      #els
       if @box.save
         format.html { redirect_to @box, notice: 'Box was successfully created.' }
         format.json { render :json => {:box => @box, :url => box_path(@box), :edit_url => edit_box_path(@box)}, status: :created, location: @box }
