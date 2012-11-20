@@ -1,6 +1,7 @@
 %p
   = "#{@order_item.box.user.name} has shipped you a box, and it should arrive in the next few days! Here's the box we're talking about:"
 
+%div= render "boxes/link", :box => @box
 %div= render "boxes/itemized", :box => @box
 
 %p= "If you did not order this box, please email #{link_to 'support@spruceling.com', 'mailto:support@spruceling.com'}.".html_safe

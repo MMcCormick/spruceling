@@ -3,17 +3,19 @@
 %div= "Email address:   #{@user.email}"
 %div= "Name:            #{@user.email}"
 %div= "Date:            #{I18n.localize @order.created_at, :format => :long}"
-%div= "Order ID:        #{@order.id}"
+%div= "Order ID:        ##{@order.id}"
 %div= "Payment Type:    #{@order.stripe_charge.card['type']} **** **** **** #{@order.stripe_charge.card['last4']}"
 
 %br
 %div= "Number of boxes: #{@order.order_items.length}"
 %div= "Total:           #{number_to_currency @order.price_total}"
 %div Retailer: Spruceling, Inc
+%br
 
+%div= render 'boxes/link', :box => box
 - @order.boxes.each do |box|
   %div= render "boxes/itemized", :box => box
 
-%p Thanks, and we hope you enjoy your boxes!
+%p= "Thanks, and we hope you enjoy your #{@order.boxes.length > 1 ? 'boxes' : 'box'}!"
 
 %p The Spruceling Team

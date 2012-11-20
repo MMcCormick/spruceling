@@ -113,6 +113,16 @@ label {
       background: darken($action-color, 10%);
     }
   }
+  &.button.disabled,
+  &.button[disabled] {
+    color: white;
+    background: $grayLight;
+    border-color: $grayLight;
+    &:hover {
+      color: white;
+      background: $gray;
+    }
+  }
 }
 
 #header {

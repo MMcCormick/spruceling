@@ -19,7 +19,7 @@ class CartsController < ApplicationController
         format.html { redirect_to cart_path, :notice => 'Cart was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to cart_path, :notice => 'There was an error adding that box to your cart.' }
+        format.html { redirect_to cart_path, :alert => 'There was an error adding that box to your cart.' }
         format.json { render :json => @cart.errors, :status => :unprocessable_entity }
       end
     end

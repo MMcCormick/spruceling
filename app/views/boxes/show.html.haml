@@ -7,11 +7,11 @@
   Box
 
   - if @box.status == 'active'
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => "disabled"}
       %i.icon-shopping-cart
       Add to Cart
 
-- if @box.status == 'sold' && @box.rating = nil && current_user
+- if @box.status == 'sold' && @box.rating = nil && current_user #TODO: something something
   .section
     .content
       = render 'rating_form'
@@ -32,6 +32,14 @@
       - @box.photos.each do |photo|
         = render "photos/cover_photo", :photo => photo
 
+- if @box.notes
+  .section
+    .head
+      %h3 Notes from the seller
+
+    .content
+      %div= @box.notes
+
 .section
   .head
     %h3 What's in the box?
@@ -39,6 +47,6 @@
   .content
     = render 'boxes/itemized', :box => @box
 
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => "disabled"}
       %i.icon-shopping-cart
       Add to Cart
