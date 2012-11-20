@@ -12,8 +12,8 @@
 %div Retailer: Spruceling, Inc
 %br
 
-%div= render 'boxes/link', :box => box
 - @order.boxes.each do |box|
+  %div= render 'boxes/link', :box => box
   %div= render "boxes/itemized", :box => box
 
 %p= "Thanks, and we hope you enjoy your #{@order.boxes.length > 1 ? 'boxes' : 'box'}!"
