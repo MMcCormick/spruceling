@@ -76,7 +76,6 @@ unless ItemType.where(:name => "Long-sleeve Polos").first
                   ["Hoodies", "Hoodies", "Jackets"],
                   ["Raincoats", "Raincoats", "Jackets"],
                   ["Sweatshirts", "Sweatshirts", "Jackets"],
-                  ["Raincoats", "Raincoats", "Jackets"],
                   ["Vests", "Vests", "Sweater Vests"]]
   }
 
