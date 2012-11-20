@@ -29,6 +29,11 @@ class Brand < ActiveRecord::Base
 
       }
     }
-    Soulmate::Loader.new("brand").add(nugget)
+    begin
+      Soulmate::Loader.new("brand").add(nugget)
+    rescue => e
+      #raise "Could not connect to Soulmate"
+    end
+
   end
 end
