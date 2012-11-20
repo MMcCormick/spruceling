@@ -1,0 +1,17 @@
+.columns
+  .column{:style => "width: 49.0%; margin-right: 2%;"}
+    .panel
+      %h3 Seller Address
+      .seller_address= render 'users/address', :address => @order_item.seller.address
+  .column{:style => "width: 49.0%;"}
+    .panel
+      %h3 Buyer Address
+      .buyer_address= render 'users/address', :address => @order_item.buyer.address
+
+.columns
+  = semantic_form_for [:admin, @order_item] do |f|
+    = f.inputs "Tracking Numbers" do
+      = f.input :empty_tracking, :label => "Empty Tracking - to #{@order_item.seller.address["full_name"]}"
+      = f.input :full_tracking, :label => "Full Tracking - to #{@order_item.buyer.address["full_name"]}"
+      = f.input :status, :as => :select, :collection => OrderItem.all_statuses
+    = f.actions

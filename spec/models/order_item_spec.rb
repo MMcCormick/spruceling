@@ -198,4 +198,22 @@ describe OrderItem do
       @order_item.tracking_number.should == "foobar"
     end
   end
+
+  describe "#seller" do
+    it "should return the seller" do
+      seller = FactoryGirl.create(:user)
+      box = FactoryGirl.create(:box, :user => seller)
+      oi = FactoryGirl.create(:order_item, :box => box)
+      oi.seller.should eq seller
+    end
+  end
+
+  describe "#buyer" do
+    it "should return the buyer" do
+      buyer = FactoryGirl.create(:user)
+      order = FactoryGirl.create(:order , :user => buyer)
+      oi = FactoryGirl.create(:order_item, :order => order)
+      oi.buyer.should eq buyer
+    end
+  end
 end

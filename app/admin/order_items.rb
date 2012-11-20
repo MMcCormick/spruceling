@@ -4,7 +4,8 @@ ActiveAdmin.register OrderItem do
   index do
     column :id
     column :status
-    column "Paid Seller?", :paid
+    column :empty_tracking
+    column :full_tracking
     column :box do |oi|
       link_to "Box ##{oi.box.id}", box_path(oi.box)
     end
@@ -12,22 +13,16 @@ ActiveAdmin.register OrderItem do
       link_to "Order ##{oi.order.id}", order_path(oi.order)
     end
     column :buyer do |oi|
-      link_to oi.order.user.email, user_path(oi.order.user)
+      link_to oi.buyer.email, user_path(oi.buyer)
     end
     column :seller do |oi|
-      link_to oi.box.user.email, user_path(oi.box.user)
+      link_to oi.seller.email, user_path(oi.seller)
     end
+    column "Paid Seller?", :paid
     default_actions
   end
 
   filter :status, :as => :select, :collection => OrderItem.all_statuses
 
-  form do |f|
-    f.inputs "Tracking Numbers" do
-      f.input :full_tracking
-      f.input :empty_tracking
-      f.input :status, :as => :select, :collection => OrderItem.all_statuses
-    end
-    f.buttons
-  end
+  form :partial => "form"
 end

@@ -6,10 +6,16 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
        column do
-         panel "Recent Order Items" do
+         panel "Pending Order Items" do
            table_for OrderItem.pending.limit(10) do
              column :id do |oi|
                link_to("Order Item ##{oi.id}", admin_order_item_path(oi))
+             end
+             column :buyer do |oi|
+               link_to oi.buyer.email, user_path(oi.buyer)
+             end
+             column :seller do |oi|
+               link_to oi.seller.email, user_path(oi.seller)
              end
            end
            strong { link_to "View All Order Items", admin_order_items_path }

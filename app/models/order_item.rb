@@ -74,4 +74,12 @@ class OrderItem < ActiveRecord::Base
   def self.all_statuses
     %w(pending empty_box_shipped empty_box_delivered full_box_shipped full_box_delivered)
   end
+
+  def seller
+    box.user
+  end
+
+  def buyer
+    order.user
+  end
 end
