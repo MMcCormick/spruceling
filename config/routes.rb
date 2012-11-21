@@ -17,7 +17,7 @@ Spruceling::Application.routes.draw do
 
   # Users
   get '/users/auth/:provider' => 'omniauth_callbacks#passthru', :as => :omniauth
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }
   scope 'users' do
     post 'update_stripe' => 'users#update_stripe', :as => :user_update_stripe
     put 'update_address' => 'users#update_address', :as => :update_user_address
