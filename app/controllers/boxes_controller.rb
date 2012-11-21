@@ -1,10 +1,10 @@
 class BoxesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:index, :new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create]
 
   # GET /index
   # GET /index.json
   def index
-    @boxes = current_user.boxes.active
+    @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # index.html.erb

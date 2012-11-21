@@ -13,7 +13,7 @@ class OrderMailer < ActionMailer::Base
     @sender = User.find(sender_id)
     @order_items = @order.order_items.select{|oi| oi.box.user.id == @sender.id}
     @boxes = @order_items.map{|oi| oi.box}
-    mail(:to => @sender.email, :subject => "Your Spruceling box has found a home!")
+    mail(:to => @sender.email, :subject => "Your Spruceling box has found a pages!")
   end
 
   def empty_box_delivered(order_item_id)

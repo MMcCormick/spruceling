@@ -7,6 +7,59 @@ describe BoxesController do
     sign_in @box.user
   end
 
+  describe "GET 'index'" do
+    it "should be successful" do
+      get 'index'
+      response.should be_success
+    end
+
+    it "should render the index template" do
+      get :index
+      response.should render_template("index")
+    end
+
+    it "should not include inactive boxes" do
+      @box2 = FactoryGirl.create(:box, :status => "sold")
+      get :index
+      assigns(:boxes).should_not include @box2
+    end
+
+    describe "without parameters" do
+      it "assigns all boxes as @boxes" do
+        get :index
+        assigns(:boxes).to_a.should eq([@box])
+      end
+    end
+
+    describe "with parameters" do
+      it "should include boxes which match params" do
+        @box2 = FactoryGirl.create(:box, :gender => "m")
+        get :index, {:gender => "m"}
+        assigns(:boxes).should include @box2
+      end
+
+      it "should not include boxes which do not match params" do
+        @box2 = FactoryGirl.create(:box, :gender => "f")
+        get :index, {:gender => "m"}
+        assigns(:boxes).should_not include @box2
+      end
+
+      describe "pagination" do
+        it "should return the first element on the first page" do
+          @box2 = FactoryGirl.create(:box, :gender => "m")
+          get :index, {:gender => "m", :page => "1"}
+          assigns(:boxes).should include @box2
+        end
+
+        it "should not return the first element on the first page" do
+          @box2 = FactoryGirl.create(:box, :gender => "m")
+          get :index, {:gender => "m", :page => "2"}
+          assigns(:boxes).should_not include @box2
+        end
+      end
+    end
+  end
+
   describe "GET show" do
     it "assigns the requested box as @box" do
       get :show, {:id => @box.to_param}

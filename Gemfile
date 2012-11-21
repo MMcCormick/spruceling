@@ -45,6 +45,7 @@ gem 'nested_form'
 gem 'awesome-usps', git: 'https://github.com/turbovote/awesome-usps.git'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'activeadmin'
+gem 'airbrake'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
