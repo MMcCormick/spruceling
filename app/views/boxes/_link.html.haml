@@ -1,1 +1,2 @@
-=link_to "Box ##{box.id} - #{box.size} #{box.gender_noun}", box
+- absolute ||= false
+=link_to "Box ##{box.id} - #{box.size} #{box.gender_noun}", (absolute ? box_url(box) : box)
