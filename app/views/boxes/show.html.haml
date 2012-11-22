@@ -7,7 +7,7 @@
   Box
 
   - if @box.status == 'active'
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => "disabled"}
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if @box.user_id == current_user.id)}
       %i.icon-shopping-cart
       Add to Cart
 
@@ -47,6 +47,6 @@
   .content
     = render 'boxes/itemized', :box => @box
 
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => "disabled"}
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if @box.user_id == current_user.id)}
       %i.icon-shopping-cart
       Add to Cart
