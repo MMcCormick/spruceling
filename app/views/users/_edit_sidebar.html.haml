@@ -1,10 +1,14 @@
-%h3 My Account
+.section
+  .head
+    %h3 My Account
 
-.head{:class => controller.action_name == "edit" ? "on" : ""}
-  = link_to "Account Information", edit_user_registration_path
-.head{:class => controller.action_name == "edit_address" ? "on" : ""}
-  = link_to "Shipping Address", edit_user_address_path
-.head{:class => controller.action_name == "edit_payment" ? "on" : ""}
-  = link_to "Payment Information", edit_user_payment_path
-.head{:class => controller.controller_name == "withdrawal" && controller.action_name == "new" ? "on" : ""}
-  = link_to "Account Balance", new_withdrawal_path
+  .content
+    %ul
+      %li{:class => controller.action_name == "edit" ? "on" : ""}
+        = link_to "Account Information", edit_user_registration_path
+      %li{:class => controller.action_name == "edit_address" ? "on" : ""}
+        = link_to "Shipping Address", edit_user_address_path
+      %li{:class => controller.action_name == "edit_payment" ? "on" : ""}
+        = link_to "Payment Information", edit_user_payment_path
+      %li{:class => controller.controller_name == "withdrawal" && controller.action_name == "new" ? "on" : ""}
+        = link_to "Account Balance", new_withdrawal_path

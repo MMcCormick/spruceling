@@ -12,9 +12,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   #  process :resize_to_fill => [100, 150, :north]
   #end
   #
-  #version :thumbnail do
-  #  process :resize_to_fit => [50, 50]
-  #end
+  version :medium do
+    process :resize_to_limit => [300,300]
+  end
 
   def public_id
     secure_token(10)

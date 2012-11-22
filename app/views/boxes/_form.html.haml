@@ -64,7 +64,7 @@
       %h3 Notes
       %h5.subheader Anything parents would want to know about your box.
     .content
-      = f.input :notes, :as => :text, :input_html => { :rows => 3 }
+      = f.input :notes, :label => false, :as => :text, :input_html => { :rows => 3 }
 
   = f.error :base
 

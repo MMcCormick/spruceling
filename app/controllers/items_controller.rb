@@ -94,7 +94,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render :json => {:status => :ok, :recommended_price => @box.recommended_price} }
+      format.js
     end
   end
 end

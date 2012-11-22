@@ -17,7 +17,7 @@
 }
 
 #box_list {
-  margin: 18px 0 0 0;
+  margin: -10px 0 0 0;
 }
 
 .box_teaser {
@@ -26,6 +26,7 @@
   float: left;
   margin: 10px;
   background: #FFF;
+  position: relative;
 
   .photo {
     width: 100%;
@@ -90,6 +91,36 @@
   }
   .gender_size {
     margin: 0 0 7px 0;
+  }
+  .actions {
+    @include box-shadow(rgba(0, 0, 0, 0.15) 0 1px 2px);
+    $background: darken($site-background-color, 10%);
+    background: $background;
+    position: absolute;
+    top: -2px;
+    right: 10px;
+    padding: 7px 10px;
+    z-index: 100;
+
+    ul {
+      display: none;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      padding: 5px 0;
+      background: $background;
+    }
+    li {
+      font-weight: bold;
+      a {
+        padding: 5px 20px;
+      }
+    }
+    &:hover {
+      ul {
+        display: block;
+      }
+    }
   }
   &:hover {
     @include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 2px);
