@@ -43,7 +43,9 @@
               = yield
 
         #footer.row
-          Footer
+          %div= link_to "How It Works", about_path
+          %div= link_to "Terms", terms_path
+          %div= link_to "Privacy", privacy_path
 
         #loader
           %h1 Loading...

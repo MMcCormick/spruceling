@@ -1,1 +1,39 @@
-%h1 About Spruceling
+.section
+  %h3 Buy kids' clothes for less, sell yours for more
+  .subheader Spruceling cuts out the middle man
+
+  .box-link
+    Get real value out of your kids' used clothes
+    = link_to "List a box", new_box_path
+
+.section
+  %ul.steps
+    %li
+      .number 1
+      List your kids' new clothes for sale
+      %span It's free, and it just takes a few minutes
+    %li
+      .number 2
+      Earn more than you would at consignment
+      %span== Spruceling takes #{number_to_percentage(Order.spruceling_cut * 100, :precision => 0)}, you keep the rest
+    %li
+      .number 3
+      Use your Spruceling balance to buy clothes that fit!
+      %span Or you can withdraw and use it for something else
+
+.section.row
+  %h3 We'll take care of the annoying stuff
+  .four.columns
+    .image
+    %h4 Payment
+    %div All payments are handled securely and are fully PCI compliant
+  .four.columns
+    .image
+    %h4 Shipping
+    %div When your box is bought, we'll send you an empty box. Just put the clothes in and send it off!
+  .four.columns
+    .image
+    %h4 Something Else
+    %div Something else that sounds super easy!
+
+.section.row

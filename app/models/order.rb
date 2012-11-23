@@ -13,6 +13,11 @@
 
 class Order < ActiveRecord::Base
 
+  @@spruceling_cut = 0.2
+  def self.spruceling_cut
+    @@spruceling_cut
+  end
+
   belongs_to :user, :inverse_of => :orders
   has_many :order_items, :inverse_of => :order
   has_many :boxes, :through => :order_items
