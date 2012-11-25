@@ -37,7 +37,8 @@ Spruceling::Application.routes.draw do
   end
 
   # Static Pages
-  get 'about' => 'static#about', :as => :about
+  get 'how-it-works' => 'static#about', :as => :about
+  get 'about' => 'static#about' # Just for funsies
   get 'terms' => 'static#terms', :as => :terms
   get 'privacy' => 'static#privacy', :as => :privacy
 
