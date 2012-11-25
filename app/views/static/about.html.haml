@@ -1,27 +1,32 @@
 .section
-  %h3 Buy kids' clothes for less, sell yours for more
-  .subheader Spruceling cuts out the middle man
+  .row
+    %h3 Buy kids' clothes for less, sell yours for more
+    .sub-h Spruceling cuts out the middle man
 
-  .box-link
-    Get real value out of your kids' used clothes
-    = link_to "List a box", new_box_path
+    .eight.columns
+      .video
+        %div
+    .box-link.four.columns
+      %div
+        %div Get real value out of your kids' used clothes
+        = link_to "List a box", new_box_path, :class => "medium action button"
 
-.section
-  %ul.steps
+.section.odd.steps
+  %ul
     %li
       .number 1
       List your kids' new clothes for sale
-      %span It's free, and it just takes a few minutes
+      .sub-step It's free, and it just takes a few minutes
     %li
       .number 2
       Earn more than you would at consignment
-      %span== Spruceling takes #{number_to_percentage(Order.spruceling_cut * 100, :precision => 0)}, you keep the rest
+      .sub-step== Spruceling takes #{number_to_percentage(Order.spruceling_cut * 100, :precision => 0)}, you keep the rest
     %li
       .number 3
       Use your Spruceling balance to buy clothes that fit!
-      %span Or you can withdraw and use it for something else
+      .sub-step Or you can withdraw and use it for something else
 
-.section.row
+.section.row.annoying
   %h3 We'll take care of the annoying stuff
   .four.columns
     .image
@@ -36,4 +41,6 @@
     %h4 Something Else
     %div Something else that sounds super easy!
 
-.section.row
+.section.row.odd
+  %h3 You get more for your clothes
+  .sub-h== A consignment store might give you 30%. Spruceling gives you #{number_to_percentage(100 - (Order.spruceling_cut * 100), :precision => 0)}.

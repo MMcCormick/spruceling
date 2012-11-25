@@ -1,0 +1,84 @@
+$primary-size: 22px;
+#static-about {
+  .section {
+    position: relative;
+    margin: 0;
+    padding: 25px;
+    &.odd {
+      background: $grayLighter;
+    }
+  }
+
+  h3 {
+    text-align: center;
+    margin: 0 0 25px;
+  }
+
+  .sub-h {
+    text-align: center;
+    color: $gray;
+    font-size: 18px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+  }
+
+  $video-height: 380px;
+  .video {
+    text-align: center;
+    div {
+      Video
+      background: $grayLight;
+      width: 100%;
+      height: $video-height;
+    }
+  }
+
+  .box-link {
+    display: table;
+    height: $video-height;
+    text-align: center;
+
+    padding: 0 20px;
+    >div {
+      display: table-cell;
+      vertical-align: middle;
+      >div {
+        font-size: $primary-size;
+      }
+      >a {
+        margin-top: 20px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .steps {
+    padding-top: 15px;
+    li {
+      position: relative;
+      padding: 15px 40px;
+      font-size: $primary-size;
+      .number {
+        font-size: 34px;
+        position: absolute;
+        left: 5px;
+        top: 15px;
+      }
+      .sub-step {
+        font-size: $primary-size - 4;
+        color: $gray;
+        line-height: 10px;
+      }
+    }
+  }
+
+  .annoying {
+    .columns {
+      padding: 0 15px;
+      text-align: center;
+      >div {
+        font-size: 18px;
+      }
+    }
+  }
+}
