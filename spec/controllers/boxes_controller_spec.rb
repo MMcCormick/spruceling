@@ -63,7 +63,7 @@ describe BoxesController do
 
       it "redirects to the created box" do
         post :create, {:box => valid_attributes}
-        response.should redirect_to(Box.last)
+        response.should redirect_to(edit_box_path(Box.last))
       end
     end
 
