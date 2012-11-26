@@ -9,7 +9,7 @@
     .box-link.four.columns
       %div
         %div Get real value out of your kids' used clothes
-        - unless Time.now < Chronic.parse("12am, November 28") #&& Rails.env == "production"
+        - unless Time.now < Chronic.parse("12am, November 28") && Rails.env == "production"
           = link_to "List a box", new_box_path, :class => "medium action button"
 
 .section.odd.steps
