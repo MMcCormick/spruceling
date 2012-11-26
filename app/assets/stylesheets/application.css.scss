@@ -191,19 +191,28 @@ label {
         }
         .dropdown-menu {
           @include transition-duration(.4s);
-          width: 177px;
+          width: 100%;
           position: absolute;
-          background-color: #D3D3D3;
-          padding-bottom: 10px;
+          left: 0;
+          @include background-image(linear-gradient(#D3D3D3, #BBB));
+          padding: 0 0 10px 0;
           visibility: visible;
           a:hover {
             background-color: $action-color;
             color: #FFF;
+            i {
+              color: #FFF;
+            }
           }
           a {
-            padding: 2px 20px;
+            padding: 5px 20px 5px ($header-navbar-height + 20px);
             display: block;
             width: 100%;
+            i {
+              position: absolute;
+              left: 23px;
+              color: $link-color;
+            }
           }
         }
         .name {

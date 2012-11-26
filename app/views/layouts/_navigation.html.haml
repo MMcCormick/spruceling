@@ -17,10 +17,22 @@
               .my_boxes My Boxes
 
             %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
-              %li= link_to 'My Cart', cart_path
-              %li= link_to 'My Orders', orders_path
-              %li= link_to 'My Account', edit_user_registration_path
-              %li= link_to 'Logout', destroy_user_session_path, :method => 'delete'
+              %li
+                %a{:href => cart_path}
+                  %i.icon-shopping-cart
+                  My Cart
+              %li
+                %a{:href => orders_path}
+                  %i.icon-barcode
+                  My Orders
+              %li
+                %a{:href => edit_user_registration_path}
+                  %i.icon-cog
+                  My Account
+              %li
+                %a{:href => destroy_user_session_path, :method => 'delete'}
+                  %i.icon-minus-sign
+                  Logout
 
           %a.part.new_box{:href => new_box_path}
             .name
