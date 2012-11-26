@@ -8,10 +8,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :convert => 'jpg'
   process :tags => ['picture']
 
-  #version :standard do
-  #  process :resize_to_fill => [100, 150, :north]
-  #end
-  #
+  version :default do
+    process :resize_to_limit => [1200,1200]
+  end
+
   version :medium do
     process :resize_to_limit => [300,300]
   end
