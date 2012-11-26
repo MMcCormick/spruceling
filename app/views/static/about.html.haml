@@ -1,46 +1,84 @@
 .section
   .row
-    %h3 Buy kids' clothes for less, sell yours for more
-    .sub-h Spruceling cuts out the middle man
+    %h2 Turn your used kids' clothes into cash
+    .sub-h Sell directly to other parents and get more
 
     .eight.columns
-      .video
-        %div
+      .video.flex-video
+        <iframe width="560" height="315" src="http://www.youtube.com/embed/fbAvd56sfsM" frameborder="0" allowfullscreen></iframe>
     .box-link.four.columns
       %div
         %div Get real value out of your kids' used clothes
         = link_to "List a box", new_box_path, :class => "medium action button"
 
 .section.odd.steps
+  %h2 Parents like things simple
   %ul
     %li
       .number 1
-      List your kids' new clothes for sale
+      List your kids' gently used clothes for sale
       .sub-step It's free, and it just takes a few minutes
     %li
       .number 2
       Earn more than you would at consignment
-      .sub-step== Spruceling takes #{number_to_percentage(Order.spruceling_cut * 100, :precision => 0)}, you keep the rest
+      .sub-step A consignment store might give you 30%. Spruceling gives you #{number_to_percentage(100 - (Order.spruceling_cut * 100), :precision => 0)}.
     %li
       .number 3
       Use your Spruceling balance to buy clothes that fit!
       .sub-step Or you can withdraw and use it for something else
 
 .section.row.annoying
-  %h3 We'll take care of the annoying stuff
+  %h2 We'll take care of the annoying stuff
   .four.columns
-    .image
+    .wrapper
+      %i.icon-money
     %h4 Payment
     %div All payments are handled securely and are fully PCI compliant
-  .four.columns
-    .image
+  .four.columns.middle
+    .wrapper
+      %i.icon-truck
     %h4 Shipping
     %div When your box is bought, we'll send you an empty box. Just put the clothes in and send it off!
   .four.columns
-    .image
+    .wrapper
+      %i.icon-question-sign
     %h4 Something Else
-    %div Something else that sounds super easy!
+    %div Here's another thing that sounds super easy!
 
-.section.row.odd
-  %h3 You get more for your clothes
-  .sub-h== A consignment store might give you 30%. Spruceling gives you #{number_to_percentage(100 - (Order.spruceling_cut * 100), :precision => 0)}.
+.section.row.odd.get-more
+  %h2 Buy kids' clothes for less, sell yours for more
+  .sub-h Spruceling cuts out the middle man
+  .five.columns
+    .top.row
+      .parent-a Parent A
+      %i.icon-arrow-right
+      Consignment
+      %i.icon-arrow-right
+      .parent-b Parent B
+    .bottom.row
+      .parent-a Parent A
+      gets 30%, and
+      .parent-b Parent B
+      pays more
+
+  .vs.two.columns VS
+
+  .five.columns
+    .top.row
+      .parent-a Parent A
+      %i.icon-arrow-right
+      .parent-b Parent B
+    .bottom.row
+      .parent-a Parent A
+      gets #{number_to_percentage(100 - (Order.spruceling_cut * 100), :precision => 0)}, and
+      .parent-b Parent B
+      pays less
+
+.section.row.kinder
+  .six.columns.launchrock
+    = image_tag('spruceling_logo.png', :alt => 'Spruceling')
+    .lrdiscoverwidget{:rel => 'OW45YWTV', 'data-logo' => 'off', 'data-background' => 'off', 'data-share-url' => 'www.spruceling.com', 'data-css' => ''}
+    %script{:type => 'text/javascript', :src => 'http://launchrock-ignition.s3.amazonaws.com/ignition.1.1.js'}
+  .six.columns.giveaway
+    <a id="rc-68d6a47" class="rafl" href="http://www.rafflecopter.com/rafl/display/68d6a47/" rel="nofollow">a Rafflecopter giveaway</a>
+    <script src="//d12vno17mo87cx.cloudfront.net/embed/rafl/cptr.js"></script>

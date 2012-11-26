@@ -13,7 +13,7 @@
 
 class Order < ActiveRecord::Base
 
-  @@spruceling_cut = 0.2
+  @@spruceling_cut = 0.4
   def self.spruceling_cut
     @@spruceling_cut
   end

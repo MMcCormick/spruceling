@@ -177,11 +177,11 @@ label {
 
         .my_boxes,
         .dropdown-menu {
-          //@include transition-property(opacity);
-          //@include transition-delay(0s);
-          //@include opacity(0);
-          //visibility: hidden;
-          //display: none;
+          @include transition-property(opacity);
+          @include transition-delay(0s);
+          @include opacity(0);
+          visibility: hidden;
+          display: none;
         }
         .my_boxes {
           position: absolute;
