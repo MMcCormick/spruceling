@@ -3,7 +3,7 @@
     %a{:href => root_path}
       = image_tag('spruceling_logo.png', :alt => 'Spruceling')
 
-  - if Time.now < Chronic.parse("12am, November 28") && Rails.env == "production"
+  - if Time.now < Chronic.parse("12am, November 28") && action_name == "about"
     #flash_notice.rafflert Rafflecopter users, scroll down!
   - else
     .nine.columns

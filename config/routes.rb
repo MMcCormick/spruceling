@@ -26,8 +26,7 @@ Spruceling::Application.routes.draw do
   end
   resources :users, :only => [:show, :index, :edit]
   authenticated :user do
-    #root :to => 'home#index'
-    root :to => 'static#about'
+    root :to => 'home#index'
   end
 
   # Cart
