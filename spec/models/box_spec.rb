@@ -177,4 +177,24 @@ describe Box do
   end
 
   describe "#rating"
+
+  describe "#ordered_by?" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+    end
+
+    it "should return true if the passed user ordered the box" do
+      @order = FactoryGirl.create(:order, :user => @user)
+      @box.ordered_by?(@user).should == true
+    end
+
+    it "should return false if the passed user did not order the box" do
+      @order = FactoryGirl.create(:order)
+      @box.ordered_by?(@user).should == false
+    end
+
+    it "should return false if no user is passed" do
+      @box.ordered_by?(nil).should == false
+    end
+  end
 end

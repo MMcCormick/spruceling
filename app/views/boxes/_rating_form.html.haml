@@ -1,7 +1,11 @@
-= simple_form_for @box, :html => {:class => "rating_form"} do |f|
-  = f.error_notification
+.row
+  %p Please review this box! Reviews help other parents get quality clothes.
+  = simple_form_for @box, :html => {:class => "rating_form"} do |f|
+    = f.error_notification
 
-  = f.input :rating, :as => :text, :input_html => {:value => @box.gender}
-  = f.text_area :review, :as => :select, :collection => 1..5
-  .clear
-    .small.action.button.submit_review Submit Review
+    .nine.columns.left
+      = f.input :review, :as => :text, :input_html => { :rows => "4" }
+    .three.columns.right
+      = f.input :rating, :as => :select, :collection => 1..5, :prompt => "Rate this box 1-5"
+      .clear
+        .medium.action.button.submit_review Submit Review

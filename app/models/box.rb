@@ -85,6 +85,14 @@ class Box < ActiveRecord::Base
     @recommended ||= calculate_recommended_price
   end
 
+  def ordered_by? (person)
+    if person && order && order.user.id == person.id
+      true
+    else
+      false
+    end
+  end
+
   private
 
   def calculate_recommended_price

@@ -261,3 +261,23 @@
     padding: 3px 5px;
   }
 }
+
+#boxes-show {
+  .rate-me {
+    background: #CCFFCC;
+    border-bottom: 1px solid #66CC66;
+    padding: 25px;
+    margin: 0px;
+    .rating_form {
+      .left {
+        padding-right: 20px;
+        input {
+          margin-bottom: 0px;
+        }
+      }
+      textarea {
+        max-width: 100%;
+      }
+    }
+  }
+}
