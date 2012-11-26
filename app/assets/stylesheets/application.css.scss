@@ -311,6 +311,11 @@ label {
   padding: 25px;
   text-align: center;
   background: darken($body-bg-color, 30%);
+  div {
+    a {
+      color: #FFF;
+    }
+  }
 }
 
 #container_wrap {
