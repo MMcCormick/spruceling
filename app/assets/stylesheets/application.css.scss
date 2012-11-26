@@ -120,7 +120,7 @@ label {
     border-color: $grayLight;
     &:hover {
       color: white;
-      background: $gray;
+      background: $grayLight;
     }
   }
 }
@@ -165,8 +165,9 @@ label {
       &.dropdown {
         float: left;
         border-right: 1px solid #FFF;
-        padding: 0 0 0 60px;
+        padding: 0 0 0 $header-navbar-height;
         position: relative;
+        min-width: 200px;
 
         .photo {
           @include border-radius(3px 0 0 3px);
@@ -177,34 +178,42 @@ label {
 
         .my_boxes,
         .dropdown-menu {
-          position: absolute;
-          right: 0px;
-          width: 158px;
           @include transition-property(opacity);
-          @include transition-duration(.4s);
           @include transition-delay(0s);
           @include opacity(0);
           visibility: hidden;
           display: none;
         }
         .my_boxes {
+          position: absolute;
           top: $header-navbar-height - 24;
-          padding: 2px 20px;
+          padding: 2px 0 0 0;
           font-weight: normal;
         }
         .dropdown-menu {
-          background-color: #D3D3D3;
-          padding-bottom: 10px;
-          top: $header-navbar-height;
+          @include transition-duration(.4s);
+          width: 100%;
+          position: absolute;
+          left: 0;
+          @include background-image(linear-gradient(#D3D3D3, #BBB));
+          padding: 0 0 10px 0;
           visibility: visible;
           a:hover {
             background-color: $action-color;
             color: #FFF;
+            i {
+              color: #FFF;
+            }
           }
           a {
-            padding: 2px 20px;
+            padding: 5px 20px 5px ($header-navbar-height + 20px);
             display: block;
             width: 100%;
+            i {
+              position: absolute;
+              left: 23px;
+              color: $link-color;
+            }
           }
         }
         .name {
@@ -312,6 +321,11 @@ label {
   padding: 25px;
   text-align: center;
   background: darken($body-bg-color, 30%);
+  div {
+    a {
+      color: #FFF;
+    }
+  }
 }
 
 #container_wrap {
@@ -497,3 +511,4 @@ label {
 @import "users";
 @import "withdrawals";
 @import "media_queries";
+@import "static";

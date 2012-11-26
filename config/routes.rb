@@ -17,7 +17,7 @@ Spruceling::Application.routes.draw do
 
   # Users
   get '/users/auth/:provider' => 'omniauth_callbacks#passthru', :as => :omniauth
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   scope 'users' do
     post 'update_stripe' => 'users#update_stripe', :as => :user_update_stripe
     put 'update_address' => 'users#update_address', :as => :update_user_address
@@ -34,7 +34,8 @@ Spruceling::Application.routes.draw do
   end
 
   # Static Pages
-  get 'about' => 'static#about', :as => :about
+  get 'how-it-works' => 'static#about', :as => :about
+  get 'about' => 'static#about' # Just for funsies
   get 'terms' => 'static#terms', :as => :terms
   get 'privacy' => 'static#privacy', :as => :privacy
 

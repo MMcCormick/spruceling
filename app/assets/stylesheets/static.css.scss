@@ -1,0 +1,153 @@
+$primary-size: 22px;
+$video-height: 380px;
+
+#static-about {
+  .rafflert {
+    margin-top: 20px;
+  }
+  #main {
+    h1, h2, h3, h4, h5, h6 {
+      color: $action-color
+    }
+    .section {
+      position: relative;
+      margin: 0;
+      padding: 40px 30px 50px;
+      &.odd {
+        background: $grayLighter;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      margin: 0 0 25px;
+    }
+
+    .sub-h {
+      text-align: center;
+      color: $gray;
+      font-size: 18px;
+      margin-top: -15px;
+      margin-bottom: 40px;
+    }
+
+    .video {
+      text-align: center;
+      div {
+        background: $grayLight;
+        width: 100%;
+        height: $video-height;
+      }
+    }
+
+    .box-link {
+      display: table;
+      height: $video-height;
+      text-align: center;
+
+      padding: 0 0 0 30px;
+      >div {
+        display: table-cell;
+        vertical-align: middle;
+        >div {
+          font-size: $primary-size;
+        }
+        >a {
+          margin-top: 20px;
+          display: inline-block;
+        }
+      }
+    }
+
+    .steps {
+      h2 {
+        margin-bottom: 20px;
+      }
+      li {
+        position: relative;
+        padding: 15px 40px;
+        font-size: $primary-size;
+        .number {
+          color: $green;
+          font-size: 40px;
+          position: absolute;
+          left: 5px;
+          top: 13px;
+        }
+        .sub-step {
+          font-size: $primary-size - 4;
+          color: $gray;
+          line-height: $primary-size - 4;
+        }
+      }
+    }
+
+    .annoying {
+      .columns {
+        text-align: center;
+        .wrapper {
+          @include border-radius(5px);
+          margin-bottom: -40px;
+          i {
+            color: $green;
+            font-size: 160px;
+          }
+        }
+        h4 {
+          color: $green;
+        }
+        >div {
+          font-size: $primary-size - 6;
+        }
+        &.middle {
+          padding: 0 20px;
+        }
+      }
+    }
+    .get-more {
+      .columns {
+        text-align: center;
+        .top {
+          font-size: $primary-size - 4;
+          margin-bottom: 30px;
+          i {
+            color: $gray;
+            padding: 0 8px;
+          }
+        }
+        .bottom {
+          text-align: center;
+          font-size: $primary-size - 4;
+        }
+        .parent-a,
+        .parent-b {
+          display: inline;
+          font-size: $primary-size - 4;
+        }
+        .parent-a {
+          color: darken($green, 10%);
+        }
+        .parent-b {
+          color: darken($action-color, 10%);
+        }
+      }
+      .vs {
+        font-size: 30px;
+        margin-top: 20px;
+      }
+    }
+    .kinder {
+      .launchrock {
+        padding-left: 20px;
+        img {
+          margin-bottom: 40px;
+        }
+        .lrdiscoverwidget {
+          label {
+            color: #FFF;
+          }
+        }
+      }
+    }
+  }
+}
