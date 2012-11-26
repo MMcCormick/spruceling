@@ -167,6 +167,7 @@ label {
         border-right: 1px solid #FFF;
         padding: 0 0 0 $header-navbar-height;
         position: relative;
+        min-width: 200px;
 
         .photo {
           @include border-radius(3px 0 0 3px);
