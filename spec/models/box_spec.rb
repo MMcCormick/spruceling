@@ -185,6 +185,8 @@ describe Box do
 
     it "should return true if the passed user ordered the box" do
       @order = FactoryGirl.create(:order, :user => @user)
+      @order.add_box(@box)
+      @order.save
       @box.ordered_by?(@user).should == true
     end
 
