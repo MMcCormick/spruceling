@@ -97,7 +97,7 @@ $video-height: 380px;
           color: $green;
         }
         >div {
-          font-size: 18px;
+          font-size: $primary-size - 6;
         }
         &.middle {
           padding: 0 20px;

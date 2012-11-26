@@ -1,7 +1,7 @@
 .section
   .row
     %h2 Turn your used kids' clothes into cash
-    .sub-h Sell directly to other parents and get more
+    .sub-h Sell directly to other parents
 
     .eight.columns
       .video.flex-video
@@ -9,7 +9,8 @@
     .box-link.four.columns
       %div
         %div Get real value out of your kids' used clothes
-        = link_to "List a box", new_box_path, :class => "medium action button"
+        - unless Time.now < Chronic.parse("12am, November 28") #&& Rails.env == "production"
+          = link_to "List a box", new_box_path, :class => "medium action button"
 
 .section.odd.steps
   %h2 Parents like things simple
@@ -29,21 +30,21 @@
 
 .section.row.annoying
   %h2 We'll take care of the annoying stuff
-  .four.columns
+  .four.columns.offset-by-two
     .wrapper
       %i.icon-money
     %h4 Payment
     %div All payments are handled securely and are fully PCI compliant
-  .four.columns.middle
+  .four.columns.end.middle
     .wrapper
       %i.icon-truck
     %h4 Shipping
     %div When your box is bought, we'll send you an empty box. Just put the clothes in and send it off!
-  .four.columns
-    .wrapper
-      %i.icon-question-sign
-    %h4 Something Else
-    %div Here's another thing that sounds super easy!
+  -#.four.columns
+  -#  .wrapper
+  -#    %i.icon-question-sign
+  -#  %h4 Something Else
+  -#  %div Here's another thing that sounds super easy!
 
 .section.row.odd.get-more
   %h2 Buy kids' clothes for less, sell yours for more
