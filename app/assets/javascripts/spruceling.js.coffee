@@ -14,3 +14,7 @@ jQuery ->
   setTimeout ->
     resizeSplash()
   , 300
+
+  # For IE 7/8
+  $('.cover-image').css("background-size", "cover")
+  $('.contain-image').css("background-size", "contain")

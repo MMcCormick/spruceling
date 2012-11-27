@@ -1,5 +1,5 @@
 .box_teaser{:id => "box-#{box.id}"}
-  .photo
+  .photo-wrapper
     = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
     .overlay
       .price= "$#{box.price_total.to_i}"

@@ -61,7 +61,7 @@ Spruceling::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.assets.precompile += ['active_admin.css','active_admin/print.css','active_admin.js']
+  config.assets.precompile += ['active_admin.css','active_admin/print.css','active_admin.js','respond.min.js','backgroundSize.js']
 
   config.action_mailer.default_url_options = { :host => 'staging.spruceling.com' }
   Rails.application.routes.default_url_options = config.action_mailer.default_url_options # because this is what Resque looks for
