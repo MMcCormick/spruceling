@@ -1,6 +1,6 @@
 .row
   %p Please review this box! Reviews help other parents get quality clothes.
-  = simple_form_for @box, :html => {:class => "rating_form"} do |f|
+  = simple_form_for @box, :url => rate_box_path(@box), :method => "PUT", :html => {:class => "rating_form"} do |f|
     = f.error_notification
 
     .nine.columns.left
@@ -8,4 +8,4 @@
     .three.columns.right
       = f.input :rating, :as => :select, :collection => 1..5, :prompt => "Rate this box 1-5"
       .clear
-        .medium.action.button.submit_review Submit Review
+      = f.submit "Submit Review", :as => :submit, :class => "medium action button submit_review"

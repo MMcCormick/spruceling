@@ -4,6 +4,9 @@
 #
 #  gender       :string(255)
 #  id           :integer          not null, primary key
+#  notes        :string(255)
+#  rating       :decimal(, )
+#  review       :string(255)
 #  seller_price :decimal(8, 2)
 #  size         :string(255)
 #  status       :string(255)      default("active")

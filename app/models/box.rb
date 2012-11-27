@@ -4,6 +4,9 @@
 #
 #  gender       :string(255)
 #  id           :integer          not null, primary key
+#  notes        :string(255)
+#  rating       :decimal(, )
+#  review       :string(255)
 #  seller_price :decimal(8, 2)
 #  size         :string(255)
 #  status       :string(255)      default("active")
@@ -22,7 +25,7 @@ class Box < ActiveRecord::Base
   accepts_nested_attributes_for :items, :limit => 20
 
   validates_presence_of :gender, :size, :user
-  attr_accessible :gender, :size, :seller_price, :items_attributes, :notes
+  attr_accessible :gender, :size, :seller_price, :items_attributes, :notes, :rating, :review
   validates :seller_price, :numericality => {:greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000}, :if => lambda { |box| box.is_active? }
   validates :photos, :presence => true, :if => lambda { |box| box.is_active? && Rails.env != "test" }
   validates :rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}, :unless => lambda { |box| box.rating.nil? }

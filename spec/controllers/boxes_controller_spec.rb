@@ -234,4 +234,34 @@ describe BoxesController do
     end
   end
 
+  describe "POST rate" do
+    context "when the current user bought the box" do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        @order = FactoryGirl.create(:order, :user => @user)
+        @order.add_box(@box)
+        @order.save
+        sign_in @user
+      end
+      it "should set the rating and review" do
+        post :rate, { :id => @box.to_param, :box => { :rating => "2", :review => "foobar" } }
+        @box.reload.rating.should == 2
+        @box.review.should == "foobar"
+      end
+      it "should redirect back to the box" do
+        post :rate, { :id => @box.to_param, :box => { :rating => "2", :review => "foobar" } }
+        response.should.redirect_to @box
+      end
+      it "should set a flash alert if there is no rating" do
+        post :rate, { :id => @box.to_param }
+        flash[:alert].should_not be_nil
+      end
+    end
+    it "should deny other users who did not buy the box" do
+      sign_in FactoryGirl.create(:user)
+      expect do
+        post :rate, { :id => @box.to_param, :box => { :rating => "2" } }
+      end.to raise_error(CanCan::AccessDenied)
+    end
+  end
 end

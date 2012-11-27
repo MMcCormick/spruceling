@@ -15,7 +15,11 @@
   .section.rate-me
     .content
       = render 'rating_form'
-
+- elsif !@box.rating.blank?
+  .section.rate-me
+    .content
+      %h4 Sold!
+      = render 'rating'
 .section
   .content
     .price

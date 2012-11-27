@@ -5,6 +5,7 @@
 #  created_at :datetime         not null
 #  id         :integer          not null, primary key
 #  name       :string(255)
+#  photo      :string(255)
 #  slug       :string(255)
 #  updated_at :datetime         not null
 #

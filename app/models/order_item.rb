@@ -2,6 +2,19 @@
 #
 # Table name: order_items
 #
+#  box_id         :integer
+#  empty_tracking :string(255)
+#  full_tracking  :string(255)
+#  id             :integer          not null, primary key
+#  order_id       :integer
+#  paid           :boolean          default(FALSE)
+#  status         :string(255)      default("pending")
+#
+
+# == Schema Information
+#
+# Table name: order_items
+#
 #  box_id   :integer
 #  id       :integer          not null, primary key
 #  order_id :integer
