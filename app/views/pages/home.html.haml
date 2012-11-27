@@ -19,7 +19,7 @@
             %span= "#{box.recommended_price[:savings].to_i}% Off"
           .brands
             - box.brands.first(2).each do |brand|
-              = image_tag brand.icon_path(false, 'large'), :alt => brand.name
+              %img{ :src => brand.icon_path(false, 'large'), :alt => brand.name }
 
     .button-wrapper
       %a.medium.action.button{:href => boxes_path} Shop Now!
