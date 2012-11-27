@@ -11,15 +11,13 @@
       %h4 Featured Boxes
     .content
       - @featured_boxes.first(3).each do |box|
-        %a.box{:href => box_path(box)}
-          = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
-          .type
-            = box.gender_noun
-            = box.size
-            %span= "#{box.recommended_price[:savings].to_i}% Off"
-          .brands
-            - box.brands.first(2).each do |brand|
-              %img{ :src => brand.icon_path(false, 'large'), :alt => brand.name }
+        - cache box do
+          %a.box{:href => box_path(box)}
+            = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
+            .type
+              = box.gender_noun
+              = box.size
+              %span= "#{box.recommended_price[:savings].to_i}% Off"
 
     .button-wrapper
       %a.medium.action.button{:href => boxes_path} Shop Now!
