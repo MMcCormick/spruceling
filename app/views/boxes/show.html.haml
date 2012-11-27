@@ -36,7 +36,7 @@
       - @box.photos.each do |photo|
         = render "photos/contain_photo", :photo => photo
 
-- if @box.notes
+- unless @box.notes.blank?
   .section
     .head
       %h3 Notes from the seller
