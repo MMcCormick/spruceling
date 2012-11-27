@@ -15,8 +15,9 @@ jQuery ->
         globalError(jqXHR, $(self))
 
   $('#header .new_box').on 'click', (e) ->
-    e.preventDefault()
-    $('#header #new_box').toggle(200)
+    unless $(@).hasClass('no-address')
+      e.preventDefault()
+      $('#header #new_box').toggle(200)
 
   # handle adding a new item to a box
   $('body').on 'click', '#new_item .add_item', (e) ->

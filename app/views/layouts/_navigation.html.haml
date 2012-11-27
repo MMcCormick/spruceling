@@ -31,7 +31,7 @@
                 %i.icon-minus-sign
                 Logout
 
-        %a.part.new_box{:href => new_box_path}
+        %a.part.new_box{:href => new_box_path, :class => ('no-address' if current_user.address.blank?)}
           .name
             %i.icon-gift
             List New Box
