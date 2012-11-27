@@ -195,6 +195,7 @@ label {
           width: 100%;
           position: absolute;
           left: 0;
+          background: #CCC;
           @include background-image(linear-gradient(#D3D3D3, #CCC));
           padding: 0 0 10px 0;
           visibility: visible;
