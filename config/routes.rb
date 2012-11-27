@@ -13,6 +13,7 @@ Spruceling::Application.routes.draw do
   scope :boxes do
     put 'add_item' => 'boxes#add_item'
     put 'remove_item' => 'boxes#remove_item'
+    put ':id/rate' => 'boxes#rate', :as => :rate_box
   end
 
   # Users

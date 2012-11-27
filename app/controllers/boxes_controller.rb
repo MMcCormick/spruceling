@@ -135,4 +135,23 @@ class BoxesController < ApplicationController
       format.js
     end
   end
+
+  # PUT /boxes/rate
+  # PUT /boxes/rate
+  def rate
+    @box = Box.find(params[:id])
+    raise CanCan::AccessDenied unless @box.ordered_by?(current_user)
+    @box.update_attributes(params[:box])
+
+    flash[:alert] = "You must provide a rating between 1 and 5" if params[:box][:rating].blank?
+    respond_to do |format|
+      if @box.save
+        format.html { redirect_to @box }
+        format.json { render json: @box }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @box.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end

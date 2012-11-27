@@ -7,15 +7,19 @@
   Box
 
   - if @box.status == 'active'
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if @box.user_id == current_user.id)}
+    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
       %i.icon-shopping-cart
       Add to Cart
 
-- if @box.status == 'sold' && @box.rating = nil && current_user #TODO: something something
-  .section
+- if @box.status == 'sold' && @box.rating.blank? && @box.ordered_by?(current_user)
+  .section.rate-me
     .content
       = render 'rating_form'
-
+- elsif !@box.rating.blank?
+  .section.rate-me
+    .content
+      %h4 Sold!
+      = render 'rating'
 .section
   .content
     .price
@@ -47,6 +51,7 @@
   .content
     = render 'boxes/itemized', :box => @box
 
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if @box.user_id == current_user.id)}
-      %i.icon-shopping-cart
-      Add to Cart
+    - if @box.status == 'active'
+      %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
+        %i.icon-shopping-cart
+        Add to Cart

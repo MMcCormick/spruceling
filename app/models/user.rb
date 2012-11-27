@@ -225,5 +225,4 @@ class User < ActiveRecord::Base
   def revoke_role(role)
     self.roles.delete(role) if roles
   end
-
 end
