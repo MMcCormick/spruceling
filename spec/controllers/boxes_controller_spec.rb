@@ -250,10 +250,10 @@ describe BoxesController do
       end
       it "should redirect back to the box" do
         post :rate, { :id => @box.to_param, :box => { :rating => "2", :review => "foobar" } }
-        response.should.redirect_to @box
+        response.should redirect_to box_path(@box)
       end
       it "should set a flash alert if there is no rating" do
-        post :rate, { :id => @box.to_param }
+        post :rate, { :id => @box.to_param, :box => { :rating => "", :review => "" } }
         flash[:alert].should_not be_nil
       end
     end

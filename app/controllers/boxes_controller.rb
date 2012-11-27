@@ -143,7 +143,7 @@ class BoxesController < ApplicationController
     raise CanCan::AccessDenied unless @box.ordered_by?(current_user)
     @box.update_attributes(params[:box])
 
-    flash[:alert] = "You must provide a rating between 1 and 5" unless params[:box][:rating]
+    flash[:alert] = "You must provide a rating between 1 and 5" if params[:box][:rating].blank?
     respond_to do |format|
       if @box.save
         format.html { redirect_to @box }
