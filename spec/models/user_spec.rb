@@ -4,6 +4,7 @@
 #
 #  address                :hstore
 #  authentication_token   :string(255)
+#  avatar                 :string(255)
 #  balance                :decimal(8, 2)    default(0.0), not null
 #  birthday               :date
 #  confirmation_sent_at   :datetime
@@ -28,6 +29,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)
+#  roles                  :string_array
 #  sign_in_count          :integer          default(0)
 #  slug                   :string(255)
 #  stripe_customer_id     :string(255)

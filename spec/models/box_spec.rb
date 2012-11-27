@@ -4,6 +4,10 @@
 #
 #  gender       :string(255)
 #  id           :integer          not null, primary key
+#  is_featured  :boolean          default(FALSE)
+#  notes        :string(255)
+#  rating       :decimal(, )
+#  review       :string(255)
 #  seller_price :decimal(8, 2)
 #  size         :string(255)
 #  status       :string(255)      default("active")
@@ -174,6 +178,18 @@ describe Box do
 
   describe "#recommended_price" do
     it "should return a float"
+  end
+
+  describe "#featured" do
+    before :each do
+      @box2 = FactoryGirl.create(:box, :gender => @item.gender, :size => @item.size, :is_featured => true)
+    end
+    it "should return featured boxes" do
+      Box.featured.should include @box2
+    end
+    it "should not return non-featured boxes" do
+      Box.featured.should_not include @box
+    end
   end
 
   describe "#rating"

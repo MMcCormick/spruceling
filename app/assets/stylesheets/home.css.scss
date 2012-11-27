@@ -1,120 +1,141 @@
-#splash {
-  position: relative;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-  background-image: url(image_path('kid_bg.jpeg'));
+#pages-home {
+  h1,h2,h3,h4,h5,h6 {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #000;
+  }
+  h1 {
 
+  }
+  h3 {
 
-  .logo {
-    position: absolute;
-    top: 40px;
-    z-index: 100;
-    padding: 15px 30px 15px 20px;
-    left: 50%;
-    margin-left: -380px;
+  }
+  .top-image {
+    $left: 40px;
+    position: relative;
+    height: 350px;
 
-    img {
-      display: block;
-    }
-    .bg {
-      @include opacity(.95);
-      @include border-radius(8px);
-      @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
-      border-bottom: 1px solid #333;
-      width: 100%;
-      height: 100%;
-      background: #FFF;
+    h1 {
       position: absolute;
-      left: 0;
-      top: 0;
+      left: $left;
+      font-size: 44px;
+      width: 500px;
+      top: 40px;
+      font-weight: normal;
+    }
+    h3 {
+      position: absolute;
+      left: $left;
+      top: 160px;
+      font-weight: normal;
+      font-size: 2.4rem;
+      line-height: 3rem;
+      width: 430px;
+    }
+    img {
+      position: absolute;
+      top: 0px;
+      left: 0px;
       z-index: -1;
     }
-  }
-  .top_strip {
-    @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
-    border-bottom: 1px solid #333;
-    position: relative;
-    text-align: center;
-    background: #FFF;
-
-    img {
-      margin: 10px 0 10px -80px;
-      width: 50%;
-      max-width: 350px;
-    }
-  }
-  .main {
-    overflow: hidden;
-    padding-bottom: 40px;
-
-    .floater {
+    .button {
       position: absolute;
-      top: 23%;
-      left: 15%;
-      width: 65%;
-      max-width: 700px;
+      left: $left;
+      bottom: 35px;
     }
-    h1,
-    h2 {
-      @include single-text-shadow(rgba(0, 0, 0, 0.8), 1px, 2px, 5px);
-      color: #FFF;
-      cursor: default;
+  }
+  .head {
+    border-bottom: 1px solid #999;
+    padding: 0 0 5px 0;
+    h4 {
+      font-weight: normal;
+      font-size: 20px;
+      text-transform: uppercase;
     }
-    h2 {
-      font-size: 2.8rem;
+  }
+  .content {
+    margin: 15px 0 0 0;
+  }
+  .featured-boxes,
+  .cash-clothes,
+  .perks,
+  .video {
+    margin: 50px 0;
+  }
+  .featured-boxes,
+  .perks {
+    padding: 0 25px 0 0;
+    .button {
+      margin-top: 10px;
     }
-    .login {
-      @include border-radius(4px);
-      @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, 1px, 2px);
-      border-bottom: 1px solid #333;
-      background: #FFF;
-      padding: 20px 25px;
-      margin: 20px 0 0 0;
-      display: inline-block;
+  }
+  .cash-clothes {
+    h5 {
+      text-align: center;
+      margin: 15px 0 15px 0;
+    }
+    p {
+      text-align: center;
+    }
+  }
+  .perks {
+    .icon {
+      font-size: 6rem;
+      margin: 20px auto 25px auto;
+      display: block;
+      text-align: center;
+    }
+    .name {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin: 0 0 10px 0;
+    }
+    p {
+      text-align: center;
+      line-height: 2.2rem;
+    }
+    .button {
+      margin-top: 44px;
+    }
+  }
+  .featured-boxes {
+    .box {
+      margin: 0;
+      float: left;
+      width: 167px;
 
-      cursor: pointer;
-      &:hover {
-        background: #8CC63F;
-        color: #FFF;
+      .photo {
+        width: 100%;
+        height: 150px;
+      }
+      .type {
+        padding: 0 3px;
+        margin: 10px 0 0 0;
+        span {
+          color: $green;
+          float: right;
+        }
+      }
+      .brands {
+        img {
+          width: 80px;
+        }
+        img:first-child {
+          margin: 0 3px 0 0;
+        }
       }
     }
-  }
-
-  // launch rock
-  .lrdiscoverwidget {
-    margin: 25px 0 0 0;
-
-    #instructions-OW45YWTV {
-      @include single-text-shadow(rgba(0, 0, 0, 0.8), 1px, 2px, 5px);
-      color: #FFF;
-      cursor: default;
-    }
-    #site-title-OW45YWTV {
-      display: block !important;
-    }
-    #email-OW45YWTV {
-      font-size: 16px;
-      padding: 5px 10px;
-      height: 39px;
-      border-color: #FFF;
+    .box:first-child + .box {
+      margin: 0 11px;
     }
   }
-  #footer {
-    @include single-box-shadow(rgba(0, 0, 0, 0.5), 1px, -1px, 2px);
-    border-top: 1px solid #333;
-    background: #FFF;
+  .button-wrapper {
     text-align: center;
-    width: 100%;
-    padding: 7px 0;
-    position: absolute;
-    bottom: 0px;
-    height: auto;
-    min-height: auto;
-
-    .item {
-      margin: 0 5px;
-      font-size: 22px;
-    }
+  }
+  .action.button {
+    text-transform: uppercase;
   }
 }
