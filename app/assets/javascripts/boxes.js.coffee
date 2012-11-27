@@ -51,22 +51,6 @@ jQuery ->
       $('#soulmate').hide()
       $('#item_brand').val(term).blur()
 
-  # handle deleting an item from a box
-  $('.item_form_teaser').on 'click', '.delete', (e) ->
-    e.preventDefault()
-    self = $(@)
-    $.ajax
-      url: self.attr('href')
-      cache: false
-      type: 'delete'
-      dataType: 'json'
-      success: (data, textStatus, jqXHR) ->
-        self.parent('.item_form_teaser:first').remove()
-        $('.price .low').text("$#{data.recommended_price.recommended_low}")
-        $('.price .high').text("$#{data.recommended_price.recommended_high}")
-
-    false
-
   # update shipping price
   $('#box_seller_price').on 'keyup', (e) ->
     $(@).val(Math.round($(@).val()))
@@ -90,7 +74,7 @@ jQuery ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10) + 1
         data.context.find('.bar').css('width', progress + '%')
-        if progress >= 99
+        if progress >= 80
           data.context.find('.bar').parents('.upload:first').addClass('done')
     done: (e,data) ->
       $('.photo-list .upload.done').remove()

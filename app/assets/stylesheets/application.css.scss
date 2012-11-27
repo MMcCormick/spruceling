@@ -18,7 +18,7 @@
 
 @import "compass";
 @import "variables";
-@import "sprites";
+//@import "sprites";
 @import "soulmate";
 
 html {
@@ -484,9 +484,19 @@ label {
 #registrations-create,
 #static-terms,
 #static-about,
-#static-privacy {
+#static-privacy,
+#pages-home {
   #container {
     max-width: 960px;
+  }
+}
+
+#boxes-index,
+#users-show,
+#pages-home {
+  .main-window {
+    @include box-shadow(none);
+    background: transparent;
   }
 }
 

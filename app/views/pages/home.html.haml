@@ -1,0 +1,65 @@
+.row
+  .twelve.columns.top-image
+    %h1 Buy & Sell gently used kid's clothing.
+    %h3 Save money, reduce clutter, and put outgrown clothes to good use.
+    %a.large.action.button{:href => boxes_path} Shop Now!
+    = image_tag 'front-page-ben.jpg'
+
+.row
+  .seven.columns.featured-boxes
+    .head
+      %h4 Featured Boxes
+    .content
+      - @featured_boxes.first(3).each do |box|
+        %a.box{:href => box_path(box)}
+          = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
+          .type
+            = box.gender_noun
+            = box.size
+            %span= "#{box.recommended_price[:savings].to_i}% Off"
+          .brands
+            - box.brands.first(2).each do |brand|
+              = image_tag brand.icon_path(false, 'large'), :alt => brand.name
+
+    .button-wrapper
+      %a.medium.action.button{:href => boxes_path} Shop Now!
+
+  .five.columns.cash-clothes
+    .head
+      %h4 Trade Outgrown Clothes For Cash
+    .content
+      = image_tag 'front-page-clothing.png'
+      %h5 Spruceling turns your closet into cash
+      %p Spruceling will take care of shipping, listing is free, and you'll make more money than you would selling to a consignment store.
+    .button-wrapper
+      .medium.action.button Sell Now!
+
+.row
+  .seven.columns.perks
+    .head
+      %h4 All the Perks
+    .content.row
+      .four.columns
+        %i.icon.icon-truck
+        .name Shipping Made Easy
+        %p Buyers, shipping is included in the list price. Sellers, receive a shipping kit in the mail when a box sells.
+      .four.columns
+        %i.icon.icon-ok-sign
+        .name Quality Guarantee
+        %p Spruceling handles all returns directly, so buyers are protected, and sellers have fewer headaches.
+      .four.columns
+        %i.icon.icon-money
+        .name Amazing Prices
+        %p Save up to 90% on clothes you'd normally buy new, and earn cash on the clothes your kids have outgrown.
+
+    .button-wrapper
+      %a.medium.action.button{:href => about_path} Learn More
+
+  .five.columns.video
+    .head
+      %h4 How it Works
+    .content
+      .flex-video
+        <iframe src="http://player.vimeo.com/video/54301668?badge=0" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> <p><a href="http://vimeo.com/54301668">Introducing Spruceling</a> from <a href="http://vimeo.com/user14899246">Spruceling Inc.</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+    .button-wrapper
+      %a.medium.action.button{:href => about_path} Learn More

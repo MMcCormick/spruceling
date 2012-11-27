@@ -107,12 +107,14 @@ class User < ActiveRecord::Base
       response = Stamps.clean_address(:address => address)
       #response = {:valid? => false}
       if response[:valid?] == false
-        false
+        return false
       else
         self.address = response[:address]
       end
-    rescue
-      false
+    rescue Exception => e
+      #notify_airbrake(e)
+      logger.error"\n#{e.class} (#{e.message}):\n"
+      self.address = address
     end
   end
 

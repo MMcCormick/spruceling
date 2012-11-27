@@ -10,10 +10,7 @@
       .section.middle_section
         - if user_signed_in?
           .dropdown.part
-            -if avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
-              = avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
-            -else
-
+            = user_avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
             %a.name{:href => user_path(current_user)}
               = current_user.name
               %i.icon-chevron-down

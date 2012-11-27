@@ -26,9 +26,6 @@ Spruceling::Application.routes.draw do
     get 'payment' => 'users#edit_payment', :as => :edit_user_payment
   end
   resources :users, :only => [:show, :index, :edit]
-  authenticated :user do
-    root :to => 'home#index'
-  end
 
   # Cart
   scope 'cart' do
@@ -53,6 +50,5 @@ Spruceling::Application.routes.draw do
     mount Sidekiq::Web => '/a/workers'
   end
 
-  #root :to => "home#index"
-  root :to => 'static#about'
+  root :to => "pages#home"
 end

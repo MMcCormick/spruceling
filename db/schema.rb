@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120015459) do
+ActiveRecord::Schema.define(:version => 20121127004446) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121120015459) do
     t.decimal "rating"
     t.string  "review"
     t.string  "notes"
+    t.boolean "is_featured",                                :default => false
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"

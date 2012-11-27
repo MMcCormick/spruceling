@@ -1,11 +1,4 @@
-.photo= avatar(@user, :width => 200, :height => 200, :crop => :thumb, :gravity => :face)
+.photo.cover-image{:style => "background-image: url('#{user_avatar_path(@user, :width => 400, :height => 400, :crop => :limit, :gravity => :face)}')"}
 
 %h4.username= @user.name
-.city= @user.address["city"] if @user.address
-
-.head{:class => controller.action_name == "show" ? "on" : ""}
-  My Boxes
-
-.section.box-sidebar-filters
-  .section-head Active
-  .section-head Sold
+.city= "#{@user.address["city"]}, #{@user.address["state"]}" if @user.address && @user.address["city"] && @user.address["state"]

@@ -4,6 +4,7 @@
 #
 #  gender       :string(255)
 #  id           :integer          not null, primary key
+#  is_featured  :boolean          default(FALSE)
 #  notes        :string(255)
 #  rating       :decimal(, )
 #  review       :string(255)
@@ -86,6 +87,15 @@ class Box < ActiveRecord::Base
 
   def recommended_price
     @recommended ||= calculate_recommended_price
+  end
+
+  def brands
+    brand_ids = items.map{|i| i.brand_id}
+    Brand.where(:id => brand_ids)
+  end
+
+  def self.featured(limit=9)
+    self.active.where(:is_featured => true).limit(limit)
   end
 
   def ordered_by? (person)

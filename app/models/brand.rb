@@ -22,6 +22,10 @@ class Brand < ActiveRecord::Base
 
   after_create :add_to_soulmate
 
+  def icon_path(color=false, size='small')
+    "brands/#{name.parameterize('_').downcase}_place_#{size}_#{color ? 'color' : 'no_color'}.png"
+  end
+
   def add_to_soulmate
     nugget = {
       'id' => id.to_s,
@@ -35,6 +39,5 @@ class Brand < ActiveRecord::Base
     rescue => e
       #raise "Could not connect to Soulmate"
     end
-
   end
 end

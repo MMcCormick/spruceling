@@ -34,7 +34,7 @@
 
     #photo-list
       - @box.photos.each do |photo|
-        = render "photos/cover_photo", :photo => photo
+        = render "photos/contain_photo", :photo => photo
 
 - if @box.notes
   .section

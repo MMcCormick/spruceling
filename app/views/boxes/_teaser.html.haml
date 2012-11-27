@@ -1,6 +1,6 @@
-.box_teaser
+.box_teaser{:id => "box-#{box.id}"}
   .photo
-    = render "photos/cover_photo", :photo => box.photos.first
+    = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
     .overlay
       .price= "$#{box.price_total.to_i}"
       %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
@@ -15,3 +15,6 @@
       = box.size
 
     .user= link_to box.user.name, user_path(box.user)
+
+  - if signed_in? && current_user.id == box.user_id
+    = render "boxes/teaser_actions", :box => box
