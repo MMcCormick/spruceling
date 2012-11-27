@@ -3,21 +3,21 @@
   .content
     %ul.button-group.even.three-up.genders
       %li.a_wrapper
-        %a.medium.secondary.button{:href => root_path(:size => params[:size]), :class => ("on" unless %w(m f).include? params[:gender])} Both
+        %a.medium.secondary.button{:href => boxes_path(:size => params[:size]), :class => ("on" unless %w(m f).include? params[:gender])} Both
       %li.a_wrapper
-        %a.medium.secondary.button{:href => root_path(:gender => 'm', :size => params[:size]), :class => ("on" if 'm' == params[:gender])} Boys
+        %a.medium.secondary.button{:href => boxes_path(:gender => 'm', :size => params[:size]), :class => ("on" if 'm' == params[:gender])} Boys
       %li.a_wrapper
-        %a.medium.secondary.button{:href => root_path(:gender => 'f', :size => params[:size]), :class => ("on" if 'f' == params[:gender])} Girls
+        %a.medium.secondary.button{:href => boxes_path(:gender => 'f', :size => params[:size]), :class => ("on" if 'f' == params[:gender])} Girls
 
 .section
   %h5 SIZE
   .content
     %ul.single-select.sizes
       %li.a_wrapper
-        %a{:href => root_path(:gender => params[:gender]), :class => ("on" unless Item.all_sizes.include? params[:size])} All Sizes
+        %a{:href => boxes_path(:gender => params[:gender]), :class => ("on" unless Item.all_sizes.include? params[:size])} All Sizes
       - Item.all_sizes.each do |size|
         %li.a_wrapper
-          %a{:href => root_path(:gender => params[:gender], :size => size), :class => ("on" if size == params[:size])}= size
+          %a{:href => boxes_path(:gender => params[:gender], :size => size), :class => ("on" if size == params[:size])}= size
 
 -#.section
 -#  %h5 BRAND
