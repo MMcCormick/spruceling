@@ -2,3 +2,10 @@
 
 %h4.username= @user.name
 .city= "#{@user.address["city"]}, #{@user.address["state"]}" if @user.address && @user.address["city"] && @user.address["state"]
+.rating
+  Rating:
+  - if @user.rating
+    %b= @user.rating
+    \/ 5
+  - else
+    N/A

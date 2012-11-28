@@ -206,6 +206,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def rating
+    avg = Box.select("AVG(rating) AS avg_rating").where("user_id = ? AND rating IS NOT NULL", id).group("user_id").first
+    if avg
+      avg.avg_rating.to_f
+    else
+      nil
+    end
+  end
+
   ###
   # ROLES
   ###
