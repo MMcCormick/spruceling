@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :full_name, :address1, :address2, :city, :state, :zip_code
 
-  after_create :initiate_cart
+  after_create :initiate_cart, :publish_facebook
 
   def initiate_cart
     self.create_cart if cart.nil?
@@ -71,6 +71,21 @@ class User < ActiveRecord::Base
 
   def admin?
     false #TODO: implement
+  end
+
+  def publish_facebook
+    if facebook
+      permissions = facebook.get_connections('me','permissions')
+      if permissions && permissions[0]['publish_actions'].to_i == 1
+        facebook.put_wall_post("This is a test")
+      end
+    end
+  end
+
+  def facebook
+    @fb_user ||= begin
+      fb_token ? Koala::Facebook::API.new(fb_token) : nil
+    end
   end
 
   def stripe
