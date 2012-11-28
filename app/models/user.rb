@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
       if permissions && permissions[0]['publish_actions'].to_i == 1
         facebook.put_object('me', 'feed', {
             :message     => "I just signed up for Spruceling, a great new marketplace to buy and sell gently used kids clothing.",
-            :description => "Spruceling is a market to buy & sell gently used kid's clothing. Save money, reduce clutter, and put outgrown clothes to good use.",
+            :description => "Spruceling is a marketplace to buy & sell gently used kids' clothing. Save money, reduce clutter, and put outgrown clothes to good use.",
             :link        => "http://www.spruceling.com",
             :picture     => "http://www.spruceling.com/images/spruceling_mark.png"
         })

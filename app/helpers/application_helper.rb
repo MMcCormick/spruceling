@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def description
-    @description.nil? ? "Spruceling is the marketplace to buy and sell gently used kids clothing." : @description
+    @description.nil? ? "Spruceling is a marketplace to buy & sell gently used kids' clothing. Save money, reduce clutter, and put outgrown clothes to good use." : @description
   end
 
   def google_analytics
