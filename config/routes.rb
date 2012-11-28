@@ -34,6 +34,9 @@ Spruceling::Application.routes.draw do
     put 'remove' => 'carts#remove', :as => :cart_remove
   end
 
+  # Promo
+  get "promo/:code" => 'pages#promo', :as => :promo
+
   # Static Pages
   get 'how-it-works' => 'static#about', :as => :about
   get 'about' => 'static#about' # Just for funsies
