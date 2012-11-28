@@ -297,4 +297,13 @@ describe User do
       @user.balance.should == 50.00
     end
   end
+
+  describe "#rating" do
+    it "should return the average rating of the user's rated boxes" do
+      @user = FactoryGirl.create(:user)
+      @box1 = FactoryGirl.create(:box, :user => @user, :rating => 2)
+      @box2 = FactoryGirl.create(:box, :user => @user, :rating => 4)
+      @user.rating.should == 3.0
+    end
+  end
 end
