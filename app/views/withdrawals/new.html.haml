@@ -4,12 +4,12 @@
 #new_withdrawal
   .row.section
     .head
-      %h3= "Current Balance: $#{@withdrawal.user.balance}"
+      %h3= "Current Balance: #{user_balance(@withdrawal.user)}"
     .content
       %a#toggle_withdraw{:href => "#"} Withdraw Balance
       #withdraw.hide
-        - if @withdrawal.user.balance < 5
-          %div You must have at least $5 in your account to withdraw.
+        - if @withdrawal.user.balance < 10
+          %div You must have at least $10 in your account to withdraw.
         - elsif @withdrawal.user.address.blank?
           %div Please update your shipping address before proceeding
         - else
