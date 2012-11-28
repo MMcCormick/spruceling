@@ -16,7 +16,7 @@
       .dropdown-container
         %a.part.my_boxes{:href => user_path(current_user)}
           = user_avatar(current_user, :width => 30, :height => 30, :crop => :thumb, :class => 'photo')
-          = current_user.name
+          #{current_user.name} (#{number_to_currency(current_user.balance, :precision => 0)})
           %i.icon-chevron-down
 
         %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
