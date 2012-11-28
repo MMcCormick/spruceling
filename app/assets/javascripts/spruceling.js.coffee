@@ -18,3 +18,7 @@ jQuery ->
   # For IE 7/8
   $('.cover-image').css("background-size", "cover")
   $('.contain-image').css("background-size", "contain")
+
+  $('.complete-purchase .button').on 'click', (e) ->
+    $(@).find('.button').val('working...').addClass('disabled')
+    $(@).find('.button').text('working...').addClass('disabled')
