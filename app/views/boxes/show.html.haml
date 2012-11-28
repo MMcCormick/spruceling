@@ -1,57 +1,58 @@
 - content_for :left_sidebar do
   = render :partial => "users/sidebar", :layout => 'layouts/left_sidebar'
 
-%h1
-  %span.color{:class => @box.gender}= @box.gender_noun
-  %span.size= "Size #{@box.size}"
-  Box
-
-  - if @box.status == 'active'
-    %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
-      %i.icon-shopping-cart
-      Add to Cart
-
-- if @box.status == 'sold' && @box.rating.blank? && @box.ordered_by?(current_user)
-  .section.rate-me
-    .content
-      = render 'rating_form'
-- elsif !@box.rating.blank?
-  .section.rate-me
-    .content
-      %h4 Sold!
-      = render 'rating'
-.section
-  .content
-    .price
-      %span.seller
-        = "$#{@box.price_total.to_i}"
-      %span.retail
-        = "$#{@box.recommended_price[:retail].to_i}"
-      %span.savings
-        %span.off
-          = "#{@box.recommended_price[:savings].to_i}% Off"
-        Retail
-
-    #photo-list
-      - @box.photos.each do |photo|
-        = render "photos/contain_photo", :photo => photo
-
-- unless @box.notes.blank?
-  .section
-    .head
-      %h3 Notes from the seller
-
-    .content
-      %div= @box.notes
-
-.section
-  .head
-    %h3 What's in the box?
-
-  .content
-    = render 'boxes/itemized', :box => @box
+- cache @box do
+  %h1
+    %span.color{:class => @box.gender}= @box.gender_noun
+    %span.size= "Size #{@box.size}"
+    Box
 
     - if @box.status == 'active'
       %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
         %i.icon-shopping-cart
         Add to Cart
+
+  - if @box.status == 'sold' && @box.rating.blank? && @box.ordered_by?(current_user)
+    .section.rate-me
+      .content
+        = render 'rating_form'
+  - elsif !@box.rating.blank?
+    .section.rate-me
+      .content
+        %h4 Sold!
+        = render 'rating'
+  .section
+    .content
+      .price
+        %span.seller
+          = "$#{@box.price_total.to_i}"
+        %span.retail
+          = "$#{@box.recommended_price[:retail].to_i}"
+        %span.savings
+          %span.off
+            = "#{@box.recommended_price[:savings].to_i}% Off"
+          Retail
+
+      #photo-list
+        - @box.photos.each do |photo|
+          = render "photos/contain_photo", :photo => photo
+
+  - unless @box.notes.blank?
+    .section
+      .head
+        %h3 Notes from the seller
+
+      .content
+        %div= @box.notes
+
+  .section
+    .head
+      %h3 What's in the box?
+
+    .content
+      = render 'boxes/itemized', :box => @box
+
+      - if @box.status == 'active'
+        %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
+          %i.icon-shopping-cart
+          Add to Cart

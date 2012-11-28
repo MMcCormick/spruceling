@@ -13,6 +13,26 @@ module ApplicationHelper
     @description.nil? ? "Spruceling is a marketplace to buy & sell gently used kids' clothing. Save money, reduce clutter, and put outgrown clothes to good use." : @description
   end
 
+  def twitter_code
+    "
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');</script>
+    "
+  end
+
+  def facebook_code
+    "
+    <div id='fb-root'></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = '//connect.facebook.net/en_US/all.js#xfbml=1&appId=192272700842084';
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    "
+  end
+
   def google_analytics
     "
     <script type='text/javascript'>
