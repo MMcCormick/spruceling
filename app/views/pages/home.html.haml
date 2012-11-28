@@ -19,17 +19,21 @@
               = box.size
               %span= "#{box.recommended_price[:savings].to_i}% Off"
 
-    .button-wrapper
-      %a.medium.action.button{:href => boxes_path} Shop Now!
-
   .five.columns.cash-clothes
     .head
       %h4 Trade Outgrown Clothes For Cash
     .content
       = image_tag 'front-page-clothing.png'
       %p Spruceling will take care of shipping, listing is free, and you'll make more money than you would selling to a consignment store.
+
+.row
+  .seven.columns.featured-boxes-btn
+    .button-wrapper
+      %a.medium.action.button{:href => boxes_path} Shop Now!
+  .five.columns.cash-clothes-btn
     .button-wrapper
       %a.medium.action.button{:href => new_box_path} Sell Now!
+
 
 .row
   .seven.columns.perks

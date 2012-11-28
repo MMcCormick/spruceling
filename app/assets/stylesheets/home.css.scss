@@ -60,7 +60,9 @@
     }
   }
   .featured-boxes,
-  .cash-clothes,
+  .cash-clothes {
+    margin: 50px 0 0;
+  }
   .perks,
   .video {
     margin: 50px 0;
@@ -71,6 +73,10 @@
     .button {
       margin-top: 10px;
     }
+  }
+  .featured-boxes-btn {
+    padding-right: 25px;
+    margin-bottom: 25px;
   }
   .cash-clothes {
     h5 {
