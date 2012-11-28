@@ -1,3 +1,6 @@
+$box-teaser-width: 310px;
+$box-teaser-height: 330px;
+
 .box-sidebar-filters {
 
   .item {
@@ -22,7 +25,8 @@
 
 .box_teaser {
   @include box-shadow(rgba(0, 0, 0, 0.15) 0 1px 2px);
-  width: 310px;
+  width: $box-teaser-width;
+  height: $box-teaser-height;
   float: left;
   margin: 10px;
   background: #FFF;
@@ -300,5 +304,37 @@
     .review {
       margin-top: 10px;
     }
+  }
+}
+
+.blank-box {
+  width: $box-teaser-width;
+  height: $box-teaser-height;
+  float: left;
+  margin: 10px;
+  border: 2px dashed #CCC;
+  .none {
+    text-align: center;
+    font-size: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #999;
+    margin: 50px 20px;
+  }
+  .upload {
+    text-align: center;
+    display: block;
+  }
+  .share {
+    color: #999;
+    font-size: 15px;
+    font-size: 1.5rem;
+    margin: 55px 20px 10px 20px;
+  }
+  .buttons {
+    margin: 0 20px;
+  }
+  .fb-like {
+    margin-bottom: 10px;
   }
 }

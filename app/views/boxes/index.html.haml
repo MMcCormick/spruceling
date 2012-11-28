@@ -5,6 +5,9 @@
   - @boxes.each do |box|
     = render 'boxes/teaser', :box => box
 
+  -if @boxes.length != 8
+    = render 'boxes/no_more_boxes'
+
 %br
 
 #box_paginator
