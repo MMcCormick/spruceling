@@ -183,7 +183,7 @@ label {
       top: 54px;
       width: 100%;
       background: #EFEFEF;
-      border: 1px solid #999;
+      border: 1px solid $action-color;
       border-top: none;
       padding: 10px 0 10px 0;
 
@@ -231,11 +231,7 @@ label {
     }
   }
   .new_box {
-    &:hover {
-      #new_box {
-        display: block;
-      }
-    }
+    cursor: pointer;
   }
   #new_box {
     position: absolute;
@@ -244,7 +240,7 @@ label {
     background: #EFEFEF;
     width: 374px;
     display: none;
-    border: 1px solid #999;
+    border: 1px solid $action-color;
     border-top: none;
     padding: 15px;
     z-index: 200;
@@ -278,6 +274,7 @@ label {
 .main-window {
   @include box-shadow(rgba(0, 0, 0, 0.3) 0 1px 2px);
   background: #FFF;
+  margin-top: 40px;
 
   h1 {
     border-bottom: 1px solid #BBB;
@@ -315,15 +312,70 @@ label {
   clear: both;
 }
 #footer {
-  clear: both;
-  margin: 100px auto 0 auto;
-  min-height: 125px;
-  padding: 25px;
-  text-align: center;
-  background: darken($body-bg-color, 30%);
-  div {
-    a {
-      color: #FFF;
+  margin: 70px 0 -14px 0;
+  border-bottom: 5px solid $green;
+
+  .main-container {
+    position: relative;
+  }
+  .top {
+    @include clearfix();
+    padding: 25px 0;
+    background: #CCC;
+
+    .social-icons {
+      position: absolute;
+      top: -4px;
+      left: 10px;
+    }
+    .social-icon {
+      float: left;
+      font-size: 3rem;
+      margin-right: 15px;
+    }
+    .icon-facebook-sign {
+      color: $fb-color;
+    }
+    .icon-twitter-sign {
+      color: $tw-color;
+    }
+    .icon-pinterest-sign {
+      color: $pinterest-color;
+    }
+    .shipping,
+    .returns {
+      font-size: 2rem;
+      float: right;
+      margin: 0 0 0 50px;
+    }
+  }
+  .bottom {
+    @include clearfix();
+    background: #222;
+    padding: 25px 0;
+
+    .section {
+      float: left;
+      margin: 0 100px 0 0;
+      color: #EFEFEF;
+
+      .head {
+        text-transform: uppercase;
+        color: #EFEFEF;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        cursor: default;
+      }
+      ul {
+
+      }
+      li {
+        a {
+          color: #EFEFEF;
+        }
+      }
+
     }
   }
 }

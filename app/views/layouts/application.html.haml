@@ -55,11 +55,44 @@
             .main-window.twelve.columns
               = yield
 
-        #footer.row
-          %div= link_to "How It Works", about_path
-          %div= link_to "Terms", terms_path
-          %div= link_to "Privacy", privacy_path
 
+        #footer
+          .top
+            .main-container
+              .social-icons
+                %a{:href => 'http://www.facebook.com/Spruceling', :target => '_blank'}
+                  %i.social-icon.icon-facebook-sign
+                %a{:href => 'http://twitter.com/spruceling', :target => '_blank'}
+                  %i.social-icon.icon-twitter-sign
+                %a{:href => 'http://pinterest.com/spruceling/', :target => '_blank'}
+                  %i.social-icon.icon-pinterest-sign
+                %a{:href => 'mailto:support@spruceling.com', :target => '_blank'}
+                  %i.social-icon.icon-envelope-alt
+
+              .shipping
+                %i.icon-truck
+                %b Free Shipping
+              .returns
+                %i.icon-undo
+                %b Free Returns
+                \- 30-Day Full Refunds
+
+          .bottom
+            .main-container
+              .section
+                .head About Us
+                %ul
+                  %li= link_to "How It Works", about_path
+                  %li= link_to "Join Now!", about_path
+                  %li= link_to "Terms of Service", terms_path
+                  %li= link_to "Privacy", privacy_path
+              .section
+                .head Help
+                %ul
+                  %li= link_to "Returns", "#"
+                  %li= link_to "Contact Us", "#"
+              .section
+                Copyright &copy; 2012 Spruceling. All rights reserved.
         #loader
           %h1 Loading...
 
@@ -74,3 +107,15 @@
     %script{:type => 'text/javascript', :src => 'https://js.stripe.com/v1/'}
     %script{:type => 'text/javascript'}
       = "Stripe.setPublishableKey('#{STRIPE_PUBLIC_KEY}');"
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36630593-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>

@@ -6,11 +6,8 @@
     margin: 0;
     color: #000;
   }
-  h1 {
-
-  }
-  h3 {
-
+  .main-window {
+    margin-top: 0;
   }
   .top-image {
     $left: 40px;
@@ -46,17 +43,19 @@
       bottom: 35px;
     }
   }
-  .head {
-    border-bottom: 1px solid #999;
-    padding: 0 0 5px 0;
-    h4 {
-      font-weight: normal;
-      font-size: 20px;
-      text-transform: uppercase;
+  #main {
+    .head {
+      border-bottom: 1px solid #999;
+      padding: 0 0 5px 0;
+      h4 {
+        font-weight: normal;
+        font-size: 20px;
+        text-transform: uppercase;
+      }
     }
-  }
-  .content {
-    margin: 15px 0 0 0;
+    .content {
+      margin: 15px 0 0 0;
+    }
   }
   .featured-boxes,
   .cash-clothes,
