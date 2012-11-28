@@ -20,5 +20,5 @@ jQuery ->
   $('.contain-image').css("background-size", "contain")
 
   $('.complete-purchase .button').on 'click', (e) ->
-    $(@).find('.button').val('working...').addClass('disabled')
-    $(@).find('.button').text('working...').addClass('disabled')
+    $(@).val('working...').addClass('disabled')
+    $(@).text('working...').addClass('disabled')
