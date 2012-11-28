@@ -1,12 +1,6 @@
 .box_teaser{:id => "box-#{box.id}"}
-  .photo-wrapper
+  %a.photo-wrapper{:href => box_path(box)}
     = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
-    .overlay
-      .price= "$#{box.price_total.to_i}"
-      %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
-        %i.icon-shopping-cart
-        Add to Cart
-      %a.bg{:href => box_path(box)}
 
   .bottom
 
@@ -14,7 +8,19 @@
       %span{:class => "color #{box.gender}"}= box.gender_noun
       = box.size
 
-    .user= link_to box.user.name, user_path(box.user)
+    .prices
+      %span.seller
+        = "$#{box.price_total.to_i}"
+      %span.retail
+        = "$#{box.recommended_price[:retail].to_i}"
+      %span.savings
+        %span.off
+          = "#{box.recommended_price[:savings].to_i}% Off"
+        Retail
+
+    %a.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
+      %i.icon-shopping-cart
+      Add to Cart
 
   - if signed_in? && current_user.id == box.user_id
     = render "boxes/teaser_actions", :box => box
