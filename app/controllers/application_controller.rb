@@ -1,4 +1,14 @@
 class ApplicationController < ActionController::Base
+  before_filter :five_dollars
+
+  def five_dollars
+    if session[:five_dollars] && current_user && current_user.balance == 0
+      current_user.credit_account(5.00)
+      current_user.save
+      session[:five_dollars] = nil
+    end
+  end
+
   def authenticate_admin_user! #use predefined method name
     redirect_to '/' and return if user_signed_in? && !current_user.role?('admin')
     authenticate_user!
