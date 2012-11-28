@@ -16,7 +16,7 @@ jQuery ->
         window.location = data.edit_url
       error: (jqXHR, textStatus, errorThrown) ->
         globalError(jqXHR, $(self))
-      complete: ->
+      complete: (jqXHR, textStatus) ->
         button.text('Start Building It!').removeClass('disabled')
 
   $('#header .new_box').on 'click', (e) ->
