@@ -26,6 +26,7 @@ gem "haml-rails", ">= 0.3.4"
 gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
+gem 'koala', '1.5' # facebook graph api support
 gem 'activerecord-postgres-hstore', git: 'git://github.com/engageis/activerecord-postgres-hstore.git'
 gem 'activerecord-postgres-array'
 gem 'annotate'
