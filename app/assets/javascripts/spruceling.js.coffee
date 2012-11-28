@@ -20,5 +20,5 @@ jQuery ->
   $('.contain-image').css("background-size", "contain")
 
   $('form').on 'submit', (e) ->
-    $(@).find('.button').val('loading...')
-    $(@).find('.button').text('loading...')
+    $(@).find('.button').val('loading...').addClass('disabled')
+    $(@).find('.button').text('loading...').addClass('disabled')

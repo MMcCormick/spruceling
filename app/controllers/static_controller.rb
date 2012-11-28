@@ -11,4 +11,12 @@ class StaticController < ApplicationController
   def privacy
 
   end
+
+  def returns
+
+  end
+
+  def contact
+
+  end
 end

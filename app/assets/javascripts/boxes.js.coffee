@@ -3,6 +3,9 @@ jQuery ->
   $('#new_box').on 'submit', (e) ->
     e.preventDefault()
     self = @
+    button = $(self).find('.button')
+    return if button.hasClass('disabled')
+    button.addClass('disabled')
     $.ajax
       url: $(self).attr('action')
       data: $(self).serializeArray()
@@ -13,11 +16,16 @@ jQuery ->
         window.location = data.edit_url
       error: (jqXHR, textStatus, errorThrown) ->
         globalError(jqXHR, $(self))
+      complete: ->
+        button.text('Start Building It!').removeClass('disabled')
 
   # handle adding a new item to a box
   $('body').on 'click', '#new_item .add_item', (e) ->
     e.preventDefault()
     self = $('#new_item')
+    button = $(self).find('.button')
+    return if button.hasClass('disabled')
+    button.addClass('disabled').text('loading...')
     $.ajax
       url: '/items'
       data: self.serializeArray()
@@ -34,6 +42,8 @@ jQuery ->
         $('.price .high').text("$#{data.recommended_price.recommended_high}")
       error: (jqXHR, textStatus, errorThrown) ->
         globalError(jqXHR, self)
+      complete: ->
+        button.text('Add Item').removeClass('disabled')
 
   # brand search when adding new box items
   $('#item_brand').soulmate

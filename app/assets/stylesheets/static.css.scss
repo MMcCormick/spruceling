@@ -151,3 +151,15 @@ $video-height: 380px;
     }
   }
 }
+
+#static-contact {
+  .section {
+    >div {
+      margin-top: 10px;
+      span {
+        display: inline-block;
+        width: 150px;
+      }
+    }
+  }
+}
