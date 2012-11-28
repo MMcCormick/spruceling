@@ -4,8 +4,9 @@ jQuery ->
     if (response.error)
       # show the errors on the form
       $(".payment-errors").text(response.error.message)
-      $(".submit-button").removeAttr("disabled")
+      $(".action.button").removeAttr("disabled").text('Update Payment Information')
     else
+      $(".action.button").text('Success! Reloading...')
       form$ = $("#payment-form")
       # token contains id, last4, and card type
       token = response['id']
@@ -16,7 +17,7 @@ jQuery ->
 
   $("#payment-form").submit (event) ->
     # disable the submit button to prevent repeated clicks
-    $('.submit-button').attr("disabled", "disabled")
+    $('.action.button').attr("disabled", "disabled").text('working...')
 
     Stripe.createToken({
       number: $('.card-number').val(),
