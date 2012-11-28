@@ -1,50 +1,54 @@
-#header.row
-  .left-fixed.brand
-    %a{:href => root_path}
+#header
+  .main-container
+    %a.brand{:href => root_path}
       = image_tag('spruceling_logo.png', :alt => 'Spruceling')
 
-  .nine.columns
-    .section.middle_section
-      - if user_signed_in?
-        .dropdown.part
-          = user_avatar(current_user, :width => 60, :height => 60, :crop => :thumb, :class => 'photo')
-          %a.name{:href => user_path(current_user)}
-            = current_user.name
-            %i.icon-chevron-down
-            .my_boxes My Boxes
+    %a{:href => 'http://www.facebook.com/Spruceling', :target => '_blank'}
+      %i.social-icon.icon-facebook-sign
+    %a{:href => 'http://twitter.com/spruceling', :target => '_blank'}
+      %i.social-icon.icon-twitter-sign
+    %a{:href => 'http://pinterest.com/spruceling/', :target => '_blank'}
+      %i.social-icon.icon-pinterest-sign
+    %a{:href => 'mailto:support@spruceling.com', :target => '_blank'}
+      %i.social-icon.icon-envelope-alt
 
-          %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
-            %li
-              %a{:href => cart_path}
-                %i.icon-shopping-cart
-                My Cart
-            %li
-              %a{:href => orders_path}
-                %i.icon-barcode
-                My Orders
-            %li
-              %a{:href => edit_user_registration_path}
-                %i.icon-cog
-                My Account
-            %li
-              %a{:href => destroy_user_session_path, 'data-method' => 'delete'}
-                %i.icon-minus-sign
-                Logout
+    - if user_signed_in?
+      .dropdown-container
+        %a.part.my_boxes{:href => user_path(current_user)}
+          = user_avatar(current_user, :width => 30, :height => 30, :crop => :thumb, :class => 'photo')
+          = current_user.name
+          %i.icon-chevron-down
 
-        %a.part.new_box{:href => new_box_path, :class => ('no-address' if current_user.address.blank?)}
-          .name
-            %i.icon-gift
-            List New Box
+        %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
+          %li
+            %a{:href => cart_path}
+              %i.icon-shopping-cart
+              My Cart
+          %li
+            %a{:href => orders_path}
+              %i.icon-barcode
+              My Orders
+          %li
+            %a{:href => edit_user_registration_path}
+              %i.icon-cog
+              My Account
+          %li
+            %a{:href => destroy_user_session_path, 'data-method' => 'delete'}
+              %i.icon-minus-sign
+              Logout
 
+      %a.part.cart{:href => cart_path}
+        %i.icon.icon-shopping-cart
+        = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"
+
+      %div{:class => "part new_box #{current_user.address.blank? ? 'no-address' : ''}"}
+        %i.icon.icon-gift
+        List New Box
         = render "boxes/nav_form"
 
-      - else
-        = link_to 'Login', new_user_session_path, :class => 'part login'
-        = link_to 'Sign up', new_user_registration_path, :class => 'part signup'
+      = link_to 'Shop', boxes_path, :class => 'part shop'
 
-  .three.columns
-    .section.right_section
-      %a.part.cart{:href => cart_path}
-        .name
-          %i.icon-shopping-cart
-          = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"
+    - else
+      = link_to 'Login', new_user_session_path, :class => 'part login'
+      = link_to 'Sign up', new_user_registration_path, :class => 'part signup'
+      = link_to 'Shop', boxes_path, :class => 'part shop'

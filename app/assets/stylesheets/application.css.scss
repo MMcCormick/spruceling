@@ -126,137 +126,135 @@ label {
 }
 
 #header {
-  z-index: 100;
+  z-index: 200;
   position: relative;
-  margin: 20px auto 30px auto;
   height: $header-navbar-height;
-  background: transparent;
-  padding-left: $left-fixed-width;
+  background: #FFF;
+  border-top: 5px solid $action-color;
+  border-bottom: 1px solid #999;
 
-  .section {
-    @include border-radius(3px);
-    background: #CCC;
-    @include background-image(linear-gradient(#EEE, #D3D3D3));
+  .brand {
+    img {
+      height: 46px;
+      margin: 4px 0 0 10px;
+    }
+  }
+  .social-icon {
+    font-size: 2.3rem;
+    left: 20px;
     position: relative;
-    height: $header-navbar-height;
+    margin: 0 0 0 2px;
+    bottom: 13px;
+    color: #999;
+  }
+  .part {
+    float: right;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 22px 20px 19px 20px;
+    color: #000;
+    position: relative;
+    height: 55px;
+    &:hover {
+      background-color: $action-color;
+      color: #FFF;
+    }
+  }
 
-    &.middle_section {
-      margin: 0 5px 0 0;
+  .dropdown-container {
+    float: right;
+    position: relative;
+
+    .photo {
+      @include border-radius(2px);
+      position: absolute;
+      top: 12px;
+      left: 10px;
     }
-    &.right_section {
-      text-align: center;
+
+    .my_boxes {
+      padding-left: 52px;
+      padding-right: 38px;
     }
-    .part {
-      &.login,
-      &.signup,
-      &.new_box {
-        color: $link-color;
-        font-weight: bold;
-        padding: 22px;
-        display: inline-block;
-        border-right: 1px solid #FFF;
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 54px;
+      width: 100%;
+      background: #EFEFEF;
+      border: 1px solid #999;
+      border-top: none;
+      padding: 10px 0 10px 0;
+
+      a:hover {
+        background-color: $action-color;
+        color: #FFF;
+        i {
+          color: #FFF;
+        }
       }
-      &.cart {
-        color: $link-color;
-        font-weight: bold;
-        padding: 22px;
+      a {
+        padding: 5px 20px 5px 60px;
         display: block;
-      }
-      &.dropdown {
-        float: left;
-        border-right: 1px solid #FFF;
-        padding: 0 0 0 $header-navbar-height;
-        position: relative;
-        min-width: 200px;
-
-        .photo {
-          @include border-radius(3px 0 0 3px);
+        width: 100%;
+        i {
           position: absolute;
-          top: 0px;
-          left: 0px;
-        }
-
-        .my_boxes,
-        .dropdown-menu {
-          @include transition-property(opacity);
-          @include transition-delay(0s);
-          @include opacity(0);
-          visibility: hidden;
-          display: none;
-        }
-        .my_boxes {
-          position: absolute;
-          top: $header-navbar-height - 24;
-          padding: 2px 0 0 0;
-          font-weight: normal;
-        }
-        .dropdown-menu {
-          @include transition-duration(.4s);
-          width: 100%;
-          position: absolute;
-          left: 0;
-          background: #CCC;
-          @include background-image(linear-gradient(#D3D3D3, #CCC));
-          padding: 0 0 10px 0;
-          visibility: visible;
-          a:hover {
-            background-color: $action-color;
-            color: #FFF;
-            i {
-              color: #FFF;
-            }
-          }
-          a {
-            padding: 5px 20px 5px ($header-navbar-height + 20px);
-            display: block;
-            width: 100%;
-            i {
-              position: absolute;
-              left: 23px;
-              color: $link-color;
-            }
-          }
-        }
-        .name {
-          font-weight: bold;
-          padding: 13px 41px 23px 20px;
-          margin: 10px 0 0 0;
-          display: block;
-          &:hover {
-            background-color: $action-color;
-            color: #FFF;
-          }
-        }
-        .icon-chevron-down {
-          position: absolute;
-          right: 17px;
-          top: 22px;
+          left: 23px;
+          color: $link-color;
         }
       }
+    }
+    .name {
+      font-weight: bold;
+      padding: 13px 41px 23px 20px;
+      margin: 10px 0 0 0;
+      display: block;
       &:hover {
         background-color: $action-color;
         color: #FFF;
-        &.dropdown { background-color: transparent; }
-        .my_boxes,
-        .dropdown-menu {
-          @include opacity(1);
-          visibility: visible;
-          display: block;
-        }
+      }
+    }
+    .icon-chevron-down {
+      position: absolute;
+      right: 17px;
+      top: 22px;
+    }
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+      .part {
+        background-color: $action-color;
+        color: #FFF;
+      }
+    }
+  }
+  .new_box {
+    &:hover {
+      #new_box {
+        display: block;
       }
     }
   }
   #new_box {
     position: absolute;
-    top: $header-navbar-height - 1;
-    left: 216px;
-    background: #FFF;
-    max-width: 374px;
+    top: 54px;
+    right: 0;
+    background: #EFEFEF;
+    width: 374px;
     display: none;
-    border: 1px solid #CCC;
+    border: 1px solid #999;
+    border-top: none;
     padding: 15px;
     z-index: 200;
+    text-align: left;
+    cursor: default;
 
+    h5 {
+      font-weight: normal;
+      margin: 0 0 15px 0;
+    }
     input,
     select {
       display: block;
@@ -269,7 +267,7 @@ label {
   }
 }
 
-#container {
+.main-container {
   width: 1260px;
   padding: 0 10px;
   margin: auto;
@@ -330,7 +328,7 @@ label {
   }
 }
 
-#container_wrap {
+.main-container_wrap {
   @include clearfix();
 }
 
@@ -347,6 +345,8 @@ label {
 }
 
 #left_sidebar {
+  margin-top: 40px;
+
   .section {
     margin: 0 0 30px 0;
 
@@ -488,7 +488,7 @@ label {
 #static-about,
 #static-privacy,
 #pages-home {
-  #container {
+  .main-container {
     max-width: 960px;
   }
 }
