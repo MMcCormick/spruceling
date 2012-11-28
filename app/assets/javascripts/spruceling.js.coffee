@@ -18,3 +18,7 @@ jQuery ->
   # For IE 7/8
   $('.cover-image').css("background-size", "cover")
   $('.contain-image').css("background-size", "contain")
+
+  $('form').on 'submit', (e) ->
+    $(@).find('.button').val('loading...')
+    $(@).find('.button').text('loading...')
