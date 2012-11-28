@@ -1,26 +1,27 @@
-.box_teaser{:id => "box-#{box.id}"}
-  %a.photo-wrapper{:href => box_path(box)}
-    = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
+- cache box do
+  .box_teaser{:id => "box-#{box.id}"}
+    %a.photo-wrapper{:href => box_path(box)}
+      = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
 
-  .bottom
+    .bottom
 
-    %div{:class => "gender_size"}
-      %span{:class => "color #{box.gender}"}= box.gender_noun
-      = box.size
+      %div{:class => "gender_size"}
+        %span{:class => "color #{box.gender}"}= box.gender_noun
+        = box.size
 
-    .prices
-      %span.seller
-        = "$#{box.price_total.to_i}"
-      %span.retail
-        = "$#{box.recommended_price[:retail].to_i}"
-      %span.savings
-        %span.off
-          = "#{box.recommended_price[:savings].to_i}% Off"
-        Retail
+      .prices
+        %span.seller
+          = "$#{box.price_total.to_i}"
+        %span.retail
+          = "$#{box.recommended_price[:retail].to_i}"
+        %span.savings
+          %span.off
+            = "#{box.recommended_price[:savings].to_i}% Off"
+          Retail
 
-    %a.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
-      %i.icon-shopping-cart
-      Add to Cart
+      %a.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
+        %i.icon-shopping-cart
+        Add to Cart
 
-  - if signed_in? && current_user.id == box.user_id
-    = render "boxes/teaser_actions", :box => box
+    - if signed_in? && current_user.id == box.user_id
+      = render "boxes/teaser_actions", :box => box
