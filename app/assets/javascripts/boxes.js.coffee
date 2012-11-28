@@ -14,6 +14,16 @@ jQuery ->
       error: (jqXHR, textStatus, errorThrown) ->
         globalError(jqXHR, $(self))
 
+  $('#header .new_box').on 'click', (e) ->
+    unless ($(e.target).hasClass('new_box'))
+      return
+
+    if $(@).hasClass('no-address')
+      location.href = '/boxes/new'
+    else
+      e.preventDefault()
+      $('#header #new_box').toggle()
+
   # handle adding a new item to a box
   $('body').on 'click', '#new_item .add_item', (e) ->
     e.preventDefault()
