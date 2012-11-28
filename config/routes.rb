@@ -39,6 +39,8 @@ Spruceling::Application.routes.draw do
   get 'about' => 'static#about' # Just for funsies
   get 'terms' => 'static#terms', :as => :terms
   get 'privacy' => 'static#privacy', :as => :privacy
+  get 'returns' => 'static#returns', :as => :returns
+  get 'contact' => 'static#contact', :as => :contact
 
   mount Soulmate::Server, :at => "sm"
 

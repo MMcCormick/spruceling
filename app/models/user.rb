@@ -123,19 +123,21 @@ class User < ActiveRecord::Base
   end
 
   def update_address(address)
-    begin
-      response = Stamps.clean_address(:address => address)
-      #response = {:valid? => false}
-      if response[:valid?] == false
-        return false
-      else
-        self.address = response[:address]
-      end
-    rescue Exception => e
-      #notify_airbrake(e)
-      logger.error"\n#{e.class} (#{e.message}):\n"
-      self.address = address
-    end
+    self.address = address
+
+    #begin
+    #  response = Stamps.clean_address(:address => address)
+    #  #response = {:valid? => false}
+    #  if response[:valid?] == false
+    #    return false
+    #  else
+    #    self.address = response[:address]
+    #  end
+    #rescue Exception => e
+    #  #notify_airbrake(e)
+    #  logger.error"\n#{e.class} (#{e.message}):\n"
+    #  self.address = address
+    #end
   end
 
   # Omniauth providers
