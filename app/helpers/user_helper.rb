@@ -24,4 +24,7 @@ module UserHelper
     end
   end
 
+  def user_balance(user, precision=2)
+    number_to_currency(user.balance, :precision => precision)
+  end
 end
