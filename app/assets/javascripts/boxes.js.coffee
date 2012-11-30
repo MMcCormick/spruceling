@@ -38,7 +38,7 @@ jQuery ->
     button.addClass('disabled').text('loading...')
     $.ajax
       url: '/items'
-      data: self.serializeArray()
+      data: self.find('input,select').serializeArray()
       cache: false
       dataType: 'json'
       type: 'POST'
@@ -56,16 +56,17 @@ jQuery ->
         button.text('Add Item').removeClass('disabled')
 
   # brand search when adding new box items
-  $('#item_brand').soulmate
-    url:            '/sm/search'
-    types:          ['brand']
-    minQueryLength: 2
-    maxResults:     5
-    renderCallback: (term, data, type) ->
-      term
-    selectCallback: (term, data, type) ->
-      $('#soulmate').hide()
-      $('#item_brand').val(term).blur()
+  $('#item_brand').livequery ->
+    $(@).soulmate
+      url:            '/sm/search'
+      types:          ['brand']
+      minQueryLength: 2
+      maxResults:     5
+      renderCallback: (term, data, type) ->
+        term
+      selectCallback: (term, data, type) ->
+        $('#soulmate').hide()
+        $('#item_brand').val(term).blur()
 
   # update shipping price
   $('#box_seller_price').on 'keyup', (e) ->
@@ -103,3 +104,4 @@ jQuery ->
 
   $('.box_form').livequery ->
     $('#new_item').appendTo($('.item_form'))
+    $('#new_item').replaceWith("<div id='new_item'>#{$('#new_item').html()}</div>")

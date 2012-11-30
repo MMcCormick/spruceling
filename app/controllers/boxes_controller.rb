@@ -4,7 +4,7 @@ class BoxesController < ApplicationController
   # GET /index
   # GET /index.json
   def index
-    @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(8)
+    @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(12)
 
     respond_to do |format|
       format.html # index.html.erb

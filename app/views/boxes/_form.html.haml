@@ -18,12 +18,15 @@
         = render "photos/cover_photo", :photo => photo, :remove_link => true
 
 = simple_form_for @box, :html => {:class => "box_form"} do |f|
-  = f.error_notification
+
+  .errors
+    = f.error_notification
+    = f.error :photos
 
   .section.items
     .head
       %h3 Clothing Items
-      %h5.subheader 5-20 items (10-15 sell the fastest). Gently used or new clothing only please!
+      %h5.subheader 5-15 items. Gently used or new clothing only please!
     .content
       .item-list
 
@@ -87,4 +90,4 @@
       = fi.input :gender, :as => :hidden, :input_html => {:value => @box.gender}
       = fi.input :size, :as => :hidden, :input_html => {:value => @box.size}
     .clear
-    .small.action.button.add_item Add Item
+    = fi.button :submit, 'Add Item', :class => 'small action button add_item'
