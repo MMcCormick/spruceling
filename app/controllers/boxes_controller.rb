@@ -4,7 +4,7 @@ class BoxesController < ApplicationController
   # GET /index
   # GET /index.json
   def index
-    @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(8)
+    @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(12)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,7 +54,7 @@ class BoxesController < ApplicationController
         format.html { redirect_to edit_user_address_path }
         format.json { render :json => {:edit_url => edit_user_address_path} }
       elsif @box.save
-        format.html { redirect_to @box, notice: 'Box was successfully created.' }
+        format.html { redirect_to edit_box_path(@box), notice: 'Great, now please add pictures and item details below.' }
         format.json { render :json => {:box => @box, :url => box_path(@box), :edit_url => edit_box_path(@box)}, status: :created, location: @box }
       else
         format.html { render action: "new" }

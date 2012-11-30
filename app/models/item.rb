@@ -16,7 +16,7 @@
 class Item < ActiveRecord::Base
 
   belongs_to :user, :inverse_of => :items
-  belongs_to :box, :inverse_of => :items
+  belongs_to :box, :inverse_of => :items, :touch => true
   belongs_to :item_type, :inverse_of => :items
   belongs_to :brand, :inverse_of => :items
 

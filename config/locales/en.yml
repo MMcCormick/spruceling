@@ -22,3 +22,5 @@ en:
               blank: "Size can't be blank"
             gender:
               blank: "Gender can't be blank"
+            photos:
+              blank: "You must add at least one photo to this box (ideally each item is pictured in a photo)"

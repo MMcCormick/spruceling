@@ -12,7 +12,7 @@
 
 class Photo < ActiveRecord::Base
 
-  belongs_to :imageable, :polymorphic => true
+  belongs_to :imageable, :polymorphic => true, :touch => true
   attr_accessible :image, :imageable_id, :imageable_type
   mount_uploader :image, ImageUploader
 

@@ -61,7 +61,7 @@ class Box < ActiveRecord::Base
     query[:gender] = params[:gender] if ["m", "f"].include? params[:gender]
     query[:size] = params[:size] if Item.all_sizes.include? params[:size]
     query[:user_id] = params[:user_id] if query[:user_id]
-    Box.includes({:items => :item_type}, :user).where(query)
+    Box.includes({:items => :item_type}, :user).where(query).order('id DESC')
   end
 
   def weight
