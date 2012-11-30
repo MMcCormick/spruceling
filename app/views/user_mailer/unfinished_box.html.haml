@@ -1,0 +1,25 @@
+%p Hi #{@user.name},
+
+%p
+  I'm Matt, one of Spruceling's Co-Founders.
+  I noticed you started listing a box, but didn't finish it.
+  Since you are one of our first sellers, I'd love to hear your feedback on the uploading process!
+  Would you mind answering a couple questions?
+
+%p
+  1. What prevented you from submitting your box?
+%p
+  2. Do you have any suggestions on how to improve our listing process?
+
+%p
+  I'd really appreciate any feedback, even if it's just a quick sentence.
+  Thanks very much, and I look forward to seeing you on Spruceling!
+
+%p
+  Best,
+  %br
+  Matt
+
+%p
+  p.s. If you want to finish that box, here's a link!
+  = link_to "Box ##{@box.id} - #{@box.size} #{@box.gender_noun}", edit_box_url(@box)
