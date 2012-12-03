@@ -1,20 +1,27 @@
 desc "Mark brands which have images"
-require 'net/ping'
-include Rails.application.routes.url_helpers
 
 task :mark_brands => :environment do
 
-  count = 0
-  Brand.limit(100).each do |brand|
+  confirmed_images = []
+  Brand.all.each do |brand|
     if brand.slug
-      url = "localhost:3000#{brand.icon_path}"
-      p "Pinging #{url}..."
-      p1 = Net::Ping::HTTP.new(url)
-      if p1.ping?
-        p "Success!"
+      if FileTest.exists?("#{Rails.root}/public#{brand.icon_path}")
+        p "Success: #{brand.slug}"
         brand.has_image = true
         brand.save
+        confirmed_images << brand.icon_path
       end
+    end
+  end
+
+  p "=============We have pics for #{confirmed_images.length} brands============="
+  p ""
+  p "Here are the unclaimed pics:"
+
+  Dir["#{Rails.root}/public/images/brands/*"].each do |file|
+    derived = file.gsub("#{Rails.root}/public", "")
+    unless confirmed_images.include? derived
+      p derived
     end
   end
 
