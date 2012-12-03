@@ -29,15 +29,17 @@ ActiveRecord::Schema.define(:version => 20121203005925) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "boxes", :force => true do |t|
-    t.string  "gender"
-    t.string  "size"
-    t.string  "status",                                     :default => "active"
-    t.integer "user_id"
-    t.decimal "seller_price", :precision => 8, :scale => 2
-    t.decimal "rating"
-    t.string  "review"
-    t.string  "notes"
-    t.boolean "is_featured",                                :default => false
+    t.string   "gender"
+    t.string   "size"
+    t.string   "status",                                     :default => "active"
+    t.integer  "user_id"
+    t.decimal  "seller_price", :precision => 8, :scale => 2
+    t.decimal  "rating"
+    t.string   "review"
+    t.string   "notes"
+    t.boolean  "is_featured",                                :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"

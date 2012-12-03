@@ -110,6 +110,10 @@ class Box < ActiveRecord::Base
     items.select{|i| i.item_type.category == category}
   end
 
+  def brands_with_icons
+    brands.where(:has_image => true)
+  end
+
   def new_with_tags_count
     count = 0
     items.each do |i|

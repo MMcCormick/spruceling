@@ -1,9 +1,10 @@
 
-.box_teaser{:id => "box-#{box.id}"}
+%div{:id => "box-#{box.id}", :class => "box_teaser #{box.brands_with_icons.length == 0 ? 'no-brand-icons' : ''}"}
   - cache box do
     %a.photo-wrapper{:href => box_path(box)}
-      .brand.one
-      .brand.two
+      - box.brands_with_icons.first(2).each_with_index do |brand,i|
+        %div{:class => "brand #{i == 0 ? 'one' : 'two'}"}
+          = image_tag brand.icon_path(false, 'large'), :title => brand.name, :alt => brand.name
       .primary-image
         = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
 

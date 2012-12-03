@@ -36,12 +36,12 @@ $box-teaser-height: 355px;
     width: 100%;
     display: block;
     position: relative;
-    height: 201px;
+    height: 202px;
 
     .brand {
       position: absolute;
       left: 0px;
-      background: #999;
+      background: #F9F9F9;
       height: 100px;
       width: 100px;
 
@@ -49,14 +49,14 @@ $box-teaser-height: 355px;
         top: 0;
       }
       &.two {
-        top: 101px;
+        top: 102px;
       }
     }
     .primary-image {
       position: absolute;
       top: 0;
       right: 0;
-      width: 209px;
+      width: 208px;
       height: 201px;
     }
     img {
@@ -157,6 +157,11 @@ $box-teaser-height: 355px;
       ul {
         display: block;
       }
+    }
+  }
+  &.no-brand-icons {
+    .primary-image {
+      width: 310px;
     }
   }
   &:hover {
