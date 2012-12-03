@@ -7,8 +7,11 @@
     %span.size= "Size #{@box.size}"
     Box
 
-    - if @box.status == 'active'
-      %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
+    -if current_user && @box.user_id == current_user.id
+      %a.medium.action.button.edit_box{:href => edit_box_path(:id => @box.id), 'data-method' => 'put'}
+        Edit this box
+    - elsif @box.status == 'active'
+      %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
         %i.icon-shopping-cart
         Add to Cart
 
@@ -47,14 +50,19 @@
               - else
                 %div= b.name
 
-      .item-types
-        %h5= "#{@box.items.count} Items"
-        %ul
-          - @box.item_types.each do |it|
-            %li
-              = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
-              %span
-                = pluralize(@box.items_by_category(it).count, it.singularize)
+      %h5= "#{@box.items.count} Items"
+      .row
+        .six.columns
+          .item-types
+            %ul
+              - @box.item_categories.each do |it|
+                %li
+                  = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
+                  %span
+                    = pluralize(@box.items_by_category(it).count, it.singularize)
+        .six.columns
+          .itemized
+            = render 'boxes/itemized', :box => @box
 
   - unless @box.notes.blank?
     .section
@@ -64,9 +72,12 @@
       .content
         %p= @box.notes
 
-  - if @box.status == 'active'
-    .section
-      .content
+  .section
+    .content
+      -if current_user && @box.user_id == current_user.id
+        %a.medium.action.button.edit_box{:href => edit_box_path(:id => @box.id), 'data-method' => 'put'}
+          Edit this box
+      - elsif @box.status == 'active'
         %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
           %i.icon-shopping-cart
           Add to Cart
