@@ -41,7 +41,6 @@ $box-teaser-height: 355px;
     .brand {
       position: absolute;
       left: 0px;
-      background: #F9F9F9;
       height: 100px;
       width: 100px;
 
@@ -50,6 +49,9 @@ $box-teaser-height: 355px;
       }
       &.two {
         top: 102px;
+      }
+      img {
+        margin: 15px auto;
       }
     }
     .primary-image {
