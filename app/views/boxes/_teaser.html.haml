@@ -13,16 +13,19 @@
         - box.item_categories.each do |it|
           = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
 
-      .gender_size
-        %span{:class => "color #{box.gender}"}= box.gender_noun
-        = "#{box.size}, #{box.items.count} Items"
+      .line
+        .count.left= "#{box.items.count} Items"
+        .prices.right
+          %span.seller
+            = "$#{box.price_total.to_i}"
+          %span.retail
+            = "$#{box.recommended_price[:retail].to_i}"
 
-      .prices
-        %span.seller
-          = "$#{box.price_total.to_i}"
-        %span.retail
-          = "$#{box.recommended_price[:retail].to_i}"
-        %span.savings
+      .line
+        .gender_size.left
+          %span{:class => "color #{box.gender}"}= box.gender_noun
+          = box.size
+        .savings.right
           %span.off
             = "#{box.recommended_price[:savings].to_i}% Off"
           Retail

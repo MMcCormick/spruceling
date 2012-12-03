@@ -103,12 +103,17 @@ $box-teaser-height: 355px;
   .bottom {
     padding: 20px;
   }
-  .user,
-  .gender_size {
+  .line {
+    @include clearfix();
     font-size: 16px;
-  }
-  .gender_size {
-    margin: 0 0 7px 0;
+    margin: 7px 0 0 0;
+
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
   }
   .prices {
     .seller {
@@ -117,16 +122,17 @@ $box-teaser-height: 355px;
     .retail {
       text-decoration: line-through;
       color: #CCC;
-      margin: 0 15px 0 3px;
+      margin: 0 0 0 3px;
     }
-    .savings {
-      color: $green;
-    }
+  }
+  .savings {
+    color: $green;
   }
   .add_to_cart {
     margin: 20px 0 0 0;
     display: inline-block;
     color: #222;
+    font-weight: bold;
     &:hover {
       text-decoration: underline;
     }
