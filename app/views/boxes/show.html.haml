@@ -48,7 +48,7 @@
         %ul
           - @box.item_types.each do |it|
             %li
-              = image_tag "#{it.downcase}_icon.png", :title => it
+              = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
               %span
                 = pluralize(@box.items_by_category(it).count, it.singularize)
 
