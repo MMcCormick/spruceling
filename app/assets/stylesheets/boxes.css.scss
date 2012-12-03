@@ -202,7 +202,7 @@ $box-teaser-height: 355px;
   .item-list {
     padding: 10px 0 25px 10px;
   }
-  .item_form_teaser {
+  .form_teaser {
     margin: 4px 0;
   }
   .item_form {
@@ -281,7 +281,8 @@ $box-teaser-height: 355px;
 
 #boxes-show {
   h1 {
-    .add_to_cart {
+    .add_to_cart,
+    .edit_box {
       position: absolute;
       margin: -3px 0 0 30px;
     }
@@ -325,7 +326,7 @@ $box-teaser-height: 355px;
     }
   }
   .box_items {
-    margin: 0 0 20px 0;
+    margin: 27px 0 20px 0;
   }
   .brands {
     ul {

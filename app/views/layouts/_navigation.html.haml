@@ -25,6 +25,10 @@
               %i.icon-shopping-cart
               My Cart
           %li
+            %a{:href => user_path(current_user)}
+              %i.icon-check-empty
+              My Boxes
+          %li
             %a{:href => orders_path}
               %i.icon-barcode
               My Orders

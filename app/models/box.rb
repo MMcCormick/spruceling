@@ -102,7 +102,7 @@ class Box < ActiveRecord::Base
     photos.first
   end
 
-  def item_types
+  def item_categories
     items.map{|i| i.item_type.category}.uniq
   end
 
