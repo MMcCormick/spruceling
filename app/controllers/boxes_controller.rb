@@ -122,7 +122,7 @@ class BoxesController < ApplicationController
   # DELETE /boxes/1.json
   def destroy
     @box = Box.find(params[:id])
-    authorize! :edit, @box
+    authorize! :destroy, @box
 
     @box.destroy
 
