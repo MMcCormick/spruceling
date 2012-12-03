@@ -22,4 +22,4 @@ test:
   api_key: '144477765984443'
   api_secret: Soa3HK-QuYZbmHzRFGOPp30QYtE
   enhance_image_tag: true
-  static_image_support: false
+  static_image_support: true
