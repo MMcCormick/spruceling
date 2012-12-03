@@ -11,7 +11,7 @@
     .bottom
       .item-types
         - box.item_types.each do |it|
-          = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
+          = image_tag "#{it.downcase}_icon.png", :title => it
 
       .gender_size
         %span{:class => "color #{box.gender}"}= box.gender_noun
