@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130223540) do
+ActiveRecord::Schema.define(:version => 20121203005925) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -29,17 +29,15 @@ ActiveRecord::Schema.define(:version => 20121130223540) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "boxes", :force => true do |t|
-    t.string   "gender"
-    t.string   "size"
-    t.string   "status",                                     :default => "active"
-    t.integer  "user_id"
-    t.decimal  "seller_price", :precision => 8, :scale => 2
-    t.decimal  "rating"
-    t.string   "review"
-    t.string   "notes"
-    t.boolean  "is_featured",                                :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "gender"
+    t.string  "size"
+    t.string  "status",                                     :default => "active"
+    t.integer "user_id"
+    t.decimal "seller_price", :precision => 8, :scale => 2
+    t.decimal "rating"
+    t.string  "review"
+    t.string  "notes"
+    t.boolean "is_featured",                                :default => false
   end
 
   add_index "boxes", ["size"], :name => "index_boxes_on_size"
@@ -60,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20121130223540) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "slug"
+    t.boolean  "has_image"
   end
 
   add_index "brands", ["name"], :name => "index_brands_on_name"

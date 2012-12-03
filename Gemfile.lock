@@ -259,6 +259,10 @@ GEM
     nested_form (0.3.1)
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.8)
+    net-ldap (0.2.2)
+    net-ping (1.5.3)
+      ffi (>= 1.0.0)
+      net-ldap (~> 0.2.2)
     newrelic_rpm (3.5.2.17)
     nokogiri (1.5.5)
     ntlm-http (0.1.1)
@@ -474,6 +478,7 @@ DEPENDENCIES
   mechanize
   memcachier
   nested_form
+  net-ping
   newrelic_rpm (~> 3.5.0)
   oauth2
   omniauth
