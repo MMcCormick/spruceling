@@ -6,9 +6,9 @@ development:
   enhance_image_tag: true
   static_image_support: false
 production:
-  cloud_name: <%= ENV["CLOUDINARY_CLOUD_NAME"] %>
-  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
-  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
+  cloud_name: hwtehlrhj
+  api_key: 273275858416515
+  api_secret: ctnfNnkxcVxuVBrkaPmAsHS81kc
   enhance_image_tag: true
   static_image_support: true
 staging:
