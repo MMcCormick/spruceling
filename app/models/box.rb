@@ -98,6 +98,28 @@ class Box < ActiveRecord::Base
     self.active.where(:is_featured => true).limit(limit)
   end
 
+  def primary_image
+    photos.first
+  end
+
+  def item_types
+    items.map{|i| i.item_type.category}.uniq
+  end
+
+  def items_by_category(category)
+    items.select{|i| i.item_type.category == category}
+  end
+
+  def new_with_tags_count
+    count = 0
+    items.each do |i|
+      if i.new_with_tags
+        count += 1
+      end
+    end
+    count
+  end
+
   def ordered_by? (person)
     if person && order && order.user.id == person.id
       true

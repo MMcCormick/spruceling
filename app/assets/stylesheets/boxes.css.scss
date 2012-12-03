@@ -1,5 +1,5 @@
 $box-teaser-width: 310px;
-$box-teaser-height: 330px;
+$box-teaser-height: 355px;
 
 .box-sidebar-filters {
 
@@ -36,14 +36,66 @@ $box-teaser-height: 330px;
     width: 100%;
     display: block;
     position: relative;
-    height: 220px;
+    height: 201px;
 
-    .photo {
-      width: 100%;
-      height: 100%;
+    .brand {
+      position: absolute;
+      left: 0px;
+      background: #999;
+      height: 100px;
+      width: 100px;
+
+      &.one {
+        top: 0;
+      }
+      &.two {
+        top: 101px;
+      }
+    }
+    .primary-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 209px;
+      height: 201px;
     }
     img {
       display: block;
+    }
+    .photo {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .icon-certificate {
+    font-size: 50px;
+    font-size: 5rem;
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    color: $action-color;
+    cursor: default;
+
+    span {
+      position: absolute;
+      top: 13px;
+      left: 0;
+      color: #FFF;
+      font-weight: bold;
+      font-size: 20px;
+      font-size: 2rem;
+      text-align: center;
+      width: 40px;
+      font-style: normal;
+    }
+  }
+  .item-types {
+    padding: 0 5px 10px 5px;
+    margin: -5px -5px 12px -5px;
+    border-bottom: 1px solid #EFEFEF;
+    img {
+      margin: 0 5px 0 0;
+      width: 25px;
     }
   }
   .bottom {
@@ -269,6 +321,32 @@ $box-teaser-height: 330px;
   }
   .box_items {
     margin: 0 0 20px 0;
+  }
+  .brands {
+    ul {
+      @include clearfix();
+    }
+    li {
+      float: left;
+      margin: 5px 10px 0 0;
+      img {
+        width: 100px;
+      }
+    }
+  }
+  .item-types {
+    ul {
+      li {
+        font-size: 2rem;
+        padding: 22px 0 0 55px;
+        position: relative;
+      }
+      img {
+        position: absolute;
+        top: 15px;
+        left: 0;
+      }
+    }
   }
 }
 

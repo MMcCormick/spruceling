@@ -1,13 +1,20 @@
-- cache box do
-  .box_teaser{:id => "box-#{box.id}"}
+
+.box_teaser{:id => "box-#{box.id}"}
+  - cache box do
     %a.photo-wrapper{:href => box_path(box)}
-      = render "photos/cover_photo", :photo => box.photos.first, :size => :medium
+      .brand.one
+      .brand.two
+      .primary-image
+        = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
 
     .bottom
+      .item-types
+        - box.item_types.each do |it|
+          = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
 
-      %div{:class => "gender_size"}
+      .gender_size
         %span{:class => "color #{box.gender}"}= box.gender_noun
-        = box.size
+        = "#{box.size}, #{box.items.count} Items"
 
       .prices
         %span.seller
@@ -23,5 +30,9 @@
         %i.icon-shopping-cart
         Add to Cart
 
-    - if signed_in? && current_user.id == box.user_id
-      = render "boxes/teaser_actions", :box => box
+    - if box.new_with_tags_count > 0
+      %i.icon-certificate{:title => "#{pluralize(box.new_with_tags_count, 'Item')} New With Tags"}
+        %span= box.new_with_tags_count
+
+  - if signed_in? && current_user.id == box.user_id
+    = render "boxes/teaser_actions", :box => box

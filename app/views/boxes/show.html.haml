@@ -33,9 +33,24 @@
             = "#{@box.recommended_price[:savings].to_i}% Off"
           Retail
 
-      #photo-list
-        - @box.photos.each do |photo|
-          = render "photos/contain_photo", :photo => photo
+  .section
+    .head
+      %h3 What's in the box?
+    .content
+      .brands
+        %h5= "#{@box.brands.count} Brands"
+        %ul
+          - @box.brands.each do |b|
+            %li= image_tag b.icon_path(true, 'large'), :title => b.name, :alt => b.name
+
+      .item-types
+        %h5= "#{@box.items.count} Items"
+        %ul
+          - @box.item_types.each do |it|
+            %li
+              = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
+              %span
+                = pluralize(@box.items_by_category(it).count, it.singularize)
 
   - unless @box.notes.blank?
     .section
@@ -43,16 +58,17 @@
         %h3 Notes from the seller
 
       .content
-        %div= @box.notes
+        %p= @box.notes
 
-  .section
-    .head
-      %h3 What's in the box?
-
-    .content
-      = render 'boxes/itemized', :box => @box
-
-      - if @box.status == 'active'
+  - if @box.status == 'active'
+    .section
+      .content
         %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
           %i.icon-shopping-cart
           Add to Cart
+
+  .section
+    .content
+      #photo-list
+        - @box.photos.each do |photo|
+          = render "photos/contain_photo", :photo => photo
