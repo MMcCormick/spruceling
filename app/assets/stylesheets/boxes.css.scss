@@ -333,9 +333,14 @@ $box-teaser-height: 355px;
     }
     li {
       float: left;
-      margin: 5px 10px 0 0;
+      margin: 10px 20px 0 0;
       img {
         width: 100px;
+      }
+      div {
+        display: table-cell;
+        vertical-align: middle;
+        height: 100px;
       }
     }
   }

@@ -41,7 +41,11 @@
         %h5= "#{@box.brands.count} Brands"
         %ul
           - @box.brands.each do |b|
-            %li= image_tag b.icon_path, :title => b.name, :alt => b.name, :height => 100, :width => 100
+            %li
+              - if b.has_image
+                = image_tag b.icon_path, :title => b.name, :alt => b.name, :height => 100, :width => 100
+              - else
+                %div= b.name
 
       .item-types
         %h5= "#{@box.items.count} Items"
