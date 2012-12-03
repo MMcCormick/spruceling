@@ -22,8 +22,8 @@ class Brand < ActiveRecord::Base
 
   after_create :add_to_soulmate
 
-  def icon_path(color=false, size='small')
-    "/images/brands/#{name.parameterize('_').downcase}_place_#{size}_#{color ? 'color' : 'no_color'}.png"
+  def icon_path
+    "/images/brands/#{name.parameterize('_').downcase}_place_large_color.png"
   end
 
   def add_to_soulmate

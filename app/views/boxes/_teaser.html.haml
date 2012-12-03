@@ -4,7 +4,7 @@
     %a.photo-wrapper{:href => box_path(box)}
       - box.brands_with_icons.first(2).each_with_index do |brand,i|
         %div{:class => "brand #{i == 0 ? 'one' : 'two'}"}
-          = image_tag brand.icon_path(false, 'large'), :title => brand.name, :alt => brand.name
+          = image_tag brand.icon_path, :title => brand.name, :alt => brand.name, :e => :grayscale
       .primary-image
         = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
 
