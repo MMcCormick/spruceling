@@ -4,7 +4,7 @@
     %a.photo-wrapper{:href => box_path(box)}
       - box.brands_with_icons.first(2).each_with_index do |brand,i|
         %div{:class => "brand #{i == 0 ? 'one' : 'two'}"}
-          = image_tag brand.icon_path, :title => brand.name, :alt => brand.name, :e => :grayscale, :width => 70
+          = image_tag brand.icon_path, :title => brand.name, :alt => brand.name, :e => :grayscale, :width => 60
       .primary-image
         = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
 
@@ -13,16 +13,19 @@
         - box.item_categories.each do |it|
           = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
 
-      .gender_size
-        %span{:class => "color #{box.gender}"}= box.gender_noun
-        = "#{box.size}, #{box.items.count} Items"
+      .line
+        .count.left= "#{box.items.count} Items"
+        .prices.right
+          %span.seller
+            = "$#{box.price_total.to_i}"
+          %span.retail
+            = "$#{box.recommended_price[:retail].to_i}"
 
-      .prices
-        %span.seller
-          = "$#{box.price_total.to_i}"
-        %span.retail
-          = "$#{box.recommended_price[:retail].to_i}"
-        %span.savings
+      .line
+        .gender_size.left
+          %span{:class => "color #{box.gender}"}= box.gender_noun
+          = box.size
+        .savings.right
           %span.off
             = "#{box.recommended_price[:savings].to_i}% Off"
           Retail
