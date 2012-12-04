@@ -105,6 +105,22 @@ $video-height: 380px;
       }
     }
     .get-more {
+      .logo,
+      .consignment-title {
+        height: 70px;
+        position: relative;
+      }
+      .logo {
+        img {
+          height: 60px;
+          position: relative;
+          top: -15px;
+        }
+      }
+      .consignment-title {
+        color: black;
+        margin: 0;
+      }
       .columns {
         text-align: center;
         .top {
@@ -134,19 +150,6 @@ $video-height: 380px;
       .vs {
         font-size: 30px;
         margin-top: 20px;
-      }
-    }
-    .kinder {
-      .launchrock {
-        padding-left: 20px;
-        img {
-          margin-bottom: 40px;
-        }
-        .lrdiscoverwidget {
-          label {
-            color: #FFF;
-          }
-        }
       }
     }
   }
