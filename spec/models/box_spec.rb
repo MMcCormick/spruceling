@@ -129,7 +129,8 @@ describe Box do
     end
 
     it "should return all boxes when no arguments are passed" do
-      Box.by_filter.should eq [@box, @box2]
+      Box.by_filter.should include @box
+      Box.by_filter.should include @box2
     end
 
     it "should return a box that matches the arguments" do

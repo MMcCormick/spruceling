@@ -67,6 +67,15 @@ describe ItemsController do
   end
 
   describe "POST create" do
+    before(:each) do
+      request.env["HTTP_REFERER"] = "foobar"
+    end
+
+    it "redirects back" do
+      post :create, {:item => FactoryGirl.build(:item).attributes}
+      response.should redirect_to("foobar")
+    end
+
     describe "with valid params" do
       it "creates a new item" do
         expect {
@@ -84,11 +93,6 @@ describe ItemsController do
         post :create, {:item => FactoryGirl.build(:item).attributes}
         assigns(:item).user.should eq(@user)
       end
-
-      it "redirects to the created item" do
-        post :create, {:item => FactoryGirl.build(:item).attributes}
-        response.should redirect_to(Item.last)
-      end
     end
 
     describe "with invalid params" do
@@ -98,18 +102,11 @@ describe ItemsController do
         post :create, {:item => {}}
         assigns(:item).should be_a_new(Item)
       end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Item.any_instance.stub(:save).and_return(false)
-        post :create, {:item => {}}
-        response.should render_template("new")
-      end
     end
 
     it "should require you to be signed in" do
       sign_out @user
-      get :create
+      post :create
       response.should redirect_to(new_user_session_path)
     end
   end
