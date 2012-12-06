@@ -30,8 +30,15 @@ class Box < ActiveRecord::Base
   validates :seller_price, :numericality => {:greater_than_or_equal_to => 1, :less_than_or_equal_to => 1000}, :if => lambda { |box| box.is_active? }
   validates :photos, :presence => true, :if => lambda { |box| box.is_active? && Rails.env != "test" }
   validates :rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}, :unless => lambda { |box| box.rating.nil? }
+  validate :item_count_validation, :if => lambda { |box| box.is_active? && Rails.env != "test" }
 
   scope :active, where(:status => "active")
+
+  def item_count_validation
+    if items.length < 3 || items.length > 12
+      errors.add(:base, "Your box must have between 3 and 12 pieces of clothing in it.")
+    end
+  end
 
   def is_active?
     status == 'active' ? true : false

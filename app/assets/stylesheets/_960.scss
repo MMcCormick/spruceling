@@ -15,6 +15,21 @@
   width: 750px;
 }
 
+#main {
+  padding-left: 0px !important;
+}
+
+#header {
+  .main-container {
+    >.part {
+      display: none;
+    }
+  }
+  .small-menu {
+    display: block;
+  }
+}
+
 // 2. TYPOGRAPHY 			==============================
 
 h1 {

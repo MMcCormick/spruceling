@@ -285,6 +285,14 @@ $box-teaser-height: 355px;
   .submit {
     margin: 0 0 0 25px;
   }
+  .error {
+    font-size: 14px;
+  }
+  .box_form {
+    >.error {
+      margin: 0 0 15px 25px;
+    }
+  }
 }
 
 #boxes-show {
