@@ -1,5 +1,5 @@
 desc "Test Loop model"
-# Assumes
+
 task :fake_boxes => :environment do
   #Mongoid.default_session.collections.select {|c| c.name !~ /system/ }.each(&:drop)
 
