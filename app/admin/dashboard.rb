@@ -11,8 +11,12 @@ ActiveAdmin.register_page "Dashboard" do
              column :id do |oi|
                link_to("Order Item ##{oi.id}", admin_order_item_path(oi))
              end
-             column :buyer
-             column :seller
+             column :buyer do |oi|
+               link_to oi.buyer.name, admin_user_path(oi.buyer)
+             end
+             column :seller do |oi|
+               link_to oi.seller.name, admin_user_path(oi.seller)
+             end
            end
            strong { link_to "View All Order Items", admin_order_items_path }
          end

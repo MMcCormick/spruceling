@@ -4,6 +4,8 @@ describe BoxesController do
   let (:valid_attributes) {FactoryGirl.attributes_for(:box)}
   before (:each) do
     @box = FactoryGirl.create(:box)
+    @box.user.address = {:address1 => "something"}
+    @box.user.save
     sign_in @box.user
   end
 
@@ -78,13 +80,6 @@ describe BoxesController do
       get :new
       response.should redirect_to(new_user_session_path)
     end
-
-    it "should redirect to edit_address if the user doesn't have an address" do
-      @box.user.address = nil
-      @box.user.save
-      get :new
-      response.should redirect_to(edit_user_address_path)
-    end
   end
 
   describe "GET edit" do
@@ -138,15 +133,15 @@ describe BoxesController do
 
     it "should require you to be signed in" do
       sign_out @box.user
-      get :create
+      post :create
       response.should redirect_to(new_user_session_path)
     end
 
-    it "should redirect to edit_address if the user doesn't have an address" do
+    it "should redirect to new_box_path if the user doesn't have an address" do
       @box.user.address = nil
       @box.user.save
-      get :new
-      response.should redirect_to(edit_user_address_path)
+      post :create
+      response.should redirect_to(new_box_path)
     end
   end
 

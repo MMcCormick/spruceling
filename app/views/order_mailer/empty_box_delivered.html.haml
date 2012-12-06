@@ -1,10 +1,10 @@
 %p
-  We sent you an empty box to ship out your clothes, and it's just arrived.
+  We sent you an empty box to ship out your clothes, and it has arrived.
   Now all you have to do is follow the instructions in the box, and make another parent very happy!
 
 %p Here's the box we're talking about:
 
-%div= render 'boxes/link', :box => box, :absolute => true
+%div= render 'boxes/link', :box => @box, :absolute => true
 %div= render "boxes/itemized", :box => @box
 
 %p= "If there are any issues with the items listed above, please notify us immediately by emailing #{link_to 'support@spruceling.com', 'mailto:support@spruceling.com'}. Otherwise, please find instructions inside the box.".html_safe

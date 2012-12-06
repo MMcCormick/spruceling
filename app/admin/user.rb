@@ -7,12 +7,15 @@ ActiveAdmin.register User do
     default_actions                   
   end                                 
 
-  #form do |f|
-  #  f.inputs "Admin Details" do
-  #    f.input :email
-  #    f.input :password
-  #    f.input :password_confirmation
-  #  end
-  #  f.buttons
-  #end
+  form do |f|
+    f.inputs "Admin Details" do
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
+      f.input :balance
+      f.input :name
+      f.input :username
+    end
+    f.buttons
+  end
 end
