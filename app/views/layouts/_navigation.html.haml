@@ -52,6 +52,25 @@
 
       = link_to 'Shop', boxes_path, :class => 'part shop'
 
+      .dropdown-container.small-menu
+        .part
+          Menu
+          %i.icon-chevron-down
+
+        %ul.dropdown-menu
+          %li
+            %a.cart{:href => cart_path}
+              %i.icon.icon-shopping-cart
+              = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"
+          %li
+            %a{:href => new_box_path, :class => "new_box"}
+              %i.icon.icon-gift
+              List New Box
+          %li
+            %a{:href => boxes_path, :class => 'shop'}
+              %i.icon.icon-heart
+              Shop
+
     - else
       = link_to 'Login', new_user_session_path, :class => 'part login'
       = link_to 'Sign up', new_user_registration_path, :class => 'part signup'

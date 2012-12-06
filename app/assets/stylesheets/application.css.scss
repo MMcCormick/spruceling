@@ -232,6 +232,15 @@ label {
       }
     }
   }
+  .small-menu {
+    display: none;
+    .part {
+      padding-right: 35px;
+    }
+    .dropdown-menu {
+      width: 190px;
+    }
+  }
   .new_box {
     cursor: pointer;
   }
