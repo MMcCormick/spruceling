@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203005925) do
+ActiveRecord::Schema.define(:version => 20121208203732) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,17 +54,15 @@ ActiveRecord::Schema.define(:version => 20121203005925) do
   add_index "boxes_carts", ["cart_id", "box_id"], :name => "index_boxes_carts_on_cart_id_and_box_id", :unique => true
   add_index "boxes_carts", ["cart_id"], :name => "index_boxes_carts_on_cart_id"
 
-  create_table "brands", :force => true do |t|
-    t.string   "name"
-    t.string   "photo"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "slug"
-    t.boolean  "has_image"
+  create_table "brands", :id => false, :force => true do |t|
+    t.integer   "id",                      :null => false
+    t.string    "name"
+    t.string    "photo"
+    t.timestamp "created_at", :limit => 6, :null => false
+    t.timestamp "updated_at", :limit => 6, :null => false
+    t.string    "slug"
+    t.boolean   "has_image"
   end
-
-  add_index "brands", ["name"], :name => "index_brands_on_name"
-  add_index "brands", ["slug"], :name => "index_brands_on_slug"
 
   create_table "carts", :force => true do |t|
     t.integer "user_id"
@@ -90,11 +88,13 @@ ActiveRecord::Schema.define(:version => 20121203005925) do
     t.string  "gender"
     t.string  "size"
     t.boolean "new_with_tags"
-    t.string  "status",        :default => "active"
+    t.string  "status",                                      :default => "active"
     t.integer "user_id"
     t.integer "box_id"
     t.integer "item_type_id"
     t.integer "brand_id"
+    t.string  "photo"
+    t.decimal "price",         :precision => 8, :scale => 2
   end
 
   add_index "items", ["box_id"], :name => "index_items_on_box_id"

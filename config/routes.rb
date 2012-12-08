@@ -5,7 +5,6 @@ Spruceling::Application.routes.draw do
   resources :withdrawals, :only => [:new, :create]
   resources :brands
   resources :orders
-  resources :items
   resources :photos, :only => [:create, :destroy]
 
   # Boxes
@@ -15,6 +14,9 @@ Spruceling::Application.routes.draw do
     put 'remove_item' => 'boxes#remove_item'
     put ':id/rate' => 'boxes#rate', :as => :rate_box
   end
+
+  # Items
+  resources :items
 
   # Users
   get '/users/auth/:provider' => 'omniauth_callbacks#passthru', :as => :omniauth

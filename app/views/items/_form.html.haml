@@ -1,30 +1,25 @@
-= form_for @item, :html => { :class => "custom"} do |f|
-  - if @item.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@item.errors.count, "error")} prohibited this item from being saved:"
-      %ul
-        - @item.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @item, :html => { :class => "item-form"} do |f|
+  .errors
 
-  .field
-    = f.label :gender
-    = f.radio_button :gender, "m"
-    = f.label :gender, 'Boy', :value => "m"
-    = f.radio_button :gender, "f"
-    = f.label :gender, 'Girl', :value => "f"
-    = f.radio_button :gender, "u"
-    = f.label :gender, 'Unisex', :value => "u"
-  .field
-    = f.label :size
-    = f.select :size, Item.all_sizes, :prompt => "Select a size"
-  .field
-    = f.label :item_type_id
-    = f.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
-  .field
-    = f.label :brand_id
-    = f.collection_select :brand_id, Brand.all, :id, :name, :prompt => "Select a brand"
-  .field
-    = f.label :new_with_tags
-    = f.check_box :new_with_tags
-  .actions
-    = f.submit 'Save'
+  .photo-wrapper
+    = f.input :photo, :as => :file
+
+  .inputs
+    .item.gender
+      = f.collection_radio_buttons :gender, [['m', 'Boy'] ,['f', 'Girl']], :first, :last
+    .item.size
+      = f.select :size, Item.all_sizes, :prompt => "Select a size"
+    .item.type
+      = f.select :item_type_id, ItemType.all_types, :prompt => "Select a clothing type"
+    .item.brand
+      = f.input :brand, :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Type a brand name...'}
+      = f.input :brand_id, :as => :hidden
+    .item.nwt
+      = f.check_box :new_with_tags
+      %span.head New With Tags?
+    .item.price
+      = f.input :price
+
+  .clear
+
+  = f.button :submit, 'Add Item', :class => 'small action button'

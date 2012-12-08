@@ -1,3 +1,16 @@
-// Place all the styles related to the Items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.item-form {
+  position: relative;
+  padding-left: 300px;
+
+  .photo-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+  }
+  .inputs {
+    .item {
+      padding: 10px 0;
+    }
+  }
+}
