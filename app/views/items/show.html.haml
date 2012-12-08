@@ -1,5 +1,7 @@
 %p#notice= notice
 
+= cl_image_tag @item.photo
+
 %p
   %b Gender:
   = @item.gender_noun
@@ -17,6 +19,8 @@
   %b Type:
   = @item.item_type.name
 
+%p
+  %b Price:
+  = @item.price
+
 = link_to 'Edit', edit_item_path(@item)
-\|
-= link_to 'Back', items_path

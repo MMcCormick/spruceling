@@ -57,10 +57,10 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.save
         html = render_to_string :partial => 'items/form_teaser', :locals => {:item => @item}
-        format.html { redirect_to :back, notice: 'Item was successfully created.' }
+        format.html { redirect_to :back, notice: "Item with ID# #{@item.id} was successfully created." }
         format.js { render :json => {:item => @item, :recommended_price => @box.recommended_price, :form_teaser => html}, status: :created, location: @item }
       else
-        format.html { redirect_to :back, :error => 'Item could not be created.' }
+        format.html { render :action => "new" }
         format.js { render :json => {:errors => @item.errors}, status: :unprocessable_entity }
       end
     end
