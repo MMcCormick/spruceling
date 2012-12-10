@@ -2,8 +2,12 @@
   .twelve.columns.top-image
     %h1 Buy & Sell gently used kid's clothing.
     %h3 Save money, reduce clutter, and put outgrown clothes to good use.
-    %a.large.action.button{:href => boxes_path} Shop Now!
+    %a.large.action.button.shop-now{:href => boxes_path} Shop Now!
     = image_tag 'front-page-ben.jpg'
+
+.row.give-us-clothes
+  Just want to clean out your closet? We'll sell your clothes for you!
+  %a.medium.button{:href => send_clothes_path} Request a bag
 
 .row
   .seven.columns.featured-boxes
@@ -24,7 +28,7 @@
       %h4 Trade Outgrown Clothes For Cash
     .content
       = image_tag 'front-page-clothing.png'
-      %p Spruceling will take care of shipping, listing is free, and you'll make more money than you would selling to a consignment store.
+      %p Spruceling will take care of shipping, listing is free, and you'll make more money than you would at a consignment store.
 
 .row
   .seven.columns.featured-boxes-btn

@@ -46,6 +46,7 @@ Spruceling::Application.routes.draw do
   get 'privacy' => 'static#privacy', :as => :privacy
   get 'returns' => 'static#returns', :as => :returns
   get 'contact' => 'static#contact', :as => :contact
+  get 'send_clothes' => 'static#send_clothes', :as => :send_clothes
 
   mount Soulmate::Server, :at => "sm"
 

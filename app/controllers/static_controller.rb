@@ -19,4 +19,8 @@ class StaticController < ApplicationController
   def contact
 
   end
+
+  def send_clothes
+
+  end
 end
