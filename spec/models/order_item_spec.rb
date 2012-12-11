@@ -45,8 +45,13 @@ describe OrderItem do
   end
 
   describe "full_box_shipped" do
-    it "should call User#credit_account with the correct user" do
+    it "should call User#credit_account on the correct user" do
       @order_item.box.user.should_receive(:credit_account)
+      @order_item.full_box_shipped
+    end
+
+    it "should call User#credit_account with the correct amount" do
+      @order_item.box.user.should_receive(:credit_account).once.with(Order.seller_cut * @order_item.box.seller_price)
       @order_item.full_box_shipped
     end
 

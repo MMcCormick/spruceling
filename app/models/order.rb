@@ -13,9 +13,17 @@
 
 class Order < ActiveRecord::Base
 
-  @@spruceling_cut = 0.4
+  @@spruceling_cut = 0.3
   def self.spruceling_cut
     @@spruceling_cut
+  end
+  @@seller_cut = 0.6
+  def self.seller_cut
+    @@seller_cut
+  end
+  @@charity_cut = 0.1
+  def self.charity_cut
+    @@charity_cut
   end
 
   belongs_to :user, :inverse_of => :orders

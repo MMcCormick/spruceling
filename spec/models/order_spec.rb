@@ -53,6 +53,10 @@ describe Order do
     FactoryGirl.build(:order, :boxes_total => 0.5).should be_invalid
   end
 
+  it "should have all the cuts add up to 100%" do
+    (Order.spruceling_cut + Order.seller_cut + Order.charity_cut).should == 1
+  end
+
   it "should have a #boxes method if there have been boxes added" do
     @order = FactoryGirl.create(:order)
     @order.add_box(@box)
