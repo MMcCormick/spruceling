@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @featured_boxes = Box.featured
+    @charity = Charity.where(:status => "active").first
   end
 
   def promo

@@ -3,6 +3,7 @@
 # Table name: brands
 #
 #  created_at :datetime         not null
+#  has_image  :boolean
 #  id         :integer          not null, primary key
 #  name       :string(255)
 #  photo      :string(255)

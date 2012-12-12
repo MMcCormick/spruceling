@@ -2,6 +2,7 @@
 #
 # Table name: boxes
 #
+#  created_at   :datetime
 #  gender       :string(255)
 #  id           :integer          not null, primary key
 #  is_featured  :boolean          default(FALSE)
@@ -11,6 +12,7 @@
 #  seller_price :decimal(8, 2)
 #  size         :string(255)
 #  status       :string(255)      default("active")
+#  updated_at   :datetime
 #  user_id      :integer
 #
 
