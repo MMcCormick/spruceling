@@ -275,6 +275,29 @@ label {
   }
 }
 
+#under-header {
+  #charity-meter {
+    @include border-bottom-left-radius(10px);
+    @include border-bottom-right-radius(10px);
+    background: lighten($green, 35%);
+    padding: 10px 10px 0px 10px;
+    margin-bottom: -15px;
+    .desc {
+      padding: 0 0 0 10px;
+    }
+    .percentage {
+      padding: 0 10px 0 0;
+      text-align: right;
+    }
+    .progress {
+      margin-top: 10px;
+      .meter {
+        background-color: $green;
+      }
+    }
+  }
+}
+
 .main-container {
   width: 1260px;
   padding: 0 10px;

@@ -46,6 +46,7 @@
       %div{:id => "#{params[:controller].split('/').last}-#{params[:action]}", :class => "#{@body_class} #{@fullscreen ? 'fullscreen' : ''}"}
 
         = render 'layouts/navigation'
+        = yield :under_header
 
         .main-container{:class => "row #{content_for?(:left_sidebar) ? "with-left-fixed" : ''}"}
 

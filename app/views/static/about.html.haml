@@ -21,7 +21,7 @@
     %li
       .number 2
       Earn more than you would at consignment
-      .sub-step A consignment store might give you 30%. Spruceling gives you #{number_to_percentage(100 - (Order.spruceling_cut * 100), :precision => 0)}.
+      .sub-step A consignment store might give you 30%. Spruceling gives you #{number_to_percentage(Order.seller_cut * 100, :precision => 0)}.
     %li
       .number 3
       Use your Spruceling balance to buy clothes that fit!
@@ -72,6 +72,6 @@
       .parent-b Parent B
     .bottom.row
       .parent-a Parent A
-      gets #{number_to_percentage(100 - (Order.spruceling_cut * 100), :precision => 0)}, and
+      gets #{number_to_percentage(Order.seller_cut * 100, :precision => 0)}, and
       .parent-b Parent B
       pays less

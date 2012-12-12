@@ -377,7 +377,7 @@ $box-teaser-height: 355px;
   }
 }
 
-#box_paginator {
+.box_paginator {
   padding: 20px 0 10px;
   clear: left;
   text-align: center;
@@ -386,6 +386,9 @@ $box-teaser-height: 355px;
   }
   .current {
     padding: 3px 5px;
+  }
+  &.before {
+    padding: 5px 0 23px;
   }
 }
 
