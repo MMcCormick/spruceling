@@ -285,14 +285,21 @@ label {
     .desc {
       padding: 0 0 0 10px;
     }
-    .percentage {
+    .goal {
       padding: 0 10px 0 0;
       text-align: right;
     }
     .progress {
+      position: relative;
       margin-top: 10px;
       .meter {
         background-color: $green;
+      }
+      .percentage {
+        position: absolute;
+        top: 4px;
+        width: 100%;
+        text-align: center;
       }
     }
   }
