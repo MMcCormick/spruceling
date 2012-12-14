@@ -8,12 +8,12 @@
     Box
 
     -if current_user && @box.user_id == current_user.id
-      %a.medium.action.button.edit_box{:href => edit_box_path(:id => @box.id), 'data-method' => 'put'}
+      %a.medium.action.button.edit_box{:href => edit_box_path(:id => @box.id)}
         Edit this box
     - elsif @box.status == 'active'
-      %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put'}
+      %a.medium.action.button.add_to_cart{:href => buy_path(:box_id => @box.id)}
         %i.icon-shopping-cart
-        Add to Cart
+        Buy
 
   - if @box.status == 'sold' && @box.rating.blank? && @box.ordered_by?(current_user)
     .section.rate-me

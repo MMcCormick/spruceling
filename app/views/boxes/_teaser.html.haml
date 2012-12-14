@@ -30,9 +30,9 @@
             = "#{box.recommended_price[:savings].to_i}% Off"
           Retail
 
-      %a.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
+      %a.add_to_cart{:href => buy_path(:box_id => box.id)}
         %i.icon-shopping-cart
-        Add to Cart
+        Buy
 
     - if box.new_with_tags_count > 0
       %i.icon-certificate{:title => "#{pluralize(box.new_with_tags_count, 'Item')} New With Tags"}

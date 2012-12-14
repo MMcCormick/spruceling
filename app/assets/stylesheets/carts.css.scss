@@ -2,68 +2,145 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#cart_show {
-  h1 {
-    margin-bottom: 30px;
-  }
-  table {
+#carts-buy {
+  .row {
     width: 100%;
-    margin-top: 10px;
-    th {
-      padding: 10px 20px;
-      text-align: left;
+  }
+  .cart-container {
+    height: 100%;
+  }
+  .main-window {
+    @include box-shadow(none);
+    background: transparent;
+    margin: 0;
+  }
+  #header {
+    .new_box,
+    .shop {
+      display: none;
     }
-    tr {
-      background: #FFF;
-      td {
-        padding: 10px 20px;
+  }
+  #footer {
+    display: none;
+  }
+
+  .step {
+    height: 100%;
+    background: #FFF;
+    overflow-y: auto;
+
+    .bg {
+      display: none;
+    }
+    .icon {
+      margin: 50px 0 0 0;
+      text-align: center;
+
+      .number,
+      .icon-ok {
+        @include border-radius(1000px);
+        font-size: 1.6rem;
+        background: #000;
+        color: #FFF;
+        display: inline-block;
+        line-height: 36px;
+        width: 36px;
+        height: 36px;
+      }
+      .icon-ok {
+        display: none;
+        font-size: 2rem;
+      }
+      .name {
+        text-transform: uppercase;
+        margin: 10px 0 0 0;
+        font-size: 2rem;
       }
     }
-    .shipping td,
-    .total td {
-      border-top: 1px solid #DDD;
-    }
-    .total {
-      background: #F9F9F9;
-    }
-  }
-  .complete-purchase {
-    margin: 30px 0 0 0;
-    text-align: right;
-    div {
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-    .buy {
-    }
-  }
+    .content {
+      margin: 40px 0 0 0;
+      text-align: center;
 
-  .missing,
-  .current {
-    margin-bottom: 10px;
-    padding: 0 0 0 18px;
-    position: relative;
-    .icon-check,
-    .icon-check-empty {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-    }
-    .icon-check {
-      color: $green;
-    }
-    .icon-check-empty {
-      color: red;
-    }
-  }
-  .missing {
-    font-style: italic;
-  }
+      .wrapper {
+        @include border-radius(5px);
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5), 0 1px 4px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 1px rgba(255, 255, 255, 0.5) inset;
+        background: #FFF;
+        display: inline-block;
+        width: 275px;
+        padding: 15px;
+        text-align: left;
+        font-size: 16px;
 
-  .toggle_edit_payment,
-  .toggle_edit_address,
-  .covered {
-    display: inline-block;
-    margin: 0 0 10px 0;
+        .show,
+        .edit {
+          display: none;
+        }
+        &.display-show {
+          .show {
+            display: block;
+          }
+        }
+        &.display-edit {
+          .edit {
+            display: block;
+          }
+        }
+      }
+      .toggle {
+        font-size: 16px;
+        margin: 10px auto;
+        text-align: left;
+        width: 275px;
+        cursor: pointer;
+        color: $link-color;
+
+        span {
+          cursor: pointer;
+        }
+      }
+    }
+    form {
+      margin: 0;
+    }
+    &.payment {
+      border-left: 1px solid #CCC;
+      border-right: 1px solid #CCC;
+    }
+    &.shipping {
+      .wrapper {
+        padding: 11px 15px;
+        line-height: 20px;
+      }
+    }
+    &.completed {
+      background: #E2E2E2;
+
+      .icon {
+        .number {
+          display: none;
+        }
+        .icon-ok {
+          display: inline-block;
+          background: #ADADAD;
+        }
+        .name {
+          color: #ADADAD;
+        }
+      }
+    }
+    &.hidden {
+      .bg {
+        @include opacity(0.95);
+        position: absolute;
+        top: 0;
+        botton: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: #E2E2E2;
+        display: block;
+      }
+    }
   }
 }

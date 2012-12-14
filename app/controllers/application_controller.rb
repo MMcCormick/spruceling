@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :five_dollars
+  before_filter :five_dollars, :init
 
   def five_dollars
     if session[:five_dollars] && current_user && current_user.balance == 0
@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
   def current_admin_user #use predefined method name
     return nil if user_signed_in? && !current_user.role?('admin')
     current_user
+  end
+
+  def init
+    @fullscreen = false
   end
 end

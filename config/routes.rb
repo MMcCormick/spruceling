@@ -35,6 +35,7 @@ Spruceling::Application.routes.draw do
     put 'add' => 'carts#add', :as => :cart_add
     put 'remove' => 'carts#remove', :as => :cart_remove
   end
+  get 'buy' => 'carts#buy', :as => :buy
 
   # Promo
   get "promo/:code" => 'pages#promo', :as => :promo
@@ -46,7 +47,6 @@ Spruceling::Application.routes.draw do
   get 'privacy' => 'static#privacy', :as => :privacy
   get 'returns' => 'static#returns', :as => :returns
   get 'contact' => 'static#contact', :as => :contact
-  get 'send_clothes' => 'static#send_clothes', :as => :send_clothes
 
   mount Soulmate::Server, :at => "sm"
 

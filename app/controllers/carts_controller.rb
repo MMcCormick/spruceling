@@ -1,6 +1,16 @@
 class CartsController < ApplicationController
   before_filter :authenticate_user!
 
+  def buy
+    session[:buy_box] = params[:box_id]
+    @fullscreen = true
+    @show_shipping = true
+    @completed_shipping = signed_in? && current_user.address ? true : false
+    @show_payment = @completed_shipping ? true : false
+    @completed_payment = signed_in? && current_user.stripe_customer_id ? true : false
+    @show_review = @completed_payment ? true : false
+  end
+
   def show
     @cart = current_user.cart
 

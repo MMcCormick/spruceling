@@ -62,7 +62,6 @@ class Order < ActiveRecord::Base
 
   def process
     order_items.each do |o|
-      user.cart.remove_box(o.box.id)
       o.box.status = 'sold'
       o.box.save
       o.box.items.each do |i|
@@ -90,10 +89,10 @@ class Order < ActiveRecord::Base
     end
 
     # can't have an empty cart
-    if user.cart.boxes.length == 0
-      order.errors.add :base, 'You cannot process an order with an empty cart.'
-      return order
-    end
+    #if user.cart.boxes.length == 0
+    #  order.errors.add :base, 'You cannot process an order with an empty cart.'
+    #  return order
+    #end
 
     order.price_total = user.cart.price_total
     order.boxes_total = user.cart.boxes_total

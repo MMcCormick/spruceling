@@ -102,7 +102,33 @@ label {
   background-color: #FCC;
   border: solid 1px #C66;
 }
+#data-pjax-container {
+  height: 100%;
+}
+.fullscreen {
+  height: 100%;
 
+  #header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    .main-container {
+      width: 100%;
+    }
+  }
+  >.main-container {
+    height: 100%;
+    padding: 0;
+  }
+  #main {
+    height: 100%;
+    min-height: none;
+    padding: $header-navbar-height 0 0 0;
+  }
+  .main-window {
+    height: 100%;
+  }
+}
 .button {
   &.action {
     color: white;

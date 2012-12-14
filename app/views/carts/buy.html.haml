@@ -1,0 +1,40 @@
+.cart-container.row
+  %div{:class => "step shipping four columns #{@show_shipping ? '' : 'hidden'}  #{@completed_shipping ? 'completed' : ''}"}
+    .bg
+    .icon
+      %span.number 1
+      %i.icon-ok
+      .name Shipping
+
+    .content
+      %div{:class => "wrapper #{signed_in? && current_user.address ? 'display-show' : 'display-edit' }"}
+        .show
+          = render 'users/address', :address => current_user.address
+        .edit
+          = render "users/address_form"
+      - if signed_in? && current_user.address
+        .toggle
+          %span Edit
+
+  %div{:class => "step payment four columns completed #{@show_payment ? '' : 'hidden'} #{@completed_payment ? 'completed' : ''}"}
+    .bg
+    .icon
+      %span.number 2
+      %i.icon-ok
+      .name Payment
+    .content
+      %div{:class => "wrapper #{signed_in? && current_user.stripe ? 'display-show' : 'display-edit' }"}
+        .show
+          = "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+        .edit
+          = render "users/stripe_card_form"
+      - if signed_in? && current_user.stripe
+        .toggle
+          %span Edit
+
+  %div{:class => "step confirm four columns #{@show_review ? '' : 'hidden'}"}
+    .bg
+    .icon
+      %span.number 3
+      %i.icon-ok
+      .name Review

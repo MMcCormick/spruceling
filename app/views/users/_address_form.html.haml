@@ -1,8 +1,8 @@
 = simple_form_for(current_user, :method => :put, :id => 'address_form', :url => update_user_address_path) do |f|
-  = f.input 'full_name', :label => 'Full Name', :input_html => {:autocomplete => 'off'}
-  = f.input 'address1', :label => 'Address Line 1', :input_html => {:autocomplete => 'off'}
-  = f.input 'address2', :label => 'Address Line 2', :input_html => {:autocomplete => 'off'}
-  = f.input 'city', :input_html => {:autocomplete => 'off'}
-  = f.input 'state', :input_html => {:autocomplete => 'off'}
-  = f.input 'zip_code', :label => 'Zip Code', :input_html => {:autocomplete => 'off'}
+  = f.input 'full_name', :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Full Name', :value => current_user.address && current_user.address["full_name"] ? current_user.address["full_name"] : ''}
+  = f.input 'address1', :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Address Line 1', :value => current_user.address && current_user.address["address1"] ? current_user.address["address1"] : ''}
+  = f.input 'address2', :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Address Line 2', :value => current_user.address && current_user.address["address2"] ? current_user.address["address2"] : ''}
+  = f.input 'city', :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'City', :value => current_user.address && current_user.address["city"] ? current_user.address["city"] : ''}
+  = f.input 'state', :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'State', :value => current_user.address && current_user.address["state"] ? current_user.address["state"] : ''}
+  = f.input 'zip_code', :label => false, :input_html => {:autocomplete => 'off', :placeholder => 'Zipcode', :value => current_user.address && current_user.address["zip_code"] ? current_user.address["zip_code"] : ''}
   = f.button :submit, :class => 'medium action button', :value => 'Update Address'

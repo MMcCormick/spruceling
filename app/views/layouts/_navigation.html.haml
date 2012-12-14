@@ -21,10 +21,6 @@
 
         %ul.dropdown-menu{:role => 'menu', 'aria-labelledby' => 'dLabel'}
           %li
-            %a{:href => cart_path}
-              %i.icon-shopping-cart
-              My Cart
-          %li
             %a{:href => user_path(current_user)}
               %i.icon-check-empty
               My Boxes
@@ -40,10 +36,6 @@
             %a{:href => destroy_user_session_path, 'data-method' => 'delete'}
               %i.icon-minus-sign
               Logout
-
-      %a.part.cart{:href => cart_path}
-        %i.icon.icon-shopping-cart
-        = "Cart (#{signed_in? ? current_user.cart.boxes.length : 0})"
 
       %div{:class => "part new_box #{current_user.address.blank? ? 'no-address' : ''}"}
         %i.icon.icon-gift

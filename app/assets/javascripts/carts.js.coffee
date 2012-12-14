@@ -9,3 +9,10 @@ jQuery ->
     e.preventDefault()
     $('#address_form_wrapper').toggleClass('hide')
     $('#address_info_wrapper').toggleClass('hide')
+
+  $('.step .toggle').click (e) ->
+    $(@).parent().find('.show,.edit').toggle()
+    if $.trim($(@).text()) == 'Edit'
+      $(@).text('Cancel')
+    else
+      $(@).text('Edit')
