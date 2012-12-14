@@ -15,4 +15,13 @@ class Charity < ActiveRecord::Base
     percent = (balance / goal * 100).round
     percent > 100 ? 100 : percent
   end
+
+  def credit_account(amount)
+    if amount > 0
+      self.balance = balance + amount
+      true
+    else
+      false
+    end
+  end
 end
