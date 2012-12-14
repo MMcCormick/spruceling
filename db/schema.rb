@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208203732) do
+ActiveRecord::Schema.define(:version => 20121212213321) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(:version => 20121208203732) do
   end
 
   add_index "carts", ["user_id"], :name => "index_carts_on_user_id"
+
+  create_table "charities", :force => true do |t|
+    t.string  "name"
+    t.string  "site"
+    t.string  "status"
+    t.decimal "goal",    :precision => 8, :scale => 2
+    t.decimal "balance", :precision => 8, :scale => 2
+  end
 
   create_table "item_types", :force => true do |t|
     t.string  "name"

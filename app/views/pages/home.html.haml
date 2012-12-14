@@ -1,6 +1,3 @@
-- content_for :under_banner do
-  = render :partial => "charity/charity_meter"
-
 .row
   .twelve.columns.top-image
     %h1 Buy & Sell gently used kid's clothing.
@@ -8,9 +5,12 @@
     %a.large.action.button.shop-now{:href => boxes_path} Shop Now!
     = image_tag 'front-page-ben.jpg'
 
+- if @charity
+  = render :partial => "charity/charity_meter", :locals => { :charity => @charity }
+
 .row.give-us-clothes
-  Just want to clean out your closet? We'll sell your clothes for you!
-  %a.medium.button{:href => send_clothes_path} Request a bag
+  Earn <b>$5</b> toward your next box by taking our survey.
+  %a.medium.button{:href => "http://survey.constantcontact.com/survey/a07e6rzab2phamyaxxs/start"} Take the Survey
 
 .row
   .seven.columns.featured-boxes

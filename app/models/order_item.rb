@@ -46,12 +46,17 @@ class OrderItem < ActiveRecord::Base
     if paid
       raise "This user has already been paid"
     else
-      if box.user.credit_account(box.seller_price * Order.seller_cut)
+      if seller.credit_account(box.seller_price * Order.seller_cut)
         OrderMailer.full_box_shipped(id).deliver
         self.paid = true
         self.status = "full_box_shipped"
         self.save
-        box.user.save
+        seller.save
+        # Credit charity
+        charity = Charity.where(:status => "active").first
+        if charity
+          charity.credit_account(box.seller_price * Order.charity_cut)
+        end
       end
     end
   end

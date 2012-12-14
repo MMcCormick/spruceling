@@ -93,6 +93,12 @@ describe OrderItem do
         @order_item.should_receive(:save)
         @order_item.full_box_shipped
       end
+
+      it "should call Charity#credit_account on the correct charity" do
+        @charity = FactoryGirl.create(:charity)
+        @charity.should_receive(:credit_account)
+        @order_item.full_box_shipped
+      end
     end
 
     context "when User#credit_account is unsuccessful" do

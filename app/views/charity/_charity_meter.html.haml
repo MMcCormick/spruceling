@@ -2,9 +2,13 @@
   .main-container
     #charity-meter
       .row
-        .desc.nine.columns 10% of every box's price is donated to St. Jude Children's Hospital
-        .goal.three.columns December Goal: $200
+        .desc.nine.columns
+          During December, all Spruceling proceeds will be donated to
+          = link_to(charity.name, charity.site, {:target => "_blank"})
+        .goal.three.columns
+          December Goal:
+          %span.amount= number_to_currency charity.goal
       .row
         .nice.round.progress
-          %span.meter{ :style => "width: 52%" }
-          .percentage 52%
+          %span.meter{ :style => "width: #{charity.percentage}%" }
+          .percentage #{charity.percentage}%

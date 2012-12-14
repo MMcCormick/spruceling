@@ -8,6 +8,8 @@
 #  id            :integer          not null, primary key
 #  item_type_id  :integer
 #  new_with_tags :boolean
+#  photo         :string(255)
+#  price         :decimal(8, 2)
 #  size          :string(255)
 #  status        :string(255)      default("active")
 #  user_id       :integer

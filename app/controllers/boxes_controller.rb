@@ -5,6 +5,7 @@ class BoxesController < ApplicationController
   # GET /index.json
   def index
     @boxes = Box.by_filter(params.slice(:gender, :size)).active.page(params[:page]).per(12)
+    @charity = Charity.where(:status => "active").first
 
     respond_to do |format|
       format.html # index.html.erb

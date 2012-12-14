@@ -12,7 +12,7 @@
   .top-image {
     $left: 40px;
     position: relative;
-    height: 350px;
+    height: 343px;
 
     h1 {
       position: absolute;
@@ -45,8 +45,14 @@
       bottom: 35px;
     }
   }
+  #under-header {
+    .main-container {
+      padding: 0;
+      max-width: 940px;
+    }
+  }
   .give-us-clothes {
-    margin-top: 15px;
+    margin: 45px 0 -10px;
     text-align: center;
     .button {
       margin-left: 20px;

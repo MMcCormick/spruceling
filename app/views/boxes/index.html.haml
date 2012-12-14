@@ -1,5 +1,6 @@
-- content_for :under_header do
-  = render :partial => "charity/charity_meter"
+-if @charity
+  - content_for :under_header do
+    = render :partial => "charity/charity_meter", :locals => { :charity => @charity }
 
 - content_for :left_sidebar do
   = render :partial => "sidebar", :layout => 'layouts/left_sidebar'
