@@ -96,7 +96,7 @@ describe OrderItem do
 
       it "should call Charity#credit_account on the correct charity" do
         @charity = FactoryGirl.create(:charity)
-        @charity.should_receive(:credit_account)
+        Charity.any_instance.should_receive(:credit_account)
         @order_item.full_box_shipped
       end
     end

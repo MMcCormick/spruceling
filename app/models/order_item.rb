@@ -53,9 +53,10 @@ class OrderItem < ActiveRecord::Base
         self.save
         seller.save
         # Credit charity
-        charity = Charity.where(:status => "active").first
+        charity = Charity.where(:status => "active").last
         if charity
           charity.credit_account(box.seller_price * Order.charity_cut)
+          charity.save
         end
       end
     end
