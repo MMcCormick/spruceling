@@ -13,15 +13,15 @@
 
 class Order < ActiveRecord::Base
 
-  @@spruceling_cut = BigDecimal("0.2")
+  @@spruceling_cut = BigDecimal("0.0")
   def self.spruceling_cut
     @@spruceling_cut
   end
-  @@seller_cut = BigDecimal("0.7")
+  @@seller_cut = BigDecimal("0.6")
   def self.seller_cut
     @@seller_cut
   end
-  @@charity_cut = BigDecimal("0.1")
+  @@charity_cut = BigDecimal("0.4")
   def self.charity_cut
     @@charity_cut
   end

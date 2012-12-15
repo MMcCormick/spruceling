@@ -2,12 +2,12 @@
   .main-container
     #charity-meter
       .row
-        .desc.nine.columns
+        .desc.twelve.columns
           During December, all Spruceling proceeds will be donated to
           = link_to(charity.name, charity.site, {:target => "_blank"})
-        .goal.three.columns
-          December Goal:
-          %span.amount= number_to_currency charity.goal
+        -#.goal.three.columns
+        -#  December Goal:
+        -#  %span.amount= number_to_currency charity.goal
       .row
         .nice.round.progress
           %span.meter{ :style => "width: #{charity.percentage}%" }
