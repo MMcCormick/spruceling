@@ -191,10 +191,10 @@ class User < ActiveRecord::Base
     user.fb_token = omniauth['credentials']['token']
     user.fb_use_image = true
 
-    if user && !user.confirmed?
-      user.confirm!
-      #user.send_welcome_email #TODO
-    end
+    #if user && !user.confirmed?
+    #  user.confirm!
+    #  #user.send_welcome_email #TODO
+    #end
 
     user.save if user
 
