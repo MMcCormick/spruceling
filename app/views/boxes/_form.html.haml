@@ -51,14 +51,14 @@
 
       = f.error :seller_price
 
-      .shipping
-        %i.icon-road
-        %h5 We'll take care of shipping
-        .shipping_note
-          The display price will be
-          $
-          %span{'data-shipping' => 12}= @box.price_total
-          which includes shipping.
+      -#.shipping
+      -#  %i.icon-road
+      -#  %h5 We'll take care of shipping
+      -#  .shipping_note
+      -#    The display price will be
+      -#    $
+      -#    %span{'data-shipping' => 12}= @box.price_total
+      -#    which includes shipping.
 
     =   f.input :id, :as => :hidden
 
