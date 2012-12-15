@@ -245,14 +245,25 @@
         margin: 0 0 20px 0;
         display: none;
       }
+      .facebook_login {
+        display: none;
+      }
     }
     .register {
       #name {
         margin: 0 0 10px 0;
       }
+      #email {
+        display: none;
+      }
       #password {
         margin: 0 0 20px 0;
       }
+    }
+    .facebook_login {
+      margin: 0 0 15px 0;
+      text-align: center;
+      display: block;
     }
     .wrapper {
       @include border-radius(5px);

@@ -81,6 +81,11 @@
 
           = password_field_tag :password, nil, :placeholder => 'Password...', :class => 'hide password', :name => 'user[password]'
 
+          .facebook_login
+            %a{:href => omniauth_path(:provider => "facebook")}
+              %i.icon-facebook
+              Or sign in with Facebook
+
           = submit_tag "Sign In", :class => "small action button signin"
 
       .register.hide
@@ -94,5 +99,9 @@
 
           %div
             = password_field_tag :password, nil, :placeholder => 'Password...', :name => 'user[password]'
+
+          %a.facebook_login{:href => omniauth_path(:provider => "facebook")}
+            %i.icon-facebook
+            Or sign in with Facebook
 
           = submit_tag "Finish Sign In", :class => "small action button signin"
