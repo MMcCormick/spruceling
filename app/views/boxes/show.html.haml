@@ -78,9 +78,9 @@
         %a.medium.action.button.edit_box{:href => edit_box_path(:id => @box.id), 'data-method' => 'put'}
           Edit this box
       - elsif @box.status == 'active'
-        %a.medium.action.button.add_to_cart{:href => cart_add_path(:box_id => @box.id), 'data-method' => 'put', :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
+        %a.medium.action.button.add_to_cart{:href => buy_path(:box_id => @box.id), :disabled => ("disabled" if current_user && @box.user_id == current_user.id)}
           %i.icon-shopping-cart
-          Add to Cart
+          Buy
 
   .section
     .content
