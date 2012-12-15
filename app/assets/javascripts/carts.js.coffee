@@ -13,7 +13,7 @@ jQuery ->
   $('.login-container .options #have_account').click (e) ->
     $('.login-container .login #password, .login-container .login .facebook_login').removeClass('hide').show()
 
-  $('.login-container .login #email').keypress (e) ->
+  $('.login-container .login #email').keyup (e) ->
     $('.login-container .register #email').val($(@).val())
 
   $('.login-container .login form').submit (e) ->
