@@ -21,7 +21,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.generate(current_user)
+    @box = Box.find(session[:buy_box])
+    @order = Order.generate(current_user, @box)
 
     respond_to do |format|
       if @order.valid? && @order.charge

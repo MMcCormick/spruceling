@@ -1,10 +1,14 @@
 class CartsController < ApplicationController
-  before_filter :authenticate_user!
-
   def buy
-    session[:buy_box] = params[:box_id]
+    session[:buy_box] = params[:box_id] if params[:box_id]
+    @box = Box.find(session[:buy_box])
+
+    if signed_in? && @box && @box.user_id == current_user.id
+      redirect_to :back, :alert => 'You cannot buy your own box! That would be silly, wouldn\'t it?'
+    end
+
     @fullscreen = true
-    @show_shipping = true
+    @show_shipping = signed_in? ? true : false
     @completed_shipping = signed_in? && current_user.address ? true : false
     @show_payment = @completed_shipping ? true : false
     @completed_payment = signed_in? && current_user.stripe_customer_id ? true : false

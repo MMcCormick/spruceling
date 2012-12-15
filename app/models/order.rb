@@ -79,7 +79,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.generate(user)
+  def self.generate(user, box)
     order = user.orders.build
 
     # must have payment info
@@ -88,17 +88,16 @@ class Order < ActiveRecord::Base
       return order
     end
 
-    # can't have an empty cart
-    #if user.cart.boxes.length == 0
-    #  order.errors.add :base, 'You cannot process an order with an empty cart.'
-    #  return order
-    #end
-
-    order.price_total = user.cart.price_total
-    order.boxes_total = user.cart.boxes_total
-    user.cart.boxes.each do |b|
-      order.add_box(b)
+    # can't have an empty order
+    unless box
+      order.errors.add :base, 'You cannot process an order with no boxes.'
     end
+
+    order.price_total = box.price_total + 10.00 - user.balance
+    order.price_total = order.price_total < 0.5 ? 0.0 : order.price_total
+    order.boxes_total = box.price_total
+
+    order.add_box(box)
 
     order
   end

@@ -6,31 +6,35 @@
       %i.icon-ok
       .name Shipping
 
-    .content
-      %div{:class => "wrapper #{signed_in? && current_user.address ? 'display-show' : 'display-edit' }"}
-        .show
-          = render 'users/address', :address => current_user.address
-        .edit
-          = render "users/address_form"
-      - if signed_in? && current_user.address
-        .toggle
-          %span Edit
+    - if signed_in?
+      .content
+        %div{:class => "wrapper #{current_user.address ? 'display-show' : 'display-edit' }"}
+          - if current_user.address
+            .show
+              = render 'users/address', :address => current_user.address
+          .edit
+            = render "users/address_form"
+        - if current_user.address
+          .toggle
+            %span Edit
 
-  %div{:class => "step payment four columns completed #{@show_payment ? '' : 'hidden'} #{@completed_payment ? 'completed' : ''}"}
+  %div{:class => "step payment four columns #{@show_payment ? '' : 'hidden'} #{@completed_payment ? 'completed' : ''}"}
     .bg
     .icon
       %span.number 2
       %i.icon-ok
       .name Payment
-    .content
-      %div{:class => "wrapper #{signed_in? && current_user.stripe ? 'display-show' : 'display-edit' }"}
-        .show
-          = "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
-        .edit
-          = render "users/stripe_card_form"
-      - if signed_in? && current_user.stripe
-        .toggle
-          %span Edit
+    - if signed_in? && @show_payment
+      .content
+        %div{:class => "wrapper #{current_user.stripe ? 'display-show' : 'display-edit' }"}
+          - if current_user.stripe
+            .show
+              = "Using #{current_user.stripe.active_card['type']} ending with #{current_user.stripe.active_card['last4']}"
+          .edit
+            = render "users/stripe_card_form"
+        - if current_user.stripe
+          .toggle
+            %span Edit
 
   %div{:class => "step confirm four columns #{@show_review ? '' : 'hidden'}"}
     .bg
@@ -38,3 +42,57 @@
       %span.number 3
       %i.icon-ok
       .name Review
+    - if @show_review
+      .content
+        .wrapper
+          .line-item.first
+            .left
+              = "#{@box.gender_noun} #{@box.size} - #{pluralize(@box.items.count, 'Items')}"
+              = render 'boxes/itemized', :box => @box
+            .right= number_to_currency @box.price_total
+          .line-item
+            .left Shipping
+            .right $10.00
+          .line-item
+            .left Spruceling Credit
+            .right= "-#{number_to_currency(current_user.balance > @box.price_total ? @box.price_total : current_user.balance)}"
+          .line-item.last
+            .left Grand Total
+            .right= number_to_currency @box.grand_total(current_user)
+
+        = link_to 'Place Order', orders_path, :method => :post, :class => "buy medium action button"
+
+- unless signed_in?
+  .login-container
+    .header
+      Enter your email to get started.
+    .subheader
+      Just for record keeping. We'll never spam you.
+    .wrapper
+      .login
+        = form_tag(user_session_path, :method => :post) do |f|
+          = text_field_tag :email, nil, :placeholder => 'Email...', :name => 'user[email]', :autocomplete => 'off'
+
+          .options
+            %input{:type => 'radio', :id => 'new_account', :name => 'account_choice', :checked => true}
+            %span I'm a new customer
+            %input{:type => 'radio', :id => 'have_account', :name => 'account_choice'}
+            %span I have an account
+
+          = password_field_tag :password, nil, :placeholder => 'Password...', :class => 'hide password', :name => 'user[password]'
+
+          = submit_tag "Sign In", :class => "small action button signin"
+
+      .register.hide
+        = form_tag(user_registration_path, :method => :post) do |f|
+
+          %div
+            = text_field_tag :name, nil, :placeholder => 'Full name...', :name => 'user[name]', :autocomplete => 'off'
+
+          %div
+            = email_field_tag :email, nil, :class => 'hide', :name => 'user[email]', :autocomplete => 'off'
+
+          %div
+            = password_field_tag :password, nil, :placeholder => 'Password...', :name => 'user[password]'
+
+          = submit_tag "Finish Sign In", :class => "small action button signin"

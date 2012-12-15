@@ -91,7 +91,12 @@ class Box < ActiveRecord::Base
   end
 
   def price_total
-    (seller_price ? seller_price + 12 : 0)
+    (seller_price ? seller_price : 0)
+  end
+
+  def grand_total(user)
+    total = price_total + 10.00 - user.balance
+    total < 0.5 ? 0.0 : total
   end
 
   def recommended_price
