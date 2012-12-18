@@ -10,11 +10,10 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "Admin Details" do
       f.input :email
-      f.input :password
-      f.input :password_confirmation
       f.input :balance
       f.input :name
       f.input :username
+      f.input :number_of_ratings
     end
     f.buttons
   end

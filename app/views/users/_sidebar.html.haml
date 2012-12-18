@@ -1,11 +1,13 @@
 .photo.cover-image{:style => "background-image: url('#{user_avatar_path(@user, :width => 400, :height => 400, :crop => :limit, :gravity => :face)}')"}
 
 %h4.username= @user.name
+- unless @user.number_of_ratings.nil?
+  .rating
+    = image_tag "5star.png"
+    %div From #{@user.number_of_ratings} Reviews
+    -#- if @user.rating
+    -#  %b= @user.rating
+    -#  \/ 5
+    -#- else
+    -#  N/A
 .city= "#{@user.address["city"]}, #{@user.address["state"]}" if @user.address && @user.address["city"] && @user.address["state"]
-.rating
-  Rating:
-  - if @user.rating
-    %b= @user.rating
-    \/ 5
-  - else
-    N/A

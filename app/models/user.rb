@@ -237,6 +237,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def number_of_ratings
+    4
+  end
+
   ###
   # ROLES
   ###
