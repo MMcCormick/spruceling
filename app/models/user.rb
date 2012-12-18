@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   has_many :withdrawals, :inverse_of => :user
 
   validates_presence_of :name, :email, :encrypted_password, :balance
-  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at
+  attr_accessible :username, :name, :email, :password, :password_confirmation, :remember_me, :created_at, :updated_at, :number_of_ratings
 
   attr_accessor :full_name, :address1, :address2, :city, :state, :zip_code
 
@@ -235,10 +235,6 @@ class User < ActiveRecord::Base
     else
       nil
     end
-  end
-
-  def number_of_ratings
-    4
   end
 
   ###
