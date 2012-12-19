@@ -1,14 +1,15 @@
-#under-header
-  .main-container
-    #charity-meter
-      .row
-        .desc.twelve.columns
-          During December, all Spruceling proceeds will be donated to
-          = link_to(charity.name, charity.site, {:target => "_blank"})
-        -#.goal.three.columns
-        -#  December Goal:
-        -#  %span.amount= number_to_currency charity.goal
-      .row
-        .nice.round.progress
-          %span.meter{ :style => "width: #{charity.percentage}%" }
-          .percentage #{charity.percentage}%
+- if
+  #under-header
+    .main-container
+      #charity-meter
+        .row
+          .desc.nine.columns
+            During December, all Spruceling proceeds will be donated to
+            = link_to(charity.name, charity.site, {:target => "_blank"})
+          .goal.three.columns
+            #{distance_of_time_in_words(Time.now, Chronic.parse("January 1st, 2013"))} left!
+        .row
+          .nice.round.progress
+            %span.meter{ :style => "width: #{100 * (Time.now - Chronic.parse("December 1st, 2012")) / 31.days}%" }
+            .left December 1st
+            .right January 1st

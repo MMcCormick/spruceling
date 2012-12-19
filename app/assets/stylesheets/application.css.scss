@@ -306,7 +306,7 @@ label {
     @include border-bottom-left-radius(10px);
     @include border-bottom-right-radius(10px);
     background: lighten($green, 35%);
-    padding: 10px 10px 0px 10px;
+    padding: 15px 10px 5px;
     margin-bottom: -15px;
     .desc {
       padding: 0 0 0 10px;
@@ -327,15 +327,19 @@ label {
     }
     .progress {
       position: relative;
-      margin-top: 10px;
+      margin-top: 15px;
       .meter {
         background-color: $green;
       }
-      .percentage {
+      .left {
         position: absolute;
         top: 4px;
-        width: 100%;
-        text-align: center;
+        left: 10px;
+      }
+      .right {
+        position: absolute;
+        top: 4px;
+        right: 10px;
       }
     }
   }
