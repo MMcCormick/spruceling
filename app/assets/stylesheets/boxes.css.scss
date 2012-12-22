@@ -74,6 +74,9 @@ $box-teaser-height: 255px;
       width: 75px;
       float: left;
       margin: 0 10px 0 0 0;
+      img {
+        display: block;
+      }
     }
   }
   .line {
