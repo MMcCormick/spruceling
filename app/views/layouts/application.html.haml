@@ -40,6 +40,7 @@
     = yield :head
 
   %body
+    = yield :javascript_top
 
     #data-pjax-container{'data-pjax-container' => 'true'}
 
@@ -99,8 +100,7 @@
         #loader
           %h1 Loading...
 
-    %script
-      = yield :javascript
+    = yield :javascript
 
     %script{:type => 'text/javascript', :src => '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}
     %script{:type => 'text/javascript', :src => '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js'}
@@ -111,8 +111,26 @@
     %script{:type => 'text/javascript'}
       = "Stripe.setPublishableKey('#{STRIPE_PUBLIC_KEY}');"
 
-    %script{:type => 'text/javascript'}
+    - if Rails.env == 'production'
+      <!-- Start of Woopra Code -->
+      <script type="text/javascript">
+      function woopraReady(tracker) {
+      tracker.setDomain('spruceling.com');
+      tracker.setIdleTimeout(1800000);
+      tracker.track();
+      return false;
+      }
+      (function() {
+      var wsc = document.createElement('script');
+      wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+      wsc.type = 'text/javascript';
+      wsc.async = true;
+      var ssc = document.getElementsByTagName('script')[0];
+      ssc.parentNode.insertBefore(wsc, ssc);
+      })();
+      </script>
+      <!-- End of Woopra Code -->
 
-    != facebook_code
-    != twitter_code
-    != google_analytics
+      != facebook_code
+      != twitter_code
+      != google_analytics
