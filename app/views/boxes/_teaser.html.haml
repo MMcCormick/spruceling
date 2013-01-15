@@ -1,11 +1,18 @@
 
 %div{:id => "box-#{box.id}", :class => "box_teaser #{box.brands_with_icons.length == 0 ? 'no-brand-icons' : ''}"}
   - cache box do
-    %a.add_to_cart{:href => buy_path(:box_id => box.id)}
-      %i.icon-shopping-cart
-      Buy
+    %a.photo-wrapper{:href => box_path(box)}
+      - box.brands_with_icons.first(2).each_with_index do |brand,i|
+        %div{:class => "brand #{i == 0 ? 'one' : 'two'}"}
+          = image_tag brand.icon_path, :title => brand.name, :alt => brand.name, :e => :grayscale, :width => 60
+      .primary-image
+        = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
 
-    %a.info-wrapper{:href => box_path(box)}
+    .bottom
+      .item-types
+        - box.item_categories.each do |it|
+          = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
+
       .line
         .count.left= "#{box.items.count} Items"
         .prices.right
@@ -23,15 +30,9 @@
             = "#{box.recommended_price[:savings].to_i}% Off"
           Retail
 
-      .item-types
-        - box.item_categories.each do |it|
-          = image_tag "/images/clothing_icons/#{it.downcase}_icon.png", :title => it
-
-      - if box.brands_with_icons.length > 0
-        .brands
-          - box.brands_with_icons.first(3).each_with_index do |brand,i|
-            %div{:class => "brand"}
-              = image_tag brand.icon_path, :title => brand.name, :alt => brand.name, :e => :grayscale, :width => 75
+      %a.add_to_cart{:href => cart_add_path(:box_id => box.id), 'data-method' => 'put'}
+        %i.icon-shopping-cart
+        Add to Cart
 
     - if box.new_with_tags_count > 0
       %i.icon-certificate{:title => "#{pluralize(box.new_with_tags_count, 'Item')} New With Tags"}

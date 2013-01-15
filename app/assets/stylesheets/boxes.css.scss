@@ -1,5 +1,5 @@
 $box-teaser-width: 310px;
-$box-teaser-height: 255px;
+$box-teaser-height: 355px;
 
 .box-sidebar-filters {
 
@@ -31,13 +31,49 @@ $box-teaser-height: 255px;
   margin: 10px;
   background: #FFF;
   position: relative;
-  padding: 20px;
 
+  .photo-wrapper {
+    width: 100%;
+    display: block;
+    position: relative;
+    height: 202px;
+
+    .brand {
+      position: absolute;
+      right: 0px;
+      height: 100px;
+      width: 100px;
+
+      &.one {
+        top: 0;
+      }
+      &.two {
+        top: 102px;
+      }
+      img {
+        margin: 20px auto;
+      }
+    }
+    .primary-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 208px;
+      height: 201px;
+    }
+    img {
+      display: block;
+    }
+    .photo {
+      height: 100%;
+      width: 100%;
+    }
+  }
   .icon-certificate {
     font-size: 50px;
     font-size: 5rem;
     position: absolute;
-    bottom: -20px;
+    top: -20px;
     left: -10px;
     color: $action-color;
     cursor: default;
@@ -55,29 +91,17 @@ $box-teaser-height: 255px;
       font-style: normal;
     }
   }
-  .info-wrapper {
-    display: block;
-    height: 185px;
-  }
   .item-types {
-    margin: 25px 0 10px 0;
+    padding: 0 5px 10px 5px;
+    margin: -5px -5px 12px -5px;
+    border-bottom: 1px solid #EFEFEF;
     img {
       margin: 0 5px 0 0;
       width: 25px;
     }
   }
-  .brands {
-    @include clearfix();
-    border-top: 1px solid #EFEFEF;
-    padding: 10px 0 0 0;
-    .brand {
-      width: 75px;
-      float: left;
-      margin: 0 10px 0 0 0;
-      img {
-        display: block;
-      }
-    }
+  .bottom {
+    padding: 20px;
   }
   .line {
     @include clearfix();
@@ -105,7 +129,7 @@ $box-teaser-height: 255px;
     color: $green;
   }
   .add_to_cart {
-    margin: 0 0 10px 0;
+    margin: 20px 0 0 0;
     display: inline-block;
     color: #222;
     font-weight: bold;
@@ -406,7 +430,7 @@ $box-teaser-height: 255px;
     font-size: 2rem;
     font-weight: bold;
     color: #999;
-    margin: 25px 20px;
+    margin: 50px 20px;
   }
   .upload {
     text-align: center;
@@ -416,7 +440,7 @@ $box-teaser-height: 255px;
     color: #999;
     font-size: 15px;
     font-size: 1.5rem;
-    margin: 25px 20px 10px 20px;
+    margin: 55px 20px 10px 20px;
   }
   .buttons {
     margin: 0 20px;
