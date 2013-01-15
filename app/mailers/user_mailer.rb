@@ -11,4 +11,9 @@ class UserMailer < ActionMailer::Base
     @box = Box.find(box_id)
     mail(:to => @user.email, :subject => "You have an unfinished box!")
   end
+
+  def new_boxes(user_id, box_ids)
+    @user = User.find(user_id)
+    @boxes = Box.find(box_ids)
+  end
 end

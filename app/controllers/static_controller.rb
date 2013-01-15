@@ -23,4 +23,8 @@ class StaticController < ApplicationController
   def send_clothes
 
   end
+
+  def team
+
+  end
 end
