@@ -6,7 +6,8 @@
         %div{:class => "brand #{i == 0 ? 'one' : 'two'}"}
           = image_tag brand.icon_path, :title => brand.name, :alt => brand.name, :e => :grayscale, :width => 60
       .primary-image
-        = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
+        - if box.primary_image
+          = render "photos/cover_photo", :photo => box.primary_image, :size => :medium
 
     .bottom
       .item-types
