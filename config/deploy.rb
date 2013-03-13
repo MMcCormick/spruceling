@@ -4,6 +4,7 @@ require 'bundler/capistrano'
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
+set :rails_env, "production"
 set :use_sudo, true
 set :domain, '198.211.110.136'
 set :application, 'spruceling'
