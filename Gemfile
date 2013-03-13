@@ -87,6 +87,8 @@ end
 
 group :production, :staging do
   gem "rack-timeout"
+  gem 'execjs'
+  gem 'therubyracer'
 end
 
 #gem 'memcachier' # modify ENV variables to make dalli work with memcachier

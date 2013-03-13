@@ -1,5 +1,5 @@
 require 'bundler/capistrano'
-require 'sidekiq/capistrano'
+#require 'sidekiq/capistrano'
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -36,8 +36,6 @@ set :default_environment, {
     'BUNDLE_PATH'  => '/usr/local/rvm/gems/ruby-1.9.3-p392@Spruceling'  # If you are using bundler.
 }
 
-#after 'deploy:update_code', :upload_env_vars
-
 after 'deploy:setup' do
   sudo "chown -R #{user} #{deploy_to} && chmod -R g+s #{deploy_to}"
 end
@@ -50,7 +48,3 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
-
-#task :upload_env_vars do
-#  upload(".env.#{rails_env}", "#{release_path}/.env.#{rails_env}", :via => :scp)
-#end
