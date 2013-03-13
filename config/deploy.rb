@@ -8,7 +8,6 @@ set :rails_env, "production"
 set :domain, '198.211.110.136'
 set :application, 'spruceling'
 set :repository,  'https://marbemac@github.com/whoot/spruceling.git'
-set :branch,  'devshop'
 set :deploy_to, "/var/www/#{application}"
 
 set :scm, :git

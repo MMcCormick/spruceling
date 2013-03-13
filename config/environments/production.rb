@@ -72,7 +72,7 @@ Spruceling::Application.configure do
 
   config.assets.precompile += ['active_admin.css','active_admin/print.css','active_admin.js','respond.min.js','backgroundSize.js']
 
-  config.action_mailer.default_url_options = { :host => 'www.spruceling.com' }
+  config.action_mailer.default_url_options = { :host => 'spruceling.marbemac.com' }
   Rails.application.routes.default_url_options = config.action_mailer.default_url_options # because this is what Resque looks for
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
@@ -84,9 +84,9 @@ Spruceling::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.sendgrid.net",
     port: 25,
-    domain: "spruceling.com",
+    domain: "spruceling.marbemac.com",
     authentication: "plain",
-    user_name: 'marbemac@gmail.com',
+    user_name: 'marbemac',
     password: 'giants22'
   }
 
