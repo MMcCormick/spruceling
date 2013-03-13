@@ -46,6 +46,9 @@ gem 'sass-rails',   '~> 3.2.3'
 gem 'activeadmin'
 gem 'net-ping'
 
+gem 'capistrano'
+gem 'rvm-capistrano'
+
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
@@ -84,7 +87,6 @@ end
 
 group :production, :staging do
   gem "rack-timeout"
-  gem 'unicorn'
 end
 
 #gem 'memcachier' # modify ENV variables to make dalli work with memcachier
