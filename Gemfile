@@ -37,7 +37,7 @@ gem 'slim' # for sidekiq
 gem 'cache_digests'
 gem 'mechanize'
 gem 'compass-rails'
-gem 'zurb-foundation'
+gem 'zurb-foundation', '3.2.5'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'nested_form'
@@ -87,8 +87,6 @@ end
 
 group :production, :staging do
   gem "rack-timeout"
-  gem 'execjs'
-  gem 'therubyracer'
 end
 
 #gem 'memcachier' # modify ENV variables to make dalli work with memcachier

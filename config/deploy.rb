@@ -41,6 +41,13 @@ after 'deploy:setup' do
   sudo "chown -R #{user} #{deploy_to} && chmod -R g+s #{deploy_to}"
 end
 
+after "deploy:update_code", :precompile_assets
+
+desc "precompile the assets"
+task :precompile_assets, :roles => :app do
+  run "cd #{release_path} && RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+end
+
 namespace :deploy do
   desc <<-DESC
   Restart Passenger

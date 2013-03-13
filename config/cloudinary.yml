@@ -1,25 +1,14 @@
 ---
 development:
-  cloud_name: hgfemg5p7
-  api_key: '144477765984443'
-  api_secret: Soa3HK-QuYZbmHzRFGOPp30QYtE
+  cloud_name: limelight-development
+  api_key: '374436425711482'
+  api_secret: u8TUKYBrZFBKv_h5ZWIG01E6u9A
   enhance_image_tag: true
-  static_image_support: false
+  static_image_support: true
+
 production:
-  cloud_name: hwtehlrhj
-  api_key: 273275858416515
-  api_secret: ctnfNnkxcVxuVBrkaPmAsHS81kc
-  enhance_image_tag: true
-  static_image_support: true
-staging:
-  cloud_name: <%= ENV["CLOUDINARY_CLOUD_NAME"] %>
-  api_key: <%= ENV["CLOUDINARY_API_KEY"] %>
-  api_secret: <%= ENV["CLOUDINARY_API_SECRET"] %>
-  enhance_image_tag: true
-  static_image_support: true
-test:
-  cloud_name: hgfemg5p7
-  api_key: '144477765984443'
-  api_secret: Soa3HK-QuYZbmHzRFGOPp30QYtE
+  cloud_name: limelight-development
+  api_key: '374436425711482'
+  api_secret: u8TUKYBrZFBKv_h5ZWIG01E6u9A
   enhance_image_tag: true
   static_image_support: true

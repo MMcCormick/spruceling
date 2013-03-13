@@ -77,8 +77,8 @@ Spruceling::Application.configure do
     port: 25,
     domain: "staging.spruceling.com",
     authentication: "plain",
-    user_name: ENV["SENDGRID_USERNAME"],
-    password: ENV["SENDGRID_PASSWORD"]
+    user_name: 'marbemac@gmail.com',
+    password: 'giants22'
   }
 
 end
