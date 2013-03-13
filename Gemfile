@@ -2,17 +2,16 @@ source :rubygems
 
 ruby '1.9.3'
 
-gem 'bundler', '~> 1.2'
-gem 'rails', '~> 3.2.11'
+gem 'bundler'
+gem 'rails', '~> 3.2.13.rc2'
 
 gem 'jquery-rails'
 gem "devise", ">= 2.1.2"
 gem 'yajl-ruby' # json
 gem 'rack-contrib'
-gem 'soulmate', '0.1.3', :require => 'soulmate/server' # Redis based autocomplete storage
+gem 'soulmate', '1.0.0', :require => 'soulmate/server' # Redis based autocomplete storage
 gem 'chronic' # Date/Time management
 
-gem 'memcachier' # modify ENV variables to make dalli work with memcachier
 gem 'dalli' # memcache
 
 gem 'stripe' # payments
@@ -21,7 +20,6 @@ gem 'stamps', :git => 'https://github.com/marbemac/stamps.git'
 gem 'cloudinary' # images
 gem 'carrierwave' # images
 gem 'sendgrid'
-gem 'newrelic_rpm', '~> 3.5.0'
 gem "haml-rails", ">= 0.3.4"
 gem 'omniauth'
 gem 'oauth2'
@@ -33,7 +31,7 @@ gem 'annotate'
 gem "pg"
 gem 'kaminari'
 gem "friendly_id", "~> 4.0.1"
-gem 'sidekiq', '2.4.0' # background jobs
+gem 'sidekiq' # background jobs
 gem 'sinatra' # for sidekiq
 gem 'slim' # for sidekiq
 gem 'cache_digests'
@@ -46,7 +44,6 @@ gem 'nested_form'
 gem 'awesome-usps', git: 'https://github.com/turbovote/awesome-usps.git'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'activeadmin'
-gem 'airbrake'
 gem 'net-ping'
 
 group :assets do
@@ -89,3 +86,7 @@ group :production, :staging do
   gem "rack-timeout"
   gem 'unicorn'
 end
+
+#gem 'memcachier' # modify ENV variables to make dalli work with memcachier
+#gem 'newrelic_rpm', '~> 3.5.0'
+#gem 'airbrake'
