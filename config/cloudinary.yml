@@ -4,11 +4,11 @@ development:
   api_key: '374436425711482'
   api_secret: u8TUKYBrZFBKv_h5ZWIG01E6u9A
   enhance_image_tag: true
-  static_image_support: true
+  static_image_support: false
 
 production:
   cloud_name: limelight-development
   api_key: '374436425711482'
   api_secret: u8TUKYBrZFBKv_h5ZWIG01E6u9A
   enhance_image_tag: true
-  static_image_support: true
+  static_image_support: false
