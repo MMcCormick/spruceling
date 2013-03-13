@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: spruceling_development
+  host: localhost
+  pool: 5
+  username: Marc
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: spruceling_test
+  host: localhost
+  pool: 5
+  username: Marc
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: spruceling
+  host: localhost
+  username: postgres
+  password: e89Ezq0ei4N
+  pool: 10

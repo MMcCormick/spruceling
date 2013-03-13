@@ -1,9 +1,5 @@
 require 'bundler/capistrano'
 require 'sidekiq/capistrano'
-#require 'capistrano/ext/multistage'
-
-#set :stages, %w(production staging)
-#set :default_stage, 'staging'
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
@@ -32,9 +28,13 @@ set :bundle_without, [:development, :test]
 
 set :rake, "#{rake} --trace"
 
-#set :default_environment, {
-#    'PATH' => '/usr/local/rbenv:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH'
-#}
+set :default_environment, {
+    'PATH' => "/usr/local/rvm/gems/ruby-1.9.3-p392@Spruceling/bin:/usr/local/rvm/rubies/ruby-1.9.3-p392/bin:/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+    'RUBY_VERSION' => 'ruby 1.9.3',
+    'GEM_HOME'     => '/usr/local/rvm/gems/ruby-1.9.3-p392@Spruceling',
+    'GEM_PATH'     => '/usr/local/rvm/gems/ruby-1.9.3-p392@Spruceling',
+    'BUNDLE_PATH'  => '/usr/local/rvm/gems/ruby-1.9.3-p392@Spruceling'  # If you are using bundler.
+}
 
 #after 'deploy:update_code', :upload_env_vars
 
