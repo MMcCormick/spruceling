@@ -47,7 +47,6 @@ gem 'activeadmin'
 gem 'net-ping'
 
 gem 'capistrano'
-gem 'rvm-capistrano'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
